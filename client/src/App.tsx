@@ -1,4 +1,4 @@
-import Logo from './components/Logo/Logo.js';
+import Logo from './components/Logo/Logo.tsx';
 
 const App = () => {
   return (
