@@ -1,5 +1,9 @@
+import Logo from "./components/Logo.tsx";
+
 const App = () => {
-  return <h1>NBA Battle</h1>;
+  return (
+    <Logo />
+  )
 };
 
 export default App;
