@@ -2,36 +2,46 @@ name: CI/CD Pipeline
 
 on:
     push:
-      branches: [ main, dev ]
+      branches: [ main, dev, auth ]
     pull_request:
-      branches: [ main, dev ]
+      branches: [ main, dev, auth ]
 
 jobs:
     build:
         runs-on: ubuntu-latest
 
         steps:
-        - name: Checkout code
+        - name: Checkout Code
           uses: actions/checkout@v2
 
-        - name: Set up Node.js
+        - name: Set Up Node.js
           uses: actions/setup-node@v2
           with:
             node-version: '20.5.1'
 
-        - name: Install dependencies
-          run: npm install
+        - name: Install Dependencies
+          run: |
+            cd client
+            npm install
 
         - name: Compile SCSS
-          run: npm run compile-scss
+          run: |
+            cd client
+            npm run compile-scss
 
-        - name: Run lint
-          run: npm run lint
+        - name: Run ESLint
+          run: |
+            cd client
+            npm run lint
 
         - name: Run Tests
-          run: npm test
+          run: |
+            cd client
+            npm test
 
-        - name: Build the project
-          run: npm run build
+        - name: Build Project...
+          run: |
+            cd client
+            npm run build
       
       
