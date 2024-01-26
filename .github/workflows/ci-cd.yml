@@ -19,7 +19,17 @@ jobs:
           with:
             node-version: '20.5.1'
 
-        - name: Install Dependencies
+        - name: Install Server Dependencies
+          run: |
+            cd server
+            npm install
+        
+        - name: Run Server Tests
+          run: |
+            cd server
+            npm test
+
+        - name: Install Client Dependencies
           run: |
             cd client
             npm install
