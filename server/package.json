@@ -5,13 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "jest --config jest.config.ts --forceExit",
-    "start": "node src/server.ts"
+    "start": "npx tsx ./src/server/server.ts",
+    "test": "jest --config jest.config.ts --forceExit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/pg": "^8.11.0",
     "express": "^4.18.2",
     "pg": "^8.11.3"
   },
@@ -20,10 +21,11 @@
     "@babel/preset-env": "^7.23.9",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.11",
+    "@types/node": "^20.11.7",
     "@types/supertest": "^6.0.2",
     "jest": "^29.7.0",
     "supertest": "^6.3.4",
     "ts-jest": "^29.1.2",
-    "ts-node": "^10.9.2"
+    "typescript": "^5.3.3"
   }
 }
