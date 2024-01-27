@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "npx tsx ./src/server/server.ts",
+    "start": "npx tsx ./src/app.ts",
     "test": "jest --config jest.config.ts --forceExit"
   },
   "keywords": [],
