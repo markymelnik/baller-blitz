@@ -1,0 +1,16 @@
+.signup-form {
+	max-width: 24rem;
+	border: 1px solid black;
+	padding: 1rem;
+
+	.signup-email-field,
+	.signup-password-field {
+		display: flex;
+		flex-direction: column;
+
+		.signup-error-message {
+			color: red;
+		}
+	}
+
+}
