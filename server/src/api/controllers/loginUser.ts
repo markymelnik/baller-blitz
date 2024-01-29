@@ -1,25 +1,37 @@
 import { Request, Response } from "express";
 import { findUserByEmail } from "../../database/queries/findUserByEmail";
 import { User } from "../../database/models/User";
+import jwt from 'jsonwebtoken';
+import 'dotenv/config';
+
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT secret is undefined');
+}
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
     const requestingUser: User = req.body;
     const { email, username, password } = requestingUser;
 
-    if (!email && !password) {
+    if (!email || !password) {
       return res
         .status(400)
         .json({ message: 'Email and password are required' });
     }
 
+    // Validate input
+
     const databaseUser = await findUserByEmail(email);
 
     if (!databaseUser) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: 'Invalid login credentials' });
     }
 
-    res.status(200).send({ message: 'Successfully logged in' });
+    const token = jwt.sign({ id: databaseUser.id }, JWT_SECRET, { expiresIn: '1h' })
+
+    res.status(200).send({ message: 'Successfully logged in', token });
   } catch (err) {
     console.error('Error logging in user', err);
     res.status(500).send('Server error logging in user');

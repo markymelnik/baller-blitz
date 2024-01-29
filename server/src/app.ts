@@ -1,12 +1,17 @@
 import express from 'express';
 import { signupUser } from './api/controllers/signupUser';
 import { loginUser } from './api/controllers/loginUser';
+import { validateToken } from './api/middleware/validateToken';
 
 const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('NBA Battle');
+});
+
+app.get('/profile', validateToken, (req, res) => {
+  res.json({ message: 'You have hit a protected route' });
 });
 
 app.post('/signup', signupUser);
