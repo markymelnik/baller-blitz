@@ -1,0 +1,16 @@
+.login-form {
+	max-width: 24rem;
+	border: 1px solid black;
+	padding: 1rem;
+
+	.login-email-field,
+	.login-password-field {
+		display: flex;
+		flex-direction: column;
+
+		.login-error-message {
+			color: red;
+		}
+	}
+
+}
