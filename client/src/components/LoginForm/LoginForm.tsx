@@ -1,19 +1,23 @@
 import { useForm } from 'react-hook-form';
 
-type LoginFormInputTypes = {
-  email: string;
-  password: string;
-};
+import { LoginCredentials } from '../../types.ts';
+import { loginUser } from '../../api/loginUser.tsx';
+import './login-form.scss';
 
 export const LoginForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputTypes>();
+  } = useForm<LoginCredentials>();
 
-  const handleLoginFormSubmit = (formData: LoginFormInputTypes) => {
-    console.log(formData);
+  const handleLoginFormSubmit = async (formData: LoginCredentials) => {
+    try {
+      const responseData = await loginUser(formData);
+      console.log(responseData);
+    } catch (error) {
+      console.error('Error logging in');
+    }
   };
 
   return (
@@ -41,6 +45,7 @@ export const LoginForm = () => {
             <p className='login-error-message'>{errors.password.message}</p>
           )}
         </div>
+        <button type="submit">Log In</button>
       </form>
     </div>
   );

@@ -1,20 +1,23 @@
 import { useForm } from 'react-hook-form';
-import './signup-form.scss';
 
-type SignupFormInputTypes = {
-  email: string;
-  password: string;
-};
+import { SignupCredentials } from '../../types.ts';
+import './signup-form.scss';
+import { signupUser } from '../../api/signupUser.tsx';
 
 export const SignupForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignupFormInputTypes>();
+  } = useForm<SignupCredentials>();
 
-  const handleSignupFormSubmit = (formData: SignupFormInputTypes) => {
-    console.log(formData);
+  const handleSignupFormSubmit = async (formData: SignupCredentials) => {
+    try {
+      const responseData = await signupUser(formData);
+      console.log(responseData);
+    } catch (error) {
+      console.error('Error signing up');
+    }
   };
 
   return (
