@@ -1,10 +1,15 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { SignupCredentials } from '../../types.ts';
-import './signup-form.scss';
 import { signupUser } from '../../api/signupUser.tsx';
+import './signup-form.scss';
+import { signup } from '../../redux/slices/authSlice.ts';
 
 export const SignupForm = () => {
+
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -14,7 +19,7 @@ export const SignupForm = () => {
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
       const responseData = await signupUser(formData);
-      console.log(responseData);
+      dispatch(signup(responseData));
     } catch (error) {
       console.error('Error signing up');
     }

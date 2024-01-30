@@ -1,10 +1,15 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { LoginCredentials } from '../../types.ts';
 import { loginUser } from '../../api/loginUser.tsx';
 import './login-form.scss';
+import { login } from '../../redux/slices/authSlice.ts';
 
 export const LoginForm = () => {
+
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -14,7 +19,13 @@ export const LoginForm = () => {
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
       const responseData = await loginUser(formData);
+
+      responseData.profile = responseData.databaseUser;
+      delete responseData.databaseUser;
+
       console.log(responseData);
+      
+      dispatch(login(responseData));
     } catch (error) {
       console.error('Error logging in');
     }
