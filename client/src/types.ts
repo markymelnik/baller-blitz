@@ -1,9 +1,13 @@
+export interface UserState {
+	userDetails: User | null;
+}
+
 export interface User {
 	id: number,
 	email: string,
 }
 
-export interface AuthenticatedUser {
+export interface BackendUser {
 	token: string,
 	user: User,
 }
@@ -19,6 +23,5 @@ export interface LoginCredentials {
 }
 
 export interface AuthState {
-	user: User | null;
 	isAuthenticated: boolean;
 }

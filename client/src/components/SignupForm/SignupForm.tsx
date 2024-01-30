@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 
 import { SignupCredentials } from '../../types.ts';
 import { signupUser } from '../../api/signupUser.tsx';
+import { setAuthentication } from '../../redux/slices/authSlice.ts';
 import './signup-form.scss';
-import { signup } from '../../redux/slices/authSlice.ts';
 
 export const SignupForm = () => {
 
@@ -18,8 +18,9 @@ export const SignupForm = () => {
 
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
-      const responseData = await signupUser(formData);
-      dispatch(signup(responseData));
+      await signupUser(formData);
+
+      dispatch(setAuthentication(true));
     } catch (error) {
       console.error('Error signing up');
     }
