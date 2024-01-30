@@ -1,13 +1,12 @@
 import pool from '../pool';
-import { User } from '../models/User';
+import { DatabaseUser, RequestingUser } from '../models/User';
 import { QUERIES } from './QUERIES';
 
-export const insertUserIntoDatabase = async (user: User): Promise<User> => {
+export const insertUserIntoDatabase = async (user: RequestingUser): Promise<DatabaseUser> => {
   try {
-    const { email, username, password } = user;
+    const { email, password } = user;
     const res = await pool.query(QUERIES.CREATE_USER, [
       email,
-      username,
       password,
     ]);
     return res.rows[0];

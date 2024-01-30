@@ -19,12 +19,6 @@ export const LoginForm = () => {
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
       const responseData = await loginUser(formData);
-
-      responseData.profile = responseData.databaseUser;
-      delete responseData.databaseUser;
-
-      console.log(responseData);
-      
       dispatch(login(responseData));
     } catch (error) {
       console.error('Error logging in');

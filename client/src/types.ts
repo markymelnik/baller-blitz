@@ -1,14 +1,19 @@
-export type User = {
+export interface User {
+	id: number,
 	email: string,
-	password: string
 }
 
-export type SignupCredentials = {
+export interface AuthenticatedUser {
+	token: string,
+	user: User,
+}
+
+export interface SignupCredentials {
 	email: string,
 	password: string,
 }
 
-export type LoginCredentials = {
+export interface LoginCredentials {
 	email: string,
 	password: string,
 }

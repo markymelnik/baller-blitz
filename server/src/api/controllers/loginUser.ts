@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { findUserByEmail } from "../../database/queries/findUserByEmail";
-import { User } from "../../database/models/User";
+import { DatabaseUser, RequestingUser, UserResponseObject } from "../../database/models/User";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import 'dotenv/config';
@@ -13,8 +13,8 @@ if (!JWT_SECRET) {
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
-    const requestingUser: User = req.body;
-    const { email, /* username,  */password } = requestingUser;
+    const requestingUser: RequestingUser = req.body;
+    const { email, password } = requestingUser;
 
     if (!email || !password) {
       return res
@@ -22,7 +22,7 @@ export const loginUser = async (req: Request, res: Response) => {
         .json({ message: 'Email and password are required' });
     }
 
-    const databaseUser = await findUserByEmail(email);
+    const databaseUser: DatabaseUser = await findUserByEmail(email);
     if (!databaseUser) {
       return res.status(404).json({ message: 'Invalid login credentials' });
     }
@@ -32,8 +32,17 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid login credentials' });
     }
 
-    const token = jwt.sign({ id: databaseUser.id }, JWT_SECRET, { expiresIn: '1h' })
-    res.status(200).send({ message: 'Successfully logged in', databaseUser, token });
+    const token = jwt.sign({ id: databaseUser.id }, JWT_SECRET, { expiresIn: '1h' });
+
+    const responseObject: UserResponseObject = {
+      token: token,
+      user: {
+        id: databaseUser.id,
+        email: databaseUser.email,
+      }
+    }
+
+    res.status(200).send(responseObject);
   } catch (err) {
     console.error('Error logging in user', err);
     res.status(500).send('Server error logging in user');
