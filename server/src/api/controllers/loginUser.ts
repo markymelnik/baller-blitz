@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { findUserByEmail } from "../../database/queries/findUserByEmail";
-import { DatabaseUser, RequestingUser, UserResponseObject } from "../../database/models/User";
+import { DatabaseUser, RequestingUser, Role, UserResponseObject } from "../../database/models/User";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import 'dotenv/config';
+import { getUserRoleById } from "../../database/queries/getUserRoleById";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -32,6 +33,10 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Invalid login credentials' });
     }
 
+    const { id } = databaseUser;
+
+    const databaseUserRole: string = await getUserRoleById(id);   
+
     const token = jwt.sign({ id: databaseUser.id }, JWT_SECRET, { expiresIn: '1h' });
 
     const responseObject: UserResponseObject = {
@@ -39,6 +44,7 @@ export const loginUser = async (req: Request, res: Response) => {
       user: {
         id: databaseUser.id,
         email: databaseUser.email,
+        role: databaseUserRole,
       }
     }
 

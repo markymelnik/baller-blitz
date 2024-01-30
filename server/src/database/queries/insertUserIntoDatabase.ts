@@ -5,11 +5,19 @@ import { QUERIES } from './QUERIES';
 export const insertUserIntoDatabase = async (user: RequestingUser): Promise<DatabaseUser> => {
   try {
     const { email, password } = user;
-    const res = await pool.query(QUERIES.CREATE_USER, [
+    const result = await pool.query(QUERIES.CREATE_USER, [
       email,
       password,
     ]);
-    return res.rows[0];
+
+    const userId = result.rows[0].id;
+    const defaultUserRoleId = 2;
+
+    await pool.query(QUERIES.ASSIGN_DEFAULT_ROLE, [
+      userId,
+      defaultUserRoleId,
+    ]);
+    return result.rows[0];
   } catch (err) {
     if (err instanceof Error) {
       console.error('Error executing insert user query', err.stack);

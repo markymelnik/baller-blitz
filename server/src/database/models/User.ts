@@ -7,14 +7,21 @@ export interface DatabaseUser {
   id: number;
   email: string;
   password: string;
+  role: Role;
 }
 
 export interface FrontendUser {
   id: number;
   email: string;
+  role: string;
 }
 
 export interface UserResponseObject {
   token: string,
   user: FrontendUser;
+}
+
+export interface Role {
+	id: number,
+	name: string,
 }
