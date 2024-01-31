@@ -17,7 +17,6 @@ export interface FrontendUser {
 }
 
 export interface UserResponseObject {
-  token: string,
   user: FrontendUser;
 }
 

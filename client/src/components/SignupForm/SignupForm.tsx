@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import { SignupCredentials } from '../../types.ts';
-import { signupUser } from '../../api/signupUser.tsx';
+import { signupUser } from '../../api/signupUser.ts';
 import { setAuthentication } from '../../redux/slices/authSlice.ts';
 import './signup-form.scss';
 

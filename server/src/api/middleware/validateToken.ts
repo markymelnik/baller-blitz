@@ -8,15 +8,11 @@ if (!JWT_SECRET) {
   throw new Error('JWT secret is undefined');
 }
 
-export const validateToken = (
-  req: Request,
-  res: Response,
-  next: () => void
-) => {
-  const token = req.headers['authorization']?.split(' ')[1];
+export const validateToken = (request: Request, response: Response, next: () => void) => {
+  const token = request.cookies.jwt;
 
   if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
+    return response.status(401).json({ message: 'No token provided' });
   }
 
   try {
@@ -26,13 +22,13 @@ export const validateToken = (
     console.error('Failed to validate token', error);
 
     if (error instanceof jwt.TokenExpiredError) {
-      return res.status(401).json({ message: 'Token expired' });
+      return response.status(401).json({ message: 'Token expired' });
     }
 
     if (error instanceof jwt.JsonWebTokenError) {
-      return res.status(401).json({ message: 'Invalid token' });
+      return response.status(401).json({ message: 'Invalid token' });
     }
 
-    return res.status(500).json({ message: 'Failed to authenticate token' });
+    return response.status(500).json({ message: 'Failed to authenticate token' });
   }
 };

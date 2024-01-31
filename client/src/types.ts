@@ -9,7 +9,6 @@ export interface User {
 }
 
 export interface BackendUser {
-	token: string,
 	user: User,
 }
 

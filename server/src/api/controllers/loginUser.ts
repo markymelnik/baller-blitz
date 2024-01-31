@@ -3,8 +3,8 @@ import { findUserByEmail } from "../../database/queries/findUserByEmail";
 import { DatabaseUser, RequestingUser, Role, UserResponseObject } from "../../database/models/User";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import 'dotenv/config';
 import { getUserRoleById } from "../../database/queries/getUserRoleById";
+import 'dotenv/config';
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -12,45 +12,48 @@ if (!JWT_SECRET) {
   throw new Error('JWT secret is undefined');
 }
 
-export const loginUser = async (req: Request, res: Response) => {
+export const loginUser = async (request: Request, response: Response) => {
   try {
-    const requestingUser: RequestingUser = req.body;
+    const requestingUser: RequestingUser = request.body;
     const { email, password } = requestingUser;
 
     if (!email || !password) {
-      return res
+      return response
         .status(400)
         .json({ message: 'Email and password are required' });
     }
 
     const databaseUser: DatabaseUser = await findUserByEmail(email);
     if (!databaseUser) {
-      return res.status(404).json({ message: 'Invalid login credentials' });
+      return response.status(404).json({ message: 'Invalid login credentials' });
     }
 
     const doPasswordsMatch = await bcrypt.compare(password, databaseUser.password);
     if (!doPasswordsMatch) {
-      return res.status(401).json({ message: 'Invalid login credentials' });
+      return response.status(401).json({ message: 'Invalid login credentials' });
     }
 
-    const { id } = databaseUser;
-
-    const databaseUserRole: string = await getUserRoleById(id);   
+    const databaseUserRole: string = await getUserRoleById(databaseUser.id);   
 
     const token = jwt.sign({ id: databaseUser.id }, JWT_SECRET, { expiresIn: '1h' });
 
+    response.cookie('jwt', token, {
+      httpOnly: true,
+      /* secure: true, */
+      sameSite: 'strict',
+    });
+
     const responseObject: UserResponseObject = {
-      token: token,
       user: {
         id: databaseUser.id,
         email: databaseUser.email,
         role: databaseUserRole,
-      }
-    }
+      },
+    };
 
-    res.status(200).send(responseObject);
+    response.status(200).send(responseObject);
   } catch (err) {
     console.error('Error logging in user', err);
-    res.status(500).send('Server error logging in user');
+    response.status(500).send('Server error logging in user');
   }
 };
