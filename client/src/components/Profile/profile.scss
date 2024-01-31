@@ -1,0 +1,29 @@
+.profile-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 24rem;
+	border: 1px solid black;
+	padding: 1rem;
+
+	.profile-message {
+		margin: 0 0 1rem;
+	}
+
+	.profil-details {
+		
+		.profile-email,
+		.profile-id {
+			padding: 2rem 0;
+		}
+	}
+	
+}
+
+.profile-error {
+	display: flex;
+	justify-content: center;
+	width: 24rem;
+	border: 1px solid black;
+	padding: 2rem 0;
+}

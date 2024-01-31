@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { BackendUser, LoginCredentials } from '../../types.ts';
 import { loginUser } from '../../api/loginUser.ts';
@@ -9,6 +10,7 @@ import './login-form.scss';
 
 export const LoginForm = () => {
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {
@@ -24,6 +26,9 @@ export const LoginForm = () => {
 
       dispatch(setAuthentication(true));
       dispatch(setUser(user));
+
+      navigate('/profile');
+      
     } catch (error) {
       console.error('Error logging in');
     }
