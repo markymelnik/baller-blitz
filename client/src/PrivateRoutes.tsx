@@ -15,8 +15,6 @@ export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
 
 	const isTokenCurrentlyValid = accessToken ? isTokenValid(accessToken) : false;
 
-	console.log(isTokenCurrentlyValid);
-
 	if (!isAuthenticated || !isTokenCurrentlyValid) {
 		return <Navigate to='/unauthenticated' />
 	}

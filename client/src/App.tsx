@@ -8,8 +8,12 @@ import { UnauthorizedPage } from './pages/fallback/UnauthorizedPage.tsx';
 import { UnauthenticatedPage } from './pages/fallback/UnauthenticatedPage.tsx';
 import { NotFoundPage } from './pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './PrivateRoutes.tsx';
+import { useRefreshToken } from './hooks/useRefreshToken.tsx';
 
 const App = () => {
+
+  useRefreshToken();
+
   return (
     <div className='app-container'>
       <BrowserRouter>
