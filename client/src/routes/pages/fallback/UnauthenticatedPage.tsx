@@ -1,5 +1,5 @@
-import { NavigateToLoginButton } from '../../components/buttons/NavigateToLoginButton.tsx';
-import { NavigateToHomeButton } from '../../components/buttons/NavigateToHomeButton.tsx';
+import { NavigateToLoginButton } from '../../../components/buttons/nav/NavigateToLoginButton.tsx';
+import { NavigateToHomeButton } from '../../../components/buttons/nav/NavigateToHomeButton.tsx';
 
 export const UnauthenticatedPage = () => {
 

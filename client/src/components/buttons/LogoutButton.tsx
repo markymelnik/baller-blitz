@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { logoutUser } from '../../api/logoutUser.ts';
+import { AuthManager } from '../../auth/AuthManager.ts';
 
 export const LogoutButton = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export const LogoutButton = () => {
 
   const handleClick = async () => {
     try {
-      await logoutUser(dispatch);
+      await AuthManager.logoutUser(dispatch);
       
       navigate('/');
 

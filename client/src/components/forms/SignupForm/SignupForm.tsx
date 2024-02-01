@@ -1,14 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { SignupCredentials } from '../../types.ts';
-import { signupUser } from '../../api/signupUser.ts';
-import { setAuthentication } from '../../redux/slices/authSlice.ts';
+import { SignupCredentials } from '../../../types/authTypes.ts';
+import { AuthManager } from '../../../auth/AuthManager.ts';
 import './signup-form.scss';
 
 export const SignupForm = () => {
-
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -18,9 +16,9 @@ export const SignupForm = () => {
 
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
-      await signupUser(formData);
+      await AuthManager.signupUser(formData);
 
-      dispatch(setAuthentication(true));
+      navigate('/profile');
     } catch (error) {
       console.error('Error signing up');
     }
@@ -43,7 +41,7 @@ export const SignupForm = () => {
         <div className='signup-password-field'>
           <label>Password</label>
           <input
-            type='text'
+            type='password'
             {...register('password', { required: '*Password is required' })}
           />
           {errors.password && (

@@ -1,7 +1,6 @@
 import { screen, render } from '@testing-library/react';
 
-import Logo from './Logo.tsx';
-import './Logo.module.scss';
+import Logo from '../src/components/Logo/Logo.tsx';
 
 test('Logo component renders correctly with size', () => {
   render(<Logo />);

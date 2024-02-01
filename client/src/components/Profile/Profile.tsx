@@ -1,12 +1,10 @@
-import { useSelector } from 'react-redux';
-
-import { RootState } from '../../redux/store.ts';
+import { useAuth, useUserDetails } from '../../hooks/stateSelectors.ts';
 import './profile.scss';
 
 export const Profile = () => {
 
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
-  const userDetails = useSelector((state: RootState) => state.user.userDetails);
+  const isAuthenticated = useAuth();
+  const userDetails = useUserDetails();
 
   if (!isAuthenticated) {
     return <p className='profile-error'>Log In to view profile</p>;

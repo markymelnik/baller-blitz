@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { AccessToken } from "../../types.ts";
+import { AccessToken } from "../../types/authTypes.ts";
 
 const InitialTokenState: AccessToken = {
 	accessToken: null,
@@ -13,9 +13,12 @@ const tokenSlice = createSlice({
 	reducers: {
 		setAccessToken: (state, action: PayloadAction<string>) => {
 			state.accessToken = action.payload;
+		},
+		clearAccessToken: (state) => {
+			state.accessToken = null;
 		}
 	},
 });
 
-export const { setAccessToken } = tokenSlice.actions;
+export const { setAccessToken, clearAccessToken } = tokenSlice.actions;
 export default tokenSlice.reducer;

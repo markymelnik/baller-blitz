@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import { Front } from "../components/Front/Front.tsx";
-import { NavigateToLoginButton } from '../components/buttons/NavigateToLoginButton.tsx';
+import { Front } from "../../components/Front/Front.tsx";
+import { NavigateToLoginButton } from '../../components/buttons/nav/NavigateToLoginButton.tsx';
 
 export const FrontPage = () => {
 
@@ -14,5 +14,5 @@ export const FrontPage = () => {
 			<button style={{ padding: '1rem 2rem' }} onClick={() => navigate('/signup')}>Signup</button>
 			<button style={{ padding: '1rem 2rem' }} onClick={() => navigate('/profile')}>Profile</button>
 		</div>
-	)
-}
+	);
+};

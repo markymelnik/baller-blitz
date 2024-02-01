@@ -1,16 +1,17 @@
 import { useSelector } from 'react-redux';
 import { Outlet, Navigate } from 'react-router-dom';
 
-import { RootState } from './redux/store.ts';
-import { isTokenValid } from './isTokenValid.ts';
+import { RootState } from '../redux/store.ts';
+import { isTokenValid } from '../utils/isTokenValid.ts';
+import { useAuth, useUserDetails } from '../hooks/stateSelectors.ts';
 
 type PrivateRoutesProps = {
 	allowedRoles: string[];
 }
 
 export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
-  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
-	const loggedInUser = useSelector((state: RootState) => state.user.userDetails);
+  const isAuthenticated = useAuth();
+	const userDetails = useUserDetails();
 	const accessToken = useSelector((state: RootState) => state.token.accessToken);
 
 	const isTokenCurrentlyValid = accessToken ? isTokenValid(accessToken) : false;
@@ -19,11 +20,11 @@ export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
 		return <Navigate to='/unauthenticated' />
 	}
 
-	if (!loggedInUser) {
+	if (!userDetails) {
 		throw new Error('Error retrieving user details');
 	}
 
-	const isAuthorized = allowedRoles.includes(loggedInUser.role);
+	const isAuthorized = allowedRoles.includes(userDetails.role);
 
 	if (!isAuthorized) {
 		return <Navigate to='/unauthorized' />

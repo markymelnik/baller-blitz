@@ -1,4 +1,4 @@
-import { NavigateToHomeButton } from "../../components/buttons/NavigateToHomeButton.tsx";
+import { NavigateToHomeButton } from "../../../components/buttons/nav/NavigateToHomeButton.tsx";
 
 export const UnauthorizedPage = () => {
 

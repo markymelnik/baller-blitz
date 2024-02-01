@@ -13,7 +13,8 @@ export const isTokenValid = (token: string) => {
     const currentTime = new Date().getTime();
 
     return expiryTime > currentTime;
-  } catch (error) {
+  } 
+  catch (error) {
     console.error('Error decoding token:', error);
     return false;
   }

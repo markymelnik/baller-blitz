@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import App from './App.tsx';
+import App from '../src/App.tsx';
 
 describe('App Component', () => {
   test('renders Logo component', () => {

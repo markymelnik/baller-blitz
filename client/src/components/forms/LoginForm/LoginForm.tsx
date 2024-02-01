@@ -2,15 +2,11 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import {  BackendUser, LoginCredentials } from '../../types.ts';
-import { loginUser } from '../../api/loginUser.ts';
-import { setAuthentication } from '../../redux/slices/authSlice.ts';
-import { setUser } from '../../redux/slices/userSlice.ts';
-import { setAccessToken } from '../../redux/slices/tokenSlice.ts';
+import { LoginCredentials } from '../../../types/authTypes.ts';
+import { AuthManager } from '../../../auth/AuthManager.ts';
 import './login-form.scss';
 
 export const LoginForm = () => {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,15 +18,9 @@ export const LoginForm = () => {
 
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
-      const responseData: BackendUser = await loginUser(formData);
-      const { user, accessToken } = {...responseData};
-
-      dispatch(setAccessToken(accessToken));
-      dispatch(setAuthentication(true));
-      dispatch(setUser(user));
+      await AuthManager.loginUser(formData, dispatch);
 
       navigate('/profile');
-      
     } catch (error) {
       console.error('Error logging in');
     }
