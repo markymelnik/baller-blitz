@@ -1,15 +1,16 @@
-export interface UserState {
-	userDetails: User | null;
-}
-
 export interface User {
 	id: number,
 	email: string,
 	role: string,
 }
 
+export interface UserState {
+	userDetails: User | null,
+}
+
 export interface BackendUser {
 	user: User,
+	accessToken: string,
 }
 
 export interface SignupCredentials {
@@ -23,5 +24,9 @@ export interface LoginCredentials {
 }
 
 export interface AuthState {
-	isAuthenticated: boolean;
+	isAuthenticated: boolean,
+}
+
+export interface AccessToken {
+	accessToken: string | null,
 }

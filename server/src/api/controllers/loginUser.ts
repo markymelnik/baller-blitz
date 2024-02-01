@@ -1,16 +1,10 @@
 import { Request, Response } from "express";
 import { findUserByEmail } from "../../database/queries/findUserByEmail";
-import { DatabaseUser, RequestingUser, Role, UserResponseObject } from "../../database/models/User";
-import jwt from 'jsonwebtoken';
+import { DatabaseUser, RequestingUser, UserResponseObject } from "../../database/models/User";
 import bcrypt from 'bcrypt';
 import { getUserRoleById } from "../../database/queries/getUserRoleById";
-import 'dotenv/config';
-
-const JWT_SECRET = process.env.JWT_SECRET;
-
-if (!JWT_SECRET) {
-  throw new Error('JWT secret is undefined');
-}
+import { generateAccessToken } from "../../util/generateAccessToken";
+import { generateRefreshToken } from "../../util/generateRefreshToken";
 
 export const loginUser = async (request: Request, response: Response) => {
   try {
@@ -35,12 +29,15 @@ export const loginUser = async (request: Request, response: Response) => {
 
     const databaseUserRole: string = await getUserRoleById(databaseUser.id);   
 
-    const token = jwt.sign({ id: databaseUser.id }, JWT_SECRET, { expiresIn: '1h' });
+    const accessToken = generateAccessToken({ userId: databaseUser.id });
+    const refreshToken = generateRefreshToken({ userId: databaseUser.id });
 
-    response.cookie('jwt', token, {
+    response.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      /* secure: true, */
-      sameSite: 'strict',
+      path: '/',
+      /* secure: false, */
+      sameSite: 'lax',
+      maxAge: 1 * 24 * 60 * 60 * 1000,
     });
 
     const responseObject: UserResponseObject = {
@@ -49,6 +46,7 @@ export const loginUser = async (request: Request, response: Response) => {
         email: databaseUser.email,
         role: databaseUserRole,
       },
+      accessToken,
     };
 
     response.status(200).send(responseObject);

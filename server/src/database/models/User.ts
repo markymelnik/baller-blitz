@@ -18,6 +18,7 @@ export interface FrontendUser {
 
 export interface UserResponseObject {
   user: FrontendUser;
+  accessToken: string;
 }
 
 export interface Role {

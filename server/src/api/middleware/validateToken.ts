@@ -2,21 +2,21 @@ import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
 import 'dotenv/config';
 
-const JWT_SECRET = process.env.JWT_SECRET;
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
-if (!JWT_SECRET) {
-  throw new Error('JWT secret is undefined');
+if (!ACCESS_TOKEN_SECRET) {
+  throw new Error('Access token secret is undefined');
 }
 
 export const validateToken = (request: Request, response: Response, next: () => void) => {
   const token = request.cookies.jwt;
-
+  
   if (!token) {
     return response.status(401).json({ message: 'No token provided' });
   }
 
   try {
-    jwt.verify(token, JWT_SECRET);
+    jwt.verify(token, ACCESS_TOKEN_SECRET);
     next();
   } catch (error) {
     console.error('Failed to validate token', error);

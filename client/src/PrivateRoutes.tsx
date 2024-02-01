@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Outlet, Navigate } from 'react-router-dom';
 
 import { RootState } from './redux/store.ts';
+import { isTokenValid } from './isTokenValid.ts';
 
 type PrivateRoutesProps = {
 	allowedRoles: string[];
@@ -10,8 +11,13 @@ type PrivateRoutesProps = {
 export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 	const loggedInUser = useSelector((state: RootState) => state.user.userDetails);
+	const accessToken = useSelector((state: RootState) => state.token.accessToken);
 
-	if (!isAuthenticated) {
+	const isTokenCurrentlyValid = accessToken ? isTokenValid(accessToken) : false;
+
+	console.log(isTokenCurrentlyValid);
+
+	if (!isAuthenticated || !isTokenCurrentlyValid) {
 		return <Navigate to='/unauthenticated' />
 	}
 
