@@ -1,3 +1,5 @@
+import { Role } from "./roleModel";
+
 export interface RequestingUser {
   email: string,
   password: string,
@@ -16,12 +18,7 @@ export interface FrontendUser {
   role: string;
 }
 
-export interface UserResponseObject {
+export interface AuthResponseObject {
   user: FrontendUser;
   accessToken: string;
-}
-
-export interface Role {
-	id: number,
-	name: string,
 }

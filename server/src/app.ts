@@ -1,13 +1,11 @@
 import express from 'express';
 import cors from 'cors';
-import 'dotenv/config';
-import { signupUser } from './api/controllers/signupUser';
-import { loginUser } from './api/controllers/loginUser';
-import { validateToken } from './api/middleware/validateToken';
+import { validateAccessToken } from './utils/validateAccessToken';
 import cookieParser from 'cookie-parser';
-import { logoutUser } from './api/controllers/logoutUser';
-import { confirmAuthentication } from './api/confirmAuthentication';
-import { corsOptions } from './cors';
+import { AuthController } from './api/controllers/AuthController';
+import { corsOptions } from './config/corsConfig';
+import 'dotenv/config';
+import { TokenController } from './api/controllers/TokenController';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
@@ -21,17 +19,17 @@ app.get('/', (req, res) => {
   res.send('NBA Battle');
 });
 
-app.get('/profile', validateToken, (req, res) => {
+app.get('/profile', validateAccessToken, (req, res) => {
   res.json({ message: 'You have hit a protected route' });
 });
 
-app.post('/signup', signupUser);
+app.post('/signup', AuthController.signupUser);
 
-app.post('/login', loginUser);
+app.post('/login', AuthController.loginUser);
 
-app.post('/logout', logoutUser);
+app.post('/logout', AuthController.logoutUser);
 
-app.post('/confirm-auth', confirmAuthentication);
+app.post('/refresh-token', TokenController.refreshToken);
 
 app.listen(`${BACKEND_PORT}`, () => {
   console.log(`Server listening at ${BACKEND_PORT}`);

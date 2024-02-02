@@ -1,14 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response } from 'express';
-import 'dotenv/config';
+import { ACCESS_TOKEN_SECRET } from '../env';
 
-const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
-
-if (!ACCESS_TOKEN_SECRET) {
-  throw new Error('Access token secret is undefined');
-}
-
-export const validateToken = (request: Request, response: Response, next: () => void) => {
+export const validateAccessToken = (request: Request, response: Response, next: () => void) => {
   const token = request.cookies.jwt;
   
   if (!token) {
@@ -16,7 +10,7 @@ export const validateToken = (request: Request, response: Response, next: () => 
   }
 
   try {
-    jwt.verify(token, ACCESS_TOKEN_SECRET);
+    jwt.verify(token, ACCESS_TOKEN_SECRET as string);
     next();
   } catch (error) {
     console.error('Failed to validate token', error);

@@ -1,4 +1,4 @@
-import { DatabaseUser } from "../models/User";
+import { DatabaseUser } from "../models/userModel";
 import pool from "../pool";
 import { QUERIES } from "./QUERIES";
 

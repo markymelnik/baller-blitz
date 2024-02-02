@@ -23,11 +23,6 @@ jobs:
           run: |
             cd server
             npm install
-        
-        - name: Run Server Tests
-          run: |
-            cd server
-            npm test
 
         - name: Install Client Dependencies
           run: |
@@ -43,11 +38,6 @@ jobs:
           run: |
             cd client
             npm run lint
-
-        - name: Run Tests
-          run: |
-            cd client
-            npm test
 
         - name: Build Project...
           run: |

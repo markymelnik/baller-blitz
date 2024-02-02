@@ -1,4 +1,3 @@
-import { Role } from '../models/User';
 import pool from '../pool';
 import { QUERIES } from './QUERIES';
 

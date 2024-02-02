@@ -9,7 +9,7 @@ import { BackendUser } from "../types/userTypes.ts";
 export const AuthManager = {
 	async signupUser(formData: SignupCredentials) {
 		try {
-			const responseData: BackendUser = await ApiClient.login('/login', formData);
+			const responseData: BackendUser = await ApiClient.login('/signup', formData);
 	
 			console.log('Signup successful :)');
 			return responseData;
@@ -53,7 +53,7 @@ export const AuthManager = {
 	
 	async renewAccessToken(dispatch: AppDispatch) {
 		try {
-			const responseData: BackendUser = await ApiClient.retireveAccessToken('/confirm-auth');
+			const responseData: BackendUser = await ApiClient.retireveAccessToken('/refresh-token');
 			const { user, accessToken } = {...responseData};
 	
 			dispatch(setAccessToken(accessToken));

@@ -1,5 +1,5 @@
 import pool from '../pool';
-import { DatabaseUser } from '../models/User';
+import { DatabaseUser } from '../models/userModel';
 import { QUERIES } from './QUERIES';
 
 export const findUserByEmail = async (email: string): Promise<DatabaseUser> => {
