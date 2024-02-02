@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
 import { DatabaseUser, RequestingUser, AuthResponseObject } from "../../database/models/userModel";
-import { insertUserIntoDatabase } from "../../database/queries/insertUserIntoDatabase";
 import { saltAndHashPassword } from "../../utils/saltAndHashPassword";
-import { getUserRoleById } from "../../database/queries/getUserRoleById";
-import { generateAccessToken } from "../../utils/generateAccessToken";
-import { generateRefreshToken } from "../../utils/generateRefreshToken";
 import { validateLoginCredentials } from "../../utils/validateLoginCredentials";
-import { setRefreshTokenCookie } from "../../utils/setRefreshTokenCookie";
-import { authenticateByEmailAndPassword } from "../../utils/authenticateUser";
+import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
+import { TokenController } from "./TokenController";
+import { authenticateLoginCredentials } from "../../utils/authenticateLoginCredentials";
 
 export const AuthController = {
 	async signupUser(request: Request, response: Response) {
@@ -17,7 +14,7 @@ export const AuthController = {
 			const saltedAndHashedPassword = await saltAndHashPassword(newUser.password);
 			newUser.password = saltedAndHashedPassword;
 	
-			const databaseUser: DatabaseUser = await insertUserIntoDatabase(newUser);
+			const databaseUser: DatabaseUser = await DatabaseQuery.insertUserIntoDatabase(newUser);
 
 			response.status(201).json(databaseUser);
 		} catch (err) {
@@ -31,13 +28,13 @@ export const AuthController = {
 			const requestingUser: RequestingUser = request.body;
 			validateLoginCredentials(requestingUser);
 
-			const databaseUser: DatabaseUser = await authenticateByEmailAndPassword(requestingUser);
-			const databaseUserRole: string = await getUserRoleById(databaseUser.id);   
+			const databaseUser: DatabaseUser = await authenticateLoginCredentials(requestingUser);
+			const databaseUserRole: string = await DatabaseQuery.getUserRoleById(databaseUser.id);   
 	
-			const accessToken = generateAccessToken({ userId: databaseUser.id });
-			const refreshToken = generateRefreshToken({ userId: databaseUser.id });
+			const accessToken = TokenController.generateAccessToken({ userId: databaseUser.id });
+			const refreshToken = TokenController.generateRefreshToken({ userId: databaseUser.id });
 	
-			setRefreshTokenCookie(response, refreshToken);
+			TokenController.setRefreshTokenCookie(response, refreshToken);
 	
 			const responseObject: AuthResponseObject = {
 				user: {
