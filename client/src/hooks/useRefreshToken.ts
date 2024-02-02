@@ -8,11 +8,7 @@ export const useRefreshToken = () => {
 
   useEffect(() => {
     const fetchToken = async () => {
-      try {
-        await AuthManager.renewAccessToken(dispatch);
-      } catch (error) {
-        console.error('Failed to refresh token', error);
-      }
+      await AuthManager.renewAccessToken(dispatch);
     };
     fetchToken();
   }, [dispatch]);

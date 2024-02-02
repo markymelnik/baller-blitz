@@ -1,3 +1,5 @@
+import { AuthenticationError, NetworkError, TokenError } from '../errors/ErrorClasses.ts';
+import { handleError } from '../errors/handleError.ts';
 import { LoginCredentials, SignupCredentials } from '../types/authTypes.ts';
 import { createBackendEndpointUrl } from '../utils/createBackendEndpointUrl.ts';
 
@@ -15,18 +17,20 @@ export const ApiClient = {
       });
 
       if (!response.ok) {
-        throw new Error('Signup failed.');
+        const networkError = new NetworkError(`Server did not return OK when signing up`, response.status);
+        handleError(networkError);
       }
 
       return response.json();
     } catch (error) {
-      console.error('Signup unsucessfult ):');
+      const authenticationError = new AuthenticationError('Failed to signup');
+      handleError(authenticationError);
     }
   },
 
   async login(path: string, formData: LoginCredentials) {
     const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
-
+    
     try {
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
@@ -39,12 +43,14 @@ export const ApiClient = {
       });
 
       if (!response.ok) {
-        throw new Error('Login failed');
+        const networkError = new NetworkError(`Server did not return OK when logging in`, response.status);
+        handleError(networkError);
       }
 
       return response.json();
     } catch (error) {
-      console.error('Login unsuccessful :(');
+      const authenticationError = new AuthenticationError('Failed to login');
+      handleError(authenticationError);
     }
   },
 
@@ -62,16 +68,17 @@ export const ApiClient = {
       });
 
       if (!response.ok) {
-        throw new Error('Logout failed');
+        const networkError = new NetworkError(`Server did not return OK when logging out`, response.status);
+        handleError(networkError);
       }
 
-      console.log('Logout successful :)');
     } catch (error) {
-      console.error('Logout failed', error);
+      const authenticationError = new AuthenticationError('Failed to logout');
+      handleError(authenticationError);
     }
   },
 
-  async retireveAccessToken(path: string) {
+  async retrieveAccessToken(path: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -85,13 +92,14 @@ export const ApiClient = {
       });
 
       if (!response.ok) {
-        throw new Error('The server did not refresh the access token');
+        const networkError = new NetworkError(`Failed to refresh access token`, response.status);
+        handleError(networkError);
       }
 
       return response.json();
     } catch (error) {
-      console.error('Error during access token refresh', error);
-      throw error;
+      const tokenError = new TokenError('Failed to refresh access token');
+      handleError(tokenError);
     }
   },
 };

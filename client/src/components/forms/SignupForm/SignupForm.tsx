@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { SignupCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../auth/AuthManager.ts';
 import './signup-form.scss';
+import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
+import { handleError } from '../../../errors/handleError.ts';
 
 export const SignupForm = () => {
   const navigate = useNavigate();
@@ -20,7 +22,8 @@ export const SignupForm = () => {
 
       navigate('/profile');
     } catch (error) {
-      console.error('Error signing up');
+      const signupError = new AuthenticationError('Failed to signup');
+      handleError(signupError);
     }
   };
 

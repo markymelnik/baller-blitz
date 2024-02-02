@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { LoginCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../auth/AuthManager.ts';
 import './login-form.scss';
+import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
+import { handleError } from '../../../errors/handleError.ts';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -22,7 +24,8 @@ export const LoginForm = () => {
 
       navigate('/profile');
     } catch (error) {
-      console.error('Error logging in');
+      const loginError = new AuthenticationError('Failed to login');
+      handleError(loginError);
     }
   };
 

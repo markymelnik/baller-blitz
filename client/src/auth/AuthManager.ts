@@ -1,4 +1,6 @@
 import { ApiClient } from "../api/ApiClient.ts";
+import { AuthenticationError, TokenError } from "../errors/ErrorClasses.ts";
+import { handleError } from "../errors/handleError.ts";
 import { authenticateUser, unauthenticateUser } from "../redux/slices/authSlice.ts";
 import { clearAccessToken, setAccessToken } from "../redux/slices/tokenSlice.ts";
 import { clearUserDetails, setUserDetails } from "../redux/slices/userSlice.ts";
@@ -9,13 +11,14 @@ import { BackendUser } from "../types/userTypes.ts";
 export const AuthManager = {
 	async signupUser(formData: SignupCredentials) {
 		try {
-			const responseData: BackendUser = await ApiClient.login('/signup', formData);
+			const responseData: BackendUser = await ApiClient.signup('/signup', formData);
 	
 			console.log('Signup successful :)');
 			return responseData;
 		}
 		catch (error) {
-			console.log('Signup failed :(', error);
+			const authenticationError = new AuthenticationError('Failed to signup');
+			handleError(authenticationError);
 		}
 	},
 
@@ -32,7 +35,8 @@ export const AuthManager = {
 			return responseData;
 		}
 		catch (error) {
-			console.error('Login failed :(', error);
+			const authenticationError = new AuthenticationError('Failed to login');
+			handleError(authenticationError);
 		}
 	},
 
@@ -47,13 +51,14 @@ export const AuthManager = {
 			console.log('Logout successful :)');
 		}
 		catch (error) {
-			console.error('Logout failed :(')
+			const authenticationError = new AuthenticationError('Failed to logout');
+			handleError(authenticationError);
 		}
 	},
 	
 	async renewAccessToken(dispatch: AppDispatch) {
 		try {
-			const responseData: BackendUser = await ApiClient.retireveAccessToken('/refresh-token');
+			const responseData: BackendUser = await ApiClient.retrieveAccessToken('/refresh-token');
 			const { user, accessToken } = {...responseData};
 	
 			dispatch(setAccessToken(accessToken));
@@ -63,7 +68,8 @@ export const AuthManager = {
 			return responseData;
 		}
 		catch (error) {
-			console.error('Token renewal unsuccessful', error);
+			const tokenError = new TokenError('Failed to fetch access token');
+			handleError(tokenError);
 		}
 	},
 }

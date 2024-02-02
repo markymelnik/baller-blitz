@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthManager } from '../../auth/AuthManager.ts';
+import { AuthenticationError } from '../../errors/ErrorClasses.ts';
+import { handleError } from '../../errors/handleError.ts';
 
 export const LogoutButton = () => {
   const navigate = useNavigate();
@@ -14,7 +16,8 @@ export const LogoutButton = () => {
       navigate('/');
 
     } catch (error) {
-      console.error('Logout failed', error);
+      const logoutError = new AuthenticationError('Failed to logout');
+      handleError(logoutError);
     }
   };
 
