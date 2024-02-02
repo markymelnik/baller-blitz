@@ -3,18 +3,20 @@ import { DatabaseUser, RequestingUser, AuthResponseObject } from "../../database
 import { saltAndHashPassword } from "../../utils/saltAndHashPassword";
 import { validateLoginCredentials } from "../../utils/validateLoginCredentials";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
-import { TokenController } from "./TokenController";
+import { TokenController } from "../token/TokenController";
 import { authenticateLoginCredentials } from "../../utils/authenticateLoginCredentials";
+import { TokenCreator } from "../token/TokenCreator";
 
 export const AuthController = {
 	async signupUser(request: Request, response: Response) {
 		try {
-			const newUser: RequestingUser = request.body;
+			const requestingUser: RequestingUser = request.body;
+			validateLoginCredentials(requestingUser);
 	
-			const saltedAndHashedPassword = await saltAndHashPassword(newUser.password);
-			newUser.password = saltedAndHashedPassword;
+			const saltedAndHashedPassword = await saltAndHashPassword(requestingUser.password);
+			requestingUser.password = saltedAndHashedPassword;
 	
-			const databaseUser: DatabaseUser = await DatabaseQuery.insertUserIntoDatabase(newUser);
+			const databaseUser: DatabaseUser = await DatabaseQuery.insertUserIntoDatabase(requestingUser);
 
 			response.status(201).json(databaseUser);
 		} catch (err) {
@@ -31,8 +33,8 @@ export const AuthController = {
 			const databaseUser: DatabaseUser = await authenticateLoginCredentials(requestingUser);
 			const databaseUserRole: string = await DatabaseQuery.getUserRoleById(databaseUser.id);   
 	
-			const accessToken = TokenController.generateAccessToken({ userId: databaseUser.id });
-			const refreshToken = TokenController.generateRefreshToken({ userId: databaseUser.id });
+			const accessToken = TokenCreator.generateAccessToken({ userId: databaseUser.id });
+			const refreshToken = TokenCreator.generateRefreshToken({ userId: databaseUser.id });
 	
 			TokenController.setRefreshTokenCookie(response, refreshToken);
 	
