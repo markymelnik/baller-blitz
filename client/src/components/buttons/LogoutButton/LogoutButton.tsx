@@ -1,11 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthManager } from '../../auth/AuthManager.ts';
-import { AuthenticationError } from '../../errors/ErrorClasses.ts';
-import { handleError } from '../../errors/handleError.ts';
+import { AuthManager } from '../../../auth/AuthManager.ts';
+import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
+import { handleError } from '../../../errors/handleError.ts';
+import './logout-btn.scss';
 
 export const LogoutButton = () => {
+  
   const navigate = useNavigate();
 	const dispatch = useDispatch();
 
@@ -21,5 +23,5 @@ export const LogoutButton = () => {
     }
   };
 
-  return <button onClick={handleClick}>Logout</button>;
+  return <button className='logout-btn' onClick={handleClick}>Logout</button>;
 };

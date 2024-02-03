@@ -13,9 +13,13 @@ export const NavigateToButtonCreator = ({
   ...props
 }: NavigateToButtonCreator) => {
   const navigate = useNavigate();
-
+  const delay: number = 125;
+  
   const handleClick = () => {
-    navigate(toRoute);
+
+    setTimeout(() => {
+      navigate(toRoute);
+    }, delay);
   };
 
   return (

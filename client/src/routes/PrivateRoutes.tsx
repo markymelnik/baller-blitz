@@ -1,18 +1,13 @@
-import { useSelector } from 'react-redux';
 import { Outlet, Navigate } from 'react-router-dom';
 
-import { RootState } from '../redux/store.ts';
 import { isTokenValid } from '../utils/isTokenValid.ts';
-import { useAuth, useUserDetails } from '../hooks/stateSelectors.ts';
+import { useAccessToken, useAuth, useUserDetails } from '../hooks/stateSelectors.ts';
+import { AllowedRoles } from '../types/roleTypes.ts';
 
-type PrivateRoutesProps = {
-	allowedRoles: string[];
-}
-
-export const PrivateRoutes = ({ allowedRoles }: PrivateRoutesProps) => {
+export const PrivateRoutes = ({ allowedRoles }: AllowedRoles) => {
   const isAuthenticated = useAuth();
 	const userDetails = useUserDetails();
-	const accessToken = useSelector((state: RootState) => state.token.accessToken);
+	const accessToken = useAccessToken();
 
 	const isTokenCurrentlyValid = accessToken ? isTokenValid(accessToken) : false;
 

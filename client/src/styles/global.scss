@@ -13,16 +13,26 @@
     padding: 1rem;
 }
 
-.front-page,
 .login-page,
-.signup-page {
+.signup-page,
+.profile-page,
+.front-page,
+.unauthenticated-page,
+.unauthorized-page,
+.not-found-page {
     height: 100vh;
     width: 100%;
 }
 
 .login-page,
-.signup-page {
+.signup-page,
+.profile-page,
+.front-page {
     display: flex;
     flex-direction: column;
+}
+
+.login-page,
+.signup-page {
     justify-content: space-between;
 }
