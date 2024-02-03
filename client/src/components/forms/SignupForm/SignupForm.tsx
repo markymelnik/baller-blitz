@@ -28,31 +28,34 @@ export const SignupForm = () => {
   };
 
   return (
-    <div className='signup-form'>
+    <form onSubmit={handleSubmit(handleSignupFormSubmit)} className='signup-form'>
       <div className='signup-form-heading'>Sign Up</div>
-      <form onSubmit={handleSubmit(handleSignupFormSubmit)}>
-        <div className='signup-email-field'>
-          <label>Email</label>
-          <input
-            type='email'
-            {...register('email', { required: '*Email is required' })}
-          />
-          {errors.email && (
-            <p className='signup-error-message'>{errors.email.message}</p>
-          )}
-        </div>
-        <div className='signup-password-field'>
-          <label>Password</label>
-          <input
-            type='password'
-            {...register('password', { required: '*Password is required' })}
-          />
-          {errors.password && (
-            <p className='signup-error-message'>{errors.password.message}</p>
-          )}
-        </div>
-        <button type='submit'>Sign Up</button>
-      </form>
-    </div>
+      <div className="signup-input-fields">
+      <div className='signup-email-field'>
+        {/* <label>Email</label> */}
+        <input
+          type='email'
+          placeholder='Email'
+          {...register('email', { required: '*Email is required' })}
+        />
+        {errors.email && (
+          <p className='signup-error-message'>{errors.email.message}</p>
+        )}
+      </div>
+      <div className='signup-password-field'>
+        {/* <label>Password</label> */}
+        <input
+          type='password'
+          placeholder='Password'
+          {...register('password', { required: '*Password is required' })}
+        />
+        {errors.password && (
+          <p className='signup-error-message'>{errors.password.message}</p>
+        )}
+      </div>
+      </div>
+      
+      <button className='signup-submit-btn' type='submit'>Sign Up</button>
+    </form>
   );
 };

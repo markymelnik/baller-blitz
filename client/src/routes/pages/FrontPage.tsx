@@ -1,18 +1,13 @@
-import { useNavigate } from 'react-router-dom';
-
-import { Front } from "../../components/Front/Front.tsx";
-import { NavigateToLoginButton } from '../../components/buttons/nav/NavigateToLoginButton.tsx';
+import { FrontButtons } from "../../components/Front/FrontButtons/FrontButtons.tsx";
+import { FrontWelcome } from "../../components/Front/FrontWelcome/FrontWelcome.tsx";
 
 export const FrontPage = () => {
 
-	const navigate = useNavigate();
-
 	return (
 		<div className="front-page">
-			<Front />
-			<NavigateToLoginButton />
-			<button style={{ padding: '1rem 2rem' }} onClick={() => navigate('/signup')}>Signup</button>
-			<button style={{ padding: '1rem 2rem' }} onClick={() => navigate('/profile')}>Profile</button>
+			<FrontWelcome />
+			<FrontButtons />
+			{/* <button style={{ padding: '1rem 2rem' }} onClick={() => navigate('/profile')}>Profile</button> */}
 		</div>
 	);
 };

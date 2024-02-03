@@ -1,16 +1,41 @@
 .signup-form {
-	width: 24rem;
-	border: 1px solid black;
-	padding: 1rem;
+	display: flex;
+	flex-direction: column;
 
-	.signup-email-field,
-	.signup-password-field {
+	.signup-form-heading {
+		height: 30vh;
+		font-size: 2rem;
+	}
+
+	.signup-input-fields {
 		display: flex;
 		flex-direction: column;
+		margin: 0.5rem 0;
+		gap: 1rem;
 
-		.signup-error-message {
-			color: red;
+		.signup-email-field,
+		.signup-password-field {
+			display: flex;
+			flex-direction: column;
+
+			input {
+				height: 2.5rem;
+				font-size: 1rem;
+				padding: 0 0.5rem;
+			}
+
+			.signup-error-message {
+				color: red;
+			}
 		}
+
 	}
+
+	.signup-submit-btn {
+		height: 2.5rem;
+		margin: 0.5rem 0 0;
+	}
+
+
 
 }

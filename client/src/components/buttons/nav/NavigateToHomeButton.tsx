@@ -1,5 +1,5 @@
-import { NavigationButton } from './NavigationButton.tsx';
+import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx"
 
 export const NavigateToHomeButton = () => {
-  return <NavigationButton toRoute={'/'} buttonText={'Home'} />;
+  return <NavigateToButtonCreator toRoute={'/'} buttonText={'Home'} className='nav-to-home-btn' />;
 };

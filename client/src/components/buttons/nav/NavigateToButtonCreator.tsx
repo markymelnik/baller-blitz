@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 
-interface NavigationButton {
+interface NavigateToButtonCreator {
   toRoute: string;
   buttonText: string;
   className?: string;
 }
 
-export const NavigationButton = ({
+export const NavigateToButtonCreator = ({
   toRoute,
   buttonText,
   className,
   ...props
-}: NavigationButton) => {
+}: NavigateToButtonCreator) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -19,7 +19,7 @@ export const NavigationButton = ({
   };
 
   return (
-    <button onClick={handleClick} className={className} {...props} style={{ padding: '1rem 2rem' }}>
+    <button onClick={handleClick} className={className} {...props}>
       {buttonText}
     </button>
   );

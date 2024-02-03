@@ -30,32 +30,33 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className='login-form'>
+    <form onSubmit={handleSubmit(handleLoginFormSubmit)} className='login-form'>
       <div className='login-form-heading'>Login</div>
-      <form onSubmit={handleSubmit(handleLoginFormSubmit)}>
+      <div className='login-input-fields'>
         <div className='login-email-field'>
-          <label>Email</label>
+          {/* <label>Email</label> */}
           <input
             type='email'
+            placeholder='Email'
             {...register('email', { required: '*Email is required' })}
           />
           {errors.email && (
             <p className='login-error-message'>{errors.email.message}</p>
           )}
         </div>
-
         <div className='login-password-field'>
-          <label>Password</label>
+          {/* <label>Password</label> */}
           <input
             type='password'
+            placeholder='Password'
             {...register('password', { required: '*Password is required' })}
           />
           {errors.password && (
             <p className='login-error-message'>{errors.password.message}</p>
           )}
         </div>
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+      </div>
+      <button className='login-submit-btn' type="submit">Log In</button>
+    </form>
   );
 };
