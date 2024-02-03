@@ -7,6 +7,7 @@ import { TokenController } from './api/token/TokenController';
 import { ErrorHandler } from './middleware/error-handler';
 import { AuthenticationError, ValidationError } from './errors/ErrorClasses';
 import 'dotenv/config';
+import { loginLimiter, signupLimiter } from './middleware/rate-limiting';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
@@ -19,10 +20,11 @@ app.use(cors(corsOptions));
 app.get('/', (req, res) => {
   res.send('NBA Battle');
 });
-app.post('/signup', AuthController.signupUser);
-app.post('/login', AuthController.loginUser);
+app.post('/signup', signupLimiter, AuthController.signupUser);
+app.post('/login', loginLimiter, AuthController.loginUser);
 app.post('/logout', AuthController.logoutUser);
 app.post('/refresh-token', TokenController.refreshAccessToken);
+
 app.get('/profile', TokenController.validateAccessToken, (req, res) => {
   res.json({ message: 'You have hit a protected route' });
 });
