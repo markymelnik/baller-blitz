@@ -7,6 +7,7 @@ import { AuthManager } from '../../../auth/AuthManager.ts';
 import './login-form.scss';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
+import { NavigateToSignupButton } from '../../buttons/nav/NavigateToSignupButton.tsx';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ export const LoginForm = () => {
   };
 
   return (
+    <>
+    
     <form onSubmit={handleSubmit(handleLoginFormSubmit)} className='login-form'>
       <div className='login-form-heading'>Login</div>
       <div className='login-input-fields'>
@@ -58,5 +61,7 @@ export const LoginForm = () => {
       </div>
       <button className='login-submit-btn' type="submit">Log In</button>
     </form>
+    <NavigateToSignupButton addClass='login' />
+    </>
   );
 };

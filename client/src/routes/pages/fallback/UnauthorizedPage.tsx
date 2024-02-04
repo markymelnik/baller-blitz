@@ -1,10 +1,11 @@
 import { NavigateToHomeButton } from "../../../components/buttons/nav/NavigateToHomeButton.tsx";
+import './fallback.scss';
 
 export const UnauthorizedPage = () => {
 
   return (
     <div className='unauthorized-page'>
-      <p>Unauthorized Access</p>
+      <h2 className='fallback-header'>Unauthorized Access</h2>
       <NavigateToHomeButton />
     </div>
   );

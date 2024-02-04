@@ -35,7 +35,13 @@
 		height: 2.5rem;
 		margin: 0.5rem 0 0;
 	}
+}
 
 
-
+.signup {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid lightgrey;
+	background: none;
 }

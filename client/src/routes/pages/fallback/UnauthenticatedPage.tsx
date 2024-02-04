@@ -1,13 +1,12 @@
-import { NavigateToLoginButton } from '../../../components/buttons/nav/NavigateToLoginButton.tsx';
 import { NavigateToHomeButton } from '../../../components/buttons/nav/NavigateToHomeButton.tsx';
+import './fallback.scss';
 
 export const UnauthenticatedPage = () => {
 
   return (
     <div className='unauthenticated-page'>
-      <p>Unauthenticated Access</p>
+      <h2 className='fallback-header'>Unauthenticated Access</h2>
       <NavigateToHomeButton />
-      <NavigateToLoginButton />
     </div>
   );
 };

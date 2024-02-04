@@ -1,12 +1,17 @@
 import { NavigateToButtonCreator } from './NavigateToButtonCreator.tsx';
 import './nav-to-btns.scss';
 
-export const NavigateToLoginButton = () => {
+type LoginButtonProps = {
+  addClass: string,
+}
+
+export const NavigateToLoginButton = ({ addClass }: LoginButtonProps ) => {
+  const className = `nav-to-login-btn ${addClass}`;
   return (
     <NavigateToButtonCreator
       toRoute={'/login'}
       buttonText={'Login'}
-      className={'nav-to-login-btn'}
+      className={className}
     />
   );
 };

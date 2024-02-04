@@ -1,12 +1,17 @@
 import { NavigateToButtonCreator } from './NavigateToButtonCreator.tsx';
 import './nav-to-btns.scss';
 
-export const NavigateToSignupButton = () => {
+type SignupButtonProps = {
+  addClass: string,
+}
+
+export const NavigateToSignupButton = ({ addClass }: SignupButtonProps) => {
+  const className = `nav-to-signup-btn ${addClass}`;
   return (
     <NavigateToButtonCreator
       toRoute={'/signup'}
       buttonText={'Signup'}
-      className={'nav-to-signup-btn'}
+      className={className}
     />
   );
 };

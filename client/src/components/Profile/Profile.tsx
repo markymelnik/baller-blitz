@@ -14,14 +14,13 @@ export const Profile = () => {
     return <p>Loading user details...</p>
   }
 
-  const { id, email, role } = userDetails;
+  const { email } = userDetails;
 
   return (
     <div className='profile-container'>
-      <div className="profile-message">Welcome, {role}</div>
+      <div className="profile-message">Hey, {`${email}`.slice(0, 1).toUpperCase()}</div>
       <div className="profile-details">
-        <div className='profile-email'>Email: {email}</div>
-        <div className="profile-id">Id: {id} </div>
+        <div className='profile-email'>{email}</div>
       </div>
     </div>
   );

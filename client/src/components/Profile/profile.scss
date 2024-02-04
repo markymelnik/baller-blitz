@@ -2,19 +2,18 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	width: 24rem;
-	border: 1px solid black;
-	padding: 1rem;
+	margin-bottom: auto;
 
 	.profile-message {
+		font-size: 2rem;
 		margin: 0 0 1rem;
 	}
 
-	.profil-details {
+	.profile-details {
+		border-bottom: 1px solid black;
 		
-		.profile-email,
-		.profile-id {
-			padding: 2rem 0;
+		.profile-email {
+			padding: 1rem 0;
 		}
 	}
 	
