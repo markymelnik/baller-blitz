@@ -11,9 +11,7 @@ import { BackendUser } from "../types/userTypes.ts";
 export const AuthManager = {
 	async signupUser(formData: SignupCredentials) {
 		try {
-			const responseData: BackendUser = await ApiClient.signup('/signup', formData);
-	
-			console.log('Signup successful :)');
+			const responseData = await ApiClient.signup('/signup', formData);
 			return responseData;
 		}
 		catch (error) {

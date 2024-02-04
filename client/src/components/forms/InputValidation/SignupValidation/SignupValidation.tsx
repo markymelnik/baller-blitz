@@ -1,21 +1,14 @@
-import { useEffect } from 'react';
 import './signup-validation.scss';
 
 type SignupValidationProps = {
 	currentInputPassword: string,
-  onValidationChange: (isValid: boolean) => void,
 }
 
-export const SignupValidation = ({ currentInputPassword, onValidationChange }: SignupValidationProps) => {
+export const SignupValidation = ({ currentInputPassword }: SignupValidationProps) => {
 	const hasUpperCaseLetter = /[A-Z]/.test(currentInputPassword);
 	const hasLowerCaseLetter = /[a-z]/.test(currentInputPassword);
 	const hasDigit = /\d/.test(currentInputPassword);
 	const isCorrectLength = currentInputPassword.length >= 10 && currentInputPassword.length <= 20;
-
-  useEffect(() => {
-    const isValid = hasUpperCaseLetter && hasLowerCaseLetter && hasDigit && isCorrectLength;
-    onValidationChange(isValid);
-  }, [hasUpperCaseLetter, hasLowerCaseLetter, hasDigit, isCorrectLength, onValidationChange])
 
 	const getColorClass = (isValid: boolean) => {
 		if (!currentInputPassword) return 'black';

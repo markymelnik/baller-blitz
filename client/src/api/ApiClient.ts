@@ -16,10 +16,10 @@ export const ApiClient = {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
+      /* if (!response.ok) {
         const networkError = new NetworkError(`Server did not return OK when signing up`, response.status);
         handleError(networkError);
-      }
+      } */
 
       return response.json();
     } catch (error) {

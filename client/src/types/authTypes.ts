@@ -15,3 +15,13 @@ export interface AuthState {
 export interface AccessToken {
   accessToken: string | null;
 }
+
+export interface SignupSuccessResponse {
+  status: boolean;
+  message: string;
+}
+
+export interface SignupErrorResponse {
+  error: string;
+  message: string;
+}

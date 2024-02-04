@@ -5,8 +5,8 @@ import './front-btns.scss';
 export const FrontButtons = () => {
   return (
     <div className='front-btns'>
-      <NavigateToLoginButton addClass='' />
-      <NavigateToSignupButton addClass='' />
+      <NavigateToLoginButton />
+      <NavigateToSignupButton />
     </div>
   );
 };
