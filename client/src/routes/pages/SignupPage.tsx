@@ -1,13 +1,14 @@
 import { SignupForm } from '../../components/forms/SignupForm/SignupForm.tsx';
 import { NavigateToHomeButton } from '../../components/buttons/nav/NavigateToHomeButton.tsx';
-import { NavigateToLoginButton } from '../../components/buttons/nav/NavigateToLoginButton.tsx';
+import { useDelayNavigate } from '../../hooks/useDelayNavigate.ts';
 
 export const SignupPage = () => {
+  const delayNavigate = useDelayNavigate();
   return (
     <div className='signup-page'>
       <div className="signup-page-wrapper">
         <SignupForm />
-        <NavigateToLoginButton addClass='signup' />
+        <button className="signup-form-to-login" onClick={() => delayNavigate('/login')}>Login</button>
       </div>
       <NavigateToHomeButton />
     </div>

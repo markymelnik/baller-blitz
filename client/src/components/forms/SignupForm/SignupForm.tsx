@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -5,21 +6,27 @@ import { SignupCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../auth/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
+import { SignupValidation } from '../InputValidation/SignupValidation/SignupValidation.tsx';
 import './signup-form.scss';
 
 export const SignupForm = () => {
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<SignupCredentials>();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<SignupCredentials>();
 
-  const email = watch('email');
-  const password = watch('password');
-  const isSubmitDisabled: boolean = !email || !password;
+  const currentInputEmail = watch('email');
+  const currentInputPassword = watch('password') || '';
+
+  const [isPasswordInputValid, setIsPasswordInputValid] = useState<boolean>(false);
+
+  const handleValidationChange = (isValid: boolean) => {
+    setIsPasswordInputValid(isValid);
+  }
+
+  const isSubmitDisabled =
+    !currentInputEmail ||
+    !currentInputPassword ||
+    !isPasswordInputValid
 
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
@@ -53,6 +60,7 @@ export const SignupForm = () => {
         <input
           type='password'
           placeholder= ' '
+          maxLength={20}
           {...register('password', { required: '*Password is required' })}
         />
         <label htmlFor="password">Password</label>
@@ -62,6 +70,7 @@ export const SignupForm = () => {
       </div>
 
       </div>
+      <SignupValidation currentInputPassword={currentInputPassword} onValidationChange={handleValidationChange} />
       <button className='signup-submit-btn' type='submit' disabled={isSubmitDisabled}>Sign Up</button>
     </form>
   );

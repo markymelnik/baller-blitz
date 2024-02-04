@@ -1,0 +1,20 @@
+.signup-validation {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem 0;
+
+	.signup-check {
+
+		.black {
+			color: black;
+		}
+
+		.green {
+			color: green;
+		}
+
+		.red {
+			color: red;
+		}
+	}
+}
