@@ -53,7 +53,7 @@ export const LoginForm = () => {
           defaultValue=''
           render={({ field }) => (
             <div className='login-email-field floating-label'>
-              <input type='email' placeholder=' ' {...field} />
+              <input type='email' placeholder=' ' autoComplete='current-email' {...field} />
               <label htmlFor='email'>Email</label>
             </div>
           )}
@@ -68,6 +68,7 @@ export const LoginForm = () => {
               <input
                 type='password'
                 placeholder=' '
+                autoComplete='current-password'
                 {...field}
                 maxLength={20}
               />

@@ -1,13 +1,24 @@
 import { useCallback } from "react"
-import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-export const useDelayNavigate = (delay: number = 125) => {
+import { startLoading, stopLoading } from "../redux/slices/loadingSlice.ts";
 
-	const navigate = useNavigate();
+export const useDelayNavigate = (delay: number = 800) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-	const delayNavigate = useCallback((toRoute: string) => {
-		setTimeout(() => navigate(toRoute), delay);
-	},[navigate, delay])
+  const delayNavigate = useCallback(
+    (toRoute: string) => {
+      dispatch(startLoading());
+      setTimeout(() => {
+        navigate(toRoute);
+        dispatch(stopLoading());
+      }, delay);
+      
+    },
+    [navigate, delay, dispatch]
+  );
 
-	return delayNavigate;
-}
+  return delayNavigate;
+};

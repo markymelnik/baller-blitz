@@ -25,3 +25,7 @@ export interface SignupErrorResponse {
   error: string;
   message: string;
 }
+
+export interface LoadingState {
+	isLoading: boolean;
+}

@@ -1,16 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { AccessToken, AuthState } from '../types/authTypes.ts';
+import { AccessToken, AuthState, LoadingState } from '../types/authTypes.ts';
 import { UserState } from '../types/userTypes.ts';
 
 import authReducer from './slices/authSlice.ts';
 import userReducer from './slices/userSlice.ts';
 import tokenReducer from './slices/tokenSlice.ts';
+import loadingReducer from './slices/loadingSlice.ts';
 
 export type RootState = {
   auth: AuthState;
   user: UserState;
   token: AccessToken;
+  loading: LoadingState;
 };
 
 const store = configureStore({
@@ -18,6 +20,7 @@ const store = configureStore({
     auth: authReducer,
     user: userReducer,
     token: tokenReducer,
+    loading: loadingReducer,
   },
 });
 

@@ -62,6 +62,7 @@ export const SignupForm = () => {
               <input
                 type='text'
                 placeholder=' '
+                autoComplete='current-email'
                 {...field}
               />
               <label htmlFor='email'>Email</label>
@@ -78,6 +79,7 @@ export const SignupForm = () => {
               <input
                 type='password'
                 placeholder=' '
+                autoComplete='current-password'
                 {...field}
                 minLength={10}
                 maxLength={20}

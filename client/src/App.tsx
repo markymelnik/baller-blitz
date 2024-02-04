@@ -9,12 +9,14 @@ import { UnauthenticatedPage } from './routes/pages/fallback/UnauthenticatedPage
 import { NotFoundPage } from './routes/pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './routes/PrivateRoutes.tsx';
 import { useRefreshToken } from './hooks/useRefreshToken.ts';
+import { LoadingScreen } from './LoadingScreen/LoadingScreen.tsx';
 
 const App = () => {
   useRefreshToken();
 
   return (
     <div className='app-container'>
+      <LoadingScreen />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<FrontPage />} />
