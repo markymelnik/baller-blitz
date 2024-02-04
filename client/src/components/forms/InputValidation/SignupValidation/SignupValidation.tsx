@@ -17,9 +17,10 @@ export const SignupValidation = ({ currentInputPassword }: SignupValidationProps
 
 	return (
     <div className='signup-validation'>
+      <div className="signup-validation-title">Password</div>
       <div className='signup-check'>
         <div className={`length-check ${getColorClass(isCorrectLength)}`}>
-          Password must be between 10 and 20 characters
+          Must be between 10 and 20 characters
         </div>
       </div>
       <div className='signup-check'>

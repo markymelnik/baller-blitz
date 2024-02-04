@@ -1,4 +1,4 @@
-import { DatabaseError } from "../../errors/ErrorClasses";
+import { DatabaseError, DuplicateEmailError } from "../../errors/ErrorClasses";
 import { DatabaseUser, RequestingUser } from "../models/userModel";
 import pool from "../pool";
 import { QUERIES } from "./QUERIES";
@@ -10,7 +10,7 @@ export const DatabaseQuery = {
 			const response = await pool.query(QUERIES.FIND_USER_BY_ID, [userId]);
 			return response.rows[0] || null;
 		} catch (error) {
-			throw new DatabaseError('User not found');
+			throw new DatabaseError('A database error occurred.');
 		}
 	},
 
@@ -19,7 +19,7 @@ export const DatabaseQuery = {
 			const response = await pool.query(QUERIES.FIND_USER_BY_EMAIL, [email]);
 			return response.rows[0] || null;
 		} catch (error) {
-			throw new DatabaseError('User not found');
+			throw new DatabaseError('A database error occurred.');
 		}
 	},
 
@@ -28,7 +28,7 @@ export const DatabaseQuery = {
 			const result = await pool.query(QUERIES.GET_USER_ROLE_BY_ID, [userId]);
 			return result.rows[0].name;
 		} catch (error) {
-			throw new DatabaseError('Role not found');
+			throw new DatabaseError('A database error occurred.');
 		}
 	},
 
@@ -49,7 +49,15 @@ export const DatabaseQuery = {
 			]);
 			return result.rows[0];
 		} catch (error) {
-			throw new DatabaseError('Failed to signup new user')
+			console.error(error);
+
+			const err = error as { code?: string };
+
+			if (err.code === '23505') {
+				throw new DuplicateEmailError('This email is already in use. Try a different one.');
+			} else {
+				throw new DatabaseError('Unknown issue inserting user into database')
+			}
 		}
 	},
 }

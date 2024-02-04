@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { DatabaseUser, RequestingUser, AuthResponseObject } from "../../database/models/userModel";
+import { NextFunction, Request, Response } from "express";
+import { DatabaseUser, LoginResponse, RequestingUser, SignupResponse } from "../../database/models/userModel";
 import { saltAndHashPassword } from "../../utils/saltAndHashPassword";
 import { validateLoginCredentials } from "../../utils/validateLoginCredentials";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
@@ -8,24 +8,30 @@ import { authenticateLoginCredentials } from "../../utils/authenticateLoginCrede
 import { TokenCreator } from "../token/TokenCreator";
 
 export const AuthController = {
-	async signupUser(request: Request, response: Response) {
+	async signupUser(request: Request, response: Response, next: NextFunction) {
 		try {
 			const requestingUser: RequestingUser = request.body;
 			validateLoginCredentials(requestingUser);
 	
 			const saltedAndHashedPassword = await saltAndHashPassword(requestingUser.password);
 			requestingUser.password = saltedAndHashedPassword;
-	
-			const databaseUser: DatabaseUser = await DatabaseQuery.insertUserIntoDatabase(requestingUser);
 
-			response.status(201).json(databaseUser);
-		} catch (err) {
-			console.error('Error signing up user', err);
-			response.status(500).send('Server error signing up user');
+			await DatabaseQuery.insertUserIntoDatabase(requestingUser);
+
+			const responseObject: SignupResponse = {
+				status: true,
+				message: 'Successful signup'
+			}
+
+			response.status(201).json(responseObject);
+
+		} catch (error) {
+			console.log(error);
+			next(error);
 		}
 	},
 
-	async loginUser(request: Request, response: Response) {
+	async loginUser(request: Request, response: Response, next: NextFunction) {
 		try {
 			const requestingUser: RequestingUser = request.body;
 			validateLoginCredentials(requestingUser);
@@ -38,7 +44,7 @@ export const AuthController = {
 	
 			TokenController.setRefreshTokenCookie(response, refreshToken);
 	
-			const responseObject: AuthResponseObject = {
+			const responseObject: LoginResponse = {
 				user: {
 					id: databaseUser.id,
 					email: databaseUser.email,
@@ -48,9 +54,8 @@ export const AuthController = {
 			};
 	
 			response.status(200).send(responseObject);
-		} catch (err) {
-			console.error('Error logging in user', err);
-			response.status(500).send('Server error logging in user');
+		} catch (error) {
+			next(error);
 		}
 	},
 

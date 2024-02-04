@@ -27,3 +27,17 @@ export class TokenError extends CustomError {
 		Object.setPrototypeOf(this, TokenError.prototype);
 	}
 }
+
+export class DuplicateEmailError extends CustomError {
+	constructor(message: string) {
+		super(400, 'duplicate_email_error', message);
+		Object.setPrototypeOf(this, DuplicateEmailError.prototype);
+	}
+}
+
+export class IncorrectEmailFormatError extends CustomError {
+	constructor(message: string) {
+		super(400, 'incorrect_email_format_error', message);
+		Object.setPrototypeOf(this, IncorrectEmailFormatError.prototype);
+	}
+}

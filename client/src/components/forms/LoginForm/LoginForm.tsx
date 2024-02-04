@@ -1,33 +1,35 @@
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { LoginCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../auth/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
+import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
 import './login-form.scss';
 
 export const LoginForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {
-    register,
+    control,
     handleSubmit,
-    watch,
     formState: { errors },
+    setError,
   } = useForm<LoginCredentials>();
-
-  const email = watch('email');
-  const password = watch('password');
-  const isSubmitDisabled: boolean = !email || !password;
 
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
-      await AuthManager.loginUser(formData, dispatch);
+      const response = await AuthManager.loginUser(formData, dispatch);
 
-      navigate('/profile');
+      if (!response) {
+        throw new AuthenticationError('No response received from login process');
+      }
+
+      if (response.error && response.error.code) {
+        setError('email', { type: 'custom', message: response.error.message });
+      }
+
     } catch (error) {
       const loginError = new AuthenticationError('Failed to login');
       handleError(loginError);
@@ -38,33 +40,42 @@ export const LoginForm = () => {
     <form onSubmit={handleSubmit(handleLoginFormSubmit)} className='login-form'>
       <div className='login-form-heading'>Login</div>
       <div className='login-input-fields'>
-
-        <div className='login-email-field floating-label'>
-          <input
-            type='email'
-            placeholder=' '
-            {...register('email', { required: '*Email is required' })}
-          />
-          <label htmlFor="email">Email</label>
-          {errors.email && (
-            <p className='login-error-message'>{errors.email.message}</p>
+        <Controller
+          name='email'
+          control={control}
+          defaultValue=''
+          render={({ field }) => (
+            <div className='login-email-field floating-label'>
+              <input type='email' placeholder=' ' {...field} />
+              <label htmlFor='email'>Email</label>
+            </div>
           )}
-        </div>
+        />
 
-        <div className='login-password-field floating-label'>
-          <input
-            type='password'
-            placeholder=' '
-            {...register('password', { required: '*Password is required' })}
-          />
-          <label htmlFor="password">Password</label>
-          {errors.password && (
-            <p className='login-error-message'>{errors.password.message}</p>
+        <Controller
+          name='password'
+          control={control}
+          defaultValue=''
+          render={({ field }) => (
+            <div className='login-password-field floating-label'>
+              <input
+                type='password'
+                placeholder=' '
+                {...field}
+                maxLength={20}
+              />
+              <label htmlFor='password'>Password</label>
+            </div>
           )}
-        </div>
-
+        />
       </div>
-      <button className='login-submit-btn' type="submit" disabled={isSubmitDisabled}>Log In</button>
+      <ValidationErrorMessage error={errors.email?.message || ''} />
+      <button
+        className='login-submit-btn'
+        type='submit'
+      >
+        Log In
+      </button>
     </form>
   );
 };

@@ -9,6 +9,7 @@ import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessag
 import './signup-form.scss';
 
 export const SignupForm = () => {
+  
   const {
     control,
     handleSubmit,

@@ -42,10 +42,11 @@ export const ApiClient = {
         mode: 'cors', // IMPORTANT
       });
 
-      if (!response.ok) {
+      /* if (!response.ok) {
         const networkError = new NetworkError(`Server did not return OK when logging in`, response.status);
         handleError(networkError);
-      }
+      } */
+
 
       return response.json();
     } catch (error) {

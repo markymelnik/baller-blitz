@@ -18,7 +18,12 @@ export interface FrontendUser {
   role: string;
 }
 
-export interface AuthResponseObject {
+export interface LoginResponse {
   user: FrontendUser;
   accessToken: string;
+}
+
+export interface SignupResponse {
+  status: boolean;
+  message: string;
 }

@@ -10,7 +10,7 @@ export const TokenCreator = {
 		try {
 			return jwt.sign({ id: userId }, ACCESS_TOKEN_SECRET, options);
 		} catch (error) {
-			throw new TokenError('Problem generating access token')
+			throw new TokenError('Problem generating access token.')
 		}
 	},
 
@@ -19,7 +19,7 @@ export const TokenCreator = {
 		try {
 			return jwt.sign({ id: userId }, REFRESH_TOKEN_SECRET, options);
 		} catch (error) {
-			throw new TokenError('Problem generating refresh token')
+			throw new TokenError('Problem generating refresh token.')
 		}
 	},
 }

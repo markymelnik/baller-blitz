@@ -5,9 +5,10 @@ import { AuthController } from './api/auth/AuthController';
 import { corsOptions } from './config/corsConfig';
 import { TokenController } from './api/token/TokenController';
 import { ErrorHandler } from './middleware/error-handler';
-import { AuthenticationError, ValidationError } from './errors/ErrorClasses';
+import { AuthenticationError, DuplicateEmailError, IncorrectEmailFormatError, ValidationError } from './errors/ErrorClasses';
 import 'dotenv/config';
 import { loginLimiter, signupLimiter } from './middleware/rate-limiting';
+import { errorConfiguration } from './errors/errorConfiguration';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
@@ -29,20 +30,7 @@ app.get('/profile', TokenController.validateAccessToken, (req, res) => {
   res.json({ message: 'You have hit a protected route' });
 });
 
-app.use(ErrorHandler([
-  {
-    type: ValidationError,
-    statusCode: 400,
-    errorCode: 'validation_error',
-    errorMessage: 'Bad Request; your request contains invalid data'
-  },
-  {
-    type: AuthenticationError,
-    statusCode: 401,
-    errorCode: 'authentication_error',
-    errorMessage: 'Unauthenticated; you cannot access this resource'
-  },
-]))
+app.use(ErrorHandler(errorConfiguration));
 
 app.listen(`${BACKEND_PORT}`, () => {
   console.log(`Server listening at ${BACKEND_PORT}`);

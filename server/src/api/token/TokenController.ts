@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
-import { AuthResponseObject } from '../../database/models/userModel';
 import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from '../../env';
 import { DatabaseQuery } from '../../database/queries/DatabaseQuery';
 import { TokenError } from '../../errors/ErrorClasses';
-import { AccessTokenProps, RefreshTokenProps } from '../../database/models/tokenModel';
+import { RefreshTokenProps } from '../../database/models/tokenModel';
 import { TokenCreator } from './TokenCreator';
+import { LoginResponse } from '../../database/models/userModel';
 
 export const TokenController = {
 
@@ -51,7 +51,7 @@ export const TokenController = {
 
 				const newAccessToken = TokenCreator.generateAccessToken({ userId: refreshTokenUserId });
 	
-				const responseObject: AuthResponseObject = {
+				const responseObject: LoginResponse = {
 					user: { id, email, role },
 					accessToken: newAccessToken,
 				};

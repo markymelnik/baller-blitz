@@ -22,14 +22,13 @@ export const AuthManager = {
 
 	async loginUser(formData: LoginCredentials, dispatch: AppDispatch) {
 		try {
-			const responseData: BackendUser = await ApiClient.login('/login', formData);
+			const responseData = await ApiClient.login('/login', formData);
 			const { user, accessToken } = responseData;
 	
 			dispatch(setAccessToken(accessToken));
 			dispatch(authenticateUser());
 			dispatch(setUserDetails(user));
 	
-			console.log('Login successful :)');
 			return responseData;
 		}
 		catch (error) {
@@ -45,8 +44,6 @@ export const AuthManager = {
 			dispatch(clearAccessToken());
 			dispatch(unauthenticateUser());
 			dispatch(clearUserDetails());
-	
-			console.log('Logout successful :)');
 		}
 		catch (error) {
 			const authenticationError = new AuthenticationError('Failed to logout');
