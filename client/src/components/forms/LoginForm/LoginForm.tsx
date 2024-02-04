@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { LoginCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../auth/AuthManager.ts';
-import './login-form.scss';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
-import { NavigateToSignupButton } from '../../buttons/nav/NavigateToSignupButton.tsx';
+import './login-form.scss';
 
 export const LoginForm = () => {
   const navigate = useNavigate();
@@ -16,8 +15,13 @@ export const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<LoginCredentials>();
+
+  const email = watch('email');
+  const password = watch('password');
+  const isSubmitDisabled: boolean = !email || !password;
 
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
@@ -31,37 +35,36 @@ export const LoginForm = () => {
   };
 
   return (
-    <>
-    
     <form onSubmit={handleSubmit(handleLoginFormSubmit)} className='login-form'>
       <div className='login-form-heading'>Login</div>
       <div className='login-input-fields'>
-        <div className='login-email-field'>
-          {/* <label>Email</label> */}
+
+        <div className='login-email-field floating-label'>
           <input
             type='email'
-            placeholder='Email'
+            placeholder=' '
             {...register('email', { required: '*Email is required' })}
           />
+          <label htmlFor="email">Email</label>
           {errors.email && (
             <p className='login-error-message'>{errors.email.message}</p>
           )}
         </div>
-        <div className='login-password-field'>
-          {/* <label>Password</label> */}
+
+        <div className='login-password-field floating-label'>
           <input
             type='password'
-            placeholder='Password'
+            placeholder=' '
             {...register('password', { required: '*Password is required' })}
           />
+          <label htmlFor="password">Password</label>
           {errors.password && (
             <p className='login-error-message'>{errors.password.message}</p>
           )}
         </div>
+
       </div>
-      <button className='login-submit-btn' type="submit">Log In</button>
+      <button className='login-submit-btn' type="submit" disabled={isSubmitDisabled}>Log In</button>
     </form>
-    <NavigateToSignupButton addClass='login' />
-    </>
   );
 };

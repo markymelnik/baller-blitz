@@ -10,7 +10,7 @@ export const NavigateToSignupButton = ({ addClass }: SignupButtonProps) => {
   return (
     <NavigateToButtonCreator
       toRoute={'/signup'}
-      buttonText={'Signup'}
+      buttonText={'Sign Up'}
       className={className}
     />
   );
