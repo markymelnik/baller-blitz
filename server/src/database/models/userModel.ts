@@ -27,3 +27,8 @@ export interface SignupResponse {
   status: boolean;
   message: string;
 }
+
+export interface LogoutResponse {
+  status: boolean;
+  message: string;
+}

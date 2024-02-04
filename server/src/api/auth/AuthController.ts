@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { DatabaseUser, LoginResponse, RequestingUser, SignupResponse } from "../../database/models/userModel";
+import { DatabaseUser, LoginResponse, LogoutResponse, RequestingUser, SignupResponse } from "../../database/models/userModel";
 import { saltAndHashPassword } from "../../utils/saltAndHashPassword";
 import { validateLoginCredentials } from "../../utils/validateLoginCredentials";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
@@ -8,59 +8,78 @@ import { authenticateLoginCredentials } from "../../utils/authenticateLoginCrede
 import { TokenCreator } from "../token/TokenCreator";
 
 export const AuthController = {
-	async signupUser(request: Request, response: Response, next: NextFunction) {
-		try {
-			const requestingUser: RequestingUser = request.body;
-			validateLoginCredentials(requestingUser);
-	
-			const saltedAndHashedPassword = await saltAndHashPassword(requestingUser.password);
-			requestingUser.password = saltedAndHashedPassword;
+  async signupUser(request: Request, response: Response, next: NextFunction) {
+    try {
+      const requestingUser: RequestingUser = request.body;
+      validateLoginCredentials(requestingUser);
 
-			await DatabaseQuery.insertUserIntoDatabase(requestingUser);
+      const saltedAndHashedPassword = await saltAndHashPassword(
+        requestingUser.password
+      );
+      requestingUser.password = saltedAndHashedPassword;
 
-			const responseObject: SignupResponse = {
-				status: true,
-				message: 'Successful signup'
-			}
+      await DatabaseQuery.insertUserIntoDatabase(requestingUser);
 
-			response.status(201).json(responseObject);
+      const responseObject: SignupResponse = {
+        status: true,
+        message: 'Successful signup',
+      };
 
-		} catch (error) {
-			console.log(error);
-			next(error);
-		}
-	},
+      response.status(201).json(responseObject);
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  },
 
-	async loginUser(request: Request, response: Response, next: NextFunction) {
-		try {
-			const requestingUser: RequestingUser = request.body;
-			validateLoginCredentials(requestingUser);
+  async loginUser(request: Request, response: Response, next: NextFunction) {
+    try {
+      const requestingUser: RequestingUser = request.body;
+      validateLoginCredentials(requestingUser);
 
-			const databaseUser: DatabaseUser = await authenticateLoginCredentials(requestingUser);
-			const databaseUserRole: string = await DatabaseQuery.getUserRoleById(databaseUser.id);   
-	
-			const accessToken = TokenCreator.generateAccessToken({ userId: databaseUser.id });
-			const refreshToken = TokenCreator.generateRefreshToken({ userId: databaseUser.id });
-	
-			TokenController.setRefreshTokenCookie(response, refreshToken);
-	
-			const responseObject: LoginResponse = {
-				user: {
-					id: databaseUser.id,
-					email: databaseUser.email,
-					role: databaseUserRole,
-				},
-				accessToken,
-			};
-	
-			response.status(200).send(responseObject);
-		} catch (error) {
-			next(error);
-		}
-	},
+      const databaseUser: DatabaseUser = await authenticateLoginCredentials(
+        requestingUser
+      );
+      const databaseUserRole: string = await DatabaseQuery.getUserRoleById(
+        databaseUser.id
+      );
 
-	logoutUser(request: Request, response: Response) {
-		response.cookie('refreshToken', '', { httpOnly: true, maxAge: 1 });
-		response.status(200).json({ message: 'Logged out successfully.' });
-	},
-}
+      const accessToken = TokenCreator.generateAccessToken({
+        userId: databaseUser.id,
+      });
+      const refreshToken = TokenCreator.generateRefreshToken({
+        userId: databaseUser.id,
+      });
+
+      TokenController.setRefreshTokenCookie(response, refreshToken);
+
+      const responseObject: LoginResponse = {
+        user: {
+          id: databaseUser.id,
+          email: databaseUser.email,
+          role: databaseUserRole,
+        },
+        accessToken,
+      };
+
+      response.status(200).send(responseObject);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  logoutUser(request: Request, response: Response) {
+    response.cookie('refreshToken', '', {
+      httpOnly: true,
+      /* secure: true, */ 
+			maxAge: 1,
+    });
+
+    const responseObject: LogoutResponse = {
+      status: true,
+      message: 'Logged out successfully.',
+    }
+    
+    response.status(200).json(responseObject);
+  },
+};

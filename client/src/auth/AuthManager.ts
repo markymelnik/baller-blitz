@@ -39,11 +39,13 @@ export const AuthManager = {
 
 	async logoutUser(dispatch: AppDispatch) {
 		try {
-			await ApiClient.logout('/logout');
+			const response = await ApiClient.logout('/logout');
 	
 			dispatch(clearAccessToken());
 			dispatch(unauthenticateUser());
 			dispatch(clearUserDetails());
+
+			return response;
 		}
 		catch (error) {
 			const authenticationError = new AuthenticationError('Failed to logout');

@@ -6,10 +6,13 @@ import { AuthManager } from '../../../auth/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
+import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
 import './login-form.scss';
+
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const delayNavigate = useDelayNavigate();
 
   const {
     control,
@@ -28,6 +31,10 @@ export const LoginForm = () => {
 
       if (response.error && response.error.code) {
         setError('email', { type: 'custom', message: response.error.message });
+      }
+
+      if (response.user) {
+        delayNavigate('/profile')
       }
 
     } catch (error) {

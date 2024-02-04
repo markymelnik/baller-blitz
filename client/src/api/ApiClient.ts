@@ -68,10 +68,12 @@ export const ApiClient = {
         mode: 'cors',
       });
 
-      if (!response.ok) {
+      /* if (!response.ok) {
         const networkError = new NetworkError(`Server did not return OK when logging out`, response.status);
         handleError(networkError);
-      }
+      } */
+
+      return response.json();
 
     } catch (error) {
       const authenticationError = new AuthenticationError('Failed to logout');

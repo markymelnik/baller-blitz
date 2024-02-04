@@ -1,22 +1,24 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import { AuthManager } from '../../../auth/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
+import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
 import './logout-btn.scss';
 
 export const LogoutButton = () => {
   
-  const navigate = useNavigate();
+  const delayNavigate = useDelayNavigate();
 	const dispatch = useDispatch();
 
   const handleClick = async () => {
     try {
-      await AuthManager.logoutUser(dispatch);
-      
-      navigate('/');
+      const response = await AuthManager.logoutUser(dispatch);
 
+      if (response.status) {
+        delayNavigate('/');
+      }
+      
     } catch (error) {
       const logoutError = new AuthenticationError('Failed to logout');
       handleError(logoutError);

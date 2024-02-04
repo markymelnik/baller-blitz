@@ -6,9 +6,13 @@ import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { SignupValidation } from '../InputValidation/SignupValidation/SignupValidation.tsx';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
+import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
 import './signup-form.scss';
 
+
 export const SignupForm = () => {
+
+  const delayNavigate = useDelayNavigate();
   
   const {
     control,
@@ -30,6 +34,10 @@ export const SignupForm = () => {
 
       if (response.error && response.error.code) {
         setError('email', { type: 'custom', message: response.error.message });
+      }
+
+      if (response.status) {
+        delayNavigate('/');
       }
 
     } catch (error) {

@@ -13,24 +13,21 @@ export const TokenController = {
 		const accessToken = request.cookies.accessToken;
   
 		if (!accessToken) {
-			throw new TokenError('Access token is missing');
+			throw new TokenError('Access token is missing.');
 		}
 	
 		try {
 			jwt.verify(accessToken, ACCESS_TOKEN_SECRET as string);
 			next();
 		} catch (error) {
-			throw new TokenError('Failed to validate access token');
 	
-			/* if (error instanceof jwt.TokenExpiredError) {
-				return response.status(401).json({ message: 'Token expired' });
+			if (error instanceof jwt.TokenExpiredError) {
+				throw new TokenError('Expired token.');
 			}
 	
 			if (error instanceof jwt.JsonWebTokenError) {
-				return response.status(401).json({ message: 'Invalid token' });
+				throw new TokenError('Invalid token.');
 			}
-	
-			return response.status(500).json({ message: 'Failed to authenticate token' }); */
 		}
 	},
 
@@ -38,7 +35,7 @@ export const TokenController = {
 		const refreshToken = request.cookies.refreshToken;
 	
 		if (!refreshToken) {
-			return response.status(404).send({ message: 'Refresh token not found' })
+			return response.status(404).send({ message: 'Refresh token not found' });
 		};
 
 		try {
@@ -59,7 +56,7 @@ export const TokenController = {
 				return response.status(200).send(responseObject);
 				});
 			} catch (error) {
-				throw new Error('Failed to validate refresh token');
+				return response.status(404).send({ message: 'Failed to refresh token' });
 		}
 	},
 

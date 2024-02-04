@@ -1,6 +1,6 @@
-import { AuthenticationError, DatabaseError, DuplicateEmailError, IncorrectEmailFormatError, ValidationError } from "./ErrorClasses";
+import { AuthenticationError, DatabaseError, DuplicateEmailError, IncorrectEmailFormatError, TokenError, ValidationError } from "../errors/ErrorClasses";
 
-export const errorConfiguration = [
+export const errorConfig = [
   {
     type: ValidationError,
     statusCode: 400,
@@ -12,6 +12,12 @@ export const errorConfiguration = [
     statusCode: 401,
     errorCode: 'authentication_error',
     errorMessage: 'Unauthenticated; you cannot access this resource',
+  },
+  {
+    type: TokenError,
+    statusCode: 404,
+    errorCode: 'token_error',
+    errorMessage: 'Not found; cannot access token',
   },
   {
     type: DuplicateEmailError,
@@ -27,8 +33,8 @@ export const errorConfiguration = [
   },
   {
     type: DatabaseError,
-    statusCode: 400,
+    statusCode: 500,
     errorCode: 'database_error',
-    errorMessage: 'Bad Request; email format is bad',
+    errorMessage: 'Internal Server Error; database issue',
   },
 ];
