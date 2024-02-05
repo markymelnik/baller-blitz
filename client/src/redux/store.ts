@@ -7,12 +7,14 @@ import authReducer from './slices/authSlice.ts';
 import userReducer from './slices/userSlice.ts';
 import tokenReducer from './slices/tokenSlice.ts';
 import loadingReducer from './slices/loadingSlice.ts';
+import gamesTodayReducer, { GamesToday } from './slices/gamesTodaySlice.ts';
 
 export type RootState = {
   auth: AuthState;
   user: UserState;
   token: AccessToken;
   loading: LoadingState;
+  gamesToday: GamesToday;
 };
 
 const store = configureStore({
@@ -21,6 +23,7 @@ const store = configureStore({
     user: userReducer,
     token: tokenReducer,
     loading: loadingReducer,
+    gamesToday: gamesTodayReducer,
   },
 });
 

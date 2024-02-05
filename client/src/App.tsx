@@ -12,9 +12,11 @@ import { useRefreshToken } from './hooks/useRefreshToken.ts';
 import { LoadingScreen } from './LoadingScreen/LoadingScreen.tsx';
 import { FrontPage } from './routes/pages/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
+import { useGetGamesToday } from './GameData/useGetGamesToday.ts';
 
 const App = () => {
   useRefreshToken();
+  useGetGamesToday();
 
   return (
     <div className='app-container'>
