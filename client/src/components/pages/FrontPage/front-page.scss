@@ -1,0 +1,16 @@
+.front-page {
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+    flex-direction: column;
+}
+
+.front-page-header {
+	font-size: 2rem;
+	margin: 0 0 3rem;
+}
+
+.games-header {
+	font-size: 1.5rem;
+	padding: 0.5rem 0;
+}

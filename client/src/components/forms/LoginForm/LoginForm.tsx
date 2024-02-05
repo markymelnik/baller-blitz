@@ -9,7 +9,6 @@ import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessag
 import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
 import './login-form.scss';
 
-
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const delayNavigate = useDelayNavigate();

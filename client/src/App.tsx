@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { LoginPage } from './routes/pages/LoginPage.tsx';
-import { ProfilePage } from './routes/pages/ProfilePage.tsx';
-import { SignupPage } from './routes/pages/SignupPage.tsx';
-import { HomePage } from './routes/pages/HomePage.tsx';
-import { UnauthorizedPage } from './routes/pages/fallback/UnauthorizedPage.tsx';
-import { UnauthenticatedPage } from './routes/pages/fallback/UnauthenticatedPage.tsx';
-import { NotFoundPage } from './routes/pages/fallback/NotFoundPage.tsx';
+import { LoginPage } from './components/pages/LoginPage/LoginPage.tsx';
+import { ProfilePage } from './components/pages/ProfilePage/ProfilePage.tsx';
+import { SignupPage } from './components/pages/SignupPage/SignupPage.tsx';
+import { HomePage } from './components/pages/HomePage/HomePage.tsx';
+import { UnauthorizedPage } from './components/pages/fallback/UnauthorizedPage.tsx';
+import { UnauthenticatedPage } from './components/pages/fallback/UnauthenticatedPage.tsx';
+import { NotFoundPage } from './components/pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './routes/PrivateRoutes.tsx';
 import { useRefreshToken } from './hooks/useRefreshToken.ts';
-import { LoadingScreen } from './LoadingScreen/LoadingScreen.tsx';
-import { FrontPage } from './routes/pages/FrontPage.tsx';
+import { LoadingScreen } from './components/LoadingScreen/LoadingScreen.tsx';
+import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
-import { useGetGamesToday } from './GameData/useGetGamesToday.ts';
+import { useGetGamesToday } from './components/GameData/useGetGamesToday.ts';
+import ScrollToTop from './hooks/useScrollToTop.ts';
 
 const App = () => {
   useRefreshToken();
@@ -22,6 +23,7 @@ const App = () => {
     <div className='app-container'>
       <LoadingScreen />
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           {
             <Route element={<PublicRoutes />}>
