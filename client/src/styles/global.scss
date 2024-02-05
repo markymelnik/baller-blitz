@@ -13,10 +13,11 @@
     padding: 1rem;
 }
 
+.home-page,
 .login-page,
 .signup-page,
-.profile-page,
 .front-page,
+.profile-page,
 .unauthenticated-page,
 .unauthorized-page,
 .not-found-page {
@@ -24,6 +25,7 @@
     width: 100%;
 }
 
+.home-page, 
 .login-page,
 .signup-page,
 .profile-page,

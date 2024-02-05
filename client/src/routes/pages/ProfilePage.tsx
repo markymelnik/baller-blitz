@@ -1,13 +1,13 @@
 import { Profile } from '../../components/Profile/Profile.tsx';
 import { LogoutButton } from '../../components/buttons/LogoutButton/LogoutButton.tsx';
-import { NavigateToHomeButton } from '../../components/buttons/nav/NavigateToHomeButton.tsx';
+import { NavigateToFrontButton } from '../../components/buttons/nav/NavigateToFrontButton.tsx';
 
 export const ProfilePage = () => {
 
   return (
     <div className='profile-page'>
       <Profile />
-      <NavigateToHomeButton />
+      <NavigateToFrontButton />
       <LogoutButton />
     </div>
   );

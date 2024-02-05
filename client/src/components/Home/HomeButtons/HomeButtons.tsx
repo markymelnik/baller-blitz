@@ -1,10 +1,10 @@
 import { NavigateToLoginButton } from '../../buttons/nav/NavigateToLoginButton.tsx';
 import { NavigateToSignupButton } from '../../buttons/nav/NavigateToSignupButton.tsx';
-import './front-btns.scss';
+import './home-btns.scss';
 
-export const FrontButtons = () => {
+export const HomeButtons = () => {
   return (
-    <div className='front-btns'>
+    <div className='home-btns'>
       <NavigateToLoginButton />
       <NavigateToSignupButton />
     </div>
