@@ -18,7 +18,7 @@ export const LoadingScreen = () => {
         stroke='4'
         bg-opacity='0'
         speed='2'
-        color='darkgrey'
+        color='black'
       ></l-ring>
     </div>
   );
