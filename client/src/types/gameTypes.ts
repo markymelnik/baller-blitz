@@ -17,7 +17,9 @@ export interface Game {
 	gameCode: string;
 	gameEt: string;
 	gameTimeUTC: string;
+	gameStatus: number;
 	awayTeam: AwayTeam;
 	homeTeam: HomeTeam;
 	gameStatusText: string;
+	period: string;
 }

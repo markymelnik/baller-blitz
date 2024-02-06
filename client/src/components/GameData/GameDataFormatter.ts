@@ -1,31 +1,32 @@
 import { Game } from "../../types/gameTypes.ts";
 
 export const GameDataFormatter = {
-  determineStatus(game: Game): string {
-    const currentTime = new Date();
-    const startTime = new Date(game.gameTimeUTC);
-
-    if (currentTime < startTime) {
+  determineStatus(gameStatus: number): string {
+    if (gameStatus === 1) {
       return 'Not Started';
     }
 
-    if (currentTime >= startTime) {
+    if (gameStatus === 2) {
       return 'In Progress';
     }
 
-    if (game.gameStatusText.includes('Finish')) {
+    if (gameStatus === 3) {
       return 'Finished';
     }
+
     return 'Error';
   },
 
   determineWinner(game: Game): string {
-    if (!game.gameStatusText.includes('Final')) return 'TBD';
     const { awayTeam, homeTeam } = game;
+    let output = '';
 
     if (awayTeam.score > homeTeam.score) {
-      return awayTeam.teamName;
-    } else return homeTeam.teamName;
+      output += awayTeam.teamName;
+    } else {
+      output += homeTeam.teamName;
+    }
+    return output += ` by ${Math.abs(awayTeam.score - homeTeam.score)}`;
   },
 
   formatDate(date: string): string {

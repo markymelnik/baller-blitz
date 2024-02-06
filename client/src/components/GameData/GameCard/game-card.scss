@@ -4,4 +4,9 @@
 	gap: 0.25rem;
 	border: 1px solid black;
 	padding: 1rem;
+
+	&.finished {
+		opacity: 0.5;
+		pointer-events: none;
+	}
 }
