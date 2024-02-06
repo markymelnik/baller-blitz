@@ -10,6 +10,7 @@ export interface LoginCredentials {
 
 export interface AuthState {
   isLoggedIn: boolean;
+  isLoading: boolean;
 }
 
 export interface AccessToken {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { startLoading, stopLoading } from "../redux/slices/loadingSlice.ts";
 
-export const useDelayNavigate = (delay: number = 800) => {
+export const useDelayNavigate = (delay: number = 600) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -13,12 +13,12 @@ export const useDelayNavigate = (delay: number = 800) => {
       dispatch(startLoading());
       setTimeout(() => {
         navigate(toRoute);
-        dispatch(stopLoading());
+        setTimeout(() => {
+          dispatch(stopLoading());
+        }, 200)
       }, delay);
-      
     },
     [navigate, delay, dispatch]
   );
-
   return delayNavigate;
 };

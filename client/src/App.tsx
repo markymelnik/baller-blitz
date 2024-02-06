@@ -14,10 +14,17 @@ import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
 import { useGetGamesToday } from './components/GameData/useGetGamesToday.ts';
 import ScrollToTop from './hooks/useScrollToTop.ts';
+import { useAuthLoading } from './hooks/stateSelectors.ts';
 
 const App = () => {
   useRefreshToken();
   useGetGamesToday();
+
+  const authenticationIsProcessing = useAuthLoading();
+
+  if (authenticationIsProcessing) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className='app-container'>

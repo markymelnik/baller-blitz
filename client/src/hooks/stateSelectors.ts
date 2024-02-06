@@ -11,12 +11,15 @@ const createStateSelectorHook = <S>(selector: Selector<S>) => {
 };
 
 const selectIsAuthenticated = (state: RootState): boolean => state.auth.isLoggedIn;
+const selectIsAuthLoading = (state: RootState): boolean => state.auth.isLoading;
 const selectUserDetails = (state: RootState): UserDetails | null => state.user.userDetails;
 const selectAccessToken = (state: RootState): string | null => state.token.accessToken;
 const selectedLoading = (state: RootState): boolean => state.loading.isLoading;
 const selectedGamesToday = (state: RootState): Game[] => state.gamesToday.games;
 
 export const useAuth = createStateSelectorHook(selectIsAuthenticated);
+
+export const useAuthLoading = createStateSelectorHook(selectIsAuthLoading);
 
 export const useUserDetails = createStateSelectorHook(selectUserDetails);
 
