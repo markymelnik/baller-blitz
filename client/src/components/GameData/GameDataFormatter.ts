@@ -31,7 +31,15 @@ export const GameDataFormatter = {
   formatDate(date: string): string {
     date = date.slice(0, 10);
     const parts = date.split('-');
-    const formattedDate = parts[1] + '-' + parts[2] + '-' + parts[0];
+    
+    const months = ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = months[parseInt(parts[1], 10)];
+
+    const day = parseInt(parts[2], 10).toString();
+
+    /* const year = parts[0].slice(2); */
+
+    const formattedDate = `${month} ${day}`
     return formattedDate;
   },
 

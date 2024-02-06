@@ -1,5 +1,5 @@
 export enum SelectOverlayState {
-	SELECT_WINNER = 'SELECT_WINNER',
+	SELECT = 'SELECT',
 	CONFIRM = 'CONFIRM',
 	SUBMIT = 'SUBMIT',
 }

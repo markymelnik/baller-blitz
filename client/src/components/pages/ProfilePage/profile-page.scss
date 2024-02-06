@@ -1,6 +1,7 @@
 .profile-page {
-	min-height: 100vh;
+		min-height: calc(100vh - 2rem);
     width: 100%;
-	display: flex;
+		display: flex;
     flex-direction: column;
+		justify-content: space-between;
 }

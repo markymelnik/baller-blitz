@@ -1,0 +1,15 @@
+.pick-submit-btn {
+	background: none;
+	border: none;
+	padding: 1rem 2.5rem;
+	border: 1px solid lightgrey;
+	font-size: 1.05rem;
+
+	&.select-winner {
+		border: none;
+	}
+	
+	&.submit {
+		border: 1px solid black;
+	}
+}

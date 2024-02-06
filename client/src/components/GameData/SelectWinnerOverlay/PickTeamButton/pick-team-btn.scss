@@ -1,0 +1,19 @@
+.away-team,
+.home-team {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem 2rem;
+	background: white;
+	border: 1px solid lightgrey;
+
+	&.confirm,
+	&.submit {
+		border: 1px solid black;
+	}
+
+	.tricode {
+		font-size: 1.25rem;
+	}
+}

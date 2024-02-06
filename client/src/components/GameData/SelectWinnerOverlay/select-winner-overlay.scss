@@ -8,53 +8,55 @@
 
 	.select-winner-overlay {
 		position: relative;
-		top: 50vh;
+		top: 40vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
+		justify-content: space-between;
 		gap: 1.5rem;
 		margin: 2rem;
 		padding: 1.5rem;
-		background: lightgrey;
+		background: white;
 		border: 1px solid black;
+		height: 50vh;
 	
 		.overlay-close-btn {
 			position: absolute;
 			top: 0;
 			left: 0;
-			height: 2.5rem;
-			width: 2.5rem;
-		}
-	
-		.game-matchup {
+			height: 3.5rem;
+			width: 3.5rem;
+			border: none;
+			font-size: 1.5rem;
 			display: flex;
-			gap: 1rem;
-			
-			.away-team,
-			.home-team {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 0.5rem;
-				padding: 1rem 2rem;
-				background: white;
-
-				&.confirm {
-					border: 1px solid black;
-				}
-	
-				.tricode {
-					font-size: 1.25rem;
-				}
-			}
-		}
-	
-		.game-prompt {
+			justify-content: center;
+			align-items: center;
 			background: white;
 		}
 	}
-
-
 }
 
+.overlay-top {
+
+	.game-info {
+
+	}
+}
+
+.overlay-mid {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5rem;
+
+	.game-matchup {
+		display: flex;
+		gap: 1rem;
+	}
+}
+
+.overlay-bot {
+	.game-prompt {
+		background: white;
+	}
+}

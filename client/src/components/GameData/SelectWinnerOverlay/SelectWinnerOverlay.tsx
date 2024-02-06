@@ -1,11 +1,13 @@
-import { useRef, useState } from 'react';
+import { MouseEvent, MouseEventHandler, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { IconX } from '@tabler/icons-react';
 
 import { useOutsideClick } from '../../../hooks/useOutsideClick.ts';
 import { Game } from '../../../types/gameTypes.ts';
 
 import { SelectOverlayState } from './PickSubmitButton/SelectOverlayState.ts';
 import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';
+import { PickTeamButton } from './PickTeamButton/PickTeamButton.tsx';
 import './select-winner-overlay.scss';
 
 type SelectWinnerOverlayProps = {
@@ -16,90 +18,111 @@ type SelectWinnerOverlayProps = {
 
 export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverlayProps) => {
 	const overlayRef = useRef(null);
+  const buttonRef = useRef(null);
   
+  const [overlayState, setOverlayState] = useState<string>(SelectOverlayState.SELECT);
+  const [selectedWinner, setSelectedWinner] = useState<string>('');
 
-  const [buttonState, setButtonState] = useState<string>(SelectOverlayState.SELECT_WINNER);
-  const [selectedTeam, setSelectedWinner] = useState<string>('');
+  useEffect(() => {
+    console.log(overlayState, selectedWinner);
+  }, [overlayState, selectedWinner]);
 
-  const selectWinner = (team: 'away' | 'home') => {
-    const newSelectedTeam = team === 'home' ? game.homeTeam.teamTricode : game.awayTeam.teamTricode;
-    setSelectedWinner(newSelectedTeam);
-    setButtonState(SelectOverlayState.CONFIRM);
+  const selectWinner = (teamTricode: string) => {
+    setSelectedWinner(teamTricode);
+    setOverlayState(SelectOverlayState.CONFIRM);
   }
 
-  const confirmSelection = () => {
-    setButtonState(SelectOverlayState.SUBMIT);
+  const confirmSelectedWinner = () => {
+    setOverlayState(SelectOverlayState.SUBMIT);
   }
 
   const submiSelectedtWinner = () => {
-    console.log(selectedTeam);
-    resetProgress();
+    console.log(selectedWinner);
+    handleOverlayResetAndClose();
   }
 
-  const resetProgress = () => {
-    setButtonState(SelectOverlayState.SELECT_WINNER);
+  const handleOverlayResetAndClose = () => {
+    resetOverlayState();
     setSelectedWinner('');
     onClose();
   }
 
-  /* const getButtonClassName = (state: string, baseClass: string) => {
-    if (game)
-		switch(state) {
-			case SelectOverlayState.CONFIRM:
-				return `${baseClass} confirm`;
-			case SelectOverlayState.SUBMIT:
-				return `${baseClass} submit`;
-			default:
-				return `${baseClass} select-winner`;
-		}
-	} */
+  const resetOverlayState = () => {
+    setOverlayState(SelectOverlayState.SELECT);
+  }
 
-  useOutsideClick(overlayRef, resetProgress);
+  const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target === overlayRef.current) {
+      if (overlayState === SelectOverlayState.SUBMIT) {
+        setOverlayState(SelectOverlayState.CONFIRM);
+      } else if (overlayState === SelectOverlayState.CONFIRM) {
+        setOverlayState(SelectOverlayState.SELECT);
+        console.log('clicked inside overlay')
+      }
+    }
+  }
+
+  
+  const actionWrapper = (action: () => void): MouseEventHandler<HTMLButtonElement> => {
+    return (event) => {
+      event.stopPropagation();
+      action();
+    }
+  }
+
+  useOutsideClick(overlayRef, handleOverlayResetAndClose);
 
 	if (!isOpen) return null;
 
   return createPortal(
     <div className='portal-wrapper'>
-      <div className='select-winner-overlay' ref={overlayRef}>
-        <button className='overlay-close-btn' onClick={resetProgress}>
-          X
+      <div className='select-winner-overlay' ref={overlayRef} onClick={handleOverlayClick}>
+        <button className='overlay-close-btn' onClick={(e) => { e.stopPropagation(); handleOverlayResetAndClose(); }}>
+          <IconX size={30} stroke={1.25} />
         </button>
-        <div className='game-info'>Game Id: {game.gameId}</div>
-        <div className='game-matchup'>
-          <div className={`away-team ${selectedTeam === game.awayTeam.teamTricode ? `confirm` : ``}`} onClick={() => selectWinner('away')}>
-            <div className='tricode'>{game.awayTeam.teamTricode}</div>
+
+        <div className="overlay-top">
+          <div className='game-info'>Game Id: {game.gameId}</div>
+        </div>
+
+        <div className="overlay-mid">
+          <div className='game-matchup'>
+            <PickTeamButton team="away" teamTricode={game.awayTeam.teamTricode} selectWinner={() => selectWinner(game.awayTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
+            <PickTeamButton team="home" teamTricode={game.homeTeam.teamTricode} selectWinner={() => selectWinner(game.homeTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
           </div>
-          <div className={`home-team ${selectedTeam === game.homeTeam.teamTricode ? `confirm` : ``}`} onClick={() => selectWinner('home')}>
-            <div className='tricode'>{game.homeTeam.teamTricode} </div>{' '}
+          <div className="game-message">Current selection: {selectedWinner} </div>
+        </div>
+        
+        <div className="overlay-bot">
+          <div className='game-prompt'>
+            {overlayState === SelectOverlayState.SELECT && (
+              <PickSubmitButton
+                onClick={() => {}}
+                state={SelectOverlayState.SELECT}
+              >
+                Select Winner
+              </PickSubmitButton>
+            )}
+            {overlayState === SelectOverlayState.CONFIRM && (
+              <PickSubmitButton
+                onClick={actionWrapper(confirmSelectedWinner)}
+                state={SelectOverlayState.CONFIRM}
+              >
+                Confirm
+              </PickSubmitButton>
+            )}
+            {overlayState === SelectOverlayState.SUBMIT && (
+              <PickSubmitButton
+              ref={buttonRef}
+                onClick={actionWrapper(submiSelectedtWinner)}
+                state={SelectOverlayState.SUBMIT}
+              >
+                Submit
+              </PickSubmitButton>
+            )}
           </div>
         </div>
-        <div className="game-message">Current selection: {selectedTeam} </div>
-        <div className='game-prompt'>
-          {buttonState === SelectOverlayState.SELECT_WINNER && (
-            <PickSubmitButton
-              onClick={() => {}}
-              state={SelectOverlayState.SELECT_WINNER}
-            >
-              Select Winner
-            </PickSubmitButton>
-          )}
-          {buttonState === SelectOverlayState.CONFIRM && (
-            <PickSubmitButton
-              onClick={confirmSelection}
-              state={SelectOverlayState.CONFIRM}
-            >
-              Confirm
-            </PickSubmitButton>
-          )}
-          {buttonState === SelectOverlayState.SUBMIT && (
-            <PickSubmitButton
-              onClick={submiSelectedtWinner}
-              state={SelectOverlayState.SUBMIT}
-            >
-              Submit
-            </PickSubmitButton>
-          )}
-        </div>
+        
       </div>
     </div>,
     document.getElementById('portal-root')!
