@@ -1,20 +1,19 @@
 import { Game } from "../../types/gameTypes.ts";
 
+import { GameState } from "./GameState.ts";
+
 export const GameDataFormatter = {
   determineStatus(gameStatus: number): string {
     if (gameStatus === 1) {
-      return 'Not Started';
+      return GameState.NOT_STARTED;
     }
-
     if (gameStatus === 2) {
-      return 'In Progress';
+      return GameState.IN_PROGRESS;
     }
-
     if (gameStatus === 3) {
-      return 'Finished';
+      return GameState.FINISHED;
     }
-
-    return 'Error';
+    return GameState.ERROR;
   },
 
   determineWinner(game: Game): string {

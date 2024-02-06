@@ -1,6 +1,6 @@
 import { LogoutButton } from "../../buttons/LogoutButton/LogoutButton.tsx";
 import { NavigateToProfileButton } from "../../buttons/nav/NavigateToProfileButton.tsx";
-import { ListOfGamesToday } from "../../GameData/ListOfGames/ListOfGamesToday.tsx";
+import { ListOfGamesToday } from "../../GameData/ListOfGamesToday/ListOfGamesToday.tsx";
 import './front-page.scss';
 
 export const FrontPage = () => {
