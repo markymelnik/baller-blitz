@@ -1,13 +1,14 @@
 import { DatabaseError, DuplicateEmailError } from "../../errors/ErrorClasses";
+import { Game } from "../models/gameModel";
 import { DatabaseUser, RequestingUser } from "../models/userModel";
 import pool from "../pool";
-import { QUERIES } from "./QUERIES";
+import { GAME_QUERY, USER_QUERY } from "./QUERIES";
 
 export const DatabaseQuery = {
 	
 	async findUserById (userId: number): Promise<DatabaseUser> {
 		try {
-			const response = await pool.query(QUERIES.FIND_USER_BY_ID, [userId]);
+			const response = await pool.query(USER_QUERY.FIND_USER_BY_ID, [userId]);
 			return response.rows[0] || null;
 		} catch (error) {
 			throw new DatabaseError('A database error occurred.');
@@ -16,7 +17,7 @@ export const DatabaseQuery = {
 
 	async findUserByEmail (email: string): Promise<DatabaseUser> {
 		try {
-			const response = await pool.query(QUERIES.FIND_USER_BY_EMAIL, [email]);
+			const response = await pool.query(USER_QUERY.FIND_USER_BY_EMAIL, [email]);
 			return response.rows[0] || null;
 		} catch (error) {
 			throw new DatabaseError('A database error occurred.');
@@ -25,7 +26,7 @@ export const DatabaseQuery = {
 
 	async getUserRoleById (userId: number): Promise<string> {
 		try {
-			const result = await pool.query(QUERIES.GET_USER_ROLE_BY_ID, [userId]);
+			const result = await pool.query(USER_QUERY.GET_USER_ROLE_BY_ID, [userId]);
 			return result.rows[0].name;
 		} catch (error) {
 			throw new DatabaseError('A database error occurred.');
@@ -35,7 +36,7 @@ export const DatabaseQuery = {
 	async insertUserIntoDatabase (requestingUser: RequestingUser): Promise<DatabaseUser> {
 		try {
 			const { email, password } = requestingUser;
-			const result = await pool.query(QUERIES.CREATE_USER, [
+			const result = await pool.query(USER_QUERY.CREATE_USER, [
 				email,
 				password,
 			]);
@@ -43,7 +44,7 @@ export const DatabaseQuery = {
 			const userId = result.rows[0].id;
 			const defaultUserRoleId = 2;
 	
-			await pool.query(QUERIES.ASSIGN_DEFAULT_ROLE, [
+			await pool.query(USER_QUERY.ASSIGN_DEFAULT_ROLE, [
 				userId,
 				defaultUserRoleId,
 			]);
@@ -60,4 +61,13 @@ export const DatabaseQuery = {
 			}
 		}
 	},
+
+	async getGameById (userId: number): Promise<Game> {
+		try {
+			const response = await pool.query(GAME_QUERY.GET_GAME_BY_ID, [userId]);
+			return response.rows[0] || null;
+		} catch (error) {
+			throw new DatabaseError('A database error occurred.');
+		}
+	}
 }

@@ -8,6 +8,7 @@ import { ErrorHandler } from './middleware/error-handler';
 import { loginLimiter, signupLimiter } from './middleware/rate-limiting';
 import { errorConfig } from './config/errorConfig';
 import 'dotenv/config';
+import { GameController } from './api/games/GamesController';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
@@ -28,6 +29,8 @@ app.post('/refresh-token', TokenController.refreshAccessToken);
 app.get('/profile', TokenController.validateAccessToken, (req, res) => {
   res.json({ message: 'You have hit a protected route' });
 });
+
+app.get('/games/:id', GameController.getGameById);
 
 app.use(ErrorHandler(errorConfig));
 
