@@ -8,7 +8,9 @@ export const FrontPage = () => {
 			<div className="front-page-header">Front</div>
 			<div className="games-header">Games</div>
 			<ListOfGamesToday />
-			<LogoutButton />
+			<div className="front-page-bot">
+				<LogoutButton />
+			</div>
 		</div>
 	)
 }

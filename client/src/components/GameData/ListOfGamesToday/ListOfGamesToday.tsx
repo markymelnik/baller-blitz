@@ -13,10 +13,18 @@ export const ListOfGamesToday = () => {
   }
 
   return (
-    <ul className='list-of-games-today'>
-      {todaysGames.map((game: Game) => (
-        <GameCard game={game} key={game.gameId} />
-      ))}
-    </ul>
+    <>
+      <div className="list-divider">
+        <div className="divider"></div>
+      </div>
+      <ul className='list-of-games-today'>
+        {todaysGames.map((game: Game) => (
+          <GameCard game={game} key={game.gameId} />
+        ))}
+      </ul>
+      <div className="list-divider">
+        <div className="divider"></div>
+      </div>
+    </>
   );
 };

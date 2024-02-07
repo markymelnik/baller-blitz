@@ -1,12 +1,17 @@
-import { HomeWelcome } from './HomeWelcome/HomeWelcome.tsx';
-import { HomeButtons } from './HomeButtons/HomeButtons.tsx';
+import { NavigateToSignupButton } from '../../buttons/nav/NavigateToSignupButton.tsx';
+import { NavigateToLoginButton } from '../../buttons/nav/NavigateToLoginButton.tsx';
+
 import './home-page.scss';
 
 export const HomePage = () => {
   return (
     <div className='home-page'>
-      <HomeWelcome />
-      <HomeButtons />
+      <div className='home-welcome'>Hello.</div>
+      <div className='home-btns'>
+        <NavigateToLoginButton />
+        <NavigateToSignupButton />
+      </div>
+      <div className="home-bot"></div>
     </div>
   );
 };

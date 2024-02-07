@@ -10,9 +10,12 @@ export const LoginPage = () => {
     <div className='login-page'>
       <div className="login-form-wrapper">
         <LoginForm />
-          <button className="login-form-to-signup" onClick={() => delayNavigate('/signup')}>Sign Up</button>
+        <button className="login-form-to-signup" onClick={() => delayNavigate('/signup')}>Sign Up</button>
       </div>
+      <div className="login-page-bot">
       <NavigateToHomeButton />
+      </div>
+      
     </div>
   );
 };

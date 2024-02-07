@@ -1,7 +1,13 @@
 .list-of-games-today {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem 0 2rem;
-	margin: 0 0 1.5rem;
-	border-bottom: 1px solid black;
+}
+
+.list-divider {
+	width: 100%;
+	padding: 1rem 0 1rem;
+
+	.divider {
+		border-bottom: 1px solid black;
+	}
 }

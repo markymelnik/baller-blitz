@@ -12,7 +12,9 @@ export const SignupPage = () => {
         <SignupForm />
         <button className="signup-form-to-login" onClick={() => delayNavigate('/login')}>Login</button>
       </div>
-      <NavigateToHomeButton />
+      <div className="signup-page-bot">
+        <NavigateToHomeButton />
+      </div>
     </div>
   );
 };
