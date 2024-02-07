@@ -33,5 +33,16 @@ export const GameController = {
     }
   },
 
+  async updateGame(request: Request, response: Response, next: NextFunction) {
+    try {
+      const gameId = parseInt(request.params.id);
+      const updates = request.body;
 
+      const updatedGame = await DatabaseQuery.updateGame(gameId, updates);
+      
+      response.status(200).json(updatedGame);
+    } catch (error) {
+      next(error);
+    }
+  }
 };

@@ -33,6 +33,7 @@ app.get('/profile', TokenController.validateAccessToken, (req, res) => {
 app.get('/games', GameController.getGames)
 app.get('/games/:id', GameController.getGameById);
 app.post('/games', GameController.addGame);
+app.patch('/games/:id', GameController.updateGame);
 
 app.use(ErrorHandler(errorConfig));
 

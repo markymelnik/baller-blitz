@@ -110,4 +110,34 @@ export const DatabaseQuery = {
       throw new DatabaseError('A database error occurred');
     }
   },
+
+  async updateGame(gameId: number, updates: Record<string, any>): Promise<any> {
+    let QUERY: string = `UPDATE games SET `;
+    const QUERY_PARAMS = [];
+    let querySetParts = [];
+    let paramIndex = 1;
+
+    for (const [key, value] of Object.entries(updates)) {
+      querySetParts.push(`${key} = $${paramIndex}`);
+      QUERY_PARAMS.push(value);
+      paramIndex++;
+    }
+
+    if (querySetParts.length === 0) {
+      throw new Error('No update fields provided');
+    }
+
+    QUERY += querySetParts.join(', ');
+    QUERY += ` WHERE game_id = $${paramIndex};`;
+    QUERY_PARAMS.push(gameId);
+
+    try {
+      const response = await pool.query(QUERY, QUERY_PARAMS);
+      return response.rows[0] || null;
+    } catch (error) {
+      throw new Error('Failed to update game');
+    }
+
+  },
+
 };
