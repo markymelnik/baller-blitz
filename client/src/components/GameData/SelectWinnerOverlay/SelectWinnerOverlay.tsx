@@ -5,6 +5,8 @@ import { IconX } from '@tabler/icons-react';
 import { useOutsideClick } from '../../../hooks/useOutsideClick.ts';
 import { useDisableBodyScroll } from '../../../hooks/useDisableBodyScroll.ts';
 import { Game } from '../../../types/gameTypes.ts';
+import { PredictionManager } from '../../../PredictionManager.ts';
+import { useUserDetails } from '../../../hooks/stateSelectors.ts';
 
 import { SelectOverlayState } from './PickSubmitButton/SelectOverlayState.ts';
 import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';
@@ -24,6 +26,11 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
   const [overlayState, setOverlayState] = useState<string>(SelectOverlayState.SELECT);
   const [selectedWinner, setSelectedWinner] = useState<string>('');
 
+  const userDetails = useUserDetails()!;
+  const userId = userDetails.id;
+
+  const gameId = parseInt(game.gameId);
+
   const selectWinner = (teamTricode: string) => {
     setSelectedWinner(teamTricode);
     setOverlayState(SelectOverlayState.CONFIRM);
@@ -38,8 +45,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
   }
 
   const submiSelectedtWinner = () => {
-    console.log(selectedWinner);
-    // API CALL HERE
+    PredictionManager.makePrediction({ user_id: userId, game_id: gameId, predicted_winner: selectedWinner });
     handleOverlayResetAndClose();
   }
 

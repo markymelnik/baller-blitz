@@ -1,6 +1,7 @@
 import { AuthenticationError, NetworkError, TokenError } from '../errors/ErrorClasses.ts';
 import { handleError } from '../errors/handleError.ts';
 import { LoginCredentials, SignupCredentials } from '../types/authTypes.ts';
+import { Prediction } from '../types/predictionTypes.ts';
 import { createBackendEndpointUrl } from '../utils/createBackendEndpointUrl.ts';
 
 export const ApiClient = {
@@ -105,4 +106,22 @@ export const ApiClient = {
       handleError(tokenError);
     }
   },
+
+  async makePrediction(path: string, prediction: Prediction) {
+    try {
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const response = await fetch(BACKEND_ENDPOINT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(prediction),
+      });
+      console.log(response);
+      return response.json();
+    } catch (error) {
+      const networkError = new TokenError('Failed to make prediction');
+      handleError(networkError);
+    }
+  }
 };
