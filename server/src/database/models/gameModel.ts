@@ -1,5 +1,5 @@
 export interface Game {
-	game_id: string;
+	game_id: number;
 	game_date: string;
 	away_tricode: string;
 	home_tricode: string;

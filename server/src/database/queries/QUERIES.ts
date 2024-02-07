@@ -8,6 +8,8 @@ type UserQueryTypes = {
 
 type GameQueryTypes = {
   GET_GAME_BY_ID: string;
+  GET_GAMES: string;
+  ADD_GAME: string;
 }
 
 export const USER_QUERY: UserQueryTypes = {
@@ -20,4 +22,6 @@ export const USER_QUERY: UserQueryTypes = {
 
 export const GAME_QUERY: GameQueryTypes = {
   GET_GAME_BY_ID: `SELECT * FROM games WHERE game_id = $1;`,
+  GET_GAMES: `SELECT * FROM games;`,
+  ADD_GAME: `INSERT INTO games (game_id, game_date, away_tricode, home_tricode, away_score, home_score, winner, status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING game_id;`
 }
