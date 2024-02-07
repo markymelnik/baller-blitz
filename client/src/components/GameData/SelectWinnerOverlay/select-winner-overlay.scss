@@ -8,17 +8,14 @@
 
 	.select-winner-overlay {
 		position: relative;
-		top: 40vh;
+		top: 35vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: space-between;
-		gap: 1.5rem;
 		margin: 2rem;
 		padding: 1.5rem;
 		background: white;
 		border: 1px solid black;
-		height: 50vh;
 	
 		.overlay-close-btn {
 			position: absolute;
@@ -39,23 +36,37 @@
 .overlay-top {
 
 	.game-info {
-
+		margin: 0 0 1.5rem;
 	}
 }
 
 .overlay-mid {
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1rem;
 
 	.game-matchup {
+		width: 100%;
 		display: flex;
 		gap: 1rem;
+	}
+
+	.game-message {
+		height: 1rem;
 	}
 }
 
 .overlay-bot {
+
+	.game-submit-warning {
+		height: 1rem;
+		text-align: center;
+		margin: 0.5rem 0 1rem;
+		font-weight: bold;
+	}
+
 	.game-prompt {
 		background: white;
 	}

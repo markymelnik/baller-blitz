@@ -1,8 +1,10 @@
+import { AwayTeam, HomeTeam } from '../../../../types/gameTypes.ts';
 import { SelectOverlayState } from '../PickSubmitButton/SelectOverlayState.ts';
 import './pick-team-btn.scss';
 
 type PickTeamButtonProps = {
 	team: string;
+	teamDetails: HomeTeam | AwayTeam;
 	teamTricode: string;
 	selectWinner: (team: string) => void;
 	selectedWinner: string;
@@ -11,7 +13,7 @@ type PickTeamButtonProps = {
 
 export const PickTeamButton = ({ ...props }: PickTeamButtonProps) => {
 
-	const { team, teamTricode, selectWinner, selectedWinner, overlayState } = {...props};
+	const { team, teamDetails, teamTricode, selectWinner, selectedWinner, overlayState } = {...props};
 
 	const isSelected = selectedWinner === teamTricode;
 	const isConfirmState = overlayState === SelectOverlayState.CONFIRM;
@@ -30,7 +32,8 @@ export const PickTeamButton = ({ ...props }: PickTeamButtonProps) => {
 
 	return (
 		<div className={className} onClick={() => selectWinner(team)}>
-			{teamTricode}
+			<div className={`team-name`}>{teamDetails.teamCity}<br/>{teamDetails.teamName}</div>
+			<div className={`team-code`}>{teamDetails.teamTricode}</div>
 		</div>
 	)
 }

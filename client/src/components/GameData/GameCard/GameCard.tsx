@@ -40,7 +40,7 @@ export const GameCard = ({ game }: GameCard) => {
         <div className="game-away team-score">
         {game.homeTeam.teamTricode} {game.homeTeam.score}
         </div>
-        <div className="game-period">- {game.gameStatusText} -</div>
+        {gameStatus !== GameState.NOT_STARTED && <div className="game-period">- {game.gameStatusText} -</div>}
         <div className='game-status'>Status: {gameStatus}</div>
         {gameStatus === GameState.FINISHED && <div className='game-winner'>Winner: {GameDataFormatter.determineWinner(game)}</div> }
         {gameStatus === GameState.IN_PROGRESS && <div className="current-winner">Current Lead: {GameDataFormatter.determineWinner(game)}</div>}

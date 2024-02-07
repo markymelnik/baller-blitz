@@ -4,9 +4,11 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
-	padding: 1rem 2rem;
 	background: white;
 	border: 1px solid lightgrey;
+	padding: 1rem;
+	width: 100%;
+	height: 10rem;
 
 	&.confirm,
 	&.submit {
@@ -14,6 +16,15 @@
 	}
 
 	.tricode {
+		font-size: 1.5rem;
+	}
+
+	.team-name {
+		text-align: center;
+		margin: 0 0 0.5rem;
+	}
+
+	.team-code {
 		font-size: 1.25rem;
 	}
 }

@@ -15,6 +15,7 @@ import { PublicRoutes } from './routes/PublicRoutes.tsx';
 import { useGetGamesToday } from './components/GameData/useGetGamesToday.ts';
 import ScrollToTop from './hooks/useScrollToTop.ts';
 import { useAuthLoading } from './hooks/stateSelectors.ts';
+import { Header } from './components/Header/Header.tsx';
 
 const App = () => {
   useRefreshToken();
@@ -31,6 +32,7 @@ const App = () => {
       <LoadingScreen />
       <BrowserRouter>
       <ScrollToTop />
+      <Header />
         <Routes>
           {
             <Route element={<PublicRoutes />}>
