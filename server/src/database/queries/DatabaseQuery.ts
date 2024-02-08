@@ -145,8 +145,7 @@ export const DatabaseQuery = {
     const { user_id, game_id, predicted_winner } = prediction;
     try {
       const response = await pool.query(PREDICTION_QUERY.MAKE_PREDICTION, [user_id, game_id, predicted_winner]);
-      console.log(response);
-      return response.rows[0] || null;
+      return response.rows[0];
     } catch (error) {
         throw new DatabaseError('A database error occurred');
     }

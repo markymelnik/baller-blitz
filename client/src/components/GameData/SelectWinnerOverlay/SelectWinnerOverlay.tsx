@@ -25,6 +25,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
   
   const [overlayState, setOverlayState] = useState<string>(SelectOverlayState.SELECT);
   const [selectedWinner, setSelectedWinner] = useState<string>('');
+  const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState<boolean>(false);
 
   const userDetails = useUserDetails()!;
   const userId = userDetails.id;
@@ -44,10 +45,25 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
     setOverlayState(SelectOverlayState.SELECT);
   }
 
-  const submiSelectedtWinner = () => {
-    PredictionManager.makePrediction({ user_id: userId, game_id: gameId, predicted_winner: selectedWinner });
-    handleOverlayResetAndClose();
-  }
+  const submiSelectedtWinner = async() => {
+    try {
+      const response = await PredictionManager.makePrediction({
+        user_id: userId,
+        game_id: gameId,
+        predicted_winner: selectedWinner,
+      });
+
+      if (response.error) {
+        setIsSubmissionSuccessful(false);
+        setOverlayState(SelectOverlayState.RESULT);
+      } else {
+        setIsSubmissionSuccessful(true);
+        setOverlayState(SelectOverlayState.RESULT);
+      }
+    } catch (error) {
+      console.error('Error submitting user');
+    }
+  };
 
   const handleOverlayResetAndClose = () => {
     resetOverlayState();
@@ -77,17 +93,31 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
 
 	if (!isOpen) return null;
 
+  if (overlayState === SelectOverlayState.RESULT) {
+    const message = isSubmissionSuccessful ? 'Success! Your prediction was saved.' : `You already predicted this match!`;
+    return createPortal(
+      <div className="portal-wrapper">
+        <div className="select-winner-overlay" ref={overlayRef} onClick={handleOverlayClick}>
+          <button className='overlay-close-btn' onClick={(e) => { e.stopPropagation(); handleOverlayResetAndClose(); }}>
+            <IconX size={30} stroke={1.25} />
+          </button>
+          <div className="select-overlay-message">{message}</div>
+          <button className="select-overlay-ok-btn" onClick={handleOverlayResetAndClose}>Okay</button>
+        </div>
+      </div>,
+      document.getElementById('portal-root')!
+    )
+  }
+
   return createPortal(
     <div className='portal-wrapper'>
       <div className='select-winner-overlay' ref={overlayRef} onClick={handleOverlayClick}>
         <button className='overlay-close-btn' onClick={(e) => { e.stopPropagation(); handleOverlayResetAndClose(); }}>
           <IconX size={30} stroke={1.25} />
         </button>
-
         <div className="overlay-top">
           <div className='overlay-title'>Who will win?</div>
         </div>
-
         <div className="overlay-mid">
           <div className='game-matchup'>
             <PickTeamButton team="away" teamDetails={game.awayTeam} teamTricode={game.awayTeam.teamTricode} selectWinner={() => selectWinner(game.awayTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
@@ -95,7 +125,6 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
           </div>
           <div className="game-message">{overlayState !== SelectOverlayState.SELECT ? `Your pick: ${selectedWinner}` : ``}</div>
         </div>
-        
         <div className="overlay-bot">
           <div className="game-submit-warning">
             {overlayState === SelectOverlayState.SUBMIT ? 'Are you sure?' : ''}

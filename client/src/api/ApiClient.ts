@@ -117,8 +117,8 @@ export const ApiClient = {
         },
         body: JSON.stringify(prediction),
       });
-      console.log(response);
-      return response.json();
+      const data = await response.json();
+      return data;
     } catch (error) {
       const networkError = new TokenError('Failed to make prediction');
       handleError(networkError);

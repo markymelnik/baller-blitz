@@ -7,7 +7,6 @@ export const PredictionManager = {
 	async makePrediction(prediction: Prediction) {
 		try {
 			const response = await ApiClient.makePrediction('/predictions/new', prediction);
-			console.log(response);
 			return response;
 		} catch (error) {
 			const tokenError = new TokenError('Failed to make prediction');

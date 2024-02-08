@@ -6,6 +6,7 @@ import { GameDataFormatter } from "../GameDataFormatter.ts";
 import { SelectWinnerOverlay } from "../SelectWinnerOverlay/SelectWinnerOverlay.tsx";
 import { GameState } from "../GameState.ts";
 import './game-card.scss';
+import { StartedOverlay } from "../StartedOverlay/StartedOverlay.tsx";
 
 
 type GameCard = {
@@ -13,19 +14,33 @@ type GameCard = {
 }
 
 export const GameCard = ({ game }: GameCard) => {
-  const [isOverlayOpen, setIsOverlayOpen] = useState<boolean>(false);
+
+  const [isSelectionOverlayOpen, setIsSelectionOverlayOpen] = useState<boolean>(false);
+  const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
 
   const gameStatus = GameDataFormatter.determineStatus(game.gameStatus);
 
-  const handleGameCardClick = () => { 
-    if (!isOverlayOpen) {
-      setIsOverlayOpen(true);
+  const handleGameCardClick = () => {
+    if (gameStatus === GameState.NOT_STARTED) {
+      // Selection
+      if (!isSelectionOverlayOpen) {
+        setIsSelectionOverlayOpen(true);
+      }
+    } else if (gameStatus === GameState.IN_PROGRESS) {
+      // Started
+      if (!isStartedOverlayOpen) {
+        setIsStartedOverlayOpen(true);
+      }
     }
-  }
+  };
 
   const handleOverlayClose = () => {
-    setIsOverlayOpen(false);
-  }
+    setIsSelectionOverlayOpen(false);
+  };
+
+  const handleStartedOverlayClose = () => {
+    setIsStartedOverlayOpen(false);
+  };
 
   const winner =
     game.awayTeam.score > game.homeTeam.score
@@ -92,9 +107,13 @@ export const GameCard = ({ game }: GameCard) => {
         </div>
       </li>
       <SelectWinnerOverlay
-        isOpen={isOverlayOpen}
+        isOpen={isSelectionOverlayOpen}
         onClose={handleOverlayClose}
         game={game}
+      />
+      <StartedOverlay
+        isOpen={isStartedOverlayOpen}
+        onClose={handleStartedOverlayClose}
       />
     </>
   );

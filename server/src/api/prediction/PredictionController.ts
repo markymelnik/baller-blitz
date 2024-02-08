@@ -6,7 +6,6 @@ export const PredictionController = {
 	async makePrediction(request: Request, response: Response, next: NextFunction) {
 		try {
 			const prediction: Prediction = request.body;
-
 			const res = await DatabaseQuery.makePrediction(prediction);
 			response.status(201).json(res);
 		} catch (error) {

@@ -32,6 +32,6 @@ export const GAME_QUERY: GameQueryTypes = {
 }
 
 export const PREDICTION_QUERY: PredictionQueryTypes = {
-  MAKE_PREDICTION: `INSERT INTO predictions (user_id, game_id, predicted_winner) VALUES ($1, $2, $3);`,
+  MAKE_PREDICTION: `INSERT INTO predictions (user_id, game_id, predicted_winner) VALUES ($1, $2, $3) RETURNING $2;`,
   GET_PREDICTIONS_BY_USER_ID: `SELECT * FROM predictions WHERE user_id = $1;`,
 }

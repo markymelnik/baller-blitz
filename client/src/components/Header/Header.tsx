@@ -21,7 +21,7 @@ export const Header = () => {
         {location.pathname === '/login' && <NavigateToHomeButton />}
       </div>
       <div className='header-right'>
-				{location.pathname !== '/profile' && <AuthenticatedProfileButton />}
+				{location.pathname === '/front' && <AuthenticatedProfileButton />}
 			</div>
     </header>
   );
