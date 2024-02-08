@@ -85,7 +85,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
         </button>
 
         <div className="overlay-top">
-          <div className='game-info'>Game Id: {game.gameId}</div>
+          <div className='overlay-title'>Who will win?</div>
         </div>
 
         <div className="overlay-mid">
@@ -93,7 +93,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
             <PickTeamButton team="away" teamDetails={game.awayTeam} teamTricode={game.awayTeam.teamTricode} selectWinner={() => selectWinner(game.awayTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
             <PickTeamButton team="home" teamDetails={game.homeTeam} teamTricode={game.homeTeam.teamTricode} selectWinner={() => selectWinner(game.homeTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
           </div>
-          <div className="game-message">{overlayState !== SelectOverlayState.SELECT ? `Your pick: ${selectedWinner}` : `Choose one`}</div>
+          <div className="game-message">{overlayState !== SelectOverlayState.SELECT ? `Your pick: ${selectedWinner}` : ``}</div>
         </div>
         
         <div className="overlay-bot">

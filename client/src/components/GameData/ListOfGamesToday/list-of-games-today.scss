@@ -1,10 +1,32 @@
-.list-message {
-	font-size: 1.1rem;
+
+.list-message-container {
+	display: flex;
+
+	.list-message {
+		font-size: 1.1rem;
+	}
 }
+
+.skeleton-message-container {
+	display: flex;
+
+	.skeleton-message {
+		font-size: 1.5rem;
+		width: 12rem;
+	}
+}
+
 
 .list-of-games-today {
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
+	min-height: 80vh;
+
+	.skeleton-wrapper {
+		margin-bottom: 1rem;
+		height: 8.86rem;
+	}
 }
 
 .list-divider {

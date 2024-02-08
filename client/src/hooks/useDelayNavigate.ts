@@ -15,7 +15,7 @@ export const useDelayNavigate = (delay: number = 600) => {
         navigate(toRoute);
         setTimeout(() => {
           dispatch(stopLoading());
-        }, 200)
+        }, 100)
       }, delay);
     },
     [navigate, delay, dispatch]

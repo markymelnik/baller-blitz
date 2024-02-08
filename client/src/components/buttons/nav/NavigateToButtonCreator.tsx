@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
+/* import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts'; */
 
 interface NavigateToButtonCreator {
   toRoute: string;
@@ -16,10 +17,12 @@ export const NavigateToButtonCreator = ({
   children,
   ...props
 }: NavigateToButtonCreator) => {
-  const delayNavigate = useDelayNavigate();
+  /* const delayNavigate = useDelayNavigate(); */
+  const navigate = useNavigate();
   
   const handleClick = () => {
-    delayNavigate(toRoute);
+    /* delayNavigate(toRoute); */
+    navigate(toRoute);
   };
 
   return (
