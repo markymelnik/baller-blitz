@@ -2,7 +2,7 @@ import { IconArrowNarrowLeft } from "@tabler/icons-react";
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
 
-export const NavigateToFrontButton = () => {
+export const NavBackToFrontButton = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/front'}

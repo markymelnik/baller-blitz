@@ -44,7 +44,11 @@ export const LoginForm = () => {
 
   return (
     <form onSubmit={handleSubmit(handleLoginFormSubmit)} className='login-form'>
-      <div className='login-form-heading'>Login</div>
+      <div className="login-form-top">
+        <div className='login-form-heading'>Login</div>
+        <div className="login-form-subheading">Enter your email and password</div>
+      </div>
+      
       <div className='login-input-fields'>
         <Controller
           name='email'

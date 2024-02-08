@@ -1,10 +1,15 @@
 .signup-form {
 	display: flex;
 	flex-direction: column;
+	padding: 3rem 0 0;
 
-	.signup-form-heading {
-		font-size: 2rem;
-		padding: 1rem 0;
+	.signup-form-top {
+		text-align: center;
+		padding: 1rem 0 2rem;
+		.signup-form-heading {
+			padding: 0 0 0.5rem;
+			font-size: 2rem;
+		}
 	}
 
 	.signup-input-fields {

@@ -1,10 +1,9 @@
 import { LoginForm } from '../../forms/LoginForm/LoginForm.tsx';
-import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
+import { NavToSignupFromLoginButton } from '../../buttons/nav/NavToSignupFromLoginButton.tsx';
 import './login-page.scss';
 import './to-signup.scss';
 
 export const LoginPage = () => {
-  const delayNavigate = useDelayNavigate();
 
   return (
     <div className='login-page'>
@@ -12,12 +11,7 @@ export const LoginPage = () => {
         <LoginForm />
         <div className='login-page-bot'>
         <div className="lp-message">Need an account?</div> 
-          <button
-            className='login-form-to-signup'
-            onClick={() => delayNavigate('/signup')}
-          >
-            Sign Up
-          </button>
+          <NavToSignupFromLoginButton />
         </div>
       </div>
     </div>

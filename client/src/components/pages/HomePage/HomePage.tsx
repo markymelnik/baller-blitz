@@ -1,24 +1,28 @@
 import { NavigateToSignupButton } from '../../buttons/nav/NavigateToSignupButton.tsx';
 import { NavigateToLoginButton } from '../../buttons/nav/NavigateToLoginButton.tsx';
 import { useUnauthorizedRender } from '../../../hooks/useUnauthorizedRender.ts';
-import { NavigateToFrontButton } from '../../buttons/nav/NavigateToFrontButton.tsx';
-import './home-page.scss';
 import { useAuthorizedRender } from '../../../hooks/useAuthorizedRender.ts';
+import { NavToFrontFromHomeButton } from '../../buttons/nav/NavToFrontFromHomeButton.tsx';
+import './home-page.scss';
+import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
 
 export const HomePage = () => {
   const UnauthenticatedLoginButton = useUnauthorizedRender(NavigateToLoginButton, ['user','admin']);
   const UnauthenticatedSignupButton = useUnauthorizedRender(NavigateToSignupButton, ['user','admin']);
-  const AuthenticatedFrontButton = useAuthorizedRender(NavigateToFrontButton, ['user','admin']);
+  const AuthenticatedFrontButton = useAuthorizedRender(NavToFrontFromHomeButton, ['user','admin']);
+  const AuthenticatedLogoutButton = useAuthorizedRender(LogoutButton, ['user','admin']);
 
   return (
     <div className='home-page'>
       <div className='home-welcome'>Hello.</div>
-      <div className='home-btns'>
+      <div className='home-center'>
         <UnauthenticatedLoginButton />
         <UnauthenticatedSignupButton />
         <AuthenticatedFrontButton />
       </div>
-      <div className='home-bot'></div>
+      <div className='home-bot'>
+        <AuthenticatedLogoutButton />
+      </div>
     </div>
   );
 };

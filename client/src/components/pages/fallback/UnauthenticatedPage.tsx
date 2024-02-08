@@ -1,4 +1,4 @@
-import { NavigateToFrontButton } from '../../buttons/nav/NavigateToFrontButton.tsx';
+import { NavBackToFrontButton } from '../../buttons/nav/NavBackToFrontButton.tsx';
 import { NavigateToHomeButton } from '../../buttons/nav/NavigateToHomeButton.tsx';
 import { useAuthorizedRender } from '../../../hooks/useAuthorizedRender.ts';
 import { useUnauthorizedRender } from '../../../hooks/useUnauthorizedRender.ts';
@@ -7,7 +7,7 @@ import './fallback.scss';
 export const UnauthenticatedPage = () => {
 
   const UnauthNavigateToHomeButton = useUnauthorizedRender(NavigateToHomeButton, ['user','admin']);
-  const AuthNavigateToFrontButton = useAuthorizedRender(NavigateToFrontButton, ['user','admin']);
+  const AuthNavigateToFrontButton = useAuthorizedRender(NavBackToFrontButton, ['user','admin']);
 
   return (
     <div className='unauthenticated-page'>

@@ -6,7 +6,6 @@ export const FrontPage = () => {
 	return (
 		<div className="front-page">
 			<div className="front-page-header">Games</div>
-			
 			<ListOfGamesToday />
 			<div className="front-page-bot">
 				<LogoutButton />

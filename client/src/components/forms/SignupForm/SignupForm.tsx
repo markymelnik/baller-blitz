@@ -51,7 +51,10 @@ export const SignupForm = () => {
       onSubmit={handleSubmit(handleSignupFormSubmit)}
       className='signup-form'
     >
-      <div className='signup-form-heading'>Sign Up</div>
+      <div className="signup-form-top">
+        <div className='signup-form-heading'>Sign Up</div>
+        <div className="signup-form-subheading">Enter an email and password</div>
+      </div>
       <div className='signup-input-fields'>
         <Controller
           name='email'
