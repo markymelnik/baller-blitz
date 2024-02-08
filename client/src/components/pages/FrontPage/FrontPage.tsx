@@ -5,8 +5,8 @@ import './front-page.scss';
 export const FrontPage = () => {
 	return (
 		<div className="front-page">
-			<div className="front-page-header">Front</div>
-			<div className="games-header">Games</div>
+			<div className="front-page-header">Games</div>
+			
 			<ListOfGamesToday />
 			<div className="front-page-bot">
 				<LogoutButton />

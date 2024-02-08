@@ -43,7 +43,7 @@ app.post('/predictions/new', PredictionController.makePrediction);
 app.get('/predictions/user/:id', PredictionController.getUserPredictionsByUserId);
 
 cron.schedule('* 12 * * *', fetchAndStoreGamesToday);
-cron.schedule('0,15,30,45 17-23 * * *', updateGamesInDatabase);
+cron.schedule('0,15,30,45 20-23 * * *', updateGamesInDatabase);
 
 app.use(ErrorHandler(errorConfig));
 

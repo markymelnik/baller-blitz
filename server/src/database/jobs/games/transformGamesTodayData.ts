@@ -9,7 +9,7 @@ export function transformGamesTodayData(gameData: any): Game[] {
 		const away_score = 0;
     const home_score = 0;
 		const winner = 'TBD';
-		const status = 'completed';
+		const status = 'not_started';
 
 		return {
       game_id: parseInt(game.gameId, 10),

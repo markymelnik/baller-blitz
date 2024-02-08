@@ -1,23 +1,75 @@
 .game-card {
-	display: inherit;
-	flex-direction: inherit;
+	position: relative;
+	display: flex;
 	gap: 0.25rem;
 	border: 1px solid black;
 	padding: 1rem;
 	margin: 0.5rem 0;
 
-	/* &.finished {
+	&.finished {
 		opacity: 0.5;
 		pointer-events: none;
-	} */
-
-	.game-date {
-		font-size: 1rem;
 	}
 
-	.game-matchup {
-		font-size: 1.5rem;
+	.game-card-live {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0.25rem;
+		border-left: 1px solid black;
+		border-bottom: 1px solid black;
 	}
 
+	.game-card-left {
+		width: 60%;
+		border-right: 1px solid black;
 
+		.game-date {
+			font-size: 1rem;
+		}
+
+		.game-matchup {
+			display: flex;
+			font-size: 1.5rem;
+			padding: 1rem 0;
+			gap: 1rem;
+
+			.game-teams,
+			.game-scores {
+					display: flex;
+					flex-direction: column;
+					gap: 0.25rem;
+			}
+
+			.game-scores {
+				position: relative;
+
+				svg {
+					position: absolute;
+					left: 2.5rem;
+					top: 0.1rem;
+				}
+			}
+		}
+	}
+
+	.game-card-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 0.25rem;
+		width: 40%;
+
+		.game-start,
+		.game-status,
+		.game-period,
+		.current-winner,
+		.game-winner {
+			text-align: center;
+		}
+
+		.game-period {
+			font-size: 1.05rem;
+		}
+	}
 }

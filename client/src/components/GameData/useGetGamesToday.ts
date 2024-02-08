@@ -10,18 +10,19 @@ export const useGetGamesToday = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		const fetchData = async () => {
+    const fetchData = async () => {
 			try {
 				const response = await fetch(ENV.DATA_PATH);
 				
 				if (!response.ok) {
-					console.log('Error occurred')
+					console.log('Error occurred');
+					return;
 				}
 
 				const data = await response.json();
 
 				const todaysGames: Game[] = data.scoreboard.games; // Ensure this works
-				
+
 				dispatch(setGamesToday(todaysGames));
 			} catch (error) {
 				console.log(error);
@@ -29,5 +30,5 @@ export const useGetGamesToday = () => {
 		}
 		fetchData();
 		
-	},[dispatch]);
+  }, [dispatch]);
 }

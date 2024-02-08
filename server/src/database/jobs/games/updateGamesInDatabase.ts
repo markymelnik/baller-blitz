@@ -1,6 +1,4 @@
-import { DATA_SOURCE } from "../../../env";
 import { DatabaseQuery } from "../../queries/DatabaseQuery";
-import { determineWinner } from "./determineWinner";
 import { fetchGames } from "./fetchGames";
 
 export async function updateGamesInDatabase() {
@@ -11,13 +9,14 @@ export async function updateGamesInDatabase() {
 			if (game.gameStatus === 3) {
 				const updates = {
 					"away_score": game.awayTeam.score,
-					"home_score": game.awayTeam.score,
-					"winner": determineWinner(game),
+					"home_score": game.homeTeam.score,
+					"winner": game.awayTeam.score > game.homeTeam.score ? game.awayTeam.teamTricode : game.homeTeam.teamTricode,
+					"status": "finished",
 				}
 				await DatabaseQuery.updateGame(game.gameId, updates);
-				console.log(`Update finished game #${game.id} in the database.`)
+				console.log(`Updated game #${game.id} in the database!`)
 			}
-			console.log(`Did not actually updated but hit!`);
+			console.log(`Successfully hit update game function.`);
 		}
 	} catch (error) {
 		console.error(error);

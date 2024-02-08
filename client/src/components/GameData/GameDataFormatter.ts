@@ -22,8 +22,10 @@ export const GameDataFormatter = {
 
     if (awayTeam.score > homeTeam.score) {
       output += awayTeam.teamName;
-    } else {
+    } else if (awayTeam.score < homeTeam.score) {
       output += homeTeam.teamName;
+    } else {
+      return 'Tied';
     }
     return output += ` by ${Math.abs(awayTeam.score - homeTeam.score)}`;
   },
