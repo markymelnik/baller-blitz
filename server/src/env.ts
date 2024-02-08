@@ -19,6 +19,8 @@ const DB_HOST = process.env.DB_HOST;
 const DB_NAME = process.env.DB_NAME;
 const DB_PASS = process.env.DB_PASS;
 
+const DATA_SOURCE = process.env.DATA_SOURCE;
+
 export {
   ACCESS_TOKEN_SECRET,
   ACCESS_TOKEN_EXPIRY,
@@ -37,4 +39,6 @@ export {
 	DB_HOST,
 	DB_NAME,
 	DB_PASS,
+
+	DATA_SOURCE,
 };
