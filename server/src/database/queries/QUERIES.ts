@@ -16,6 +16,7 @@ type PredictionQueryTypes = {
   MAKE_PREDICTION: string;
   GET_PREDICTIONS_BY_USER_ID: string;
   UPDATE_PREDICTION_OUTCOME: string;
+  GET_CURRENT_USER_PREDICTIONS: string;
 }
 
 export const USER_QUERY: UserQueryTypes = {
@@ -36,4 +37,5 @@ export const PREDICTION_QUERY: PredictionQueryTypes = {
   MAKE_PREDICTION: `INSERT INTO predictions (user_id, game_id, predicted_winner) VALUES ($1, $2, $3) RETURNING $2;`,
   GET_PREDICTIONS_BY_USER_ID: `SELECT * FROM predictions WHERE user_id = $1;`,
   UPDATE_PREDICTION_OUTCOME: `UPDATE predictions SET is_correct = CASE WHEN predictions.predicted_winner = games.winner THEN true ELSE false END FROM games WHERE predictions.game_id = games.game_id;`,
+  GET_CURRENT_USER_PREDICTIONS: `SELECT game_id FROM predictions WHERE game_id = ANY($2) AND user_id = $1;`,
 }

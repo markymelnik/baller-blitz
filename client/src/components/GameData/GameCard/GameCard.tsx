@@ -5,29 +5,33 @@ import { Game } from "../../../types/gameTypes.ts"
 import { GameDataFormatter } from "../GameDataFormatter.ts";
 import { SelectWinnerOverlay } from "../SelectWinnerOverlay/SelectWinnerOverlay.tsx";
 import { GameState } from "../GameState.ts";
-import './game-card.scss';
 import { StartedOverlay } from "../StartedOverlay/StartedOverlay.tsx";
-
+import { AlreadyPredictedOverlay } from "../AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx";
+import './game-card.scss';
 
 type GameCard = {
 	game: Game;
+  isPredicted: boolean;
 }
 
-export const GameCard = ({ game }: GameCard) => {
+export const GameCard = ({ game, isPredicted }: GameCard) => {
 
   const [isSelectionOverlayOpen, setIsSelectionOverlayOpen] = useState<boolean>(false);
   const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
+  const [isAlreadyPredictedOverlayOpen, setIsAlreadyPredictedOverlayOpen] = useState<boolean>(false);
 
   const gameStatus = GameDataFormatter.determineStatus(game.gameStatus);
 
   const handleGameCardClick = () => {
     if (gameStatus === GameState.NOT_STARTED) {
-      // Selection
-      if (!isSelectionOverlayOpen) {
+      if (isPredicted) {
+        if (!isAlreadyPredictedOverlayOpen) {
+          setIsAlreadyPredictedOverlayOpen(true);
+        }
+      } else if (!isSelectionOverlayOpen) {
         setIsSelectionOverlayOpen(true);
       }
     } else if (gameStatus === GameState.IN_PROGRESS) {
-      // Started
       if (!isStartedOverlayOpen) {
         setIsStartedOverlayOpen(true);
       }
@@ -42,6 +46,10 @@ export const GameCard = ({ game }: GameCard) => {
     setIsStartedOverlayOpen(false);
   };
 
+  const handleAlreadyPredictedOverlayClose = () => {
+    setIsAlreadyPredictedOverlayOpen(false);
+  };
+
   const winner =
     game.awayTeam.score > game.homeTeam.score
       ? game.awayTeam.teamTricode
@@ -52,6 +60,8 @@ export const GameCard = ({ game }: GameCard) => {
       <li
         className={`game-card ${
           gameStatus === GameState.FINISHED ? `finished` : ``
+        } ${
+          gameStatus === GameState.NOT_STARTED && isPredicted ? `predicted` : ``
         }`}
         onClick={handleGameCardClick}
       >
@@ -114,6 +124,10 @@ export const GameCard = ({ game }: GameCard) => {
       <StartedOverlay
         isOpen={isStartedOverlayOpen}
         onClose={handleStartedOverlayClose}
+      />
+      <AlreadyPredictedOverlay 
+        isOpen={isAlreadyPredictedOverlayOpen}
+        onClose={handleAlreadyPredictedOverlayClose} 
       />
     </>
   );

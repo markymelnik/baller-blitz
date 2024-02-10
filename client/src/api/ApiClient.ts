@@ -123,5 +123,28 @@ export const ApiClient = {
       const networkError = new TokenError('Failed to make prediction');
       handleError(networkError);
     }
+  },
+
+  async fetchCurrentPredictions(path: string, userId: number, gameIds: number[]) {
+    try {
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const response = await fetch(BACKEND_ENDPOINT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ userId, gameIds }),
+      });
+
+      if (!response.ok) {
+        console.log('Did not return 200 OK');
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      const networkError = new TokenError('Failed to fetch current predictions');
+      handleError(networkError);
+    }
   }
 };

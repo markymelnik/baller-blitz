@@ -8,9 +8,11 @@ import { Game } from '../../../types/gameTypes.ts';
 import { useGetGamesToday } from '../useGetGamesToday.ts';
 import './list-of-games-today.scss';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useGetCurrentPredictions } from '../../../hooks/useGetCurrentPredictions.ts';
 
 export const ListOfGamesToday = () => {
   useGetGamesToday();
+  const predictedGameIds = useGetCurrentPredictions();
 
   const todaysGames = useSelector((state: RootState) => state.gamesToday.games);
   const numberOfGames = todaysGames.length;
@@ -62,10 +64,10 @@ export const ListOfGamesToday = () => {
             <div className='list-message'>Games haven't started yet.</div>
           )}
           {gamesState === 'IN_PROGRESS' && (
-            <div className='list-message'>Games are live.</div>
+            <div className='list-message'>Games are live!</div>
           )}
           {gamesState === 'FINISHED' && (
-            <div className='list-message'>Games are finished.</div>
+            <div className='list-message'>All games have finished.</div>
           )}
         </div>
       )}
@@ -77,7 +79,7 @@ export const ListOfGamesToday = () => {
           <Skeleton className='skeleton-wrapper' count={numberOfGames} />
         ) : (
           todaysGames.map((game: Game) => (
-            <GameCard game={game} key={game.gameId} />
+            <GameCard game={game} key={game.gameId} isPredicted={predictedGameIds.includes(+game.gameId)} />
           ))
         )}
       </ul>

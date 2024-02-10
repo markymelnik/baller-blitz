@@ -5,3 +5,7 @@ export interface Prediction {
 	predicted_winner: string;
 	is_correct: boolean;
 }
+
+export interface CurrentPredictionObject {
+	game_id: number;
+}

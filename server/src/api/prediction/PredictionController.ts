@@ -31,4 +31,16 @@ export const PredictionController = {
 			console.error(error);
 		}
 	},
+
+	async getCurrentUserPredictions(request: Request, response: Response) {
+		try {
+			const { userId, gameIds } = request.body;
+			const currentPredictionsObject: CurrentPredictionObject[] = await DatabaseQuery.getCurrentPredictions(userId, gameIds);
+			const currentPredictionIds = currentPredictionsObject.map(innerObject => innerObject.game_id);
+			response.status(200).json(currentPredictionIds);
+		} catch (error) {
+			console.error(error);
+		}
+	},
+
 }
