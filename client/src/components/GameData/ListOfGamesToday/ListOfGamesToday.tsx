@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-import { RootState } from '../../../redux/store.ts';
-import { GameCard } from '../GameCard/GameCard.tsx';
-import { Game } from '../../../types/gameTypes.ts';
-import { useGetGamesToday } from '../useGetGamesToday.ts';
+import { RootState } from '../../../redux/store';
+import { GameCard } from '../GameCard/GameCard';
+import { Game } from '../../../types/gameTypes';
+import { useGetGamesToday } from '../useGetGamesToday';
 import './list-of-games-today.scss';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useGetCurrentPredictions } from '../../../hooks/useGetCurrentPredictions.ts';
+import { useGetCurrentPredictions } from '../../../hooks/useGetCurrentPredictions';
 
 export const ListOfGamesToday = () => {
   useGetGamesToday();
@@ -67,7 +67,7 @@ export const ListOfGamesToday = () => {
             <div className='list-message'>Games are live!</div>
           )}
           {gamesState === 'FINISHED' && (
-            <div className='list-message'>All games have finished.</div>
+            <div className='list-message'>All games have finished.<br/>New game information at 1:15PM EST.</div>
           )}
         </div>
       )}

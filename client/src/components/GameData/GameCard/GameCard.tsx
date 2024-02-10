@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { IconCaretLeftFilled } from "@tabler/icons-react";
+import { IconCaretLeftFilled, IconCheck } from "@tabler/icons-react";
 
 import { Game } from "../../../types/gameTypes.ts"
 import { GameDataFormatter } from "../GameDataFormatter.ts";
-import { SelectWinnerOverlay } from "../SelectWinnerOverlay/SelectWinnerOverlay.tsx";
+import { SelectWinnerOverlay } from "../Overlays/SelectWinnerOverlay/SelectWinnerOverlay.tsx";
 import { GameState } from "../GameState.ts";
-import { StartedOverlay } from "../StartedOverlay/StartedOverlay.tsx";
-import { AlreadyPredictedOverlay } from "../AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx";
+import { StartedOverlay } from "../Overlays/StartedOverlay/StartedOverlay.tsx";
+import { AlreadyPredictedOverlay } from "../Overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx";
 import './game-card.scss';
 
 type GameCard = {
@@ -66,7 +66,19 @@ export const GameCard = ({ game, isPredicted }: GameCard) => {
         onClick={handleGameCardClick}
       >
         {gameStatus === GameState.IN_PROGRESS && (
-          <div className='game-card-live'>Live</div>
+          <>
+            <div className='game-card-predicted-left'>
+              <IconCheck size={16} />
+              <div className='predicted-text'>Predicted</div>
+            </div>
+            <div className='game-card-live'>Live</div>
+          </>
+        )}
+        {gameStatus === GameState.NOT_STARTED && isPredicted && (
+          <div className='game-card-predicted'>
+            <IconCheck size={16} />
+            <div className='predicted-text'>Predicted</div>
+          </div>
         )}
         <div className='game-card-left'>
           <div className='game-date'>
@@ -125,9 +137,9 @@ export const GameCard = ({ game, isPredicted }: GameCard) => {
         isOpen={isStartedOverlayOpen}
         onClose={handleStartedOverlayClose}
       />
-      <AlreadyPredictedOverlay 
+      <AlreadyPredictedOverlay
         isOpen={isAlreadyPredictedOverlayOpen}
-        onClose={handleAlreadyPredictedOverlayClose} 
+        onClose={handleAlreadyPredictedOverlayClose}
       />
     </>
   );

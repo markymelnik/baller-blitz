@@ -1,0 +1,20 @@
+.user-stats {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	padding: 1.5rem;
+
+	.stats-header {
+		font-size: 1.25rem;
+		padding: 0 0 1rem;
+	}
+
+	.stat {
+		display: flex;
+		flex-direction: column;
+
+		.stat-title {
+			font-size: 1.15rem;
+		}
+	}
+}

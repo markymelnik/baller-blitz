@@ -2,11 +2,11 @@ import { MouseEvent, MouseEventHandler, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { IconX } from '@tabler/icons-react';
 
-import { useOutsideClick } from '../../../hooks/useOutsideClick.ts';
-import { useDisableBodyScroll } from '../../../hooks/useDisableBodyScroll.ts';
-import { Game } from '../../../types/gameTypes.ts';
-import { PredictionManager } from '../../../PredictionManager.ts';
-import { useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { useOutsideClick } from '../../../../hooks/useOutsideClick.ts';
+import { useDisableBodyScroll } from '../../../../hooks/useDisableBodyScroll.ts';
+import { Game } from '../../../../types/gameTypes.ts';
+import { PredictionManager } from '../../../../PredictionManager.ts';
+import { useUserDetails } from '../../../../hooks/stateSelectors.ts';
 
 import { SelectOverlayState } from './PickSubmitButton/SelectOverlayState.ts';
 import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';

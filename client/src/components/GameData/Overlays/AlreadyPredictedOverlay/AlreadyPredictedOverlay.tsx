@@ -2,9 +2,10 @@ import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { IconX } from '@tabler/icons-react';
 
-import { useOutsideClick } from '../../../hooks/useOutsideClick.ts';
-import { useDisableBodyScroll } from '../../../hooks/useDisableBodyScroll.ts';
+import { useOutsideClick } from '../../../../hooks/useOutsideClick.ts';
+import { useDisableBodyScroll } from '../../../../hooks/useDisableBodyScroll.ts';
 import './already-predicted-overlay.scss';
+import { OverlayOKButton } from '../OverlayOkButton.tsx';
 
 type AlreadyPredictedOverlayProps = {
 	isOpen: boolean;
@@ -30,6 +31,7 @@ export const AlreadyPredictedOverlay = ({ isOpen, onClose }: AlreadyPredictedOve
           <IconX size={30} stroke={1.25} />
         </button>
 				<div className="already-predicted-overlay-message">You already predicted this game!</div>
+				<OverlayOKButton onClose={handleOverlayClose} />
 			</div>
 		</div>,
 		document.getElementById('portal-root')!

@@ -23,6 +23,25 @@
 		border-bottom: 1px solid black;
 	}
 
+	.game-card-predicted,
+	.game-card-predicted-left {
+		position: absolute;
+		padding: 0.25rem;
+		display: flex;
+		align-items: center;
+		gap: 0.15rem;
+	}
+
+	.game-card-predicted {
+		top: 0;
+		right: 0;
+	}
+
+	.game-card-predicted-left {
+		top: 0;
+		right: 2.5rem;
+	}
+
 	.game-card-left {
 		width: 60%;
 		border-right: 1px solid black;

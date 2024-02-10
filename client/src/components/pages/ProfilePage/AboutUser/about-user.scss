@@ -1,0 +1,11 @@
+.about-user {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid black;
+	padding: 1.5rem;
+
+	.about-user-header {
+		font-size: 1.25rem;
+		padding: 0 0 1rem;
+	}
+}
