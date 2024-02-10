@@ -15,7 +15,7 @@ export const PredictionController = {
 
 	async getUserPredictionsByUserId(request: Request, response: Response, next: NextFunction) {
 		try {
-			const userId = parseInt(request.params.id);
+			const userId = request.user.id;
 			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionsByUserId(userId);
 			response.status(200).json(predictions);
 		} catch(error) {

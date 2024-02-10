@@ -1,4 +1,4 @@
-import { Game } from "../../models/gameModel";
+import { Game } from "../database/models/gameModel";
 
 export function transformGamesTodayData(gameData: any): Game[] {
 	return gameData.map((game: any) => {

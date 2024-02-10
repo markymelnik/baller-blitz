@@ -154,7 +154,7 @@ export const DatabaseQuery = {
   async getUserPredictionsByUserId(user_id: number): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.GET_PREDICTIONS_BY_USER_ID, [user_id]);
-      return response.rows || null;
+      return response.rows[0] || null;
     } catch (error) {
       console.error(error);
       throw new DatabaseError('A database error occurred');

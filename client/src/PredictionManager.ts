@@ -19,8 +19,18 @@ export const PredictionManager = {
 			const response = await ApiClient.fetchCurrentPredictions('/predictions/current', userId, gameIds);
 			return response;
 		} catch (error) {
-			const tokenError = new TokenError('Failed to make prediction');
+			const tokenError = new TokenError('Failed to fetch current preductions');
 			handleError(tokenError);
 		}
-	}
+	},
+
+	async fetchPredictionsByUserId(accessToken: string) {
+		try {
+			const response = await ApiClient.fetchAllPredictions('/predictions/user', accessToken);
+			return response;
+		} catch (error) {
+			const tokenError = new TokenError('Failed to fetch user predictions.');
+			handleError(tokenError);
+		}
+	},
 }

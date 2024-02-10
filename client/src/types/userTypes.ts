@@ -12,3 +12,9 @@ export interface BackendUser {
   user: UserDetails;
   accessToken: string;
 }
+
+export interface UserStatistics {
+  total_predictions: number;
+  correct_predictions: number;
+  accuracy_percentage: number;
+}

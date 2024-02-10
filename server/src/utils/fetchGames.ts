@@ -1,4 +1,4 @@
-import { DATA_SOURCE } from "../../../env";
+import { DATA_SOURCE } from "../env";
 
 export async function fetchGames() {
 	try {

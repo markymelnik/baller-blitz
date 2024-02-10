@@ -1,6 +1,6 @@
-import { Game } from "../../models/gameModel";
-import pool from "../../pool";
-import { GAME_QUERY } from "../../queries/QUERIES";
+import { Game } from "../database/models/gameModel";
+import pool from "../database/pool";
+import { GAME_QUERY } from "../database/queries/QUERIES";
 
 export async function insertGamesTodayIntoDatabase(listOfGames: Game[]) {
 	const client = await pool.connect();
