@@ -1,8 +1,8 @@
 import './overlay-ok-btn.scss';
 
 type OverlayOkButtonProps = {
-	onClose: () => void;
-}
+  onClose: () => void;
+};
 
 export const OverlayOKButton = ({ onClose }: OverlayOkButtonProps) => {
   return (

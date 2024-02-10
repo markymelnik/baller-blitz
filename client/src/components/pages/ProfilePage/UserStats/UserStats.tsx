@@ -21,12 +21,10 @@ export const UserStats = () => {
       <div className='stat'>
         <div className='stat-type'>
 					<div className="stat-percentage">{formatPercent(accuracy_percentage)}</div>
-					<div className="stat-title">Win Accuracy</div>
+					<div className="stat-title">Win Prediction</div>
 				</div>
         <div className='correct-rate'>
-					<div className="correct-pred">{`${correct_predictions} correct /`}</div>
-					
-					<div className="total-pred">{`${total_predictions} predictions`}</div>
+					<div className="correct-pred">{`${correct_predictions} correct out of ${total_predictions}`}</div>
 				</div>
       </div>
       <div className='stat'></div>

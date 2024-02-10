@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { IconX } from '@tabler/icons-react';
 
 import { useDisableBodyScroll } from '../../../../hooks/useDisableBodyScroll.ts';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick.ts';
+import { OverlayOKButton } from '../Buttons/OKButton/OverlayOkButton.tsx';
+import { OverlayCloseButton } from '../Buttons/OverlayCloseButton/OverlayCloseButton.tsx';
 import './started-overlay.scss';
-import { OverlayOKButton } from '../OverlayOkButton.tsx';
 
 type StartedOverlayProps = {
 	isOpen: boolean;
@@ -27,9 +27,7 @@ export const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
 	return createPortal(
 		<div className="portal-wrapper">
 			<div className="started-overlay" ref={overlayRef}>
-				<button className='started-overlay-close-btn' onClick={(e) => { e.stopPropagation(); handleOverlayClose(); }}>
-          <IconX size={30} stroke={1.25} />
-        </button>
+			<OverlayCloseButton onClose={handleOverlayClose} />
 				<div className="started-overlay-message">The game has started!</div>
 				<OverlayOKButton onClose={handleOverlayClose} />
 			</div>

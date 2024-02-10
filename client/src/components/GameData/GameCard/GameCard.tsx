@@ -12,9 +12,10 @@ import './game-card.scss';
 type GameCard = {
 	game: Game;
   isPredicted: boolean;
+  predictedWinner: string | undefined;
 }
 
-export const GameCard = ({ game, isPredicted }: GameCard) => {
+export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
 
   const [isSelectionOverlayOpen, setIsSelectionOverlayOpen] = useState<boolean>(false);
   const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
@@ -69,7 +70,7 @@ export const GameCard = ({ game, isPredicted }: GameCard) => {
           <>
             <div className='game-card-predicted-left'>
               <IconCheck size={16} />
-              <div className='predicted-text'>Predicted</div>
+              <div className='predicted-text'>Predicted {predictedWinner}</div>
             </div>
             <div className='game-card-live'>Live</div>
           </>
@@ -77,7 +78,7 @@ export const GameCard = ({ game, isPredicted }: GameCard) => {
         {gameStatus === GameState.NOT_STARTED && isPredicted && (
           <div className='game-card-predicted'>
             <IconCheck size={16} />
-            <div className='predicted-text'>Predicted</div>
+            <div className='predicted-text'>Predicted {predictedWinner}</div>
           </div>
         )}
         <div className='game-card-left'>
@@ -140,6 +141,7 @@ export const GameCard = ({ game, isPredicted }: GameCard) => {
       <AlreadyPredictedOverlay
         isOpen={isAlreadyPredictedOverlayOpen}
         onClose={handleAlreadyPredictedOverlayClose}
+        predictedWinner={predictedWinner}
       />
     </>
   );

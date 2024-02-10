@@ -14,25 +14,11 @@
 		flex-direction: column;
 		align-items: center;
 		margin: 1.25rem;
-		padding: 3rem 1.5rem 4rem;
-
-		.already-predicted-overlay-close-btn {
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 3.5rem;
-			width: 3.5rem;
-			border: none;
-			font-size: 1.5rem;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background: white;
-		}
+		padding: 1.5rem;
 
 		.already-predicted-overlay-message {
 			font-size: 1.1rem;
-			padding: 1rem 0;
+			padding: 1rem 0 1.5rem;
 		}
 	}
 }

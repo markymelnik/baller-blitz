@@ -26,10 +26,10 @@
 	.game-card-predicted,
 	.game-card-predicted-left {
 		position: absolute;
-		padding: 0.25rem;
+		padding: 0.25rem 0.5rem;
 		display: flex;
 		align-items: center;
-		gap: 0.15rem;
+		gap: 0.25rem;
 	}
 
 	.game-card-predicted {
@@ -44,7 +44,7 @@
 
 	.game-card-left {
 		width: 60%;
-		border-right: 1px solid black;
+		/* border-right: 1px solid black; */
 
 		.game-date {
 			font-size: 1rem;

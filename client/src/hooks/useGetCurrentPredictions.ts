@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 
-import { PredictionManager } from "../PredictionManager.ts"
+import { PredictionManager } from "../PredictionManager.ts";
+import { CurrentPredictionObject } from "../types/userTypes.ts";
 
 import { useAccessToken, useGamesToday, useUserDetails } from "./stateSelectors.ts"
 
@@ -10,7 +11,7 @@ export const useGetCurrentPredictions = () => {
 	const gamesToday = useGamesToday();
 	const accessToken = useAccessToken();
 
-	const [currentlyPredictedGames, setCurrentlyPredictedGames] = useState<number[]>([]);
+	const [currentlyPredictedGames, setCurrentlyPredictedGames] = useState<CurrentPredictionObject[]>([]);
 
 	useEffect(() => {
 		if (gamesToday.length > 0 && userDetails && accessToken) {
@@ -19,7 +20,7 @@ export const useGetCurrentPredictions = () => {
 
 			const fetchPredictions = async () => {
 				try {
-					const currentPredictions: number[] = await PredictionManager.fetchCurrentPredictions(userId, gameIds);
+					const currentPredictions: CurrentPredictionObject[] = await PredictionManager.fetchCurrentPredictions(userId, gameIds);
 					setCurrentlyPredictedGames(currentPredictions);
 				} catch (error) {
 					console.error(error);

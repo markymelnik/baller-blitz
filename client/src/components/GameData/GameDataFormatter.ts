@@ -49,7 +49,10 @@ export const GameDataFormatter = {
     timeString = timeString.slice(11, 16);
     const [hours, minutes] = timeString.split(':').map(Number);
 
-    const newHours = hours - 5 + 24 - (12 % 24);
+    let newHours = (hours - 5 + 24) % 24;
+
+    newHours = newHours % 12;
+    newHours = newHours === 0 ? 12 : newHours;
 
     let formattedHours = newHours.toString().padStart(2, '0');
     const formattedMinutes = minutes.toString().padStart(2, '0');

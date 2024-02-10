@@ -1,12 +1,13 @@
 import { MouseEvent, MouseEventHandler, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { IconX } from '@tabler/icons-react';
 
+import { OverlayCloseButton } from '../Buttons/OverlayCloseButton/OverlayCloseButton.tsx';
 import { useOutsideClick } from '../../../../hooks/useOutsideClick.ts';
 import { useDisableBodyScroll } from '../../../../hooks/useDisableBodyScroll.ts';
 import { Game } from '../../../../types/gameTypes.ts';
 import { PredictionManager } from '../../../../PredictionManager.ts';
 import { useUserDetails } from '../../../../hooks/stateSelectors.ts';
+import { OverlayOKButton } from '../Buttons/OKButton/OverlayOkButton.tsx';
 
 import { SelectOverlayState } from './PickSubmitButton/SelectOverlayState.ts';
 import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';
@@ -98,11 +99,9 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
     return createPortal(
       <div className="portal-wrapper">
         <div className="select-winner-overlay" ref={overlayRef} onClick={handleOverlayClick}>
-          <button className='overlay-close-btn' onClick={(e) => { e.stopPropagation(); handleOverlayResetAndClose(); }}>
-            <IconX size={30} stroke={1.25} />
-          </button>
+          <OverlayCloseButton onClose={handleOverlayResetAndClose}/>
           <div className="select-overlay-message">{message}</div>
-          <button className="select-overlay-ok-btn" onClick={handleOverlayResetAndClose}>Okay</button>
+          <OverlayOKButton onClose={handleOverlayResetAndClose}/>
         </div>
       </div>,
       document.getElementById('portal-root')!
@@ -111,22 +110,42 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
 
   return createPortal(
     <div className='portal-wrapper'>
-      <div className='select-winner-overlay' ref={overlayRef} onClick={handleOverlayClick}>
-        <button className='overlay-close-btn' onClick={(e) => { e.stopPropagation(); handleOverlayResetAndClose(); }}>
-          <IconX size={30} stroke={1.25} />
-        </button>
-        <div className="overlay-top">
+      <div
+        className='select-winner-overlay'
+        ref={overlayRef}
+        onClick={handleOverlayClick}
+      >
+        <OverlayCloseButton onClose={handleOverlayResetAndClose} />
+        <div className='overlay-top'>
           <div className='overlay-title'>Who will win?</div>
         </div>
-        <div className="overlay-mid">
+        <div className='overlay-mid'>
           <div className='game-matchup'>
-            <PickTeamButton team="away" teamDetails={game.awayTeam} teamTricode={game.awayTeam.teamTricode} selectWinner={() => selectWinner(game.awayTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
-            <PickTeamButton team="home" teamDetails={game.homeTeam} teamTricode={game.homeTeam.teamTricode} selectWinner={() => selectWinner(game.homeTeam.teamTricode)} selectedWinner={selectedWinner} overlayState={overlayState} />
+            <PickTeamButton
+              team='away'
+              teamDetails={game.awayTeam}
+              teamTricode={game.awayTeam.teamTricode}
+              selectWinner={() => selectWinner(game.awayTeam.teamTricode)}
+              selectedWinner={selectedWinner}
+              overlayState={overlayState}
+            />
+            <PickTeamButton
+              team='home'
+              teamDetails={game.homeTeam}
+              teamTricode={game.homeTeam.teamTricode}
+              selectWinner={() => selectWinner(game.homeTeam.teamTricode)}
+              selectedWinner={selectedWinner}
+              overlayState={overlayState}
+            />
           </div>
-          <div className="game-message">{overlayState !== SelectOverlayState.SELECT ? `Your pick: ${selectedWinner}` : ``}</div>
+          <div className='game-message'>
+            {overlayState !== SelectOverlayState.SELECT
+              ? `Your pick: ${selectedWinner}`
+              : ``}
+          </div>
         </div>
-        <div className="overlay-bot">
-          <div className="game-submit-warning">
+        <div className='overlay-bot'>
+          <div className='game-submit-warning'>
             {overlayState === SelectOverlayState.SUBMIT ? 'Are you sure?' : ''}
           </div>
           <div className='game-prompt'>
@@ -148,7 +167,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
             )}
             {overlayState === SelectOverlayState.SUBMIT && (
               <PickSubmitButton
-              ref={buttonRef}
+                ref={buttonRef}
                 onClick={actionWrapper(submiSelectedtWinner)}
                 state={SelectOverlayState.SUBMIT}
               >
@@ -157,7 +176,6 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
             )}
           </div>
         </div>
-        
       </div>
     </div>,
     document.getElementById('portal-root')!

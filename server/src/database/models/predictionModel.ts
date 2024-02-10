@@ -8,4 +8,5 @@ export interface Prediction {
 
 export interface CurrentPredictionObject {
 	game_id: number;
+	predicted_winner: string;
 }
