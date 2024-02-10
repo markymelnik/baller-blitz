@@ -1,0 +1,21 @@
+.user-history {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid lightgrey;
+	padding: 1rem;
+
+	.history-header {
+		display: flex;
+		padding: 0 0 1rem;
+		border-bottom: 1px solid lightgrey;
+
+		.history-text {
+			font-size: 1.5rem;
+		}
+	}
+
+	.history-card-list {
+		display: flex;
+		flex-direction: column;
+	}
+}

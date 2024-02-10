@@ -13,10 +13,10 @@ export const PredictionController = {
 		}
 	},
 
-	async getUserPredictionsByUserId(request: Request, response: Response, next: NextFunction) {
+	async getUserPredictionStats(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionsByUserId(userId);
+			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionStats(userId);
 			response.status(200).json(predictions);
 		} catch(error) {
 			next(error);
@@ -39,6 +39,16 @@ export const PredictionController = {
 			response.status(200).json(currentPredictionsObject);
 		} catch (error) {
 			console.error(error);
+		}
+	},
+
+	async getAllUserPredictionsByUserId(request: Request, response: Response, next: NextFunction) {
+		try {
+			const userId = request.user.id;
+			const predictions: Prediction[] = await DatabaseQuery.getAllPredictionsByUserId(userId);
+			response.status(200).json(predictions);
+		}  catch (error) {
+			next(error);
 		}
 	},
 

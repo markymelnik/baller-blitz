@@ -18,7 +18,7 @@ export const useFetchUserStats = () => {
 	useEffect(() => {
 		const fetchStatistics = async () => {
 			try {
-				const response: UserStatistics = await PredictionManager.fetchPredictionsByUserId(accessToken);
+				const response: UserStatistics = await PredictionManager.fetchUserStats(accessToken);
 				setStatistics(response);
 			} catch (error) {
 				console.error(error);

@@ -10,24 +10,23 @@ import { LoginResponse } from '../../database/models/userModel';
 export const TokenController = {
 
 	validateAccessToken(request: Request, response: Response, next: NextFunction) {
-		const accessToken = request.cookies.accessToken;
+		const authHeader = request.headers['authorization'];
+		const accessToken = authHeader && authHeader.split(' ')[1];
   
 		if (!accessToken) {
 			throw new TokenError('Access token is missing.');
 		}
 	
 		try {
-			jwt.verify(accessToken, ACCESS_TOKEN_SECRET as string);
+			const decoded = jwt.verify(accessToken, ACCESS_TOKEN_SECRET as string);
+			request.user = decoded;
 			next();
 		} catch (error) {
-	
+			let errorMessage = 'Invalid token.';
 			if (error instanceof jwt.TokenExpiredError) {
-				throw new TokenError('Expired token.');
+				errorMessage = 'Expired token.';
 			}
-	
-			if (error instanceof jwt.JsonWebTokenError) {
-				throw new TokenError('Invalid token.');
-			}
+			return response.status(401).send(errorMessage);
 		}
 	},
 

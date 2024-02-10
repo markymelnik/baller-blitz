@@ -24,12 +24,22 @@ export const PredictionManager = {
 		}
 	},
 
-	async fetchPredictionsByUserId(accessToken: string) {
+	async fetchUserStats(accessToken: string) {
 		try {
-			const response = await ApiClient.fetchAllPredictions('/predictions/user', accessToken);
+			const response = await ApiClient.fetchUserStats('/predictions/stats', accessToken);
 			return response;
 		} catch (error) {
 			const tokenError = new TokenError('Failed to fetch user predictions.');
+			handleError(tokenError);
+		}
+	},
+
+	async fetchAllPredictions(accessToken: string) {
+		try {
+			const response = await ApiClient.fetchUserStats('/predictions/all', accessToken);
+			return response;
+		} catch (error) {
+			const tokenError = new TokenError('Failed to fetch all predictions.');
 			handleError(tokenError);
 		}
 	},

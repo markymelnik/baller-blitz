@@ -14,9 +14,10 @@ type GameQueryTypes = {
 
 type PredictionQueryTypes = {
   MAKE_PREDICTION: string;
-  GET_PREDICTIONS_BY_USER_ID: string;
+  GET_PREDICTION_STATS: string;
   UPDATE_PREDICTION_OUTCOME: string;
   GET_CURRENT_USER_PREDICTIONS: string;
+  GET_ALL_PREDICTIONS: string,
 };
 
 export const USER_QUERY: UserQueryTypes = {
@@ -35,9 +36,19 @@ export const GAME_QUERY: GameQueryTypes = {
 
 export const PREDICTION_QUERY: PredictionQueryTypes = {
   MAKE_PREDICTION: `INSERT INTO predictions (user_id, game_id, predicted_winner) VALUES ($1, $2, $3) RETURNING $2;`,
-  GET_PREDICTIONS_BY_USER_ID: `SELECT COUNT(*) AS total_predictions, SUM(CASE WHEN is_correct = true THEN 1 ELSE 0 END) AS correct_predictions, (SUM(CASE WHEN is_correct = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS accuracy_percentage FROM predictions WHERE user_id = $1;`,
+  GET_PREDICTION_STATS: `SELECT COUNT(*) AS total_predictions, SUM(CASE WHEN is_correct = true THEN 1 ELSE 0 END) AS correct_predictions, (SUM(CASE WHEN is_correct = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS accuracy_percentage FROM predictions WHERE user_id = $1 AND is_correct IS NOT NULL;`,
   UPDATE_PREDICTION_OUTCOME: `UPDATE predictions SET is_correct = CASE WHEN predictions.predicted_winner = games.winner THEN true ELSE false END FROM games WHERE predictions.game_id = games.game_id;`,
-  GET_CURRENT_USER_PREDICTIONS: `SELECT game_id FROM predictions WHERE game_id = ANY($2) AND user_id = $1;`,
+  GET_CURRENT_USER_PREDICTIONS: `SELECT game_id, predicted_winner FROM predictions WHERE game_id = ANY($2) AND user_id = $1;`,
+  GET_ALL_PREDICTIONS: `SELECT p.prediction_id, p.user_id, 
+  p.game_id, 
+  p.predicted_winner, 
+  p.is_correct,
+  g.game_date,
+  g.away_tricode AS away_team, 
+  g.home_tricode AS home_team
+FROM predictions p
+JOIN games g ON p.game_id = g.game_id
+WHERE p.user_id = $1 AND g.status = 'finished' AND p.is_correct IS NOT NULL;`,
 };
 
  /* `SELECT * FROM predictions WHERE user_id = $1;`,  */

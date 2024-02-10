@@ -148,7 +148,7 @@ export const ApiClient = {
     }
   },
   
-  async fetchAllPredictions(path: string, accessToken: string) {
+  async fetchUserStats(path: string, accessToken: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -166,6 +166,28 @@ export const ApiClient = {
       return data;
     } catch (error) {
       const networkError = new TokenError('Failed to fetch current predictions');
+      handleError(networkError);
+    }
+  },
+
+  async fetchAllPredictions(path: string, accessToken: string) {
+    try {
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const response = await fetch(BACKEND_ENDPOINT_URL, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+
+      if (!response.ok) {
+        console.log('Did not return 200 OK');
+      }
+
+      const data = await response.json();
+      return data;
+
+    } catch (error) {
+      const networkError = new TokenError('Failed to fetch all predictions');
       handleError(networkError);
     }
   }

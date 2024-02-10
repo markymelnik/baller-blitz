@@ -1,6 +1,7 @@
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
 
+import { UserHistory } from './UserHistory/UserHistory.tsx';
 /* import AboutUser from './AboutUser/AboutUser.tsx'; */
 import { UserStats } from './UserStats/UserStats.tsx';
 import './profile-page.scss';
@@ -33,6 +34,7 @@ export const ProfilePage = () => {
         <div className='profile-page-blobs'>
           <UserStats />
           {/* <AboutUser /> */}
+          <UserHistory />
         </div>
         <LogoutButton />
       </div>
