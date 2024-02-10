@@ -2,8 +2,8 @@ import { DatabaseError, DuplicateEmailError } from "../../errors/ErrorClasses";
 import { Game } from "../models/gameModel";
 import { Prediction } from "../models/predictionModel";
 import { DatabaseUser, RequestingUser } from "../models/userModel";
-import pool from "../pool";
 import { GAME_QUERY, PREDICTION_QUERY, USER_QUERY } from "./QUERIES";
+import pool from "../pool";
 
 export const DatabaseQuery = {
   async findUserById(userId: number): Promise<DatabaseUser> {
@@ -154,11 +154,18 @@ export const DatabaseQuery = {
   async getUserPredictionsByUserId(userId: number): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.GET_PREDICTIONS_BY_USER_ID, [userId]);
-      console.log(response);
       return response.rows || null;
     } catch (error) {
       console.error(error);
       throw new DatabaseError('A database error occurred');
     }
-  }
+  },
+
+  async updatePredictionOutcome(): Promise<any> {
+    try {
+      const response = await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION_OUTCOME);
+    } catch (error) {
+      throw new DatabaseError('A database error occurred');
+    }
+  },
 };

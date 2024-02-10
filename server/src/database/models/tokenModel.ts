@@ -1,7 +1,7 @@
 import { JwtPayload } from "jsonwebtoken";
 
 export interface AccessTokenProps extends JwtPayload {
-	userId: number,
+	userId: number;
 }
 
 export interface RefreshTokenProps extends JwtPayload {

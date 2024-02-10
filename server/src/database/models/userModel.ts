@@ -1,8 +1,8 @@
 import { Role } from "./roleModel";
 
 export interface RequestingUser {
-  email: string,
-  password: string,
+  email: string;
+  password: string;
 }
 
 export interface DatabaseUser {

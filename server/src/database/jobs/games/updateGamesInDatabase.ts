@@ -1,4 +1,5 @@
 import { DatabaseQuery } from "../../queries/DatabaseQuery";
+import { determineWinner } from "./determineWinner";
 import { fetchGames } from "./fetchGames";
 
 export async function updateGamesInDatabase() {
@@ -10,13 +11,12 @@ export async function updateGamesInDatabase() {
 				const updates = {
 					"away_score": game.awayTeam.score,
 					"home_score": game.homeTeam.score,
-					"winner": game.awayTeam.score > game.homeTeam.score ? game.awayTeam.teamTricode : game.homeTeam.teamTricode,
+					"winner": determineWinner(game),
 					"status": "finished",
 				}
 				await DatabaseQuery.updateGame(game.gameId, updates);
-				console.log(`Updated game #${game.id} in the database!`)
+				console.log(`Updated game #${game.gameId} in the database.`)
 			}
-			console.log(`Successfully hit update game function.`);
 		}
 	} catch (error) {
 		console.error(error);

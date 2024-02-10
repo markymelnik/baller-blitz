@@ -12,7 +12,6 @@ type StartedOverlayProps = {
 }
 
 export const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
-
 	const overlayRef = useRef(null);
 
 	const handleOverlayClose = () => {

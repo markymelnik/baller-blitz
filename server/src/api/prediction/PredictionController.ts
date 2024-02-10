@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { Prediction } from "../../database/models/predictionModel";
+import { CurrentPredictionObject, Prediction } from "../../database/models/predictionModel";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
 
 export const PredictionController = {
@@ -20,6 +20,15 @@ export const PredictionController = {
 			response.status(200).json(predictions);
 		} catch(error) {
 			next(error);
+		}
+	},
+
+	async updatePredictionsInDatabase() {
+		try {
+			await DatabaseQuery.updatePredictionOutcome();
+			console.log(`Updated prediction in database.`)
+		} catch (error) {
+			console.error(error);
 		}
 	},
 }
