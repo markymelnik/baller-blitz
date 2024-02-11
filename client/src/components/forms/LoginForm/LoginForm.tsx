@@ -2,11 +2,11 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import { LoginCredentials } from '../../../types/authTypes.ts';
-import { AuthManager } from '../../../auth/AuthManager.ts';
+import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
-import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
+import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import './login-form.scss';
 
 export const LoginForm = () => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { IconCaretDown } from '@tabler/icons-react';
 
-import { useFetchAllPredictions } from '../../../../hooks/useFetchAllPredictions';
+import { useFetchAllPredictions } from '../../../../hooks/predictions/useFetchAllPredictions';
 
 import { HistoryCard } from './HistoryCard/HistoryCard';
 import './user_history.scss';

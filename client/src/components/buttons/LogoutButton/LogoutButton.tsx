@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { IconLogout } from '@tabler/icons-react';
 
-import { AuthManager } from '../../../auth/AuthManager.ts';
+import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
-import { useDelayNavigate } from '../../../hooks/useDelayNavigate.ts';
+import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import './logout-btn.scss';
 
 export const LogoutButton = () => {

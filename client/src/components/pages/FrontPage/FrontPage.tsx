@@ -1,5 +1,5 @@
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
-import { ListOfGamesToday } from '../../GameData/ListOfGamesToday/ListOfGamesToday.tsx';
+import { ListOfGamesToday } from './ListOfGamesToday/ListOfGamesToday.tsx';
 import './front-page.scss';
 
 export const FrontPage = () => {

@@ -1,4 +1,4 @@
-import { AuthenticationError, NetworkError, TokenError } from '../errors/ErrorClasses.ts';
+import { AuthenticationError, TokenError } from '../errors/ErrorClasses.ts';
 import { handleError } from '../errors/handleError.ts';
 import { LoginCredentials, SignupCredentials } from '../types/authTypes.ts';
 import { Prediction } from '../types/predictionTypes.ts';
@@ -16,11 +16,6 @@ export const ApiClient = {
         },
         body: JSON.stringify(formData),
       });
-
-      /* if (!response.ok) {
-        const networkError = new NetworkError(`Server did not return OK when signing up`, response.status);
-        handleError(networkError);
-      } */
 
       return response.json();
     } catch (error) {
@@ -43,12 +38,6 @@ export const ApiClient = {
         mode: 'cors', // IMPORTANT
       });
 
-      /* if (!response.ok) {
-        const networkError = new NetworkError(`Server did not return OK when logging in`, response.status);
-        handleError(networkError);
-      } */
-
-
       return response.json();
     } catch (error) {
       const authenticationError = new AuthenticationError('Failed to login');
@@ -68,11 +57,6 @@ export const ApiClient = {
         credentials: 'include',
         mode: 'cors',
       });
-
-      /* if (!response.ok) {
-        const networkError = new NetworkError(`Server did not return OK when logging out`, response.status);
-        handleError(networkError);
-      } */
 
       return response.json();
 
@@ -95,11 +79,6 @@ export const ApiClient = {
         mode: 'cors',
       });
 
-      if (!response.ok) {
-        const networkError = new NetworkError(`Failed to refresh access token`, response.status);
-        handleError(networkError);
-      }
-
       return response.json();
     } catch (error) {
       const tokenError = new TokenError('Failed to refresh access token');
@@ -117,6 +96,7 @@ export const ApiClient = {
         },
         body: JSON.stringify(prediction),
       });
+
       const data = await response.json();
       return data;
     } catch (error) {
@@ -136,10 +116,6 @@ export const ApiClient = {
         body: JSON.stringify({ userId, gameIds }),
       });
 
-      if (!response.ok) {
-        console.log('Did not return 200 OK');
-      }
-
       const data = await response.json();
       return data;
     } catch (error) {
@@ -158,10 +134,6 @@ export const ApiClient = {
         },
       });
 
-      if (!response.ok) {
-        console.log('Did not return 200 OK');
-      }
-
       const data = await response.json();
       return data;
     } catch (error) {
@@ -178,10 +150,6 @@ export const ApiClient = {
           'Authorization': `Bearer ${accessToken}`,
         },
       });
-
-      if (!response.ok) {
-        console.log('Did not return 200 OK');
-      }
 
       const data = await response.json();
       return data;

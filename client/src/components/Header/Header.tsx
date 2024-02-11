@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import { useAuthorizedRender } from '../../hooks/useAuthorizedRender.ts';
+import { useAuthorizedRender } from '../../hooks/auth/useAuthorizedRender.ts';
 import { NavigateToProfileButton } from '../buttons/nav/NavigateToProfileButton.tsx';
 import { NavBackToFrontButton } from '../buttons/nav/NavBackToFrontButton.tsx';
 import { NavigateToHomeButton } from '../buttons/nav/NavigateToHomeButton.tsx';

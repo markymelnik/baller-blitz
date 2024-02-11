@@ -24,7 +24,7 @@ export const UserStats = () => {
 					<div className="stat-title">Win Prediction</div>
 				</div>
         <div className='correct-rate'>
-					<div className="correct-pred">{`${correct_predictions} correct out of ${total_predictions}`}</div>
+					<div className="correct-pred">{`${correct_predictions} correct out of ${total_predictions} predictions made`}</div>
 				</div>
       </div>
       <div className='stat'></div>

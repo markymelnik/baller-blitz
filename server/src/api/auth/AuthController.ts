@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import { DatabaseUser, LoginResponse, LogoutResponse, RequestingUser, SignupResponse } from "../../database/models/userModel";
-import { saltAndHashPassword } from "../../utils/saltAndHashPassword";
-import { validateLoginCredentials } from "../../utils/validateLoginCredentials";
+import { saltAndHashPassword } from "../../utils/auth/saltAndHashPassword";
+import { validateLoginCredentials } from "../../utils/auth/validateLoginCredentials";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
 import { TokenController } from "../token/TokenController";
-import { authenticateLoginCredentials } from "../../utils/authenticateLoginCredentials";
+import { authenticateLoginCredentials } from "../../utils/auth/authenticateLoginCredentials";
 import { TokenCreator } from "../token/TokenCreator";
 
 export const AuthController = {

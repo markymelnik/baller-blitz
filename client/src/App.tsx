@@ -8,13 +8,13 @@ import { UnauthorizedPage } from './components/pages/fallback/UnauthorizedPage.t
 import { UnauthenticatedPage } from './components/pages/fallback/UnauthenticatedPage.tsx';
 import { NotFoundPage } from './components/pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './routes/PrivateRoutes.tsx';
-import { useRefreshToken } from './hooks/useRefreshToken.ts';
-import { LoadingScreen } from './components/LoadingScreen/LoadingScreen.tsx';
+import { useRefreshToken } from './hooks/auth/useRefreshToken.ts';
+import { LoadingScreen } from './components/loading-screen/LoadingScreen.tsx';
 import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
-import ScrollToTop from './hooks/useScrollToTop.ts';
+import ScrollToTop from './hooks/page/useScrollToTop.ts';
 import { useAuthLoading } from './hooks/stateSelectors.ts';
-import { Header } from './components/Header/Header.tsx';
+import { Header } from './components/header/Header.tsx';
 
 const App = () => {
   useRefreshToken();

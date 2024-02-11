@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 import { DatabaseQuery } from '../../database/queries/DatabaseQuery';
 import { Game } from '../../database/models/gameModel';
-import { fetchGames } from '../../utils/fetchGames';
-import { determineWinner } from '../../utils/determineWinner';
-import { transformGamesTodayData } from '../../utils/transformGamesTodayData';
-import { insertGamesTodayIntoDatabase } from '../../utils/insertGamesTodayIntoDatabase';
+import { fetchGames } from '../../utils/games/fetchGames';
+import { determineWinner } from '../../utils/games/determineWinner';
+import { transformGamesTodayData } from '../../utils/games/transformGamesTodayData';
+import { insertGamesTodayIntoDatabase } from '../../utils/games/insertGamesTodayIntoDatabase';
 
 export const GameController = {
   async getGameById(request: Request, response: Response, next: NextFunction) {

@@ -1,7 +1,7 @@
 import { NavigateToSignupButton } from '../../buttons/nav/NavigateToSignupButton.tsx';
 import { NavigateToLoginButton } from '../../buttons/nav/NavigateToLoginButton.tsx';
-import { useUnauthorizedRender } from '../../../hooks/useUnauthorizedRender.ts';
-import { useAuthorizedRender } from '../../../hooks/useAuthorizedRender.ts';
+import { useUnauthorizedRender } from '../../../hooks/auth/useUnauthorizedRender.ts';
+import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
 import { NavToFrontFromHomeButton } from '../../buttons/nav/NavToFrontFromHomeButton.tsx';
 import './home-page.scss';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
