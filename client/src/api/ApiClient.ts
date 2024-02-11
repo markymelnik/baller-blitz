@@ -5,7 +5,7 @@ import { Prediction } from '../types/predictionTypes.ts';
 import { createBackendEndpointUrl } from '../utils/createBackendEndpointUrl.ts';
 
 export const ApiClient = {
-  async signup(path: string, formData: SignupCredentials) {
+  async processUserSignup(path: string, formData: SignupCredentials) {
     const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
     try {
@@ -24,9 +24,8 @@ export const ApiClient = {
     }
   },
 
-  async login(path: string, formData: LoginCredentials) {
+  async processUserLogin(path: string, formData: LoginCredentials) {
     const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
-    
     try {
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
@@ -45,7 +44,7 @@ export const ApiClient = {
     }
   },
 
-  async logout(path: string) {
+  async processUserLogout(path: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -66,7 +65,7 @@ export const ApiClient = {
     }
   },
 
-  async retrieveAccessToken(path: string) {
+  async refreshAccessToken(path: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -86,7 +85,7 @@ export const ApiClient = {
     }
   },
 
-  async makePrediction(path: string, prediction: Prediction) {
+  async storePredictionInApi(path: string, prediction: Prediction) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {
@@ -105,15 +104,18 @@ export const ApiClient = {
     }
   },
 
-  async fetchCurrentPredictions(path: string, userId: number, gameIds: number[]) {
+  async fetchCurrentPredictionsFromApi(path: string, accessToken: string, gameIds: number[]) {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const gameIdsQueryString = gameIds.join(',');
+
+      const BACKEND_ENDPOINT_URL = `${createBackendEndpointUrl(path)}?gameIds=${encodeURIComponent(gameIdsQueryString)}`;
       const response = await fetch(BACKEND_ENDPOINT_URL, {
-        method: 'POST',
+        method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
         },
-        body: JSON.stringify({ userId, gameIds }),
+
       });
 
       const data = await response.json();
@@ -124,7 +126,7 @@ export const ApiClient = {
     }
   },
   
-  async fetchUserStats(path: string, accessToken: string) {
+  async fetchUserStatsFromApi(path: string, accessToken: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -142,7 +144,7 @@ export const ApiClient = {
     }
   },
 
-  async fetchAllPredictions(path: string, accessToken: string) {
+  async fetchAllPredictionsFromApi(path: string, accessToken: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {

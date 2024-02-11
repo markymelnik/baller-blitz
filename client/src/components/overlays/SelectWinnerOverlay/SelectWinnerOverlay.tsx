@@ -1,26 +1,27 @@
 import { MouseEvent, MouseEventHandler, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton.tsx';
 import { useOutsideClick } from '../../../hooks/page/useOutsideClick.ts';
 import { useDisableBodyScroll } from '../../../hooks/page/useDisableBodyScroll.ts';
 import { Game } from '../../../types/gameTypes.ts';
 import { PredictionManager } from '../../../managers/PredictionManager.ts';
 import { useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton.tsx';
 import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx';
 
 import { SelectOverlayState } from './PickSubmitButton/SelectOverlayState.ts';
-import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';
 import { PickTeamButton } from './PickTeamButton/PickTeamButton.tsx';
+import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';
 import './select-winner-overlay.scss';
 
 type SelectWinnerOverlayProps = {
 	isOpen: boolean;
 	onClose: () => void;
 	game: Game;
+  onSuccessfulSubmission: () => void;
 }
 
-export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverlayProps) => {
+export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmission }: SelectWinnerOverlayProps) => {
 	const overlayRef = useRef(null);
   const buttonRef = useRef(null);
   
@@ -60,6 +61,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game }: SelectWinnerOverl
       } else {
         setIsSubmissionSuccessful(true);
         setOverlayState(SelectOverlayState.RESULT);
+        onSuccessfulSubmission();
       }
     } catch (error) {
       console.error('Error submitting user');

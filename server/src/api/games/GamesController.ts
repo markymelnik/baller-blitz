@@ -11,16 +11,16 @@ export const GameController = {
     try {
       const gameId = parseInt(request.params.id);
 
-      const game = await DatabaseQuery.getGameById(gameId);
+      const game = await DatabaseQuery.getGameByIdFromDB(gameId);
 
       response.status(200).json(game);
     } catch (error) {
       next(error);
     }
   },
-	async getGames(request: Request, response: Response, next: NextFunction) {
+	async getAllGames(request: Request, response: Response, next: NextFunction) {
 		try {
-			const games = await DatabaseQuery.getGames();
+			const games = await DatabaseQuery.getAllGamesFromDB();
 			response.status(200).json(games);
 		} catch (error) {
 			next(error);
@@ -30,7 +30,7 @@ export const GameController = {
   async addGame(request: Request, response: Response, next: NextFunction) {
     try {
       const game: Game = request.body;
-      const res: number = await DatabaseQuery.addGame(game);
+      const res: number = await DatabaseQuery.addGameIntoDB(game);
       response.status(201).json(res);
     } catch (error) {
       next(error);
@@ -42,7 +42,7 @@ export const GameController = {
       const gameId = parseInt(request.params.id);
       const updates = request.body;
 
-      const updatedGame = await DatabaseQuery.updateGame(gameId, updates);
+      const updatedGame = await DatabaseQuery.updateGameInDB(gameId, updates);
       
       response.status(200).json(updatedGame);
     } catch (error) {
@@ -62,7 +62,7 @@ export const GameController = {
             "winner": determineWinner(game),
             "status": "finished",
           }
-          await DatabaseQuery.updateGame(game.gameId, updates);
+          await DatabaseQuery.updateGameInDB(game.gameId, updates);
           console.log(`Updated status of game #${game.gameId}.`)
         }
       }

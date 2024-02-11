@@ -11,7 +11,7 @@ import { BackendUser } from "../types/userTypes.ts";
 export const AuthManager = {
 	async signupUser(formData: SignupCredentials) {
 		try {
-			const responseData = await ApiClient.signup('/signup', formData);
+			const responseData = await ApiClient.processUserSignup('/signup', formData);
 			return responseData;
 		}
 		catch (error) {
@@ -22,7 +22,7 @@ export const AuthManager = {
 
 	async loginUser(formData: LoginCredentials, dispatch: AppDispatch) {
 		try {
-			const responseData = await ApiClient.login('/login', formData);
+			const responseData = await ApiClient.processUserLogin('/login', formData);
 			const { user, accessToken } = responseData;
 	
 			dispatch(setAccessToken(accessToken));
@@ -39,7 +39,7 @@ export const AuthManager = {
 
 	async logoutUser(dispatch: AppDispatch) {
 		try {
-			const response = await ApiClient.logout('/logout');
+			const response = await ApiClient.processUserLogout('/logout');
 	
 			dispatch(clearAccessToken());
 			dispatch(unauthenticateUser());
@@ -53,9 +53,9 @@ export const AuthManager = {
 		}
 	},
 	
-	async renewAccessToken(dispatch: AppDispatch) {
+	async refreshUserSession(dispatch: AppDispatch) {
 		try {
-			const responseData: BackendUser = await ApiClient.retrieveAccessToken('/refresh-token');
+			const responseData: BackendUser = await ApiClient.refreshAccessToken('/refresh-token');
 			const { user, accessToken } = {...responseData};
 	
 			dispatch(setAccessToken(accessToken));

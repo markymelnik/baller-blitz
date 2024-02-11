@@ -17,7 +17,7 @@ export const useFetchAllPredictions = () => {
 	useEffect(() => {
 		const fetchAllPredictions = async() => {
 			try {
-				const response: PredictedGame[] = await PredictionManager.fetchAllPredictions(accessToken);
+				const response: PredictedGame[] = await PredictionManager.getAllPredictions(accessToken);
 				setAllPredictedGames(response);
 			} catch (error) {
 				console.error(error);

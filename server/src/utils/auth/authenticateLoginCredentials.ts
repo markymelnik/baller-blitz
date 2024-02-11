@@ -5,7 +5,7 @@ import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
 
 export async function authenticateLoginCredentials(requestingUser: RequestingUser) {
 	try {
-		const databaseUser: DatabaseUser = await DatabaseQuery.findUserByEmail(requestingUser.email);
+		const databaseUser: DatabaseUser = await DatabaseQuery.findUserByEmailFromDB(requestingUser.email);
 		
 		if (!databaseUser) {
 			throw new AuthenticationError('Login failed. Try again.');

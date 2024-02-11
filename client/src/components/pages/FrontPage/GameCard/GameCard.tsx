@@ -21,6 +21,8 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
   const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
   const [isAlreadyPredictedOverlayOpen, setIsAlreadyPredictedOverlayOpen] = useState<boolean>(false);
 
+  const [, setTriggerRerender] = useState<boolean>(false);
+
   const gameStatus = GameDataFormatter.determineStatus(game.gameStatus);
 
   const handleGameCardClick = () => {
@@ -52,6 +54,10 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
   const handleAlreadyPredictedOverlayClose = () => {
     setIsAlreadyPredictedOverlayOpen(false);
   };
+
+  const handleSuccessfulSubmission = () => {
+    setTriggerRerender(prev => !prev);
+  }
 
   return (
     <>
@@ -131,6 +137,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
         isOpen={isSelectionOverlayOpen}
         onClose={handleOverlayClose}
         game={game}
+        onSuccessfulSubmission={handleSuccessfulSubmission}
       />
       <StartedOverlay
         isOpen={isStartedOverlayOpen}

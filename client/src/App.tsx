@@ -8,7 +8,7 @@ import { UnauthorizedPage } from './components/pages/fallback/UnauthorizedPage.t
 import { UnauthenticatedPage } from './components/pages/fallback/UnauthenticatedPage.tsx';
 import { NotFoundPage } from './components/pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './routes/PrivateRoutes.tsx';
-import { useRefreshToken } from './hooks/auth/useRefreshToken.ts';
+import { useRefreshUserSession } from './hooks/auth/useRefreshUserSession.ts';
 import { LoadingScreen } from './components/loading-screen/LoadingScreen.tsx';
 import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
@@ -17,7 +17,7 @@ import { useAuthLoading } from './hooks/stateSelectors.ts';
 import { Header } from './components/header/Header.tsx';
 
 const App = () => {
-  useRefreshToken();
+  useRefreshUserSession();
 
   const authenticationIsProcessing = useAuthLoading();
 

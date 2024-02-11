@@ -8,7 +8,7 @@ import { authenticateLoginCredentials } from "../../utils/auth/authenticateLogin
 import { TokenCreator } from "../token/TokenCreator";
 
 export const AuthController = {
-  async signupUser(request: Request, response: Response, next: NextFunction) {
+  async signupUserHandler(request: Request, response: Response, next: NextFunction) {
     try {
       const requestingUser: RequestingUser = request.body;
       validateLoginCredentials(requestingUser);
@@ -18,7 +18,7 @@ export const AuthController = {
       );
       requestingUser.password = saltedAndHashedPassword;
 
-      await DatabaseQuery.insertUserIntoDatabase(requestingUser);
+      await DatabaseQuery.insertUserIntoDB(requestingUser);
 
       const responseObject: SignupResponse = {
         status: true,
@@ -32,7 +32,7 @@ export const AuthController = {
     }
   },
 
-  async loginUser(request: Request, response: Response, next: NextFunction) {
+  async loginUserHandler(request: Request, response: Response, next: NextFunction) {
     try {
       const requestingUser: RequestingUser = request.body;
       validateLoginCredentials(requestingUser);
@@ -40,7 +40,8 @@ export const AuthController = {
       const databaseUser: DatabaseUser = await authenticateLoginCredentials(
         requestingUser
       );
-      const databaseUserRole: string = await DatabaseQuery.getUserRoleById(
+
+      const databaseUserRole: string = await DatabaseQuery.getUserRoleByIdFromDB(
         databaseUser.id
       );
 
@@ -68,7 +69,7 @@ export const AuthController = {
     }
   },
 
-  logoutUser(request: Request, response: Response) {
+  logoutUserHandler(request: Request, response: Response) {
     response.cookie('refreshToken', '', {
       httpOnly: true,
       /* secure: true, */ 

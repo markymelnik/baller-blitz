@@ -6,7 +6,7 @@ import { GAME_QUERY, PREDICTION_QUERY, USER_QUERY } from "./QUERIES";
 import pool from "../pool";
 
 export const DatabaseQuery = {
-  async findUserById(userId: number): Promise<DatabaseUser> {
+  async findUserByIdFromDB(userId: number): Promise<DatabaseUser> {
     try {
       const response = await pool.query(USER_QUERY.FIND_USER_BY_ID, [userId]);
       return response.rows[0] || null;
@@ -15,7 +15,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async findUserByEmail(email: string): Promise<DatabaseUser> {
+  async findUserByEmailFromDB(email: string): Promise<DatabaseUser> {
     try {
       const response = await pool.query(USER_QUERY.FIND_USER_BY_EMAIL, [email]);
       return response.rows[0] || null;
@@ -24,7 +24,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async getUserRoleById(userId: number): Promise<string> {
+  async getUserRoleByIdFromDB(userId: number): Promise<string> {
     try {
       const result = await pool.query(USER_QUERY.GET_USER_ROLE_BY_ID, [userId]);
       return result.rows[0].name;
@@ -33,7 +33,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async insertUserIntoDatabase(
+  async insertUserIntoDB(
     requestingUser: RequestingUser
   ): Promise<DatabaseUser> {
     try {
@@ -66,7 +66,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async getGameById(userId: number): Promise<Game> {
+  async getGameByIdFromDB(userId: number): Promise<Game> {
     try {
       const response = await pool.query(GAME_QUERY.GET_GAME_BY_ID, [userId]);
       return response.rows[0] || null;
@@ -75,16 +75,16 @@ export const DatabaseQuery = {
     }
   },
 
-  async getGames(): Promise<Game[]> {
+  async getAllGamesFromDB(): Promise<Game[]> {
     try {
-      const response = await pool.query(GAME_QUERY.GET_GAMES);
+      const response = await pool.query(GAME_QUERY.GET_ALL_GAMES);
       return response.rows || null;
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
   },
 
-  async addGame(game: Game): Promise<number> {
+  async addGameIntoDB(game: Game): Promise<number> {
     const {
 			game_id,
       game_date,
@@ -112,7 +112,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async updateGame(gameId: number, updates: Record<string, any>): Promise<any> {
+  async updateGameInDB(gameId: number, updates: Record<string, any>): Promise<any> {
     let QUERY: string = `UPDATE games SET `;
     const QUERY_PARAMS = [];
     let querySetParts = [];
@@ -141,7 +141,7 @@ export const DatabaseQuery = {
 
   },
 
-  async makePrediction(prediction: Prediction): Promise<any> {
+  async insertPredictionIntoDB(prediction: Prediction): Promise<any> {
     const { user_id, game_id, predicted_winner } = prediction;
     try {
       const response = await pool.query(PREDICTION_QUERY.MAKE_PREDICTION, [user_id, game_id, predicted_winner]);
@@ -151,7 +151,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async getUserPredictionStats(user_id: number): Promise<any> {
+  async getUserPredictionStatsFromDB(user_id: number): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.GET_PREDICTION_STATS, [user_id]);
       return response.rows[0] || null;
@@ -161,7 +161,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async updatePredictionOutcome(): Promise<any> {
+  async updatePredictionOutcomeInDB(): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION_OUTCOME);
     } catch (error) {
@@ -169,7 +169,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async getCurrentPredictions(user_id: number, game_id: number[]): Promise<any> {
+  async getCurrentPredictionsFromDB(user_id: number, game_id: number[]): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.GET_CURRENT_USER_PREDICTIONS, [user_id, game_id]);
       return response.rows || null;
@@ -178,7 +178,7 @@ export const DatabaseQuery = {
     }
   },
 
-  async getAllPredictionsByUserId(user_id: number): Promise<any> {
+  async getAllPredictionsByUserIdFromDB(user_id: number): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.GET_ALL_PREDICTIONS, [user_id]);
       return response.rows || null;

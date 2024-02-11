@@ -5,7 +5,7 @@ import { setGamesToday } from "../../redux/slices/gamesTodaySlice.ts";
 import { Game } from "../../types/gameTypes.ts";
 import { ENV } from "../../env.ts";
 
-export const useGetGamesToday = () => {
+export const useFetchGamesToday = () => {
 
 	const dispatch = useDispatch();
 

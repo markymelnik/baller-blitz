@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 import { GameCard } from '../GameCard/GameCard';
-import { useGetGamesToday } from '../../../../hooks/games/useGetGamesToday';
-import { useGetCurrentPredictions } from '../../../../hooks/predictions/useGetCurrentPredictions';
+import { useFetchGamesToday } from '../../../../hooks/games/useFetchGamesToday';
+import { useFetchCurrentPredictions } from '../../../../hooks/predictions/useFetchCurrentPredictions';
 import { useGamesToday } from '../../../../hooks/stateSelectors';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './list-of-games-today.scss';
 
 export const ListOfGamesToday = () => {
-  useGetGamesToday();
-  const predictedGames = useGetCurrentPredictions()!;
+  useFetchGamesToday();
+  const predictedGames = useFetchCurrentPredictions()!;
 
   const todaysGames = useGamesToday();
   const numberOfGames = todaysGames.length;
@@ -68,7 +68,7 @@ export const ListOfGamesToday = () => {
             <div className='list-message'>
               All games have finished.
               <br />
-              New game information at 1:15PM EST.
+              New game information at 12 PM ET!
             </div>
           )}
         </div>

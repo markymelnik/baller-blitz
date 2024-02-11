@@ -6,7 +6,7 @@ export const PredictionController = {
 	async makePrediction(request: Request, response: Response, next: NextFunction) {
 		try {
 			const prediction: Prediction = request.body;
-			const res = await DatabaseQuery.makePrediction(prediction);
+			const res = await DatabaseQuery.insertPredictionIntoDB(prediction);
 			response.status(201).json(res);
 		} catch (error) {
 			next(error);
@@ -16,7 +16,7 @@ export const PredictionController = {
 	async getUserPredictionStats(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionStats(userId);
+			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionStatsFromDB(userId);
 			response.status(200).json(predictions);
 		} catch(error) {
 			next(error);
@@ -25,7 +25,7 @@ export const PredictionController = {
 
 	async updatePredictionsInDatabase() {
 		try {
-			await DatabaseQuery.updatePredictionOutcome();
+			await DatabaseQuery.updatePredictionOutcomeInDB();
 			console.log(`Updated prediction in database.`)
 		} catch (error) {
 			console.error(error);
@@ -34,8 +34,16 @@ export const PredictionController = {
 
 	async getCurrentUserPredictions(request: Request, response: Response) {
 		try {
-			const { userId, gameIds } = request.body;
-			const currentPredictionsObject: CurrentPredictionObject[] = await DatabaseQuery.getCurrentPredictions(userId, gameIds);
+			const userId = request.user.id;
+			const gameIdsQuery = request.query.gameIds as string;
+			const gameIds = gameIdsQuery ? gameIdsQuery.split(',').map(id => parseInt(id, 10)).filter(id => !isNaN(id)) : [];
+
+			if (!userId || gameIds.length === 0) {
+				response.status(400).json({ error: "Missing userId or gameIds" });
+				return;
+		}
+
+			const currentPredictionsObject: CurrentPredictionObject[] = await DatabaseQuery.getCurrentPredictionsFromDB(userId, gameIds);
 			response.status(200).json(currentPredictionsObject);
 		} catch (error) {
 			console.error(error);
@@ -45,7 +53,7 @@ export const PredictionController = {
 	async getAllUserPredictionsByUserId(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			const predictions: Prediction[] = await DatabaseQuery.getAllPredictionsByUserId(userId);
+			const predictions: Prediction[] = await DatabaseQuery.getAllPredictionsByUserIdFromDB(userId);
 			response.status(200).json(predictions);
 		}  catch (error) {
 			next(error);

@@ -2,24 +2,22 @@ import { useEffect, useState } from "react"
 
 import { PredictionManager } from "../../managers/PredictionManager.ts";
 import { CurrentPredictionObject } from "../../types/userTypes.ts";
-import { useAccessToken, useGamesToday, useUserDetails } from "../stateSelectors.ts"
+import { useAccessToken, useGamesToday } from "../stateSelectors.ts"
 
-export const useGetCurrentPredictions = () => {
+export const useFetchCurrentPredictions = () => {
 
-	const userDetails = useUserDetails();
 	const gamesToday = useGamesToday();
 	const accessToken = useAccessToken();
 
 	const [currentlyPredictedGames, setCurrentlyPredictedGames] = useState<CurrentPredictionObject[]>([]);
 
 	useEffect(() => {
-		if (gamesToday.length > 0 && userDetails && accessToken) {
-			const userId = userDetails.id;
+		if (gamesToday.length > 0 && accessToken) {
 			const gameIds = gamesToday.map(game => +game.gameId);
 
 			const fetchPredictions = async () => {
 				try {
-					const currentPredictions: CurrentPredictionObject[] = await PredictionManager.fetchCurrentPredictions(userId, gameIds);
+					const currentPredictions: CurrentPredictionObject[] = await PredictionManager.getCurrentPredictions(accessToken, gameIds);
 					setCurrentlyPredictedGames(currentPredictions);
 				} catch (error) {
 					console.error(error);
@@ -27,7 +25,7 @@ export const useGetCurrentPredictions = () => {
 			}
 			fetchPredictions();
 		}
-	}, [userDetails, gamesToday, accessToken]);
+	}, [gamesToday, accessToken]);
 
 	return currentlyPredictedGames;
 }

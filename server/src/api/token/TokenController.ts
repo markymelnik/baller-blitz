@@ -42,8 +42,8 @@ export const TokenController = {
 				const refreshToken = decoded as RefreshTokenProps;
 				const refreshTokenUserId = refreshToken.id;
 	
-				const { id, email } = await DatabaseQuery.findUserById(refreshTokenUserId);
-				const role = await DatabaseQuery.getUserRoleById(refreshTokenUserId);
+				const { id, email } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
+				const role = await DatabaseQuery.getUserRoleByIdFromDB(refreshTokenUserId);
 
 				const newAccessToken = TokenCreator.generateAccessToken({ userId: refreshTokenUserId });
 	
