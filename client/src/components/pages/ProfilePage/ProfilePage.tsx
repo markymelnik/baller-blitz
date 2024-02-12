@@ -18,7 +18,7 @@ export const ProfilePage = () => {
     return <p>Loading user details...</p>;
   }
 
-  const { email } = userDetails;
+  const { email, is_verified } = userDetails;
 
   return (
     <div className='profile-page'>
@@ -26,7 +26,7 @@ export const ProfilePage = () => {
         <div className='profile-container'>
           <div className='profile-photo'></div>
           <div className='profile-details'>
-            <div className='profile-email'>{email}</div>
+            <div className='profile-email'>{email} {is_verified}</div>
           </div>
         </div>
       </div>

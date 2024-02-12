@@ -38,22 +38,22 @@ export const TokenController = {
 		};
 
 		try {
-			jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, async (error: Error | null, decoded: Object | undefined) => {
-				const refreshToken = decoded as RefreshTokenProps;
-				const refreshTokenUserId = refreshToken.id;
+			const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET as RefreshTokenProps);
+
+				const refreshTokenUserId = decoded.id;
 	
-				const { id, email } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
+				const { id, email, is_verified } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
 				const role = await DatabaseQuery.getUserRoleByIdFromDB(refreshTokenUserId);
 
 				const newAccessToken = TokenCreator.generateAccessToken({ userId: refreshTokenUserId });
 	
 				const responseObject: LoginResponse = {
-					user: { id, email, role },
+					user: { id, email, role, is_verified },
 					accessToken: newAccessToken,
 				};
 	
 				return response.status(200).send(responseObject);
-				});
+			
 			} catch (error) {
 				return response.status(404).send({ message: 'Failed to refresh token' });
 		}

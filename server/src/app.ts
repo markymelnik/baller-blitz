@@ -11,6 +11,7 @@ import { GameController } from './api/games/GamesController';
 import { PredictionController } from './api/prediction/PredictionController';
 import { initCron } from './database/jobs/cronJobs';
 import 'dotenv/config';
+import { verifyEmailHandler } from './utils/auth/verifyEmailHandler';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
@@ -44,6 +45,8 @@ app.get('/predictions', TokenController.validateAccessToken, PredictionControlle
 app.post('/predictions', TokenController.validateAccessToken, PredictionController.makePrediction);
 app.get('/predictions/current', TokenController.validateAccessToken, PredictionController.getCurrentUserPredictions);
 app.get('/predictions/stats', TokenController.validateAccessToken, PredictionController.getUserPredictionStats);
+
+app.get('/verify', verifyEmailHandler);
 
 app.use(ErrorHandler(errorConfig));
 

@@ -36,7 +36,6 @@ export const ApiClient = {
         credentials: 'include', // IMPORTANT
         mode: 'cors', // IMPORTANT
       });
-
       return response.json();
     } catch (error) {
       const authenticationError = new AuthenticationError('Failed to login');

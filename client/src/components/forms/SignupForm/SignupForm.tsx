@@ -9,7 +9,6 @@ import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessag
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import './signup-form.scss';
 
-
 export const SignupForm = () => {
 
   const delayNavigate = useDelayNavigate();
@@ -34,10 +33,6 @@ export const SignupForm = () => {
 
       if (response.error && response.error.code) {
         setError('email', { type: 'custom', message: response.error.message });
-      }
-
-      if (response.status) {
-        delayNavigate('/');
       }
 
     } catch (error) {

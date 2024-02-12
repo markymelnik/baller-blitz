@@ -10,12 +10,14 @@ export interface DatabaseUser {
   email: string;
   password: string;
   role: Role;
+  is_verified: boolean;
 }
 
 export interface FrontendUser {
   id: number;
   email: string;
   role: string;
+  is_verified: boolean;
 }
 
 export interface LoginResponse {

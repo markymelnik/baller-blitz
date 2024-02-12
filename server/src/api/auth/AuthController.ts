@@ -6,6 +6,9 @@ import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
 import { TokenController } from "../token/TokenController";
 import { authenticateLoginCredentials } from "../../utils/auth/authenticateLoginCredentials";
 import { TokenCreator } from "../token/TokenCreator";
+import { ACCESS_TOKEN_SECRET } from "../../env";
+import jwt from 'jsonwebtoken';
+import { sendVerificationEmail } from "../../utils/auth/mailer";
 
 export const AuthController = {
   async signupUserHandler(request: Request, response: Response, next: NextFunction) {
@@ -18,7 +21,15 @@ export const AuthController = {
       );
       requestingUser.password = saltedAndHashedPassword;
 
-      await DatabaseQuery.insertUserIntoDB(requestingUser);
+      const user = await DatabaseQuery.insertUserIntoDB(requestingUser);
+
+      const verificationToken = jwt.sign(
+        { userId: user.id },
+        ACCESS_TOKEN_SECRET,
+        { expiresIn: '10min' }
+      )
+
+      await sendVerificationEmail(requestingUser.email, verificationToken);
 
       const responseObject: SignupResponse = {
         status: true,
@@ -54,11 +65,14 @@ export const AuthController = {
 
       TokenController.setRefreshTokenCookie(response, refreshToken);
 
+      console.log(databaseUser.is_verified);
+
       const responseObject: LoginResponse = {
         user: {
           id: databaseUser.id,
           email: databaseUser.email,
           role: databaseUserRole,
+          is_verified: databaseUser.is_verified,
         },
         accessToken,
       };

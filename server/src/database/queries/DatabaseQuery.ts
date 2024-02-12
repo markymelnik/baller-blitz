@@ -185,5 +185,14 @@ export const DatabaseQuery = {
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
+  },
+
+  async markEmailVerifiedInDB (userId: number): Promise<any> {
+    try {
+      const response = await pool.query(USER_QUERY.UPDATE_EMAIL_VERIFY, [userId]);
+      return response.rows || null;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred');
+    }
   }
 };

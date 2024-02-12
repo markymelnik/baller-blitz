@@ -73,5 +73,16 @@ export const GameDataFormatter = {
     return `${formattedHours}:${formattedMinutes} PM EST`;
   },
 
-
+  getHistoryWinner(
+    predicted_winner: string,
+    is_correct: boolean,
+    away_team: string,
+    home_team: string
+  ): string {
+    if (is_correct && predicted_winner === away_team) {
+      return away_team;
+    } else {
+      return home_team;
+    }
+  }
 };
