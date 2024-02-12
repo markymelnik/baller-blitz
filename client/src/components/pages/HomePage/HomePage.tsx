@@ -11,7 +11,6 @@ export const HomePage = () => {
   const UnauthenticatedSignupButton = useUnauthorizedRender(NavigateToSignupButton, ['user','admin']);
   const AuthenticatedFrontButton = useAuthorizedRender(NavToFrontFromHomeButton, ['user','admin']);
   const AuthenticatedLogoutButton = useAuthorizedRender(LogoutButton, ['user','admin']);
-
   return (
     <div className='home-page'>
       <div className='home-welcome'>Hello.</div>

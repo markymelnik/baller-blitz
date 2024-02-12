@@ -34,7 +34,7 @@ export const TokenController = {
 		const refreshToken = request.cookies.refreshToken;
 	
 		if (!refreshToken) {
-			return response.status(404).send({ message: 'Refresh token not found' });
+			return response.status(404).send({ message: 'Refresh token not found'});
 		};
 
 		try {
@@ -55,7 +55,7 @@ export const TokenController = {
 				return response.status(200).send(responseObject);
 			
 			} catch (error) {
-				return response.status(404).send({ message: 'Failed to refresh token' });
+				return response.status(404).send({ message: 'Access token could not be refreshed' });
 		}
 	},
 

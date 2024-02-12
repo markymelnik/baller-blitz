@@ -26,8 +26,8 @@ export interface LoginResponse {
 }
 
 export interface SignupResponse {
-  status: boolean;
-  message: string;
+  user: FrontendUser;
+  accessToken: string
 }
 
 export interface LogoutResponse {

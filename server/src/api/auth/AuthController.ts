@@ -21,21 +21,40 @@ export const AuthController = {
       );
       requestingUser.password = saltedAndHashedPassword;
 
-      const user = await DatabaseQuery.insertUserIntoDB(requestingUser);
+      const databaseUser = await DatabaseQuery.insertUserIntoDB(requestingUser);
+
+      const databaseUserRole: string = await DatabaseQuery.getUserRoleByIdFromDB(
+        databaseUser.id
+      );
 
       const verificationToken = jwt.sign(
-        { userId: user.id },
+        { userId: databaseUser.id },
         ACCESS_TOKEN_SECRET,
         { expiresIn: '10min' }
       )
 
       await sendVerificationEmail(requestingUser.email, verificationToken);
 
+      const accessToken = TokenCreator.generateAccessToken({
+        userId: databaseUser.id,
+      });
+      const refreshToken = TokenCreator.generateRefreshToken({
+        userId: databaseUser.id,
+      });
+
+      TokenController.setRefreshTokenCookie(response, refreshToken);
+
       const responseObject: SignupResponse = {
-        status: true,
-        message: 'Successful signup',
+        user: {
+          id: databaseUser.id,
+          email: databaseUser.email,
+          role: databaseUserRole,
+          is_verified: databaseUser.is_verified,
+        },
+        accessToken,
       };
 
+      console.log(responseObject);
       response.status(201).json(responseObject);
     } catch (error) {
       console.log(error);
@@ -64,8 +83,6 @@ export const AuthController = {
       });
 
       TokenController.setRefreshTokenCookie(response, refreshToken);
-
-      console.log(databaseUser.is_verified);
 
       const responseObject: LoginResponse = {
         user: {

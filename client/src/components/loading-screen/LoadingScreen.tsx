@@ -1,13 +1,12 @@
 import { ring } from 'ldrs';
 
-import { useLoading } from '../../hooks/stateSelectors.ts';
-
 import './loading-screen.scss';
+import { useAuthLoading } from '../../hooks/stateSelectors';
 
 export const LoadingScreen = () => {
   ring.register();
 
-  const isLoading = useLoading();
+  const isLoading = useAuthLoading();
 
   if (!isLoading) return null;
 

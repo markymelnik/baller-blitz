@@ -9,9 +9,15 @@ import { LoginCredentials, SignupCredentials } from "../types/authTypes.ts";
 import { BackendUser } from "../types/userTypes.ts";
 
 export const AuthManager = {
-	async signupUser(formData: SignupCredentials) {
+	async signupUser(formData: SignupCredentials, dispatch: AppDispatch) {
 		try {
 			const responseData = await ApiClient.processUserSignup('/signup', formData);
+			const { user, accessToken } = responseData;
+
+			dispatch(setAccessToken(accessToken));
+			dispatch(authenticateUser());
+			dispatch(setUserDetails(user));
+
 			return responseData;
 		}
 		catch (error) {
@@ -28,7 +34,7 @@ export const AuthManager = {
 			dispatch(setAccessToken(accessToken));
 			dispatch(authenticateUser());
 			dispatch(setUserDetails(user));
-	
+
 			return responseData;
 		}
 		catch (error) {
@@ -59,7 +65,6 @@ export const AuthManager = {
 			const { user, accessToken } = {...responseData};
 	
 			dispatch(setAccessToken(accessToken));
-			dispatch(authenticateUser());
 			dispatch(setUserDetails(user));
 	
 			return responseData;

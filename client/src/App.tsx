@@ -9,49 +9,48 @@ import { UnauthenticatedPage } from './components/pages/fallback/Unauthenticated
 import { NotFoundPage } from './components/pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './routes/PrivateRoutes.tsx';
 import { useRefreshUserSession } from './hooks/auth/useRefreshUserSession.ts';
-import { LoadingScreen } from './components/loading-screen/LoadingScreen.tsx';
 import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
 import ScrollToTop from './hooks/page/useScrollToTop.ts';
-import { useAuthLoading } from './hooks/stateSelectors.ts';
 import { Header } from './components/header/Header.tsx';
+import { VerifyPage } from './components/pages/VerifyPage/VerifyPage.tsx';
+import AuthenticationCheck from './AuthenticationCheck.tsx';
 
 const App = () => {
   useRefreshUserSession();
 
-  const authenticationIsProcessing = useAuthLoading();
-
-  if (authenticationIsProcessing) {
-    return <LoadingScreen />;
-  }
-
   return (
-    <div className='app-container'>
-      <LoadingScreen />
-      <BrowserRouter>
-      <ScrollToTop />
-      <Header />
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          {
-            <Route element={<PublicRoutes />}>
-              
-              <Route path='/signup' element={<SignupPage />} />
-              <Route path='/login' element={<LoginPage />} />
-            </Route>
-          }
-          {
-            <Route element={<PrivateRoutes allowedRoles={['admin', 'user']} />}>
-              <Route path='/front' element={<FrontPage />} />
-              <Route path='/profile' element={<ProfilePage />} />
-            </Route>
-          }
-          <Route path='/unauthenticated' element={<UnauthenticatedPage />} />
-          <Route path='/unauthorized' element={<UnauthorizedPage />} />
-          <Route path='*' element={<NotFoundPage />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <div className='app-container'>
+        <AuthenticationCheck>
+          <ScrollToTop />
+          <Header />
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/signup' element={<SignupPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            {
+              <Route element={<PublicRoutes />}>
+                <Route path='/signup' element={<SignupPage />} />
+                <Route path='/login' element={<LoginPage />} />
+              </Route>
+            }
+            {
+              <Route
+                element={<PrivateRoutes allowedRoles={['admin', 'user']} />}
+              >
+                <Route path='/front' element={<FrontPage />} />
+                <Route path='/profile' element={<ProfilePage />} />
+              </Route>
+            }
+            <Route path='/verify' element={<VerifyPage />} />
+            <Route path='/unauthenticated' element={<UnauthenticatedPage />} />
+            <Route path='/unauthorized' element={<UnauthorizedPage />} />
+            <Route path='*' element={<NotFoundPage />} />
+          </Routes>
+        </AuthenticationCheck>
+      </div>
+    </BrowserRouter>
   );
 };
 

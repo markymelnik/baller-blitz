@@ -2,7 +2,8 @@ import { useCallback } from "react"
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { startLoading, stopLoading } from "../../redux/slices/loadingSlice.ts";
+import { startLoading, stopLoading } from "../../redux/slices/authSlice.ts";
+
 
 export const useDelayNavigate = (delay: number = 600) => {
   const navigate = useNavigate();

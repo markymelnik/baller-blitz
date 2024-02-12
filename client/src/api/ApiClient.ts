@@ -76,8 +76,8 @@ export const ApiClient = {
         credentials: 'include',
         mode: 'cors',
       });
-
-      return response.json();
+      const data = await response.json();
+      return data;
     } catch (error) {
       const tokenError = new TokenError('Failed to refresh access token');
       handleError(tokenError);
