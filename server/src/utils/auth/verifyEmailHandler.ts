@@ -54,7 +54,7 @@ export const verifyEmailHandler = async (request: Request, response: Response) =
 		};
 
 		response
-			.redirect(`${FRONTEND_URL}:${FRONTEND_PORT}}/verify-success`);
+			.redirect(`${FRONTEND_URL}:${FRONTEND_PORT}/verify-success`);
 
 	} catch (error) {
     response.status(401).send('Invalid or expired token');

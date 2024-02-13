@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import http from 'http';
 import { AuthController } from './api/auth/AuthController';
 import { corsOptions } from './config/corsConfig';
 import { TokenController } from './api/token/TokenController';
@@ -10,18 +11,21 @@ import { errorConfig } from './config/errorConfig';
 import { GameController } from './api/games/GamesController';
 import { PredictionController } from './api/prediction/PredictionController';
 import { initCron } from './database/jobs/cronJobs';
-import 'dotenv/config';
 import { verifyEmailHandler } from './utils/auth/verifyEmailHandler';
+import { initWebSocketServer } from './initWebSocket';
+import 'dotenv/config';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors(corsOptions));
 
 initCron();
+initWebSocketServer(server);
 
 app.get('/', (req, res) => {
   res.send('NBA Battle');
@@ -49,10 +53,9 @@ app.get('/predictions/stats', TokenController.validateAccessToken, PredictionCon
 app.get('/verify', TokenController.validateAccessToken, AuthController.resendEmailVerificationHandler);
 app.get('/verify-email', verifyEmailHandler)
 
-
 app.use(ErrorHandler(errorConfig));
 
-app.listen(`${BACKEND_PORT}`, () => {
+server.listen(`${BACKEND_PORT}`, () => {
   console.log(`Server listening at ${BACKEND_PORT}`);
 });
 

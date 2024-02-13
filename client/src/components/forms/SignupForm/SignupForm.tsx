@@ -38,7 +38,7 @@ export const SignupForm = () => {
       }
 
       if (response.user) {
-        delayNavigate('/verify-success')
+        delayNavigate('/');
       }
 
     } catch (error) {

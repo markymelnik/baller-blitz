@@ -5,12 +5,15 @@ import { useAccessToken, useAuth, useUserDetails } from '../../../hooks/stateSel
 import { useVerify } from '../../../hooks/auth/useVerify';
 import './verify-email-overlay.scss';
 import { ApiClient } from '../../../api/ApiClient';
+import { useWebSocket } from '../../../hooks/useWebSocket';
 
 export const VerifyEmailOverlay = () => {
   const isAuthenticated = useAuth();
   const isVerified = useVerify();
   const accessToken = useAccessToken();
   const userDetails = useUserDetails();
+
+  const { emailVerified } = useWebSocket(accessToken);
 
   const handleButtonClick = async () => {
     console.log(accessToken);
@@ -22,7 +25,7 @@ export const VerifyEmailOverlay = () => {
     }
 	};
 
-  if (isAuthenticated && !isVerified && userDetails) {
+  if (isAuthenticated && !isVerified && userDetails && !emailVerified) {
     return createPortal(
       <div className='verify-wrapper'>
         <div className='verify-page'>
