@@ -6,8 +6,8 @@ import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
-import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import './login-form.scss';
+import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ export const LoginForm = () => {
       }
 
       if (response.user) {
-        delayNavigate('/profile')
+        delayNavigate('/');
       }
 
     } catch (error) {

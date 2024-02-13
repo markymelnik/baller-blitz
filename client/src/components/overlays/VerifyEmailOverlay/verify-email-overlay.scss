@@ -1,0 +1,34 @@
+.verify-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 2rem;
+
+	.verify-page {
+		min-height: 80vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		background: white;
+	
+		.verify-page-title {
+			font-size: 1.25rem;
+		}
+	
+		.verify-again {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+	
+			.verify-link {
+				font-size: 1.25rem;
+			}
+		}
+	}
+}
+

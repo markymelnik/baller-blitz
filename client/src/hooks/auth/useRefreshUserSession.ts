@@ -16,7 +16,6 @@ export const useRefreshUserSession = () => {
         } else {
           dispatch(authenticateUser());
         }
-        console.log(response);
       } catch (error) {
         console.error(error);
         dispatch(unauthenticateUser());

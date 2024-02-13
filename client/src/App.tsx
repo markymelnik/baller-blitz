@@ -13,8 +13,9 @@ import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
 import ScrollToTop from './hooks/page/useScrollToTop.ts';
 import { Header } from './components/header/Header.tsx';
-import { VerifyPage } from './components/pages/VerifyPage/VerifyPage.tsx';
 import AuthenticationCheck from './AuthenticationCheck.tsx';
+import { VerifySuccessPage } from './components/pages/VerifySuccessPage/VerifySuccessPage.tsx';
+import { VerifyEmailOverlay } from './components/overlays/VerifyEmailOverlay/VerifyEmailOverlay.tsx';
 
 const App = () => {
   useRefreshUserSession();
@@ -22,6 +23,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className='app-container'>
+        <VerifyEmailOverlay />
         <AuthenticationCheck>
           <ScrollToTop />
           <Header />
@@ -41,9 +43,10 @@ const App = () => {
               >
                 <Route path='/front' element={<FrontPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
+                <Route path='verify-success' element={<VerifySuccessPage />} />
               </Route>
             }
-            <Route path='/verify' element={<VerifyPage />} />
+            
             <Route path='/unauthenticated' element={<UnauthenticatedPage />} />
             <Route path='/unauthorized' element={<UnauthorizedPage />} />
             <Route path='*' element={<NotFoundPage />} />

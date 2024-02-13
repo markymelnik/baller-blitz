@@ -18,17 +18,9 @@ const AuthenticationCheck = ({ children }: AuthCheckProps) => {
 
 	const delayNavigate = useDelayNavigate();
 
-	useEffect(() => {
-		if (!isVerified && isAuthenticated) {
-			delayNavigate('/verify')
-		}
-	}, [delayNavigate, isVerified, isAuthenticated])
-
 	if (authenticationIsProcessing) {
 		return <LoadingScreen />
 	}
-
-	
 	
   return children;
 };

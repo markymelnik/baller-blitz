@@ -159,5 +159,25 @@ export const ApiClient = {
       const networkError = new TokenError('Failed to fetch all predictions');
       handleError(networkError);
     }
+  },
+
+  async resendEmailVerification(path: string, accessToken: string) {
+    try {
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const response = await fetch(BACKEND_ENDPOINT_URL, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+        },
+      });
+      
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+    
+        const networkError = new TokenError('Failed to ');
+        handleError(networkError);
+    }
   }
 };

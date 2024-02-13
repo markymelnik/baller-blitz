@@ -11,7 +11,11 @@ import jwt from 'jsonwebtoken';
 import { sendVerificationEmail } from "../../utils/auth/mailer";
 
 export const AuthController = {
-  async signupUserHandler(request: Request, response: Response, next: NextFunction) {
+  async signupUserHandler(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
     try {
       const requestingUser: RequestingUser = request.body;
       validateLoginCredentials(requestingUser);
@@ -23,15 +27,14 @@ export const AuthController = {
 
       const databaseUser = await DatabaseQuery.insertUserIntoDB(requestingUser);
 
-      const databaseUserRole: string = await DatabaseQuery.getUserRoleByIdFromDB(
-        databaseUser.id
-      );
+      const databaseUserRole: string =
+        await DatabaseQuery.getUserRoleByIdFromDB(databaseUser.id);
 
       const verificationToken = jwt.sign(
         { userId: databaseUser.id },
         ACCESS_TOKEN_SECRET,
-        { expiresIn: '10min' }
-      )
+        { expiresIn: '15min' }
+      );
 
       await sendVerificationEmail(requestingUser.email, verificationToken);
 
@@ -54,7 +57,6 @@ export const AuthController = {
         accessToken,
       };
 
-      console.log(responseObject);
       response.status(201).json(responseObject);
     } catch (error) {
       console.log(error);
@@ -62,7 +64,11 @@ export const AuthController = {
     }
   },
 
-  async loginUserHandler(request: Request, response: Response, next: NextFunction) {
+  async loginUserHandler(
+    request: Request,
+    response: Response,
+    next: NextFunction
+  ) {
     try {
       const requestingUser: RequestingUser = request.body;
       validateLoginCredentials(requestingUser);
@@ -71,9 +77,8 @@ export const AuthController = {
         requestingUser
       );
 
-      const databaseUserRole: string = await DatabaseQuery.getUserRoleByIdFromDB(
-        databaseUser.id
-      );
+      const databaseUserRole: string =
+        await DatabaseQuery.getUserRoleByIdFromDB(databaseUser.id);
 
       const accessToken = TokenCreator.generateAccessToken({
         userId: databaseUser.id,
@@ -103,15 +108,47 @@ export const AuthController = {
   logoutUserHandler(request: Request, response: Response) {
     response.cookie('refreshToken', '', {
       httpOnly: true,
-      /* secure: true, */ 
-			maxAge: 1,
+      /* secure: true, */
+      maxAge: 1,
     });
 
     const responseObject: LogoutResponse = {
       status: true,
       message: 'Logged out successfully.',
-    }
-    
+    };
+
     response.status(200).json(responseObject);
+  },
+
+  async resendEmailVerificationHandler(request: Request, response: Response) {
+    const userId = request.user.id;
+
+    
+    try {
+      const databaseUser = await DatabaseQuery.findUserByIdFromDB(userId);
+
+      const verificationToken = jwt.sign(
+        { userId: databaseUser.id },
+        ACCESS_TOKEN_SECRET,
+        { expiresIn: '15min' }
+      );
+
+      const accessToken = TokenCreator.generateAccessToken({
+        userId: databaseUser.id,
+      });
+      const refreshToken = TokenCreator.generateRefreshToken({
+        userId: databaseUser.id,
+      });
+
+      TokenController.setRefreshTokenCookie(response, refreshToken);
+
+      const res = await sendVerificationEmail(databaseUser.email, verificationToken);
+      
+      response.redirect('http://localhost:5173/verify-success');
+
+    } catch (error) {
+      console.error('Error in resendEmailVerificationHandler:', error);
+    response.status(500).send({ error: 'Failed to send verification email.' });
+    }
   },
 };

@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
-import { ACCESS_TOKEN_SECRET } from "../../env";
+import { ACCESS_TOKEN_SECRET, FRONTEND_PORT, FRONTEND_URL } from "../../env";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
-import { authenticateLoginCredentials } from "./authenticateLoginCredentials";
 import { DatabaseUser, LoginResponse } from "../../database/models/userModel";
 import { TokenCreator } from "../../api/token/TokenCreator";
 import { TokenController } from "../../api/token/TokenController";
@@ -49,13 +48,13 @@ export const verifyEmailHandler = async (request: Request, response: Response) =
 				id: databaseUser.id,
 				email: databaseUser.email,
 				role: databaseUserRole,
+				is_verified: databaseUser.is_verified
 			},
 			accessToken,
 		};
 
 		response
-			.status(200)
-			.send(responseObject)
+			.redirect(`${FRONTEND_URL}:${FRONTEND_PORT}}/verify-success`);
 
 	} catch (error) {
     response.status(401).send('Invalid or expired token');

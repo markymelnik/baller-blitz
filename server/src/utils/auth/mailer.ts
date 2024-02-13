@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import { FRONTEND_PORT, FRONTEND_URL } from '../../env';
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
@@ -9,13 +10,13 @@ const transporter = nodemailer.createTransport({
 })
 
 export const sendVerificationEmail = async (userEmail: string, token: string) => {
-	const verificationUrl = `http://localhost:4000/verify?token=${token}`;
+	const verificationUrl = `${FRONTEND_URL}:${FRONTEND_PORT}/verify-email?token=${token}`;
 	
 	const mailOptions = {
 		from: 'Cool App',
 		to: userEmail,
 		subject: 'Verify Email Address',
-		html: `Click the link brlow or paste it into your browser to complete the signup process.<br/><a href="${verificationUrl}">Verify email</a>`,
+		html: `Click the link below or paste it into your browser to complete the signup process.<br/><a href="${verificationUrl}">Verify email</a>`,
 	}
 
 	try {

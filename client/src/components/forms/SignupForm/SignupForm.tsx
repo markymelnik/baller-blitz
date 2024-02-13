@@ -1,4 +1,5 @@
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { SignupCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../managers/AuthManager.ts';
@@ -6,11 +7,12 @@ import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { SignupValidation } from '../InputValidation/SignupValidation/SignupValidation.tsx';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
-import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import './signup-form.scss';
+import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 
 export const SignupForm = () => {
 
+  const dispatch = useDispatch();
   const delayNavigate = useDelayNavigate();
   
   const {
@@ -25,7 +27,7 @@ export const SignupForm = () => {
 
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
-      const response = await AuthManager.signupUser(formData);
+      const response = await AuthManager.signupUser(formData, dispatch);
 
       if (!response) {
         throw new AuthenticationError('No response received from signup process');
@@ -33,6 +35,10 @@ export const SignupForm = () => {
 
       if (response.error && response.error.code) {
         setError('email', { type: 'custom', message: response.error.message });
+      }
+
+      if (response.user) {
+        delayNavigate('/verify-success')
       }
 
     } catch (error) {
