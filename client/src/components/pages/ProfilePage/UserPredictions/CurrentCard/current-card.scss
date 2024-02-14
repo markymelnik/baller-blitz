@@ -1,0 +1,10 @@
+.current-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid lightgrey;
+	gap: 0.5rem;
+	padding: 1rem 0;
+	margin: 0 0 1rem;
+	list-style: none;
+}

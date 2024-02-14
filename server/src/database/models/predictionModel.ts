@@ -8,8 +8,3 @@ export interface Prediction {
 	away_team: string;
 	home_team: string;
 }
-
-export interface CurrentPredictionObject {
-	game_id: number;
-	predicted_winner: string;
-}

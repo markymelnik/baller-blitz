@@ -5,7 +5,7 @@ import { useOutsideClick } from '../../../hooks/page/useOutsideClick.ts';
 import { useDisableBodyScroll } from '../../../hooks/page/useDisableBodyScroll.ts';
 import { Game } from '../../../types/gameTypes.ts';
 import { PredictionManager } from '../../../managers/PredictionManager.ts';
-import { useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { useAccessToken, useUserDetails } from '../../../hooks/stateSelectors.ts';
 import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton.tsx';
 import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx';
 
@@ -24,6 +24,8 @@ type SelectWinnerOverlayProps = {
 export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmission }: SelectWinnerOverlayProps) => {
 	const overlayRef = useRef(null);
   const buttonRef = useRef(null);
+
+  const accessToken = useAccessToken()!;
   
   const [overlayState, setOverlayState] = useState<string>(SelectOverlayState.SELECT);
   const [selectedWinner, setSelectedWinner] = useState<string>('');
@@ -49,7 +51,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
 
   const submiSelectedtWinner = async() => {
     try {
-      const response = await PredictionManager.makePrediction({
+      const response = await PredictionManager.makePrediction(accessToken, {
         user_id: userId,
         game_id: gameId,
         predicted_winner: selectedWinner,

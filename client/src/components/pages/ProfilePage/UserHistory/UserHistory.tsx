@@ -23,7 +23,7 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
   return (
     <div className='user-history'>
       {numberOfPredictedGames < 1 ? (
-        <div className='history-fallback'>You have no predictions!</div>
+        <div className='history-fallback'>No history</div>
       ) : (
         <>
           <div className='history-header' onClick={handleHistoryButtonClick}>

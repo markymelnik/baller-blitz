@@ -4,9 +4,9 @@ import { handleError } from "../errors/handleError.ts";
 import { Prediction } from "../types/predictionTypes.ts";
 
 export const PredictionManager = {
-	async makePrediction(prediction: Prediction) {
+	async makePrediction(accessToken: string, prediction: Prediction) {
 		try {
-			const response = await ApiClient.storePredictionInApi('/predictions', prediction);
+			const response = await ApiClient.storePredictionInApi('/predictions', accessToken, prediction);
 			return response;
 		} catch (error) {
 			const tokenError = new TokenError('Failed to make prediction');

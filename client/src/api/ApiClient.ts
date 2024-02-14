@@ -84,13 +84,14 @@ export const ApiClient = {
     }
   },
 
-  async storePredictionInApi(path: string, prediction: Prediction) {
+  async storePredictionInApi(path: string, accessToken: string, prediction: Prediction) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify(prediction),
       });

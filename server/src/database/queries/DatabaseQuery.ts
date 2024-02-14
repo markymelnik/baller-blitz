@@ -163,7 +163,7 @@ export const DatabaseQuery = {
 
   async updatePredictionOutcomeInDB(): Promise<any> {
     try {
-      const response = await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION_OUTCOME);
+      await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION_OUTCOME);
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }

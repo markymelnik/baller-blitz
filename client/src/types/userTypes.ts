@@ -19,8 +19,3 @@ export interface UserStatistics {
   correct_predictions: number;
   accuracy_percentage: number;
 }
-
-export interface CurrentPredictionObject {
-  game_id: number;
-  predicted_winner: string;
-}

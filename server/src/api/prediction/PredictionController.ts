@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { CurrentPredictionObject, Prediction } from "../../database/models/predictionModel";
+import { Prediction } from "../../database/models/predictionModel";
 import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
 
 export const PredictionController = {
@@ -7,6 +7,7 @@ export const PredictionController = {
 		try {
 			const prediction: Prediction = request.body;
 			const res = await DatabaseQuery.insertPredictionIntoDB(prediction);
+	
 			response.status(201).json(res);
 		} catch (error) {
 			next(error);
@@ -43,8 +44,8 @@ export const PredictionController = {
 				return;
 		}
 
-			const currentPredictionsObject: CurrentPredictionObject[] = await DatabaseQuery.getCurrentPredictionsFromDB(userId, gameIds);
-			response.status(200).json(currentPredictionsObject);
+			const currentPredictions: Prediction[] = await DatabaseQuery.getCurrentPredictionsFromDB(userId, gameIds);
+			response.status(200).json(currentPredictions);
 		} catch (error) {
 			console.error(error);
 		}
