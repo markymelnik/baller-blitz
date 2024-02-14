@@ -1,3 +1,4 @@
+import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
 
@@ -9,6 +10,8 @@ import './profile-page.scss';
 export const ProfilePage = () => {
   const isAuthenticated = useAuth();
   const userDetails = useUserDetails();
+
+  const allPredictedGames = useFetchAllPredictions();
 
   if (!isAuthenticated) {
     return <p className='profile-error'>Log In to view profile</p>;
@@ -32,9 +35,9 @@ export const ProfilePage = () => {
       </div>
       <div className='profile-page-bot'>
         <div className='profile-page-blobs'>
-          <UserStats />
+          <UserStats allPredictedGames={allPredictedGames} />
           {/* <AboutUser /> */}
-          <UserHistory />
+          <UserHistory allPredictedGames={allPredictedGames} />
         </div>
         <LogoutButton />
       </div>

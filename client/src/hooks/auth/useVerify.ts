@@ -9,7 +9,7 @@ export const useVerify = () => {
   const [isVerified, setIsVerified] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log({ isAuthenticated, isVerified})
+    /* console.log({ isAuthenticated, isVerified}) */
     const verifyUser = () => {
       if (isAuthenticated && userDetails?.is_verified) {
         setIsVerified(true);

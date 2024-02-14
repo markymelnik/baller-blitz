@@ -15,7 +15,7 @@ import ScrollToTop from './hooks/page/useScrollToTop.ts';
 import { Header } from './components/header/Header.tsx';
 import AuthenticationCheck from './AuthenticationCheck.tsx';
 import { VerifySuccessPage } from './components/pages/VerifySuccessPage/VerifySuccessPage.tsx';
-import { VerifyEmailOverlay } from './components/overlays/VerifyEmailOverlay/VerifyEmailOverlay.tsx';
+import { VerifyEmailOverlay } from './components/overlays/VerifyOverlay/VerifyOverlay.tsx';
 
 const App = () => {
   useRefreshUserSession();

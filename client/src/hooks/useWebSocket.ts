@@ -15,18 +15,16 @@ export const useWebSocket = (accessToken: string) => {
         },
       });
 
-      console.log('Socket initialized');
-
       socket.on('connect', () => {
-        console.log('Socket connected');
+    
         socket.emit('emailVerified');
-        console.log('Sent emailVerified event to server');
+
       });
 
       socket.on('navigate', (data) => {
-        console.log('navigate event received', data);
+    
         if (data.verified) {
-          console.log('data verified');
+      
           channel.postMessage({ emailVerified: true });
           if (data.verified === true) {
             socket.removeAllListeners('navigate');
@@ -44,7 +42,7 @@ export const useWebSocket = (accessToken: string) => {
     };
 
     return () => {
-      console.log('Cleaning up');
+      console.log('WebSocket connection clean up');
       if (socket) {
         socket.removeAllListeners('navigate');
         socket.close();

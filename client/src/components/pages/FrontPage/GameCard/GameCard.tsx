@@ -70,25 +70,30 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
         onClick={handleGameCardClick}
       >
         {gameStatus === GameState.IN_PROGRESS && (
-          <>
-            <div className='game-card-predicted-left'>
+          <div className='top-right'>
+            {<div className='game-card-predicted'>
+              <div className='predicted-text'>Not Predicted</div>
+            </div>}
+            <div className='game-card-live'>Live</div>
+          </div>
+        )}
+        {gameStatus === GameState.NOT_STARTED && isPredicted && (
+          <div className='top-right'>
+            <div className='game-card-predicted'>
               <IconCheck size={16} />
               <div className='predicted-text'>Predicted {predictedWinner}</div>
             </div>
-            <div className='game-card-live'>Live</div>
-          </>
-        )}
-        {gameStatus === GameState.NOT_STARTED && isPredicted && (
-          <div className='game-card-predicted'>
-            <IconCheck size={16} />
-            <div className='predicted-text'>Predicted {predictedWinner}</div>
           </div>
         )}
         {gameStatus === GameState.FINISHED && isPredicted && (
-          <div className='game-card-predicted'>
-            <div className='predicted-text'>Predicted {predictedWinner}</div>
+          <div className='top-right'>
+            <div className='game-card-predicted'>
+              <div className='predicted-text'>Predicted {predictedWinner}</div>
               <IconPointFilled size={10} />
-            <div className="predicted-outcome">{`Winner: ${GameDataFormatter.determineWinner(game)}`}</div>
+              <div className='predicted-outcome'>{`Winner: ${GameDataFormatter.determineWinner(
+                game
+              )}`}</div>
+            </div>
           </div>
         )}
         <div className='game-card-left'>
@@ -102,14 +107,8 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
             </div>
             {gameStatus !== GameState.NOT_STARTED && (
               <div className='game-scores'>
-                <div className='team-score'>
-                  {game.awayTeam.score}
-                  
-                </div>
-                <div className='team-score'>
-                  {game.homeTeam.score}
-                
-                </div>
+                <div className='team-score'>{game.awayTeam.score}</div>
+                <div className='team-score'>{game.homeTeam.score}</div>
               </div>
             )}
           </div>

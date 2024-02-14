@@ -1,0 +1,91 @@
+.verify-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 1rem;
+
+	.verify-overlay {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+		background: white;
+		padding: 2rem;
+
+		.verify-overlay-top {	
+			width: 100%;
+
+			.overlay-graphic {
+				border: 1px solid black;
+				height: 15vh;
+				width: 100%;
+			}
+		}
+
+
+
+		.verify-overlay-mid {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+
+			.verify-step {
+				font-size: 1rem;
+			}
+
+			.verify-title {
+				font-size: 2.25rem;
+			}
+
+			.verify-desc {
+				font-size: 1rem;
+			}
+
+		}
+	
+
+		.verify-again {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+
+			.verify-ask {
+				text-align: center;
+				font-size: 1.1rem;
+			}
+
+			.send-new-email-btn {
+				
+				border: 1px solid black;
+				background: white;
+				font-size: 1rem;
+				padding: 1rem;
+
+				&.disabled {
+					pointer-events: none;
+					opacity: 0.4;
+				}
+
+				&:hover {
+					background: darken(white, 5%);
+					cursor: pointer;
+				}
+			}
+
+			.verify-status {
+				height: 1rem;
+				text-align: center;
+
+				&.error {
+					color: red;
+				}
+			}
+		}
+	}
+}
+

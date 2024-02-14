@@ -171,13 +171,9 @@ export const ApiClient = {
         },
       });
       
-      const data = await response.json();
-      console.log(data);
-      return data;
+      return response;
     } catch (error) {
-    
-        const networkError = new TokenError('Failed to ');
-        handleError(networkError);
+      console.error(error);
     }
   }
 };

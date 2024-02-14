@@ -6,7 +6,7 @@ import { AuthController } from './api/auth/AuthController';
 import { corsOptions } from './config/corsConfig';
 import { TokenController } from './api/token/TokenController';
 import { ErrorHandler } from './middleware/error-handler';
-import { loginLimiter, signupLimiter } from './middleware/rate-limiting';
+import { loginLimiter, resendVerifyEmailLimiter, signupLimiter } from './middleware/rate-limiting';
 import { errorConfig } from './config/errorConfig';
 import { GameController } from './api/games/GamesController';
 import { PredictionController } from './api/prediction/PredictionController';
@@ -50,7 +50,7 @@ app.post('/predictions', TokenController.validateAccessToken, PredictionControll
 app.get('/predictions/current', TokenController.validateAccessToken, PredictionController.getCurrentUserPredictions);
 app.get('/predictions/stats', TokenController.validateAccessToken, PredictionController.getUserPredictionStats);
 
-app.get('/verify', TokenController.validateAccessToken, AuthController.resendEmailVerificationHandler);
+app.get('/verify', resendVerifyEmailLimiter, TokenController.validateAccessToken, AuthController.resendEmailVerificationHandler);
 app.get('/verify-email', verifyEmailHandler)
 
 app.use(ErrorHandler(errorConfig));

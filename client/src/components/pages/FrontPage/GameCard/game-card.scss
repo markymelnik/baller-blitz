@@ -3,7 +3,7 @@
 	display: flex;
 	gap: 0.25rem;
 	border: 1px solid black;
-	padding: 1rem;
+	padding: 1.25rem 1.25rem 1rem;
 
 	&.finished {
 		opacity: 0.5;
@@ -15,43 +15,40 @@
 	}
 
 	.game-card-live {
-		position: absolute;
 		top: 0;
 		right: 0;
-		padding: 0.25rem;
-		border-left: 1px solid black;
+		padding: 0.25rem 0.5rem;
 		border-bottom: 1px solid black;
+		border-left: 0.5px solid black;
 	}
 
-	.game-card-predicted,
-	.game-card-predicted-left {
-		position: absolute;
+	.game-card-predicted {
 		padding: 0.25rem 0.5rem;
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
+		border-bottom: 1px solid black;
+		border-right: 0.5px solid black;
+		border-left: 1px solid black;
 	}
 
-	.game-card-predicted {
+	.top-right {
+		position: absolute;
 		top: 0;
 		right: 0;
-
-		.predicted-text {
-
-		}
-
-		.predicted-outcome {
-
-		}
+		display: flex;
 	}
 
 	.game-card-predicted-left {
 		top: 0;
-		right: 2.5rem;
+		right: 2.35rem;
+		border-bottom: 1px solid black;
+		border-left: 1px solid black;
+		border-right: 1px solid black;
 	}
 
 	.game-card-left {
-		width: 60%;
+		width: 55%;
 		/* border-right: 1px solid black; */
 
 		.game-date {
@@ -88,7 +85,8 @@
 		flex-direction: column;
 		justify-content: center;
 		gap: 0.25rem;
-		width: 40%;
+		width: 45%;
+		font-size: 1.1rem;
 
 		.game-start,
 		.game-status,

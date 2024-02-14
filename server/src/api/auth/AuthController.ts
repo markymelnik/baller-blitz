@@ -123,7 +123,6 @@ export const AuthController = {
   async resendEmailVerificationHandler(request: Request, response: Response) {
     const userId = request.user.id;
 
-    
     try {
       const databaseUser = await DatabaseQuery.findUserByIdFromDB(userId);
 

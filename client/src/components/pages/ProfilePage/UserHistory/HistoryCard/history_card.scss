@@ -1,4 +1,5 @@
 .history-card {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	border-bottom: 1px solid lightgrey;
@@ -8,13 +9,24 @@
 
 	&.correct {
 		border: 1px solid blue;
+
+		.history-game-outcome {
+			color: blue;
+		}
 	}
 
 	&.incorrect {
 		border: 1px solid orange;
+
+		.history-game-outcome {
+			color: orange;
+		}
 	}
 
-	.history-game-id {
-
+	.history-game-outcome {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0.25rem;
 	}
 }

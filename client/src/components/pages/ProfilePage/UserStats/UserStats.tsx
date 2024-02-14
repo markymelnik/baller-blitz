@@ -1,4 +1,5 @@
 import { useFetchUserStats } from '../../../../hooks/useFetchUserStats';
+import { PredictedGame } from '../../../../types/gameTypes';
 import { UserStatistics } from '../../../../types/userTypes';
 import './user-stats.scss';
 
@@ -6,7 +7,14 @@ function formatPercent(percentage: number) {
 	return `${Math.round(percentage * 10) / 10}%`;
 }
 
-export const UserStats = () => {
+type UserStatsProps = {
+  allPredictedGames: PredictedGame[];
+}
+
+export const UserStats = ({ allPredictedGames }: UserStatsProps) => {
+
+	const numberOfPredictedGames = allPredictedGames.length;
+
 	const userStats = useFetchUserStats();
 	
 	if (!userStats) {
@@ -20,12 +28,18 @@ export const UserStats = () => {
       <div className='stats-header'>User Stats</div>
       <div className='stat'>
         <div className='stat-type'>
-					<div className="stat-percentage">{formatPercent(accuracy_percentage)}</div>
-					<div className="stat-title">Win Prediction</div>
-				</div>
-        <div className='correct-rate'>
-					<div className="correct-pred">{`${correct_predictions} correct out of ${total_predictions} predictions made`}</div>
-				</div>
+          <div className='stat-percentage'>
+            {formatPercent(accuracy_percentage)}
+          </div>
+          <div className='stat-title'>Win Prediction</div>
+        </div>
+        {numberOfPredictedGames < 1 ? (
+          <></>
+        ) : (
+          <div className='correct-rate'>
+            <div className='correct-pred'>{`${correct_predictions} correct out of ${total_predictions} predictions made`}</div>
+          </div>
+        )}
       </div>
       <div className='stat'></div>
     </div>
