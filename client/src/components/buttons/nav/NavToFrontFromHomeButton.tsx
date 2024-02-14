@@ -1,4 +1,4 @@
-import { IconBallBasketball } from "@tabler/icons-react";
+import { TbBallBasketball } from 'react-icons/tb';
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
 
@@ -9,7 +9,7 @@ export const NavToFrontFromHomeButton = () => {
       buttonText={'Games'}
       className={'to-front-from-home-btn'}
     >
-      <IconBallBasketball size={35} stroke={1} />
+      <TbBallBasketball size={30} strokeWidth={1.2} />
     </NavigateToButtonCreator>
   );
 };

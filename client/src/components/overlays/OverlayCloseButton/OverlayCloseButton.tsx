@@ -1,5 +1,6 @@
-import { IconX } from '@tabler/icons-react';
+import { PiX } from 'react-icons/pi';
 import './overlay-close-btn.scss';
+
 
 type OverlayOkButtonProps = {
   onClose: () => void;
@@ -8,7 +9,7 @@ type OverlayOkButtonProps = {
 export const OverlayCloseButton = ({ onClose }: OverlayOkButtonProps) => {
   return (
     <button className='overlay-close-btn' onClick={onClose}>
-      <IconX size={30} stroke={1.25} />
+      <PiX />
     </button>
   );
 };

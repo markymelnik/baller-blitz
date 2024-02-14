@@ -1,7 +1,8 @@
-import { IconHome } from '@tabler/icons-react';
+import { PiHouseLight, PiUser } from 'react-icons/pi';
 
 import { NavigateToButtonCreator } from './NavigateToButtonCreator.tsx';
 import './nav-to-btns.scss';
+
 
 export const NavigateToHomeButton = () => {
   return (
@@ -10,7 +11,7 @@ export const NavigateToHomeButton = () => {
       /* buttonText={'Home'} */
       className={'nav-to-home-btn'}
     >
-      <IconHome size={42} stroke={0.8} />
-    </NavigateToButtonCreator>
+      <PiHouseLight size={35} />    
+      </NavigateToButtonCreator>
   );
 };

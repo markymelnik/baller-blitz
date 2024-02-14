@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { IconCheck, IconPointFilled } from "@tabler/icons-react";
+import { MdCheck } from "react-icons/md";
 
 import { Game } from "../../../../types/gameTypes.ts"
 import { GameDataFormatter } from "../../../../utils/GameDataFormatter.ts";
@@ -8,6 +8,7 @@ import { GameState } from "../GameState.ts";
 import { StartedOverlay } from "../../../overlays/StartedOverlay/StartedOverlay.tsx";
 import { AlreadyPredictedOverlay } from "../../../overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx";
 import './game-card.scss';
+
 
 type GameCard = {
 	game: Game;
@@ -80,7 +81,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
         {gameStatus === GameState.NOT_STARTED && isPredicted && (
           <div className='top-right'>
             <div className='game-card-predicted'>
-              <IconCheck size={16} />
+                <MdCheck size={20} />
               <div className='predicted-text'>Predicted {predictedWinner}</div>
             </div>
           </div>
@@ -89,7 +90,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
           <div className='top-right'>
             <div className='game-card-predicted'>
               <div className='predicted-text'>Predicted {predictedWinner}</div>
-              <IconPointFilled size={10} />
+              <MdCheck size={20} />
               <div className='predicted-outcome'>{`Winner: ${GameDataFormatter.determineWinner(
                 game
               )}`}</div>

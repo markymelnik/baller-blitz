@@ -1,16 +1,20 @@
-.header {
-	height: 8vh;
+.header-container {
+	height: 10vh;
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	/* border-bottom: 1px solid black; */
+	padding: 0.5rem 1rem;
+	z-index: 2;
+	transition: top 0.6s;
+	background: white;
+	/* border-bottom: 1px solid lightgrey; */
 
-	.header-left {
+	&.hidden {
+    top: -6.5rem;
+  }
 
-	}
-
-	.header-right {
-
-	}
 }

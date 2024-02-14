@@ -6,6 +6,7 @@
 	width: 100%;
 	background: rgba(0, 0, 0, 0.5);
 	padding: 1rem;
+	z-index: 10;
 
 	.verify-overlay {
 		height: 100%;
@@ -26,8 +27,6 @@
 			}
 		}
 
-
-
 		.verify-overlay-mid {
 			display: flex;
 			flex-direction: column;
@@ -44,15 +43,12 @@
 			.verify-desc {
 				font-size: 1rem;
 			}
-
 		}
 	
-
 		.verify-again {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
-			gap: 1.5rem;
 
 			.verify-ask {
 				text-align: center;
@@ -60,11 +56,11 @@
 			}
 
 			.send-new-email-btn {
-				
 				border: 1px solid black;
 				background: white;
 				font-size: 1rem;
 				padding: 1rem;
+				margin: 1rem 0;
 
 				&.disabled {
 					pointer-events: none;

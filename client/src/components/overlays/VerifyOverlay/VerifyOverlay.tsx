@@ -51,7 +51,7 @@ export const VerifyEmailOverlay = () => {
           </div>
 
           <div className='verify-again'>
-            <div className='verify-ask'>Don't see one?</div>
+            <div className='verify-ask'>Don't see it?</div>
             {resendStatus === '' && (
               <button
                 className={`send-new-email-btn`}

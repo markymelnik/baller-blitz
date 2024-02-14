@@ -1,6 +1,7 @@
-import { IconArrowNarrowLeft } from "@tabler/icons-react";
+import { PiCaretLeft } from 'react-icons/pi';
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
+
 
 export const NavBackToFrontButton = () => {
   return (
@@ -9,7 +10,7 @@ export const NavBackToFrontButton = () => {
       buttonText={'Games'}
       className={'nav-to-front-btn'}
     >
-      <IconArrowNarrowLeft size={25} stroke={1.4} />
+    <PiCaretLeft size={20} />
     </NavigateToButtonCreator>
   );
 };

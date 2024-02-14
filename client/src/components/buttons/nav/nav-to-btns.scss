@@ -20,8 +20,8 @@
 .nav-to-profile-btn {
 	background: white;
 	border: none;
-	height: 3rem;
-	width: 3rem;
+	height: 2.5rem;
+	width: 2.5rem;
 }
 
 .nav-to-front-btn {
@@ -30,7 +30,7 @@
 	display: flex;
 	align-items: center;
 	gap: 0.25rem;
-	padding: 0.5rem;
+	padding: 1rem 0;
 
 	.nav-btn-text {
 		order: 2;
@@ -56,14 +56,13 @@
 	transform: translateX(-50%);
 	font-size: 1.05rem;
 	background: white;
-	border: 1px solid black;
-	height: 4rem;
-	width: 10rem;
+	border: 1px solid lightgrey;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 0.5rem;
-	padding: 0.5rem;
+	padding: 1rem 2rem;
 
 	.nav-btn-text {
 		font-size: 1.5rem;

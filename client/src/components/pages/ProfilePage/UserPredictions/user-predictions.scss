@@ -1,19 +1,28 @@
 .user-predictions {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid lightgrey;
-	padding: 1rem;
+	padding: 1rem 0 0;
 
 	.user-pred-fallback {
-		font-size: 1.1rem;
+		font-size: 1.25rem;
 	}
 
 	.current-predictions-header {
 		display: flex;
 		align-items: center;
+		gap: 0.5rem;
 
 		.current-text {
-			font-size: 1.5rem;
+			font-size: 1.25rem;
+		}
+
+		.icon {
+			transition: transform 0.3s ease;
+			transform: rotate(-180deg);
+		}
+
+		.rotate-icon {
+			transition: transform 0.3s ease;
 		}
 	}
 
@@ -21,6 +30,7 @@
 		border-bottom: 1px solid lightgrey;
 		margin: 1rem 0 0;
 	}
+
 	.current-predictions-list {
 		display: flex;
 		flex-direction: column;

@@ -4,16 +4,20 @@ import { useAuthorizedRender } from '../../hooks/auth/useAuthorizedRender.ts';
 import { NavigateToProfileButton } from '../buttons/nav/NavigateToProfileButton.tsx';
 import { NavBackToFrontButton } from '../buttons/nav/NavBackToFrontButton.tsx';
 import { NavigateToHomeButton } from '../buttons/nav/NavigateToHomeButton.tsx';
+
+import useHeaderHideOnScroll from './useHeaderHideOnScroll.ts';
 import './header.scss';
 
 export const Header = () => {
-	const location = useLocation();
+  const location = useLocation();
+
+  useHeaderHideOnScroll();
 
 	const AuthenticatedProfileButton = useAuthorizedRender(NavigateToProfileButton, ['user','admin']);
   const AuthenticatedToFrontButton = useAuthorizedRender(NavBackToFrontButton, ['user','admin']);
 	
   return (
-    <header className='header'>
+    <header className='header-container'>
       <div className='header-left'>
         {location.pathname === '/profile' && <AuthenticatedToFrontButton />}
         {location.pathname === '/front' && <NavigateToHomeButton />}

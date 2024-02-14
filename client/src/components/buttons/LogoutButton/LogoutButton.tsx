@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { IconLogout } from '@tabler/icons-react';
+import { FaArrowRightFromBracket } from 'react-icons/fa6';
 
 import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
@@ -26,7 +26,7 @@ export const LogoutButton = () => {
 
   return (
     <button className='logout-btn' onClick={handleClick}>
-      <IconLogout size={25} stroke={1.4} />
+      <FaArrowRightFromBracket />
       <div className='logout-btn-text'>Logout</div>
     </button>
   );
