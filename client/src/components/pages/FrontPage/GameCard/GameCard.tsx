@@ -70,20 +70,30 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
         }`}
         onClick={handleGameCardClick}
       >
-        {gameStatus === GameState.IN_PROGRESS && (
-          <div className='top-right'>
-            {<div className='game-card-predicted'>
-              <div className='predicted-text'>Not Predicted</div>
-            </div>}
-            <div className='game-card-live'>Live</div>
-          </div>
-        )}
         {gameStatus === GameState.NOT_STARTED && isPredicted && (
           <div className='top-right'>
             <div className='game-card-predicted'>
-                <MdCheck size={20} />
+              <MdCheck size={20} />
               <div className='predicted-text'>Predicted {predictedWinner}</div>
             </div>
+          </div>
+        )}
+
+        {gameStatus === GameState.IN_PROGRESS && (
+          <div className='top-right'>
+            {isPredicted ? (
+              <div className='game-card-predicted'>
+                <MdCheck size={20} />
+                <div className='predicted-text'>
+                  Predicted {predictedWinner}
+                </div>
+              </div>
+            ) : (
+              <div className='game-card-predicted'>
+                <div className='predicted-text'>Not Predicted</div>
+              </div>
+            )}
+            <div className='game-card-live'>Live</div>
           </div>
         )}
         {gameStatus === GameState.FINISHED && isPredicted && (

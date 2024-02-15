@@ -1,33 +1,34 @@
-import { useDispatch } from 'react-redux';
-import { FaArrowRightFromBracket } from 'react-icons/fa6';
+import { useState } from 'react';
+import { PiSignOut } from 'react-icons/pi';
 
-import { AuthManager } from '../../../managers/AuthManager.ts';
-import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
-import { handleError } from '../../../errors/handleError.ts';
-import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
+import { LogoutOverlay } from '../../overlays/LogoutOverlay/LogoutOverlay.tsx';
 import './logout-btn.scss';
 
 export const LogoutButton = () => {
-  const delayNavigate = useDelayNavigate();
-  const dispatch = useDispatch();
+  const [isLogoutOverlayOpen, setIsLogoutOverlayOpen] = useState<boolean>(false);
 
-  const handleClick = async () => {
-    try {
-      const response = await AuthManager.logoutUser(dispatch);
+  const handleLogoutOverlayClose = () => {
+    setIsLogoutOverlayOpen(false);
+  };
 
-      if (response.status) {
-        delayNavigate('/');
-      }
-    } catch (error) {
-      const logoutError = new AuthenticationError('Failed to logout');
-      handleError(logoutError);
-    }
+  const handleLogoutOverlayButtonClick = () => {
+    setIsLogoutOverlayOpen((prev) => !prev);
   };
 
   return (
-    <button className='logout-btn' onClick={handleClick}>
-      <FaArrowRightFromBracket />
-      <div className='logout-btn-text'>Logout</div>
-    </button>
+    <div className='logout-container'>
+      <button
+        className='open-overlay-btn'
+        onClick={handleLogoutOverlayButtonClick}
+      >
+        <PiSignOut size={20} />
+        <div className='open-btn-text'>Logout</div>
+      </button>
+      
+      <LogoutOverlay
+        isOpen={isLogoutOverlayOpen}
+        onClose={handleLogoutOverlayClose}
+      />
+    </div>
   );
 };

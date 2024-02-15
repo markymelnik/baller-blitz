@@ -1,12 +1,16 @@
-.logout-btn {
-	background: white;
-	border: none;
-	display: flex;
-	align-items: center;
-	gap: 0.25rem;
-	padding: 0.5rem;
-	
-	.logout-btn-text {
-		font-size: 1rem;
+.logout-container {
+	position: relative;
+
+	.open-overlay-btn {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		background: white;
+		border: none;
+		padding: 0.5rem 1rem;
+		
+		.open-btn-text {
+			font-size: 1rem;
+		}
 	}
 }

@@ -1,0 +1,68 @@
+.logout-portal-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+
+	.logout-overlay {
+		width: 80%;
+		min-height: 30vh;
+		position: absolute;
+		top: 35vh;
+		background: white;
+		border: 1px solid black;
+		padding: 1rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		gap: 2rem;
+
+		.logout-overlay-graphic {
+			flex: 1;
+		}
+	
+		.logout-overlay-message {
+			font-size: 1.1rem;
+		}
+	
+		.logout-overlay-btns {
+			display: inline-flex;
+			gap: 1rem;
+	
+			.logout-btn {
+				background: white;
+				border: 1.5px solid red;
+				display: flex;
+				align-items: center;
+				padding: 0.5rem 1rem;
+	
+				.logout-btn-text {
+					color: red;
+					font-size: 1rem;
+					font-weight: 600;
+				}
+			}
+	
+			.close-logout-overlay-btn {
+				background: white;
+				border: none;
+				display: flex;
+				align-items: center;
+				padding: 0.5rem 1rem;
+	
+				.close-btn-text {
+					color: red;
+					width: 100%;
+					font-size: 1rem;
+				}
+			}
+		}
+	}
+}
+
