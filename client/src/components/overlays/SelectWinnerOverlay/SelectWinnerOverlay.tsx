@@ -9,7 +9,7 @@ import { useAccessToken, useUserDetails } from '../../../hooks/stateSelectors.ts
 import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton.tsx';
 import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx';
 
-import { SelectOverlayState } from './PickSubmitButton/SelectOverlayState.ts';
+import { SelectOverlayState } from './SelectOverlayState.ts';
 import { PickTeamButton } from './PickTeamButton/PickTeamButton.tsx';
 import { PickSubmitButton } from './PickSubmitButton/PickSubmitButton.tsx';
 import './select-winner-overlay.scss';
@@ -102,7 +102,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
     const message = isSubmissionSuccessful ? 'Success! Your prediction was saved.' : `You already predicted this match!`;
     return createPortal(
       <div className="portal-wrapper">
-        <div className="select-winner-overlay" ref={overlayRef} onClick={handleOverlayClick}>
+        <div className="select-winner-overlay success" ref={overlayRef} onClick={handleOverlayClick}>
           <OverlayCloseButton onClose={handleOverlayResetAndClose}/>
           <div className="select-overlay-message">{message}</div>
           <OverlayOKButton onClose={handleOverlayResetAndClose}/>

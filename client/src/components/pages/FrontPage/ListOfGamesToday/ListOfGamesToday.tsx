@@ -9,7 +9,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import './list-of-games-today.scss';
 
 export const ListOfGamesToday = () => {
-  useFetchGamesToday();
+  const [fetchTrigger, setFetchTrigger] = useState(false);
+
+  useFetchGamesToday(fetchTrigger);
+
+  const handleGamesListUpdate = () => {
+    setFetchTrigger((prev) => !prev);
+  };
+
   const predictedGames = useFetchCurrentPredictions()!;
 
   const todaysGames = useGamesToday();
@@ -90,6 +97,7 @@ export const ListOfGamesToday = () => {
                 key={game.gameId}
                 isPredicted={isPredicted}
                 predictedWinner={predictedGame?.predicted_winner}
+                onSuccessfulSubmission={handleGamesListUpdate}
               />
             );
           })

@@ -151,6 +151,16 @@ export const DatabaseQuery = {
     }
   },
 
+  async updatePredictionInDB(prediction: Prediction): Promise<any> {
+    const { user_id, game_id, predicted_winner } = prediction;
+    try {
+      const response = await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION, [user_id, game_id, predicted_winner]);
+      return response.rows[0];
+    } catch (error) {
+      throw new DatabaseError('A database error occurred');
+    }
+  },
+
   async getUserPredictionStatsFromDB(user_id: number): Promise<any> {
     try {
       const response = await pool.query(PREDICTION_QUERY.GET_PREDICTION_STATS, [user_id]);

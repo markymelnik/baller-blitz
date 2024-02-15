@@ -104,6 +104,25 @@ export const ApiClient = {
     }
   },
 
+  async updatePredictionInApi(path: string, accessToken: string, prediction: Prediction) {
+    try {
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const response = await fetch(BACKEND_ENDPOINT_URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(prediction),
+      })
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      const networkError = new TokenError('Failed to make prediction');
+      handleError(networkError);
+    }
+  },
+
   async fetchCurrentPredictionsFromApi(path: string, accessToken: string, gameIds: number[]) {
     try {
       const gameIdsQueryString = gameIds.join(',');

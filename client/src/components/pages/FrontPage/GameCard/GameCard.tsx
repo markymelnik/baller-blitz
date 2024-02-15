@@ -9,20 +9,18 @@ import { StartedOverlay } from "../../../overlays/StartedOverlay/StartedOverlay.
 import { AlreadyPredictedOverlay } from "../../../overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx";
 import './game-card.scss';
 
-
 type GameCard = {
 	game: Game;
   isPredicted: boolean;
   predictedWinner: string | undefined;
+  onSuccessfulSubmission: () => void;
 }
 
-export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
+export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmission }: GameCard) => {
 
   const [isSelectionOverlayOpen, setIsSelectionOverlayOpen] = useState<boolean>(false);
   const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
   const [isAlreadyPredictedOverlayOpen, setIsAlreadyPredictedOverlayOpen] = useState<boolean>(false);
-
-  const [, setTriggerRerender] = useState<boolean>(false);
 
   const gameStatus = GameDataFormatter.determineStatus(game.gameStatus);
 
@@ -55,10 +53,6 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
   const handleAlreadyPredictedOverlayClose = () => {
     setIsAlreadyPredictedOverlayOpen(false);
   };
-
-  const handleSuccessfulSubmission = () => {
-    setTriggerRerender(prev => !prev);
-  }
 
   return (
     <>
@@ -147,7 +141,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
         isOpen={isSelectionOverlayOpen}
         onClose={handleOverlayClose}
         game={game}
-        onSuccessfulSubmission={handleSuccessfulSubmission}
+        onSuccessfulSubmission={onSuccessfulSubmission}
       />
       <StartedOverlay
         isOpen={isStartedOverlayOpen}
@@ -156,7 +150,9 @@ export const GameCard = ({ game, isPredicted, predictedWinner }: GameCard) => {
       <AlreadyPredictedOverlay
         isOpen={isAlreadyPredictedOverlayOpen}
         onClose={handleAlreadyPredictedOverlayClose}
+        game={game}
         predictedWinner={predictedWinner}
+        onSuccessfulSubmission={onSuccessfulSubmission}
       />
     </>
   );

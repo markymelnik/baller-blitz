@@ -12,7 +12,17 @@ export const PredictionManager = {
 			const tokenError = new TokenError('Failed to make prediction');
 			handleError(tokenError);
 		}
-	}, 
+	},
+
+	async updatePrediction(accessToken: string, prediction: Prediction) {
+		try {
+			const response = await ApiClient.updatePredictionInApi('/predictions', accessToken, prediction);
+			return response;
+		} catch (error) {
+			const tokenError = new TokenError('Failed to make prediction');
+			handleError(tokenError);
+		}
+	},
 
 	async getCurrentPredictions(accessToken: string, gameIds: number[]) {
 		try {

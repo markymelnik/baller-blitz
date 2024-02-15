@@ -5,7 +5,7 @@ import { setGamesToday } from "../../redux/slices/gamesTodaySlice.ts";
 import { Game } from "../../types/gameTypes.ts";
 import { ENV } from "../../env.ts";
 
-export const useFetchGamesToday = () => {
+export const useFetchGamesToday = (trigger: boolean) => {
 
 	const dispatch = useDispatch();
 
@@ -30,5 +30,5 @@ export const useFetchGamesToday = () => {
 		}
 		fetchData();
 		
-  }, [dispatch]);
+  }, [dispatch, trigger]);
 }

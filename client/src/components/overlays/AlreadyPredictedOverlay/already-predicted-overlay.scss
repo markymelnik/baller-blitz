@@ -17,9 +17,41 @@
 		margin: 1.25rem;
 		padding: 1.5rem;
 
+		&.success {
+			padding: 4rem 1.5rem 1.5rem;
+			justify-content: flex-end;
+		}
+
+		.already-pred-success-message {
+			font-size: 1rem;
+			padding: 0 0 3rem;
+		}
+
 		.already-predicted-overlay-message {
 			font-size: 1.1rem;
 			padding: 1rem 0 1.5rem;
+		}
+
+		.switch-prediction {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 1rem;
+
+			.already-submit-warning {
+				height: 1rem;
+			}
+
+			.switch-submit-btn {
+				font-size: 1.05rem;
+				padding: 1rem 2.5rem;
+				background: white;
+				border: 1px solid lightgrey;
+
+				&.submit {
+					border: 1px solid black;
+				}
+			}
 		}
 	}
 }

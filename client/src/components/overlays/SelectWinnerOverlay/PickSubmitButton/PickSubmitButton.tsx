@@ -1,6 +1,6 @@
 import { forwardRef, MouseEventHandler, ReactNode, RefObject } from 'react';
 
-import { SelectOverlayState } from './SelectOverlayState.ts';
+import { SelectOverlayState } from '../SelectOverlayState.ts';
 import './pick-submit-btn.scss';
 
 interface PickSubmitButtonProps {

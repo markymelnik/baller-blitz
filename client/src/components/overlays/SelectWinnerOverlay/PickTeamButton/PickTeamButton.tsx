@@ -1,5 +1,5 @@
 import { AwayTeam, HomeTeam } from '../../../../types/gameTypes.ts';
-import { SelectOverlayState } from '../PickSubmitButton/SelectOverlayState.ts';
+import { SelectOverlayState } from '../SelectOverlayState.ts';
 import './pick-team-btn.scss';
 
 type PickTeamButtonProps = {

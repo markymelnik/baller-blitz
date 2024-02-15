@@ -14,6 +14,16 @@ export const PredictionController = {
 		}
 	},
 
+	async updatePrediction(request: Request, response: Response, next: NextFunction) {
+		try {
+			const prediction: Prediction = request.body;
+			const res = await DatabaseQuery.updatePredictionInDB(prediction);
+			response.status(201).json(res);
+		} catch (error) {
+			next(error);
+		}
+	},
+
 	async getUserPredictionStats(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;

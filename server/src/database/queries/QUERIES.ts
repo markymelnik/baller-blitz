@@ -15,6 +15,7 @@ type GameQueryTypes = {
 
 type PredictionQueryTypes = {
   MAKE_PREDICTION: string;
+  UPDATE_PREDICTION: string;
   GET_PREDICTION_STATS: string;
   UPDATE_PREDICTION_OUTCOME: string;
   GET_CURRENT_USER_PREDICTIONS: string;
@@ -38,6 +39,7 @@ export const GAME_QUERY: GameQueryTypes = {
 
 export const PREDICTION_QUERY: PredictionQueryTypes = {
   MAKE_PREDICTION: `INSERT INTO predictions (user_id, game_id, predicted_winner) VALUES ($1, $2, $3) RETURNING $2;`,
+  UPDATE_PREDICTION: `UPDATE predictions SET predicted_winner = $3 WHERE user_id = $1 AND game_id = $2 RETURNING $3;`,
   GET_PREDICTION_STATS: `SELECT COUNT(*) AS total_predictions, SUM(CASE WHEN is_correct = true THEN 1 ELSE 0 END) AS correct_predictions, (SUM(CASE WHEN is_correct = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*)) AS accuracy_percentage FROM predictions WHERE user_id = $1 AND is_correct IS NOT NULL;`,
   UPDATE_PREDICTION_OUTCOME: `UPDATE predictions SET is_correct = CASE WHEN predictions.predicted_winner = games.winner THEN true ELSE false END FROM games WHERE predictions.game_id = games.game_id;`,
   GET_CURRENT_USER_PREDICTIONS: `
