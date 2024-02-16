@@ -26,15 +26,16 @@
 				flex-direction: column;
 				align-items: center;
 				padding: 1rem 0;
-				gap: 0.25rem;
+				gap: 1rem;
 				
 				.profile-username {
-					font-size: 1.25rem;
+					font-size: 1.35rem;
 					color: grey;
 				}
 
 				.profile-verified {
-					font-size: 0.85rem;
+					display: flex;
+					gap: 0.15rem;
 				}
 			}
 		}
@@ -61,10 +62,11 @@
 		.profile-page-blobs {
 			display: flex;
 			flex-direction: column;
+			flex: 1;
 
 			.blob-skeleton-wrapper {
 				margin-bottom: 0.5rem;
-				height: 5rem;
+				height: 9.25rem;
 			}
 		}
 		

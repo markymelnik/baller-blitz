@@ -7,6 +7,7 @@ import { UserDetails } from '../../../../types/userTypes';
 import { ApiClient } from '../../../../api/ApiClient';
 import { setUserDetails } from '../../../../redux/slices/userSlice';
 import './update-username.scss';
+import { Icons } from '../../../../lib/Icons';
 
 export const UpdateUsername = () => {
   const dispatch = useDispatch();
@@ -18,42 +19,28 @@ export const UpdateUsername = () => {
 
   const [currentUsername, setCurrentUsername] = useState<string>(username);
   const [isButtonActive, setIsButtonActive] = useState<boolean>(false);
-	const [usernameError, setUsernameError] = useState<string>('Type in a new username.');
+  const [usernameError, setUsernameError] = useState<string>('');
   const [success, setSuccess] = useState<boolean>(false);
 
   useEffect(() => {
-		
-		if (currentUsername.trim() === '') {
-			setUsernameError('Username cannot be empty');
-			setIsButtonActive(false);
-		}
+    const lowercaseCurrentUsername = currentUsername.toLowerCase();
 
-		else if (currentUsername.length < 4 || currentUsername.length > 16) {
-      setUsernameError('Username must be between 4 and 16 characters');
+    if (currentUsername.trim() === '') {
+      setUsernameError('Cannot be empty');
       setIsButtonActive(false);
-    }
-
-		else if (!/^[a-zA-Z0-9]+$/.test(currentUsername)) {
-			setUsernameError('Username can only contain letters and numbers');
-			setIsButtonActive(false);
-		}
-
-		else if (currentUsername === username) {
-			setUsernameError('Type in a new username');
-			setIsButtonActive(false);
-		}
-
-		else {
-			setUsernameError('Update username');
-			setIsButtonActive(true);
-		}
-    /*  else if (currentUsername.trim() === '') {
-      
-			setIsButtonActive(false);
+    } else if (currentUsername.length < 4 || currentUsername.length > 16) {
+      setUsernameError('Must be between 4 and 16 characters');
+      setIsButtonActive(false);
+    } else if (!/^[a-zA-Z0-9]+$/.test(currentUsername)) {
+      setUsernameError('Can contain only letters and numbers');
+      setIsButtonActive(false);
+    } else if (lowercaseCurrentUsername === username.toLowerCase()) {
+      setUsernameError('');
+      setIsButtonActive(false);
     } else {
-      currentUsername !== username && currentUsername.trim() !== '';
-			setIsButtonActive(false);
-    } */
+      setUsernameError('');
+      setIsButtonActive(true);
+    }
   }, [currentUsername, username]);
 
   const mutation = useMutation(ApiClient.updateUsername, {
@@ -70,7 +57,7 @@ export const UpdateUsername = () => {
       setSuccess(true);
       setTimeout(() => {
         setSuccess(false);
-      }, 2000) 
+      }, 2000);
     },
     onError: () => {
       console.error('Error updating username somewhere');
@@ -88,29 +75,39 @@ export const UpdateUsername = () => {
   };
 
   return (
-    <div className='settings-field'>
-      <div className='settings-field-top'>
-        <div className='settings-field-name'>Username</div>
+    <div className='update-username'>
+      <div className='uu-title'>Edit username</div>
+      <div className='uu-top'>
         <input
-					id='new-username'
+          id='update-username'
           type='text'
           value={currentUsername}
           onChange={handleUsernameChange}
-          className='new-username-input'
-					maxLength={16}
+          className='uu-input'
+          maxLength={20}
         />
         <button
           onClick={handleSubmit}
-          disabled={!isButtonActive}
-          className={`save-username-btn ${isButtonActive ? 'active' : ''}`}
+          className={`update-username-btn ${isButtonActive ? '' : 'inactive'}`}
         >
           Update
         </button>
       </div>
-      <div className='settings-field-bot'>
-        {success ? (<div className="settings-field-message">Success! Username updated!</div>) : (<div className="settings-field-message">{usernameError}</div>)}
-				
-			</div>
+      <div className='uu-bot'>
+        {success ? (
+          <div className='uu-message'>Success! Username updated!</div>
+        ) : (
+          <div className='uu-message'>
+            {usernameError && (
+              <span className='uu-error-icon'>
+                <Icons.SheildWarning size={16} />
+              </span>
+            )}
+
+            {usernameError}
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};

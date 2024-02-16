@@ -1,27 +1,46 @@
-.settings-field {
+.update-username {
 	display: flex;
 	flex-direction: column;
 	gap: 0.25rem;
+	padding: 0 0 0.5rem;
+
+	.uu-title {
+		padding: 0.5rem 0;
+	}
 	
-	.settings-field-top {
+	.uu-top {
 		display: flex;
 		align-items: center; 
 		gap: 0.5rem;
 
-		input.new-username-input {
+		input.uu-input {
 			padding: 0.25rem;
 		}
 	
-		.save-username-btn {
-			height: 2rem;
-			background: white;
-			border: none;
+		.update-username-btn {
+			color: black;
+			padding: 0.5rem 1rem;
+
+			&.inactive {
+				pointer-events: none;
+				opacity: 0.4;
+			}
 		}
 	}
 
-	.settings-field-bot {
-		.settings-field-message {
+	.uu-bot {
+
+		.uu-message {
+			display: flex;
+			align-items: center;
+			gap: 0.25rem;
 			font-size: 0.9rem;
+			padding: 0.5rem 0;
+
+			.uu-error-icon {
+				display: flex;
+			
+			}
 		}
 	}
 }

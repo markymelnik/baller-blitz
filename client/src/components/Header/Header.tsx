@@ -29,6 +29,9 @@ export const Header = () => {
         {location.pathname === '/profile' && <AuthenticatedToFrontButton />}
         {location.pathname === '/settings' && <AuthenticatedToProfileButton />}
       </div>
+      <div className="header-middle">
+        {location.pathname === '/settings' && <div className='settings-page-header'>Settings</div>}
+      </div>
       <div className='header-right'>
 				{location.pathname === '/front' && <AuthenticatedProfileButton />}
         {location.pathname === '/profile' && <AuthenticatedToSettingsButton />}

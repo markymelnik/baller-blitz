@@ -107,13 +107,13 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
           </div>
           <div className='game-matchup'>
             <div className='game-teams'>
-              <div className='away-team-name'>{game.awayTeam.teamName}</div>
-              <div className='home-team-name'>{game.homeTeam.teamName}</div>
+              <div className='away-team-name'>{game.awayTeam.teamName || `TBD`}</div>
+              <div className='home-team-name'>{game.homeTeam.teamName || `TBD`}</div>
             </div>
             {gameStatus !== GameState.NOT_STARTED && (
               <div className='game-scores'>
-                <div className='team-score'>{game.awayTeam.score}</div>
-                <div className='team-score'>{game.homeTeam.score}</div>
+                <div className='team-score'>{game.awayTeam.score || `TBD`}</div>
+                <div className='team-score'>{game.homeTeam.score || `TBD`}</div>
               </div>
             )}
           </div>

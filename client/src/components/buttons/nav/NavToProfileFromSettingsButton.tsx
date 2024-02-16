@@ -6,7 +6,7 @@ export const NavToProfileFromSettingsButton = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/profile'}
-      buttonText={'Profile'}
+      /* buttonText={'Profile'} */
       className={'nav-to-profile-from-settings-btn'}
     >
     <Icons.ArrowLeft size={20} />

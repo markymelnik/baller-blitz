@@ -6,8 +6,43 @@
 	padding: 4rem 0 0;
 	flex: 1;
 
-	.settings-page-header {
-		font-size: 1.25rem;
-		padding: 0 0 2rem;
+	.sp-settings-list {
+		border-bottom: 1px solid lightgrey;
+
+		.sp-open-btn {
+			display: flex;
+			gap: 0.5rem;
+			width: 100%;
+			padding: 1rem 0;
+			border-top: 1px solid lightgrey;
+			text-align: left;
+	
+			.sp-btn-icon {
+				transition: transform 0.3s ease;
+				transform: rotate(-180deg);
+			}
+	
+			.sp-rotate-icon {
+				transition: transform 0.3s ease;
+			}
+		}
+		
+		.see-email-wrapper,
+		.update-username-wrapper {
+			animation: FadeIn 0.3s ease-out;
+		}
+	}
+
+	
+
+}
+
+@keyframes FadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }

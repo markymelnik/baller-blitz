@@ -6,7 +6,7 @@ export const NavBackToFrontButton = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/front'}
-      buttonText={'Games'}
+      /* buttonText={'Games'} */
       className={'nav-to-front-btn'}
     >
     <Icons.ArrowLeft size={20} />

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
+import { Icons } from '../../../lib/Icons.ts';
 import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
 import { useFetchCurrentPredictions } from '../../../hooks/predictions/useFetchCurrentPredictions.ts';
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
@@ -50,6 +51,7 @@ export const ProfilePage = () => {
               {username}
             </div>
             <div className="profile-verified">
+              <span><Icons.SealCheck size={16} /></span>
               {is_verified && 'Verified'}
             </div>
           </div>
@@ -61,7 +63,7 @@ export const ProfilePage = () => {
       <div className='profile-page-bot'>
         <ul className='profile-page-blobs'>
           {isLoading ? (
-            <Skeleton className="blob-skeleton-wrapper" count={3} />
+            <Skeleton className="blob-skeleton-wrapper" count={2} />
           ) : (
             <>
               <UserStats allPredictedGames={allPredictedGames} />

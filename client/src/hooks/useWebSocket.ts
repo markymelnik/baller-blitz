@@ -29,7 +29,7 @@ export const useWebSocket = (accessToken: string) => {
           if (data.verified === true) {
             socket.removeAllListeners('navigate');
             socket.close();
-            console.log('WebSocket connection closed after verification');
+            /* console.log('WebSocket connection closed after verification'); */
           }
         }
       });
@@ -42,7 +42,7 @@ export const useWebSocket = (accessToken: string) => {
     };
 
     return () => {
-      console.log('WebSocket connection clean up');
+      /* console.log('WebSocket connection clean up'); */
       if (socket) {
         socket.removeAllListeners('navigate');
         socket.close();
