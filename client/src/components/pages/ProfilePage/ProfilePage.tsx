@@ -37,7 +37,7 @@ export const ProfilePage = () => {
     return <p>Loading user details...</p>;
   }
 
-  const { email, is_verified, username } = userDetails;
+  const { is_verified, username } = userDetails;
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
@@ -46,12 +46,18 @@ export const ProfilePage = () => {
         <div className='profile-container'>
           <div className='profile-photo'></div>
           <div className='profile-details'>
-            <div className='profile-email'>
-              {email} {is_verified} {username}
+            <div className='profile-username'>
+              {username}
+            </div>
+            <div className="profile-verified">
+              {is_verified && 'Verified'}
             </div>
           </div>
         </div>
       </div>
+      {/* <div className="profile-page-divider">
+        <div className="divider"></div>
+      </div> */}
       <div className='profile-page-bot'>
         <ul className='profile-page-blobs'>
           {isLoading ? (

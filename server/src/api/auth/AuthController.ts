@@ -25,6 +25,9 @@ export const AuthController = {
       );
       requestingUser.password = saltedAndHashedPassword;
 
+      const randomUsername = `User${Math.floor(Math.random() * 100000000).toString().padStart(8, '0')}`;
+      requestingUser.username = randomUsername;
+
       const databaseUser = await DatabaseQuery.insertUserIntoDB(requestingUser);
 
       const databaseUserRole: string =
@@ -95,6 +98,7 @@ export const AuthController = {
           email: databaseUser.email,
           role: databaseUserRole,
           is_verified: databaseUser.is_verified,
+          username: databaseUser.username,
         },
         accessToken,
       };

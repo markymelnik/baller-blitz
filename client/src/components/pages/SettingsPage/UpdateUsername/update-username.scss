@@ -1,0 +1,27 @@
+.settings-field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+	
+	.settings-field-top {
+		display: flex;
+		align-items: center; 
+		gap: 0.5rem;
+
+		input.new-username-input {
+			padding: 0.25rem;
+		}
+	
+		.save-username-btn {
+			height: 2rem;
+			background: white;
+			border: none;
+		}
+	}
+
+	.settings-field-bot {
+		.settings-field-message {
+			font-size: 0.9rem;
+		}
+	}
+}

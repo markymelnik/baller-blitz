@@ -10,7 +10,7 @@ export const PublicRoutes = () => {
 	const isTokenCurrentlyValid = accessToken ? isTokenValid(accessToken) : false;
 
 	if (isAuthenticated && isTokenCurrentlyValid) {
-		return <Navigate to='/front' />
+		return <Navigate to='/' />
 	}
 
 	return <Outlet />
