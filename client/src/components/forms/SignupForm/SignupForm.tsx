@@ -7,8 +7,9 @@ import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { SignupValidation } from '../InputValidation/SignupValidation/SignupValidation.tsx';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
-import './signup-form.scss';
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
+import { Content } from '../../../lib/Content.ts';
+import './signup-form.scss';
 
 export const SignupForm = () => {
 
@@ -53,8 +54,8 @@ export const SignupForm = () => {
       className='signup-form'
     >
       <div className="signup-form-top">
-        <div className='signup-form-heading'>Sign Up</div>
-        <div className="signup-form-subheading">Enter an email and password</div>
+        <div className='signup-form-heading'>{Content.auth.signup.title}</div>
+        <div className="signup-form-subheading">{Content.auth.signup.prompt}</div>
       </div>
       <div className='signup-input-fields'>
         <Controller
@@ -69,7 +70,7 @@ export const SignupForm = () => {
                 autoComplete='current-email'
                 {...field}
               />
-              <label htmlFor='email'>Email</label>
+              <label htmlFor='email'>{Content.auth.email.title}</label>
             </div>
           )}
         />
@@ -88,7 +89,7 @@ export const SignupForm = () => {
                 minLength={10}
                 maxLength={20}
               />
-              <label htmlFor='password'>Password</label>
+              <label htmlFor='password'>{Content.auth.password.title}</label>
             </div>
           )}
         />
@@ -99,7 +100,7 @@ export const SignupForm = () => {
         className='signup-submit-btn'
         type='submit'
       >
-        Sign Up
+        {Content.auth.signup.title}
       </button>
     </form>
   );

@@ -1,3 +1,4 @@
+import { Content } from '../../../../lib/Content';
 import './signup-validation.scss';
 
 type SignupValidationProps = {
@@ -17,22 +18,22 @@ export const SignupValidation = ({ currentInputPassword }: SignupValidationProps
 
 	return (
     <div className='signup-validation'>
-      <div className="signup-validation-title">Password</div>
+      <div className="signup-validation-title">{Content.auth.password.title}</div>
       <div className='signup-check'>
         <div className={`length-check ${getColorClass(isCorrectLength)}`}>
-          Must be between 10 and 20 characters
+          {Content.auth.signup.validationPrompt[1]}
         </div>
       </div>
       <div className='signup-check'>
         <div
           className={`upper-lower-case-check ${getColorClass(hasUpperCaseLetter && hasLowerCaseLetter)}`}
         >
-          Must contain upper and lower case letters
+          {Content.auth.signup.validationPrompt[2]}
         </div>
       </div>
       <div className='signup-check'>
         <div className={`number-check ${getColorClass(hasDigit)}`}>
-          Must contain at least 1 number
+        {Content.auth.signup.validationPrompt[3]}
         </div>
       </div>
     </div>

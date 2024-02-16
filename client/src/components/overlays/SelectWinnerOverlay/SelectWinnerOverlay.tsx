@@ -1,6 +1,7 @@
 import { MouseEvent, MouseEventHandler, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { Content } from '../../../lib/Content.ts';
 import { useOutsideClick } from '../../../hooks/page/useOutsideClick.ts';
 import { useDisableBodyScroll } from '../../../hooks/page/useDisableBodyScroll.ts';
 import { Game } from '../../../types/gameTypes.ts';
@@ -121,7 +122,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
       >
         <OverlayCloseButton onClose={handleOverlayResetAndClose} />
         <div className='overlay-top'>
-          <div className='overlay-title'>Who will win?</div>
+          <div className='overlay-title'>{Content.overlay.selectWinner.prompt}</div>
         </div>
         <div className='overlay-mid'>
           <div className='game-matchup'>
@@ -158,7 +159,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
                 onClick={() => {}}
                 state={SelectOverlayState.SELECT}
               >
-                Select Winner
+                {Content.overlay.selectWinner.state[1]}
               </PickSubmitButton>
             )}
             {overlayState === SelectOverlayState.CONFIRM && (
@@ -166,7 +167,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
                 onClick={actionWrapper(confirmSelectedWinner)}
                 state={SelectOverlayState.CONFIRM}
               >
-                Confirm
+                {Content.overlay.selectWinner.state[2]}
               </PickSubmitButton>
             )}
             {overlayState === SelectOverlayState.SUBMIT && (
@@ -175,7 +176,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
                 onClick={actionWrapper(submiSelectedtWinner)}
                 state={SelectOverlayState.SUBMIT}
               >
-                Submit
+              {Content.overlay.selectWinner.state[3]}
               </PickSubmitButton>
             )}
           </div>

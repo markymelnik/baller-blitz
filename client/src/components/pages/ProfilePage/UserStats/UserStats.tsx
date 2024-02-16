@@ -1,4 +1,5 @@
 import { useFetchUserStats } from '../../../../hooks/useFetchUserStats';
+import { Content } from '../../../../lib/Content';
 import { PredictedGame } from '../../../../types/gameTypes';
 import { UserStatistics } from '../../../../types/userTypes';
 import './user-stats.scss';
@@ -25,13 +26,13 @@ export const UserStats = ({ allPredictedGames }: UserStatsProps) => {
 
   return (
     <div className='user-stats'>
-      <div className='stats-header'>User Stats</div>
+      <div className='stats-header'>{Content.profile.userStats.title}</div>
       <div className='stat'>
         <div className='stat-type'>
           <div className='stat-percentage'>
             {formatPercent(accuracy_percentage)}
           </div>
-          <div className='stat-title'>Win Prediction</div>
+          <div className='stat-title'>{Content.profile.userStats.winPrediction}</div>
         </div>
         {numberOfPredictedGames < 1 ? (
           <></>

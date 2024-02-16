@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { PiCaretDown, PiCaretUp } from 'react-icons/pi';
 
+import { Icons } from '../../../../lib/Icons';
 import { PredictedGame } from '../../../../types/gameTypes';
+import { Content } from '../../../../lib/Content';
 
 import { CurrentCard } from './CurrentCard/CurrentCard';
 import './user-predictions.scss';
-
 
 type UserPredictionsProps = {
   currentPredictedGames: PredictedGame[];
@@ -26,8 +26,8 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
         className='current-predictions-header'
         onClick={handleCurrentButtonClick}
       >
-        <div className='current-text'>Current Predictions</div>
-        <PiCaretDown
+        <div className='current-text'>{Content.profile.currentPredictions.title}</div>
+        <Icons.ArrowDown
           size={20}
           className={isCurrentOpen ? `icon` : `rotate-icon`}
         />
@@ -38,14 +38,14 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
       {isCurrentOpen && (
         <>
           {numberOfPredictedGames < 1 ? (
-            <div className='prediction-none'>No predictions made today.</div>
+            <div className='prediction-none'>{Content.profile.currentPredictions.none}</div>
           ) : (
             <ul className='current-predictions-list'>
               {currentPredictedGames.map((game) => (
                 <CurrentCard key={game.game_id} gameInfo={game} />
               ))}
               <div className='current-predictions-list-bot'>
-                <PiCaretUp size={25} onClick={handleCurrentButtonClick} />
+                <Icons.ArrowUp size={25} onClick={handleCurrentButtonClick} />
               </div>
             </ul>
           )}

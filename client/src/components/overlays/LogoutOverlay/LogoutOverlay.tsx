@@ -8,6 +8,7 @@ import { AuthManager } from '../../../managers/AuthManager';
 import { handleError } from '../../../errors/handleError';
 import { AuthenticationError } from '../../../errors/ErrorClasses';
 import './logout-overlay.scss';
+import { Content } from '../../../lib/Content';
 
 type LogoutOverlayProps = {
   isOpen: boolean;
@@ -42,16 +43,16 @@ export const LogoutOverlay = ({ isOpen, onClose }: LogoutOverlayProps) => {
   return createPortal(
     <div className='logout-portal-wrapper'>
       <div className='logout-overlay' ref={overlayRef}>
-        <div className='logout-overlay-graphic'>You are you sure?</div>
+        <div className='logout-overlay-graphic'>Are you sure?</div>
         <div className='logout-overlay-message'>Confirm</div>
         <div className='logout-overlay-btns'>
           <button className='close-logout-overlay-btn'>
             <div className='close-btn-text' onClick={onClose}>
-              Close
+              {Content.common.close}
             </div>
           </button>
           <button className='logout-btn' onClick={handleLogoutButtonClick}>
-            <div className='logout-btn-text'>Logout</div>
+            <div className='logout-btn-text'>{Content.auth.logout.title}</div>
           </button>
         </div>
       </div>

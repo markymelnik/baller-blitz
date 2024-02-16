@@ -1,3 +1,4 @@
+import { Content } from '../../../lib/Content';
 import './overlay-ok-btn.scss';
 
 type OverlayOkButtonProps = {
@@ -7,7 +8,7 @@ type OverlayOkButtonProps = {
 export const OverlayOKButton = ({ onClose }: OverlayOkButtonProps) => {
   return (
     <button className='overlay-ok-btn' onClick={onClose}>
-      Okay
+      {Content.common.okay}
     </button>
   );
 };

@@ -6,8 +6,9 @@ import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
-import './login-form.scss';
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
+import { Content } from '../../../lib/Content.ts';
+import './login-form.scss';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -45,8 +46,8 @@ export const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(handleLoginFormSubmit)} className='login-form'>
       <div className="login-form-top">
-        <div className='login-form-heading'>Login</div>
-        <div className="login-form-subheading">Enter your email and password</div>
+        <div className='login-form-heading'>{Content.auth.login.title}</div>
+        <div className="login-form-subheading">{Content.auth.login.prompt}</div>
       </div>
       
       <div className='login-input-fields'>
@@ -57,7 +58,7 @@ export const LoginForm = () => {
           render={({ field }) => (
             <div className='login-email-field floating-label'>
               <input type='email' placeholder=' ' autoComplete='current-email' {...field} />
-              <label htmlFor='email'>Email</label>
+              <label htmlFor='email'>{Content.auth.email.title}</label>
             </div>
           )}
         />
@@ -75,7 +76,7 @@ export const LoginForm = () => {
                 {...field}
                 maxLength={20}
               />
-              <label htmlFor='password'>Password</label>
+              <label htmlFor='password'>{Content.auth.password.title}</label>
             </div>
           )}
         />
@@ -85,7 +86,7 @@ export const LoginForm = () => {
         className='login-submit-btn'
         type='submit'
       >
-        Log In
+        {Content.auth.login.title}
       </button>
     </form>
   );

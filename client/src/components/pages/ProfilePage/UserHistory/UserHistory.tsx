@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { PiCaretDown, PiCaretUp } from 'react-icons/pi';
 
+import { Icons } from '../../../../lib/Icons';
 import { PredictedGame } from '../../../../types/gameTypes';
+import { Content } from '../../../../lib/Content';
 
 import { HistoryCard } from './HistoryCard/HistoryCard';
 import './user_history.scss';
@@ -22,8 +23,8 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
   return (
     <div className='user-history'>
       <div className='history-header' onClick={handleHistoryButtonClick}>
-        <div className='history-text'>Past History</div>
-        <PiCaretDown
+        <div className='history-text'>{Content.profile.historyPredictions.title}</div>
+        <Icons.ArrowDown
           size={20}
           className={isHistoryOpen ? `icon` : `rotate-icon`}
         />
@@ -34,14 +35,14 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
       {isHistoryOpen && (
         <>
           {numberOfPredictedGames < 1 ? (
-            <div className='history-none'>No History</div>
+            <div className='history-none'>{Content.profile.historyPredictions.none}</div>
           ) : (
             <div className='history-card-list'>
               {allPredictedGames.map((game) => (
                 <HistoryCard key={game.game_id} gameInfo={game} />
               ))}
               <div className='history-card-list-bot'>
-                <PiCaretUp size={25} onClick={handleHistoryButtonClick} />
+                <Icons.ArrowUp size={25} onClick={handleHistoryButtonClick} />
               </div>
             </div>
           )}

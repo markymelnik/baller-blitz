@@ -1,4 +1,4 @@
-import { PiUser } from 'react-icons/pi';
+import { Icons } from '../../../lib/Icons.ts';
 
 import { NavigateToButtonCreator } from './NavigateToButtonCreator.tsx';
 import './nav-to-btns.scss';
@@ -8,7 +8,7 @@ export const NavigateToProfileButton = () => {
     <NavigateToButtonCreator
       toRoute={'/profile'}
       className={'nav-to-profile-btn'}>
-        <PiUser size={30} />
+        <Icons.Profile size={30} />
     </NavigateToButtonCreator>
   );
 };

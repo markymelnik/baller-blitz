@@ -7,6 +7,7 @@ import { useFetchCurrentPredictions } from '../../../../hooks/predictions/useFet
 import { useGamesToday } from '../../../../hooks/stateSelectors';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './list-of-games-today.scss';
+import { Content } from '../../../../lib/Content';
 
 export const ListOfGamesToday = () => {
   const [fetchTrigger, setFetchTrigger] = useState(false);
@@ -66,16 +67,14 @@ export const ListOfGamesToday = () => {
       ) : (
         <div className='list-message-container'>
           {gamesState === 'NOT_STARTED' && (
-            <div className='list-message'>Games haven't started yet.</div>
+            <div className='list-message'>{Content.front.games.status[1]}</div>
           )}
           {gamesState === 'IN_PROGRESS' && (
-            <div className='list-message'>Games are live!</div>
+            <div className='list-message'>{Content.front.games.status[2]}</div>
           )}
           {gamesState === 'FINISHED' && (
             <div className='list-message'>
-              All games have finished.
-              <br />
-              New game information at 12 PM ET!
+              {Content.front.games.status[3]}
             </div>
           )}
         </div>

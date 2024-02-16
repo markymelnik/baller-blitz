@@ -1,17 +1,18 @@
 import { MouseEvent, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import { Content } from '../../../lib/Content.ts';
 import { useOutsideClick } from '../../../hooks/page/useOutsideClick.ts';
 import { useDisableBodyScroll } from '../../../hooks/page/useDisableBodyScroll.ts';
 /* import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx'; */
 import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton.tsx';
-import './already-predicted-overlay.scss';
 import { Game } from '../../../types/gameTypes.ts';
 import { PredictionManager } from '../../../managers/PredictionManager.ts';
 import { useAccessToken, useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx';
 
 import { AlreadyOverlayState } from './AlreadyOverlayState.ts';
-import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx';
+import './already-predicted-overlay.scss';
 
 type AlreadyPredictedOverlayProps = {
 	isOpen: boolean;
@@ -100,10 +101,10 @@ export const AlreadyPredictedOverlay = ({ isOpen, onClose, game, predictedWinner
 				<div className="switch-prediction">
 					<div className="switch-pred-text">{`Switch to ${otherTeam} instead?`}</div>
 					<div className='already-submit-warning'>
-            {overlayState === AlreadyOverlayState.SUBMIT ? 'Are you sure?' : ''}
+            {overlayState === AlreadyOverlayState.SUBMIT ? `Are you sure?` : ''}
           </div>
-					{overlayState === AlreadyOverlayState.CONFIRM && <button className='switch-submit-btn' onClick={confirmWinner}>Confirm</button>}
-					{overlayState === AlreadyOverlayState.SUBMIT && <button className={`switch-submit-btn submit`} onClick={submitWinner}>Submit</button>}
+					{overlayState === AlreadyOverlayState.CONFIRM && <button className='switch-submit-btn' onClick={confirmWinner}>{Content.overlay.alreadyPredicted.state[1]}</button>}
+					{overlayState === AlreadyOverlayState.SUBMIT && <button className={`switch-submit-btn submit`} onClick={submitWinner}>{Content.overlay.alreadyPredicted.state[2]}</button>}
 				</div>
 			</div>
 		</div>,

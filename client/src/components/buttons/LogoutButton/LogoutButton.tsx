@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { PiSignOut } from 'react-icons/pi';
 
 import { LogoutOverlay } from '../../overlays/LogoutOverlay/LogoutOverlay.tsx';
 import './logout-btn.scss';
+import { Content } from '../../../lib/Content.ts';
+import { Icons } from '../../../lib/Icons.ts';
 
 export const LogoutButton = () => {
   const [isLogoutOverlayOpen, setIsLogoutOverlayOpen] = useState<boolean>(false);
@@ -21,8 +22,8 @@ export const LogoutButton = () => {
         className='open-overlay-btn'
         onClick={handleLogoutOverlayButtonClick}
       >
-        <PiSignOut size={20} />
-        <div className='open-btn-text'>Logout</div>
+        <Icons.Logout size={20} />
+        <div className='open-btn-text'>{Content.auth.logout.title}</div>
       </button>
       
       <LogoutOverlay

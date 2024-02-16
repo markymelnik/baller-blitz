@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { MdCheck } from "react-icons/md";
 
+import { Icons } from "../../../../lib/Icons.ts";
 import { Game } from "../../../../types/gameTypes.ts"
 import { GameDataFormatter } from "../../../../utils/GameDataFormatter.ts";
 import { SelectWinnerOverlay } from "../../../overlays/SelectWinnerOverlay/SelectWinnerOverlay.tsx";
@@ -67,7 +67,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
         {gameStatus === GameState.NOT_STARTED && isPredicted && (
           <div className='top-right'>
             <div className='game-card-predicted'>
-              <MdCheck size={20} />
+              <Icons.Check size={20} />
               <div className='predicted-text'>Predicted {predictedWinner}</div>
             </div>
           </div>
@@ -77,7 +77,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
           <div className='top-right'>
             {isPredicted ? (
               <div className='game-card-predicted'>
-                <MdCheck size={20} />
+                <Icons.Check size={20} />
                 <div className='predicted-text'>
                   Predicted {predictedWinner}
                 </div>
@@ -94,7 +94,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
           <div className='top-right'>
             <div className='game-card-predicted'>
               <div className='predicted-text'>Predicted {predictedWinner}</div>
-              <MdCheck size={20} />
+              <Icons.Check size={20} />
               <div className='predicted-outcome'>{`Winner: ${GameDataFormatter.determineWinner(
                 game
               )}`}</div>
