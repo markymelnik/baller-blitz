@@ -42,13 +42,13 @@ export const TokenController = {
 
 				const refreshTokenUserId = decoded.id;
 	
-				const { id, email, is_verified } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
+				const { id, email, is_verified, username } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
 				const role = await DatabaseQuery.getUserRoleByIdFromDB(refreshTokenUserId);
 
 				const newAccessToken = TokenCreator.generateAccessToken({ userId: refreshTokenUserId });
 	
 				const responseObject: LoginResponse = {
-					user: { id, email, role, is_verified },
+					user: { id, email, role, is_verified, username },
 					accessToken: newAccessToken,
 				};
 	

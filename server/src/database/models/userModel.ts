@@ -11,6 +11,7 @@ export interface DatabaseUser {
   password: string;
   role: Role;
   is_verified: boolean;
+  username: string;
 }
 
 export interface FrontendUser {
@@ -18,6 +19,7 @@ export interface FrontendUser {
   email: string;
   role: string;
   is_verified: boolean;
+  username: string;
 }
 
 export interface LoginResponse {

@@ -3,6 +3,7 @@ export interface UserDetails {
   email: string;
   role: string;
   is_verified: boolean;
+  username: string;
 }
 
 export interface UserState {

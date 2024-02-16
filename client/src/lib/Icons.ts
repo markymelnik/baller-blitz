@@ -1,4 +1,4 @@
-import { PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiHouseLight, PiSignOut, PiUser, PiX } from "react-icons/pi";
+import { PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiGear, PiHouseLight, PiSignOut, PiUser, PiX } from "react-icons/pi";
 import { TbBallBasketball } from "react-icons/tb";
 import { MdCheck } from "react-icons/md";
 
@@ -11,6 +11,7 @@ export const Icons = {
 	Close: PiX,
 	Home: PiHouseLight,
 	Profile: PiUser,
+	Gear: PiGear,
 	Basketball: TbBallBasketball,
 	Logout: PiSignOut,
 }

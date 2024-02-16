@@ -5,6 +5,7 @@ import { Prediction } from '../types/predictionTypes.ts';
 import { createBackendEndpointUrl } from '../utils/createBackendEndpointUrl.ts';
 
 export const ApiClient = {
+
   async processUserSignup(path: string, formData: SignupCredentials) {
     const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -195,5 +196,23 @@ export const ApiClient = {
     } catch (error) {
       console.error(error);
     }
+  },
+
+  async updateUsername({ newUsername, accessToken }) {
+    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/update-username');
+    const response = await fetch(BACKEND_ENDPOINT_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type' : 'application/json',
+        'Authorization' : `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify({ username: newUsername })
+    })
+
+    if (!response.ok) {
+      throw new Error('Failed to update username')
+    }
+
+    return response.json();
   }
 };

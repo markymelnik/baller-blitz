@@ -204,5 +204,14 @@ export const DatabaseQuery = {
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
+  },
+
+  async updateUsernameInDB (userId: number, newUsername: string): Promise<any> {
+    try {
+      const response = await pool.query(USER_QUERY.UPDATE_USERNAME_BY_ID, [userId, newUsername]);
+      return response.rows[0];
+    } catch (error) {
+      throw new DatabaseError('A database error occurred');
+    }
   }
 };

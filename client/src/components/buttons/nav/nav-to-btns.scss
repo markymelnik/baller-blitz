@@ -72,3 +72,25 @@
 
 	}
 }
+
+.nav-to-settings-btn {
+	background: white;
+	border: none;
+}
+
+.nav-to-profile-from-settings-btn {
+	display: flex;
+	align-items: center;
+	background: white;
+	border: none;
+	gap: 0.25rem;
+
+	.nav-btn-text {
+		order: 2;
+		font-size: 1.05rem;
+	}
+
+	svg {
+		order: 1;
+	}
+}

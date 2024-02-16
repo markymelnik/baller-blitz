@@ -37,7 +37,7 @@ export const ProfilePage = () => {
     return <p>Loading user details...</p>;
   }
 
-  const { email, is_verified } = userDetails;
+  const { email, is_verified, username } = userDetails;
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
@@ -47,7 +47,7 @@ export const ProfilePage = () => {
           <div className='profile-photo'></div>
           <div className='profile-details'>
             <div className='profile-email'>
-              {email} {is_verified}
+              {email} {is_verified} {username}
             </div>
           </div>
         </div>
