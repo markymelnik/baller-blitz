@@ -28,12 +28,27 @@
 			.login-error-message {
 				color: red;
 			}
+
+			.edit-email-btn {
+				position: absolute;
+				right: 1rem;
+				transform: translateY(50%);
+				bottom: 50%;
+			}
+
+			.show-login-pw-btn {
+				position: absolute;
+				right: 1rem;
+				transform: translateY(50%);
+				bottom: 50%;
+			}
 		}
 	}
 
 	.login-submit-btn {
 		height: 2.5rem;
 		margin: 0.5rem 0 0;
+		border: 1px solid black;
 	}
 
 	.floating-label {
@@ -65,5 +80,7 @@
 			left: 0;
 			font-size: 0.85rem;
 		}
+
+		
 	}
 }

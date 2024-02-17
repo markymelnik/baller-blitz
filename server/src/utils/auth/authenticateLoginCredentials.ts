@@ -8,11 +8,11 @@ export async function authenticateLoginCredentials(requestingUser: RequestingUse
 		const databaseUser: DatabaseUser = await DatabaseQuery.findUserByEmailFromDB(requestingUser.email);
 		
 		if (!databaseUser) {
-			throw new AuthenticationError('Login failed. Try again.');
+			throw new AuthenticationError('Wrong email or password');
 		}
 		const doPasswordsMatch = await bcrypt.compare(requestingUser.password, databaseUser.password);
 		if (!doPasswordsMatch) {
-			throw new AuthenticationError('Login failed. Try again.');
+			throw new AuthenticationError('Wrong email or password');
 		}
 
 		return databaseUser;

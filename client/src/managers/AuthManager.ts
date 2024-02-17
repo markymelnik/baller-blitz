@@ -58,6 +58,18 @@ export const AuthManager = {
 			handleError(authenticationError);
 		}
 	},
+
+	async checkIfEmailExists(email: string) {
+		try {
+
+			const response = await ApiClient.checkIfEmailExists(email);
+			return response;
+		}
+		catch (error) {
+			const authenticationError = new AuthenticationError('Email already in database');
+			handleError(authenticationError);
+		}
+	},
 	
 	async refreshUserSession(dispatch: AppDispatch) {
 		try {

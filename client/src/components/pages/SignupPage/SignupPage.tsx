@@ -1,7 +1,6 @@
 import { SignupForm } from '../../forms/SignupForm/SignupForm.tsx';
 import { NavToLoginFromSignupButton } from '../../buttons/nav/NavToLoginFromSignupButton.tsx';
 import './signup-page.scss';
-import { Content } from '../../../lib/Content.ts';
 
 export const SignupPage = () => {
 
@@ -10,7 +9,7 @@ export const SignupPage = () => {
       <div className='signup-page-wrapper'>
         <SignupForm />
         <div className='signup-page-bot'>
-          <div className="sp-message">{Content.auth.signup.alreadyUser}</div>          
+          <div className="sp-message">Already have an account?</div>          
           <NavToLoginFromSignupButton />
         </div>
       </div>

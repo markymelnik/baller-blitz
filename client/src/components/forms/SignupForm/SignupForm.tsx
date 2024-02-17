@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -10,11 +11,15 @@ import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessag
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import { Content } from '../../../lib/Content.ts';
 import './signup-form.scss';
+import { Icons } from '../../../lib/Icons.ts';
 
 export const SignupForm = () => {
-
   const dispatch = useDispatch();
   const delayNavigate = useDelayNavigate();
+
+  const [emailChecked, setEmailChecked] = useState<boolean>(false);
+  const [emailExists, setEmailExists] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   
   const {
     control,
@@ -22,9 +27,43 @@ export const SignupForm = () => {
     watch,
     formState: { errors },
     setError,
+    clearErrors,
+    reset,
   } = useForm<SignupCredentials>();
 
-  const currentInputPassword = watch('password') || '';
+  const currentEmail = watch('email') || '';
+  const currentPassword = watch('password') || '';
+
+  console.log(emailChecked, emailExists);
+
+  const handleEmailSubmit = async (formData: { email: string }) => {
+    try {
+      const response = await AuthManager.checkIfEmailExists(formData.email);
+
+      setEmailChecked(true);
+
+      console.log(response);
+
+      if (response.error) {
+        if (response.error === 'Email already in use') {
+          setError('email', { type: 'custom', message: 'Email already in use' });
+          setEmailExists(true);
+        } else if (response.error.message === 'This email format does not work. Try again.') {
+          setError('email', { type: 'custom', message: 'Email is not valid' });
+          setEmailExists(false);
+          setEmailChecked(false);
+        }
+      }
+
+      else if (response.emailExists === false) {
+        setEmailExists(false);
+      }
+
+
+    } catch (error) {
+      handleError(error);
+    }
+  }
 
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
@@ -48,14 +87,27 @@ export const SignupForm = () => {
     }
   };
 
+  const handleEditButtonClick = () => {
+    setEmailChecked(false);
+    setEmailExists(false);
+    clearErrors();
+    reset({
+      email: currentEmail,
+      password: ''
+    });
+  }
+
   return (
     <form
-      onSubmit={handleSubmit(handleSignupFormSubmit)}
+      onSubmit={
+        emailChecked && !emailExists
+          ? handleSubmit(handleSignupFormSubmit)
+          : handleSubmit(handleEmailSubmit)
+      }
       className='signup-form'
     >
-      <div className="signup-form-top">
-        <div className='signup-form-heading'>{Content.auth.signup.title}</div>
-        <div className="signup-form-subheading">{Content.auth.signup.prompt}</div>
+      <div className='signup-form-top'>
+        <div className='signup-form-heading'>Create your account</div>
       </div>
       <div className='signup-input-fields'>
         <Controller
@@ -69,38 +121,56 @@ export const SignupForm = () => {
                 placeholder=' '
                 autoComplete='current-email'
                 {...field}
+                disabled={emailChecked && !emailExists}
               />
               <label htmlFor='email'>{Content.auth.email.title}</label>
+              {emailChecked && !emailExists && (
+                <div className='edit-email-btn' onClick={handleEditButtonClick}>
+                  Edit
+                </div>
+              )}
             </div>
           )}
         />
 
-        <Controller
-          name='password'
-          control={control}
-          defaultValue=''
-          render={({ field }) => (
-            <div className='signup-password-field floating-label'>
-              <input
-                type='password'
-                placeholder=' '
-                autoComplete='current-password'
-                {...field}
-                minLength={10}
-                maxLength={20}
-              />
-              <label htmlFor='password'>{Content.auth.password.title}</label>
-            </div>
-          )}
-        />
+        {emailChecked && !emailExists && (
+          <Controller
+            name='password'
+            control={control}
+            defaultValue=''
+            render={({ field }) => (
+              <div className='signup-password-field floating-label'>
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder=' '
+                  autoComplete='current-password'
+                  {...field}
+                  minLength={10}
+                  maxLength={20}
+                />
+                <label htmlFor='password'>{Content.auth.password.title}</label>
+                <button
+                  className='show-signup-pw-btn'
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? (
+                    <Icons.EyeOpen size={20} />
+                  ) : (
+                    <Icons.EyeClose size={20} />
+                  )}
+                </button>
+              </div>
+            )}
+          />
+        )}
+        <ValidationErrorMessage error={errors.email?.message || ''} />
+        {emailChecked && !emailExists && (
+          <SignupValidation currentInputPassword={currentPassword} />
+        )}
       </div>
-      <ValidationErrorMessage error={errors.email?.message || ''} />
-      <SignupValidation currentInputPassword={currentInputPassword} />
-      <button
-        className='signup-submit-btn'
-        type='submit'
-      >
-        {Content.auth.signup.title}
+
+      <button className='signup-submit-btn' type='submit'>
+        {emailChecked && !emailExists ? Content.auth.signup.title : 'Continue'}
       </button>
     </form>
   );

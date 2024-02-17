@@ -1,4 +1,4 @@
-import { PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiGear, PiHouseLight, PiSealCheck, PiShieldWarning, PiSignOut, PiUser, PiX } from "react-icons/pi";
+import { PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiEye, PiEyeSlash, PiGear, PiHouseLight, PiSealCheck, PiShieldWarning, PiSignOut, PiUser, PiWarningCircle, PiX } from "react-icons/pi";
 import { TbBallBasketball } from "react-icons/tb";
 import { MdCheck } from "react-icons/md";
 
@@ -16,4 +16,7 @@ export const Icons = {
 	Logout: PiSignOut,
 	SheildWarning: PiShieldWarning,
 	SealCheck: PiSealCheck,
+	Warning: PiWarningCircle,
+	EyeOpen: PiEye,
+	EyeClose: PiEyeSlash,
 }

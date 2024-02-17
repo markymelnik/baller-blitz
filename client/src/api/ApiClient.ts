@@ -65,6 +65,24 @@ export const ApiClient = {
     }
   },
 
+  async checkIfEmailExists(email: string) {
+    try {
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/check-email');
+      const response = await fetch(BACKEND_ENDPOINT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email })
+      })
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      const authenticationError = new AuthenticationError('Failed to logout');
+      handleError(authenticationError);
+    }
+  },
+
   async refreshAccessToken(path: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
