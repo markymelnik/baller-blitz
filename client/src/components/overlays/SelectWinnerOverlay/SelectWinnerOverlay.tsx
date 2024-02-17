@@ -100,7 +100,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
 	if (!isOpen) return null;
 
   if (overlayState === SelectOverlayState.RESULT) {
-    const message = isSubmissionSuccessful ? 'Success! Your prediction was saved.' : `You already predicted this match!`;
+    const message = isSubmissionSuccessful ? Content.overlay.selectWinner.submit.success : Content.overlay.selectWinner.submit.failure;
     return createPortal(
       <div className="portal-wrapper">
         <div className="select-winner-overlay success" ref={overlayRef} onClick={handleOverlayClick}>

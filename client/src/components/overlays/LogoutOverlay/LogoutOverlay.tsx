@@ -43,8 +43,8 @@ export const LogoutOverlay = ({ isOpen, onClose }: LogoutOverlayProps) => {
   return createPortal(
     <div className='logout-portal-wrapper'>
       <div className='logout-overlay' ref={overlayRef}>
-        <div className='logout-overlay-graphic'>Are you sure?</div>
-        <div className='logout-overlay-message'>Confirm</div>
+        <div className='logout-overlay-graphic'>{Content.common.areYouSure}</div>
+        <div className='logout-overlay-message'>{Content.common.confirm}</div>
         <div className='logout-overlay-btns'>
           <button className='close-logout-overlay-btn'>
             <div className='close-btn-text' onClick={onClose}>

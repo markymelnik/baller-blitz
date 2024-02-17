@@ -69,7 +69,7 @@ export const UpdateUsername = () => {
   };
 
   const handleSubmit = () => {
-    if (isButtonActive) {
+    if (isButtonActive && accessToken) {
       mutation.mutate({ newUsername: currentUsername, accessToken });
     }
   };

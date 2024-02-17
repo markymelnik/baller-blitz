@@ -42,6 +42,11 @@ input, textarea {
   border: 1px solid #ccc;
   padding: 0.5rem; }
 
+input:disabled,
+input[readonly] {
+  color: black;
+  opacity: 1; }
+
 .app-container {
   display: flex;
   flex-direction: column;

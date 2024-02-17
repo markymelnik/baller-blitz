@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { AuthManager } from '../../managers/AuthManager.ts';
 import { authenticateUser, unauthenticateUser } from '../../redux/slices/authSlice.ts';
+import { BackendUser } from '../../types/userTypes.ts';
 
 export const useRefreshUserSession = () => {
   const dispatch = useDispatch();
@@ -10,8 +11,9 @@ export const useRefreshUserSession = () => {
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        const response = await AuthManager.refreshUserSession(dispatch);
-        if (response.message === 'Refresh token not found') {
+        const response: BackendUser | undefined = await AuthManager.refreshUserSession(dispatch);
+
+        if (response && 'message' in response && response.message === 'Refresh token not found') {
           dispatch(unauthenticateUser());
         } else {
           dispatch(authenticateUser());

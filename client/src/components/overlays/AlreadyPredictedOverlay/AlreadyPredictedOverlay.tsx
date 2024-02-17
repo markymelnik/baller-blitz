@@ -46,9 +46,18 @@ export const AlreadyPredictedOverlay = ({ isOpen, onClose, game, predictedWinner
 
 	const submitWinner = async () => {
 		try {
-			const response = await PredictionManager.updatePrediction(accessToken, {
+
+			if (!accessToken) {
+				throw new Error('Access token is null');
+			}
+
+			if (userId === undefined) {
+				throw new Error('User ID is undefined');
+			}
+
+			await PredictionManager.updatePrediction(accessToken, {
 				user_id: userId,
-        game_id: gameId,
+        game_id: +gameId,
         predicted_winner: otherTeam,
 			})
 			

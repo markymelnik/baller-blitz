@@ -7,6 +7,7 @@ import { useVerify } from '../../../hooks/auth/useVerify';
 import { ApiClient } from '../../../api/ApiClient';
 import { useWebSocket } from '../../../hooks/useWebSocket';
 import './verify-overlay.scss';
+import { Content } from '../../../lib/Content';
 
 export const VerifyEmailOverlay = () => {
   const isAuthenticated = useAuth();
@@ -22,13 +23,16 @@ export const VerifyEmailOverlay = () => {
 		try {
       const response = await ApiClient.resendEmailVerification('/verify', accessToken);
 
-      if (response.status === 200) {
-        setResendStatus('disabled');
-        setTimeout(() => setResendStatus(''), 5000);
-      }
-      if (response.status === 429) {
-        setResendStatus('limited');
-        setTimeout(() => setResendStatus(''), 5000);
+      if (response) {
+        if (response.status === 200) {
+            setResendStatus('disabled');
+            setTimeout(() => setResendStatus(''), 5000);
+        } else if (response.status === 429) {
+            setResendStatus('limited');
+            setTimeout(() => setResendStatus(''), 5000);
+        }
+      } else {
+        console.error('No response received from resendEmailVerification');
       }
     } catch (error) {
       console.error(error);
@@ -43,21 +47,21 @@ export const VerifyEmailOverlay = () => {
             {/* <div className="overlay-graphic"></div> */}
           </div>
           <div className='verify-overlay-mid'>
-            <div className='verify-step'>You're one step away.</div>
-            <div className='verify-title'>Verify your email address.</div>
+            <div className='verify-step'>{Content.overlay.verifyOverlay.heading[1]}</div>
+            <div className='verify-title'>{Content.overlay.verifyOverlay.heading[2]}</div>
             <div className='verify-desc'>
-              Check your email and click the link to complete your profile.
+            {Content.overlay.verifyOverlay.heading[3]}
             </div>
           </div>
 
           <div className='verify-again'>
-            <div className='verify-ask'>Don't see it?</div>
+            <div className='verify-ask'>{Content.overlay.verifyOverlay.resend.question}</div>
             {resendStatus === '' && (
               <button
                 className={`send-new-email-btn`}
                 onClick={handleButtonClick}
               >
-                Resend verification link
+                {Content.overlay.verifyOverlay.resend.prompt}
               </button>
             )}
             {resendStatus === 'disabled' && (
@@ -65,7 +69,7 @@ export const VerifyEmailOverlay = () => {
                 className={`send-new-email-btn disabled`}
                 onClick={handleButtonClick}
               >
-                Resend verification link
+                {Content.overlay.verifyOverlay.resend.prompt}
               </button>
             )}
             {resendStatus === 'limited' && (
@@ -73,7 +77,7 @@ export const VerifyEmailOverlay = () => {
                 className={`send-new-email-btn disabled`}
                 onClick={handleButtonClick}
               >
-                Resend verification link
+                {Content.overlay.verifyOverlay.resend.prompt}
               </button>
             )}
             {resendStatus === '' && (
@@ -83,12 +87,12 @@ export const VerifyEmailOverlay = () => {
             )}
             {resendStatus === 'disabled' && (
               <div className='verify-status'>
-                Sent!
+                {Content.overlay.verifyOverlay.resend.sent}
               </div>
             )}
             {resendStatus === 'limited' && (
               <div className='verify-status error'>
-                Too many attempts. Wait to try again.
+                {Content.overlay.verifyOverlay.resend.tooMany}
               </div>
             )}
 

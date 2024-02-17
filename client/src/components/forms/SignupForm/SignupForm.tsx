@@ -7,7 +7,7 @@ import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
 import { SignupValidation } from '../InputValidation/SignupValidation/SignupValidation.tsx';
-import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
+import { ValError } from '../InputValidation/ValError/ValError.tsx';
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import { Content } from '../../../lib/Content.ts';
 import './signup-form.scss';
@@ -34,19 +34,15 @@ export const SignupForm = () => {
   const currentEmail = watch('email') || '';
   const currentPassword = watch('password') || '';
 
-  console.log(emailChecked, emailExists);
-
   const handleEmailSubmit = async (formData: { email: string }) => {
     try {
       const response = await AuthManager.checkIfEmailExists(formData.email);
 
       setEmailChecked(true);
 
-      console.log(response);
-
       if (response.error) {
         if (response.error === 'Email already in use') {
-          setError('email', { type: 'custom', message: 'Email already in use' });
+          setError('email', { type: 'custom', message: 'Email unavailable' });
           setEmailExists(true);
         } else if (response.error.message === 'This email format does not work. Try again.') {
           setError('email', { type: 'custom', message: 'Email is not valid' });
@@ -61,7 +57,8 @@ export const SignupForm = () => {
 
 
     } catch (error) {
-      handleError(error);
+      const signupError = new AuthenticationError('Failed to submit email');
+      handleError(signupError);
     }
   }
 
@@ -74,7 +71,7 @@ export const SignupForm = () => {
       }
 
       if (response.error && response.error.code) {
-        setError('email', { type: 'custom', message: response.error.message });
+        setError('password', { type: 'custom', message: response.error.message });
       }
 
       if (response.user) {
@@ -107,7 +104,7 @@ export const SignupForm = () => {
       className='signup-form'
     >
       <div className='signup-form-top'>
-        <div className='signup-form-heading'>Create your account</div>
+        <h1 className='signup-form-heading'>Create your account</h1>
       </div>
       <div className='signup-input-fields'>
         <Controller
@@ -122,8 +119,9 @@ export const SignupForm = () => {
                 autoComplete='current-email'
                 {...field}
                 disabled={emailChecked && !emailExists}
+                className={errors.email ? 'input-error' : ''}
               />
-              <label htmlFor='email'>{Content.auth.email.title}</label>
+              <label htmlFor='email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && !emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
                   Edit
@@ -147,10 +145,12 @@ export const SignupForm = () => {
                   {...field}
                   minLength={10}
                   maxLength={20}
+                  className={errors.password ? 'input-error' : ''}
                 />
-                <label htmlFor='password'>{Content.auth.password.title}</label>
+                <label htmlFor='password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
                 <button
                   className='show-signup-pw-btn'
+                  type='button'
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
                   {showPassword ? (
@@ -163,14 +163,14 @@ export const SignupForm = () => {
             )}
           />
         )}
-        <ValidationErrorMessage error={errors.email?.message || ''} />
+        <ValError error={errors.email?.message || ''} />
         {emailChecked && !emailExists && (
           <SignupValidation currentInputPassword={currentPassword} />
         )}
       </div>
 
       <button className='signup-submit-btn' type='submit'>
-        {emailChecked && !emailExists ? Content.auth.signup.title : 'Continue'}
+        {'Continue'}
       </button>
     </form>
   );

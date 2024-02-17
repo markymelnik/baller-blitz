@@ -6,12 +6,11 @@ import { LoginCredentials } from '../../../types/authTypes.ts';
 import { AuthManager } from '../../../managers/AuthManager.ts';
 import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
 import { handleError } from '../../../errors/handleError.ts';
-import { ValidationErrorMessage } from '../InputValidation/ValidationErrorMessage/ValidationErrorMessage.tsx';
+import { ValError } from '../InputValidation/ValError/ValError.tsx';
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
 import { Content } from '../../../lib/Content.ts';
 import './login-form.scss';
 import { Icons } from '../../../lib/Icons.ts';
-
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ export const LoginForm = () => {
   const [emailExists, setEmailExists] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  console.log(emailChecked, emailExists);
   const {
     control,
     handleSubmit,
@@ -37,7 +35,6 @@ export const LoginForm = () => {
   const handleEmailSubmit = async (formData: { email: string }) => {
     try {
       const response = await AuthManager.checkIfEmailExists(formData.email);
-      console.log(response);
 
       setEmailChecked(true);
 
@@ -50,27 +47,25 @@ export const LoginForm = () => {
           setEmailExists(true);
         }
       }
-      
       else {
-        
         setEmailExists(true);
       }
 
     } catch (error) {
-      handleError(error);
+      const emailError = new AuthenticationError('Failed to submit email');
+      handleError(emailError);
     }
   }
 
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
       const response = await AuthManager.loginUser(formData, dispatch);
-      console.log(response);
       if (!response) {
         throw new AuthenticationError('No response received from login process');
       }
 
       if (response.error && response.error.code) {
-        setError('email', { type: 'custom', message: response.error.message });
+        setError('password', { type: 'custom', message: response.error.message });
       }
 
       if (response.user) {
@@ -103,11 +98,10 @@ export const LoginForm = () => {
       className='login-form'
     >
       <div className='login-form-top'>
-        <div className='login-form-heading'>
-          {emailExists ? 'Enter your password' : 'Welcome back'}
-        </div>
+        <h1 className='login-form-heading'>
+          {emailExists ? `Enter your password` : 'Welcome back'}
+        </h1>
       </div>
-
       <div className='login-input-fields'>
         <Controller
           name='email'
@@ -121,8 +115,9 @@ export const LoginForm = () => {
                 autoComplete='current-email'
                 {...field}
                 disabled={emailChecked && emailExists}
+                className={errors.email ? 'input-error' : ''}
               />
-              <label htmlFor='email'>{Content.auth.email.title}</label>
+              <label htmlFor='email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
                   Edit
@@ -131,7 +126,6 @@ export const LoginForm = () => {
             </div>
           )}
         />
-
         {emailChecked && emailExists && (
           <Controller
             name='password'
@@ -149,9 +143,10 @@ export const LoginForm = () => {
                     field.onChange(e);
                     clearErrors('email');
                   }}
+                  className={errors.password ? 'input-error' : ''}
                 />
-                <label htmlFor='password'>{Content.auth.password.title}</label>
-                <button className='show-login-pw-btn' onClick={() => setShowPassword(prev => !prev)}>
+                <label htmlFor='password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
+                <button className='show-login-pw-btn' type='button' onClick={() => setShowPassword(prev => !prev)}>
                   {showPassword ? <Icons.EyeOpen size={20} /> : <Icons.EyeClose size={20} />}
                 </button>
               </div>
@@ -159,9 +154,10 @@ export const LoginForm = () => {
           />
         )}
       </div>
-      <ValidationErrorMessage error={errors.email?.message || ''} />
+      <ValError error={errors.email?.message || ''} />
+      <ValError error={errors.password?.message || ''} />
       <button className='login-submit-btn' type='submit'>
-        {emailChecked && emailExists ? Content.auth.login.title : 'Continue'}
+        {'Continue'}
       </button>
     </form>
   );

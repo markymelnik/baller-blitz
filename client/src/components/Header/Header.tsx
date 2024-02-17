@@ -6,6 +6,7 @@ import { NavBackToFrontButton } from '../buttons/nav/NavBackToFrontButton.tsx';
 import { NavigateToHomeButton } from '../buttons/nav/NavigateToHomeButton.tsx';
 import { NavToSettingsButton } from '../buttons/nav/NavToSettingsButton.tsx';
 import { NavToProfileFromSettingsButton } from '../buttons/nav/NavToProfileFromSettingsButton.tsx';
+import { Content } from '../../lib/Content.ts';
 
 import useHeaderHideOnScroll from './useHeaderHideOnScroll.ts';
 import './header.scss';
@@ -30,7 +31,7 @@ export const Header = () => {
         {location.pathname === '/settings' && <AuthenticatedToProfileButton />}
       </div>
       <div className="header-middle">
-        {location.pathname === '/settings' && <div className='settings-page-header'>Settings</div>}
+        {location.pathname === '/settings' && <div className='settings-page-header'>{Content.settings.title}</div>}
       </div>
       <div className='header-right'>
 				{location.pathname === '/front' && <AuthenticatedProfileButton />}

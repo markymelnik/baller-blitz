@@ -18,7 +18,7 @@ export const SignupValidation = ({ currentInputPassword }: SignupValidationProps
 
 	return (
     <div className='signup-validation'>
-      <div className="signup-validation-title">{Content.auth.password.title}</div>
+      <div className="sv-title">{Content.auth.password.title}</div>
       <div className='signup-check'>
         <div className={`length-check ${getColorClass(isCorrectLength)}`}>
           {Content.auth.signup.validationPrompt[1]}

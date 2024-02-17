@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
 import { Icons } from '../../../lib/Icons';
+import { Content } from '../../../lib/Content';
 
+import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
 import './settings-page.scss';
-import { SeeEmail } from './SeeEmail/SeeEmail';
 
 export const SettingsPage = () => {
 
@@ -37,7 +38,7 @@ export const SettingsPage = () => {
 				</li>
         <li className='sp-settings-item'>
           <button className='sp-open-btn' onClick={handleUUClick}>
-            <div className='sp-btn-text'>Username</div>
+            <div className='sp-btn-text'>{Content.auth.username.title}</div>
             <Icons.ArrowDown
               size={16}
               className={

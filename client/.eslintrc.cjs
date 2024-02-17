@@ -26,6 +26,19 @@ module.exports = {
           'parent',
           'sibling',
           'index',
+          'unknown',
+        ],
+        pathGroups: [
+          {
+            pattern: '**/*.css',
+            group: 'unknown',
+            position: 'after',
+          },
+          {
+            pattern: '**/*.scss', 
+            group: 'unknown',
+            position: 'after',
+          },
         ],
         'newlines-between': 'always',
       },

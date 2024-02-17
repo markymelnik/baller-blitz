@@ -5,7 +5,6 @@ import { Prediction } from '../types/predictionTypes.ts';
 import { createBackendEndpointUrl } from '../utils/createBackendEndpointUrl.ts';
 
 export const ApiClient = {
-
   async processUserSignup(path: string, formData: SignupCredentials) {
     const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
@@ -17,7 +16,6 @@ export const ApiClient = {
         },
         body: JSON.stringify(formData),
       });
-
       return response.json();
     } catch (error) {
       const authenticationError = new AuthenticationError('Failed to signup');
@@ -58,7 +56,6 @@ export const ApiClient = {
       });
 
       return response.json();
-
     } catch (error) {
       const authenticationError = new AuthenticationError('Failed to logout');
       handleError(authenticationError);
@@ -73,8 +70,8 @@ export const ApiClient = {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: email })
-      })
+        body: JSON.stringify({ email: email }),
+      });
       const data = await response.json();
       return data;
     } catch (error) {
@@ -103,14 +100,18 @@ export const ApiClient = {
     }
   },
 
-  async storePredictionInApi(path: string, accessToken: string, prediction: Prediction) {
+  async storePredictionInApi(
+    path: string,
+    accessToken: string,
+    prediction: Prediction
+  ) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(prediction),
       });
@@ -123,17 +124,21 @@ export const ApiClient = {
     }
   },
 
-  async updatePredictionInApi(path: string, accessToken: string, prediction: Prediction) {
+  async updatePredictionInApi(
+    path: string,
+    accessToken: string,
+    prediction: Prediction
+  ) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(prediction),
-      })
+      });
       const data = await response.json();
       return data;
     } catch (error) {
@@ -142,42 +147,51 @@ export const ApiClient = {
     }
   },
 
-  async fetchCurrentPredictionsFromApi(path: string, accessToken: string, gameIds: number[]) {
+  async fetchCurrentPredictionsFromApi(
+    path: string,
+    accessToken: string,
+    gameIds: number[]
+  ) {
     try {
       const gameIdsQueryString = gameIds.join(',');
 
-      const BACKEND_ENDPOINT_URL = `${createBackendEndpointUrl(path)}?gameIds=${encodeURIComponent(gameIdsQueryString)}`;
+      const BACKEND_ENDPOINT_URL = `${createBackendEndpointUrl(
+        path
+      )}?gameIds=${encodeURIComponent(gameIdsQueryString)}`;
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
-
       });
 
       const data = await response.json();
       return data;
     } catch (error) {
-      const networkError = new TokenError('Failed to fetch current predictions');
+      const networkError = new TokenError(
+        'Failed to fetch current predictions'
+      );
       handleError(networkError);
     }
   },
-  
+
   async fetchUserStatsFromApi(path: string, accessToken: string) {
     try {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
 
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
       const data = await response.json();
       return data;
     } catch (error) {
-      const networkError = new TokenError('Failed to fetch current predictions');
+      const networkError = new TokenError(
+        'Failed to fetch current predictions'
+      );
       handleError(networkError);
     }
   },
@@ -187,13 +201,12 @@ export const ApiClient = {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
 
       const data = await response.json();
       return data;
-
     } catch (error) {
       const networkError = new TokenError('Failed to fetch all predictions');
       handleError(networkError);
@@ -206,31 +219,37 @@ export const ApiClient = {
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'GET',
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       });
-      
+
       return response;
     } catch (error) {
       console.error(error);
     }
   },
 
-  async updateUsername({ newUsername, accessToken }) {
+  async updateUsername({
+    newUsername,
+    accessToken,
+  }: {
+    newUsername: string;
+    accessToken: string;
+  }) {
     const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/update-username');
     const response = await fetch(BACKEND_ENDPOINT_URL, {
       method: 'POST',
       headers: {
-        'Content-Type' : 'application/json',
-        'Authorization' : `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
       },
-      body: JSON.stringify({ username: newUsername })
-    })
+      body: JSON.stringify({ username: newUsername }),
+    });
 
     if (!response.ok) {
-      throw new Error('Failed to update username')
+      throw new Error('Failed to update username');
     }
 
     return response.json();
-  }
+  },
 };

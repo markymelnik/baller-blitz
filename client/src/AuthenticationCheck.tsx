@@ -1,9 +1,5 @@
-import { useEffect } from 'react';
-
 import { LoadingScreen } from './components/loading-screen/LoadingScreen';
-import { useVerify } from './hooks/auth/useVerify';
-import { useDelayNavigate } from './hooks/page/useDelayNavigate';
-import { useAuth, useAuthLoading } from './hooks/stateSelectors';
+import { useAuthLoading } from './hooks/stateSelectors';
 
 interface AuthCheckProps {
   children: React.ReactNode;
@@ -13,10 +9,6 @@ interface AuthCheckProps {
 
 const AuthenticationCheck = ({ children }: AuthCheckProps) => {
   const authenticationIsProcessing = useAuthLoading();
-	const isVerified = useVerify();
-	const isAuthenticated = useAuth();
-
-	const delayNavigate = useDelayNavigate();
 
 	if (authenticationIsProcessing) {
 		return <LoadingScreen />
