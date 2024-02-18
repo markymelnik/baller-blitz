@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { UserStatistics } from "../types/userTypes";
-import { PredictionManager } from "../managers/PredictionManager";
-
-import { useAccessToken } from "./stateSelectors";
+import { UserStatistics } from "../../types/userTypes";
+import { PredictionManager } from "../../managers/PredictionManager";
+import { useAccessToken } from "../stateSelectors";
 
 export const useFetchUserStats = () => {
 

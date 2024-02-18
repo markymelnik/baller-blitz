@@ -8,7 +8,7 @@ export const NavToSettingsButton = () => {
 			toRoute={'/settings'}
 			className={'nav-to-settings-btn'}
 		>
-			<Icons.Gear size={32} />
+			<Icons.Gear size={35} color='grey' />
 		</NavigateToButtonCreator>
 	)
 }

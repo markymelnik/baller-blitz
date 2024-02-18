@@ -42,10 +42,11 @@ input, textarea {
   border: 1px solid #ccc;
   padding: 0.5rem; }
 
-input:disabled,
-input[readonly] {
-  color: black;
-  opacity: 1; }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important; }
 
 .app-container {
   display: flex;

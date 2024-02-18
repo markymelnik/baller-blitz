@@ -8,7 +8,7 @@ import { NavToSettingsButton } from '../buttons/nav/NavToSettingsButton.tsx';
 import { NavToProfileFromSettingsButton } from '../buttons/nav/NavToProfileFromSettingsButton.tsx';
 import { Content } from '../../lib/Content.ts';
 
-import useHeaderHideOnScroll from './useHeaderHideOnScroll.ts';
+import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import './header.scss';
 
 export const Header = () => {

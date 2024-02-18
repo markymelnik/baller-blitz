@@ -9,7 +9,6 @@ import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
 
 import { UserHistory } from './UserHistory/UserHistory.tsx';
 import { UserPredictions } from './UserPredictions/UserPredictions.tsx';
-/* import AboutUser from './AboutUser/AboutUser.tsx'; */
 import { UserStats } from './UserStats/UserStats.tsx';
 import './profile-page.scss';
 
@@ -42,40 +41,34 @@ export const ProfilePage = () => {
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
-    <div className='profile-page'>
-      <div className='profile-page-top'>
-        <div className='profile-container'>
-          <div className='profile-photo'></div>
-          <div className='profile-details'>
-            <div className='profile-username'>
-              {username}
-            </div>
-            <div className="profile-verified">
-              <span><Icons.SealCheck size={16} /></span>
-              {is_verified && 'Verified'}
+      <div className='profile-page'>
+        <div className='profile-page-top'>
+          <div className='profile-container'>
+            <div className='profile-photo'></div>
+            <div className='profile-details'>
+              <div className='profile-username'>{username}</div>
+              <div className='profile-verified'>
+                <span>
+                  <Icons.SealCheck size={16} />
+                </span>
+                {is_verified && 'Verified'}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* <div className="profile-page-divider">
-        <div className="divider"></div>
-      </div> */}
-      <div className='profile-page-bot'>
-        <ul className='profile-page-blobs'>
-          {isLoading ? (
-            <Skeleton className="blob-skeleton-wrapper" count={2} />
-          ) : (
-            <>
+        <div className='profile-page-bot'>
+          <ul className='profile-page-blobs'>
+            {isLoading ? (
+              <Skeleton className='blob-skeleton-wrapper' count={2} />
+            ) : (
               <UserStats allPredictedGames={allPredictedGames} />
-              {/* <AboutUser /> */}
-              <UserPredictions currentPredictedGames={currentPredictedGames} />
-              <UserHistory allPredictedGames={allPredictedGames} />
-            </>
-          )}
-        </ul>
-        <LogoutButton />
+            )}
+            <UserPredictions currentPredictedGames={currentPredictedGames} />
+            <UserHistory allPredictedGames={allPredictedGames} />
+          </ul>
+          <LogoutButton />
+        </div>
       </div>
-    </div>
     </SkeletonTheme>
   );
 };

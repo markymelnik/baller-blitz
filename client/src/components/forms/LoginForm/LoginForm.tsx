@@ -97,18 +97,18 @@ export const LoginForm = () => {
       }
       className='login-form'
     >
-      <div className='login-form-top'>
-        <h1 className='login-form-heading'>
+      <div className='lf-top'>
+        <h1 className='lf-heading'>
           {emailExists ? `Enter your password` : 'Welcome back'}
         </h1>
       </div>
-      <div className='login-input-fields'>
+      <div className='lf-inputs-container'>
         <Controller
           name='email'
           control={control}
           defaultValue=''
           render={({ field }) => (
-            <div className='login-email-field floating-label'>
+            <div className='lf-email'>
               <input
                 type='email'
                 placeholder=' '
@@ -132,7 +132,7 @@ export const LoginForm = () => {
             control={control}
             defaultValue=''
             render={({ field }) => (
-              <div className='login-password-field floating-label'>
+              <div className='lf-password'>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder=' '

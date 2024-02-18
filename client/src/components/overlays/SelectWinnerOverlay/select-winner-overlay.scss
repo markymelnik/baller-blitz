@@ -17,8 +17,8 @@
 		justify-content: flex-end;
 		margin: 1.25rem;
 		padding: 1.5rem;
-		background: white;
 		border: 1px solid black;
+		background: white;
 
 		.select-overlay-message {
 			padding: 0 0 3rem;
@@ -26,7 +26,7 @@
 
 		.select-overlay-ok-btn {
 			border: 1px solid black;
-			background: white;
+
 			padding: 1rem 2rem;
 		}
 	}
@@ -37,7 +37,6 @@
 
 	.overlay-title {
 		font-size: 1.5rem;
-		
 	}
 }
 
@@ -66,9 +65,5 @@
 		text-align: center;
 		margin: 0.5rem 0 1rem;
 		font-weight: bold;
-	}
-
-	.game-prompt {
-		background: white;
 	}
 }

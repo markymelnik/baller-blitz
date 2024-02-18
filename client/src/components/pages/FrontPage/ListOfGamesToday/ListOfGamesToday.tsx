@@ -74,7 +74,8 @@ export const ListOfGamesToday = () => {
           )}
           {gamesState === 'FINISHED' && (
             <div className='list-message'>
-              {Content.front.games.status[3]}
+              {Content.front.games.status[3]} <br />
+              {Content.front.games.status[4]}
             </div>
           )}
         </div>
@@ -87,7 +88,9 @@ export const ListOfGamesToday = () => {
           <Skeleton className='skeleton-wrapper' count={numberOfGames} />
         ) : (
           todaysGames.map((game) => {
-            const predictedGame = predictedGames.find(prediction => prediction.game_id === +game.gameId);
+            const predictedGame = predictedGames.find(
+              (prediction) => prediction.game_id === +game.gameId
+            );
             const isPredicted = !!predictedGame;
 
             return (

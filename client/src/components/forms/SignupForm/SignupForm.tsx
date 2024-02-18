@@ -103,16 +103,16 @@ export const SignupForm = () => {
       }
       className='signup-form'
     >
-      <div className='signup-form-top'>
-        <h1 className='signup-form-heading'>Create your account</h1>
+      <div className='sf-top'>
+        <h1 className='sf-heading'>Create your account</h1>
       </div>
-      <div className='signup-input-fields'>
+      <div className='sf-inputs-container'>
         <Controller
           name='email'
           control={control}
           defaultValue=''
           render={({ field }) => (
-            <div className='signup-email-field floating-label'>
+            <div className='sf-email'>
               <input
                 type='text'
                 placeholder=' '
@@ -137,7 +137,7 @@ export const SignupForm = () => {
             control={control}
             defaultValue=''
             render={({ field }) => (
-              <div className='signup-password-field floating-label'>
+              <div className='sf-password'>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder=' '

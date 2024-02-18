@@ -1,4 +1,4 @@
-import { useFetchUserStats } from '../../../../hooks/useFetchUserStats';
+import { useFetchUserStats } from '../../../../hooks/user/useFetchUserStats';
 import { Content } from '../../../../lib/Content';
 import { PredictedGame } from '../../../../types/gameTypes';
 import { UserStatistics } from '../../../../types/userTypes';
