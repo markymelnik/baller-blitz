@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
+import { DatabaseQuery } from "../database/queries/DatabaseQuery";
 import validator from "validator";
 
 export const UserController = {
@@ -19,7 +19,7 @@ export const UserController = {
 				throw new Error('Username can only contain numbs and letters.');
 			}
 
-			const res = await DatabaseQuery.updateUsernameInDB(userId, newUsername);
+			const res = await DatabaseQuery.updateUsernameInDB(+userId, newUsername);
 			response.status(200).json({ message: 'Username updated successfully', updatedUsername: newUsername });
 		} catch (error) {
 			next(error);

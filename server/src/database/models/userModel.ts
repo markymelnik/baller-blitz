@@ -3,6 +3,7 @@ import { Role } from "./roleModel";
 export interface RequestingUser {
   email: string;
   password: string;
+  username?: string;
 }
 
 export interface DatabaseUser {

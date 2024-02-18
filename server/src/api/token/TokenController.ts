@@ -19,7 +19,13 @@ export const TokenController = {
 	
 		try {
 			const decoded = jwt.verify(accessToken, ACCESS_TOKEN_SECRET as string);
-			request.user = decoded;
+
+			if (typeof decoded === 'object' && 'id' in decoded) {
+				request.user = { id: decoded.id };
+			} else {
+					throw new Error('Invalid token payload.');
+			}
+
 			next();
 		} catch (error) {
 			let errorMessage = 'Invalid token.';
@@ -38,25 +44,28 @@ export const TokenController = {
 		};
 
 		try {
-			const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET as RefreshTokenProps);
+			const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET as string);
 
-				const refreshTokenUserId = decoded.id;
-	
-				const { id, email, is_verified, username } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
-				const role = await DatabaseQuery.getUserRoleByIdFromDB(refreshTokenUserId);
+			if (typeof decoded === 'object' && 'id' in decoded) {
+					const refreshTokenUserId = decoded.id;
 
-				const newAccessToken = TokenCreator.generateAccessToken({ userId: refreshTokenUserId });
-	
-				const responseObject: LoginResponse = {
-					user: { id, email, role, is_verified, username },
-					accessToken: newAccessToken,
-				};
-	
-				return response.status(200).send(responseObject);
-			
-			} catch (error) {
-				return response.status(404).send({ message: 'Access token could not be refreshed' });
-		}
+					const { id, email, is_verified, username } = await DatabaseQuery.findUserByIdFromDB(refreshTokenUserId);
+					const role = await DatabaseQuery.getUserRoleByIdFromDB(refreshTokenUserId);
+
+					const newAccessToken = TokenCreator.generateAccessToken({ userId: refreshTokenUserId });
+
+					const responseObject: LoginResponse = {
+							user: { id, email, role, is_verified, username },
+							accessToken: newAccessToken,
+					};
+
+					return response.status(200).send(responseObject);
+			} else {
+					throw new Error('Invalid token payload.');
+			}
+	} catch (error) {
+			return response.status(404).send({ message: 'Access token could not be refreshed' });
+	}
 	},
 
 	setRefreshTokenCookie(response: Response, refreshToken: string) {

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { Prediction } from "../../database/models/predictionModel";
-import { DatabaseQuery } from "../../database/queries/DatabaseQuery";
+import { Prediction } from "../database/models/predictionModel";
+import { DatabaseQuery } from "../database/queries/DatabaseQuery";
 
 export const PredictionController = {
 	async makePrediction(request: Request, response: Response, next: NextFunction) {
@@ -27,7 +27,7 @@ export const PredictionController = {
 	async getUserPredictionStats(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionStatsFromDB(userId);
+			const predictions: Prediction[] = await DatabaseQuery.getUserPredictionStatsFromDB(+userId);
 			response.status(200).json(predictions);
 		} catch(error) {
 			next(error);
@@ -54,7 +54,7 @@ export const PredictionController = {
 				return;
 		}
 
-			const currentPredictions: Prediction[] = await DatabaseQuery.getCurrentPredictionsFromDB(userId, gameIds);
+			const currentPredictions: Prediction[] = await DatabaseQuery.getCurrentPredictionsFromDB(+userId, gameIds);
 			response.status(200).json(currentPredictions);
 		} catch (error) {
 			console.error(error);
@@ -64,7 +64,7 @@ export const PredictionController = {
 	async getAllUserPredictionsByUserId(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			const predictions: Prediction[] = await DatabaseQuery.getAllPredictionsByUserIdFromDB(userId);
+			const predictions: Prediction[] = await DatabaseQuery.getAllPredictionsByUserIdFromDB(+userId);
 			response.status(200).json(predictions);
 		}  catch (error) {
 			next(error);

@@ -17,8 +17,8 @@ export function transformGamesTodayData(gameData: any): Game[] {
 		return {
       game_id: parseInt(game.gameId, 10),
       game_date,
-      away_tricode: game.awayTeam.teamTricode,
-      home_tricode: game.homeTeam.teamTricode,
+      away_tricode: game.awayTeam.teamTricode || 'TBD',
+      home_tricode: game.homeTeam.teamTricode || 'TBD',
       away_score,
       home_score,
       winner,

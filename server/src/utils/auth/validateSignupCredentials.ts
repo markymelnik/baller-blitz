@@ -1,7 +1,8 @@
 import validator from "validator";
 import { RequestingUser } from "../../database/models/userModel";
 import { ValidationError } from "../../errors/ErrorClasses";
-import { sanitizeEmail, sanitizePassword } from "./validateLoginCredentials";
+import { sanitizeEmail } from "./sanitizeEmail";
+import { sanitizePassword } from "./sanitizePassword";
 
 export function validateSignupCredentials({ email, password }: RequestingUser) {
   if (!email || !password) {

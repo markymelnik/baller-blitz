@@ -37,10 +37,11 @@ export const DatabaseQuery = {
     requestingUser: RequestingUser
   ): Promise<DatabaseUser> {
     try {
-      const { email, password } = requestingUser;
+      const { email, password, username } = requestingUser;
       const result = await pool.query(USER_QUERY.CREATE_USER, [
         email,
         password,
+        username,
       ]);
 
       const userId = result.rows[0].id;
