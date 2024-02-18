@@ -24,5 +24,14 @@ export const UserController = {
 		} catch (error) {
 			next(error);
 		}
+	},
+	async searchAllUsers (request: Request, response: Response, next: NextFunction) {
+		try {
+			const { query } = request.query;
+			const res = await DatabaseQuery.searchAllUsersFromDB(query);
+			response.status(200).json({ users: res });
+		} catch (error) {
+			next(error);
+		}
 	}
 }

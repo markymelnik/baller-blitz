@@ -214,5 +214,14 @@ export const DatabaseQuery = {
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
+  },
+
+  async searchAllUsersFromDB (query: string): Promise<any> {
+    try {
+      const response = await pool.query(USER_QUERY.GET_ALL_USERS, [`%${query}%`]);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred');
+    }
   }
 };

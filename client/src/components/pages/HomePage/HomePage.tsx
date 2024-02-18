@@ -13,6 +13,7 @@ export const HomePage = () => {
   const AuthenticatedFrontButton = useAuthorizedRender(NavToFrontFromHomeButton, ['user','admin']);
   const AuthenticatedLogoutButton = useAuthorizedRender(LogoutButton, ['user','admin']);
   return (
+    <>
     <div className='home-page'>
       <div className='home-welcome'>{Content.home.intro}</div>
       <div className='home-center'>
@@ -24,5 +25,6 @@ export const HomePage = () => {
         <AuthenticatedLogoutButton />
       </div>
     </div>
+    </>
   );
 };

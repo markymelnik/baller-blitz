@@ -111,7 +111,7 @@ export const ApiClient = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify(prediction),
       });
@@ -135,7 +135,7 @@ export const ApiClient = {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
         body: JSON.stringify(prediction),
       });
@@ -162,7 +162,7 @@ export const ApiClient = {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
       });
 
@@ -182,7 +182,7 @@ export const ApiClient = {
 
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
       });
 
@@ -201,7 +201,7 @@ export const ApiClient = {
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
       });
 
@@ -219,7 +219,7 @@ export const ApiClient = {
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          'Authorization': `Bearer ${accessToken}`,
         },
       });
 
@@ -241,7 +241,7 @@ export const ApiClient = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
+        'Authorization': `Bearer ${accessToken}`,
       },
       body: JSON.stringify({ username: newUsername }),
     });
@@ -252,4 +252,22 @@ export const ApiClient = {
 
     return response.json();
   },
+
+  async searchAllUsers(accessToken: string, query: string) {
+    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(`/users/search?query=${encodeURIComponent(query)}`);
+    const response = await fetch(BACKEND_ENDPOINT_URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to get users')
+    }
+
+    const data = await response.json();
+    return data;
+  }
 };

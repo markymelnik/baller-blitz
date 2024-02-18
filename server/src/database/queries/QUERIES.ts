@@ -6,6 +6,7 @@ type UserQueryTypes = {
   ASSIGN_DEFAULT_ROLE: string;
   UPDATE_EMAIL_VERIFY: string;
   UPDATE_USERNAME_BY_ID: string;
+  GET_ALL_USERS: string;
 };
 
 type GameQueryTypes = {
@@ -31,6 +32,7 @@ export const USER_QUERY: UserQueryTypes = {
   ASSIGN_DEFAULT_ROLE: `INSERT INTO user_roles (user_id, role_id) VALUES ($1, $2)`,
   UPDATE_EMAIL_VERIFY: `UPDATE users SET is_verified = true WHERE id = $1;`,
   UPDATE_USERNAME_BY_ID: `UPDATE users SET username = $2 WHERE id = $1;`,
+  GET_ALL_USERS: `SELECT id, email, username FROM users WHERE username ILIKE $1 OR email ILIKE $1;`,
 };
 
 export const GAME_QUERY: GameQueryTypes = {
