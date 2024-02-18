@@ -253,8 +253,8 @@ export const ApiClient = {
     return response.json();
   },
 
-  async searchAllUsers(accessToken: string, query: string) {
-    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(`/users/search?query=${encodeURIComponent(query)}`);
+  async searchAllUsers(accessToken: string, query: string, page: number, pageSize: number) {
+    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(`/users/search?query=${encodeURIComponent(query)}&page=${page}&pageSize=${pageSize}`);
     const response = await fetch(BACKEND_ENDPOINT_URL, {
       method: 'GET',
       headers: {

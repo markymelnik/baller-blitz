@@ -18,6 +18,7 @@ import AuthenticationCheck from './AuthenticationCheck.tsx';
 import { VerifySuccessPage } from './components/pages/VerifySuccessPage/VerifySuccessPage.tsx';
 import { VerifyEmailOverlay } from './components/overlays/VerifyOverlay/VerifyOverlay.tsx';
 import { SettingsPage } from './components/pages/SettingsPage/SettingsPage.tsx';
+import { SearchPage } from './components/pages/SearchPage/SearchPage.tsx';
 
 const App = () => {
   useRefreshUserSession();
@@ -47,7 +48,8 @@ const App = () => {
                 <Route path='/front' element={<FrontPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
                 <Route path='/settings' element={<SettingsPage />} />
-                <Route path='verify-success' element={<VerifySuccessPage />} />
+                <Route path='/search' element={<SearchPage />} />
+                <Route path='/verify-success' element={<VerifySuccessPage />} />
               </Route>
             }
             

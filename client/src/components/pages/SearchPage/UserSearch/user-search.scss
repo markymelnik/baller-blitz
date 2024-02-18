@@ -1,0 +1,38 @@
+.user-search-container {
+	display: flex;
+	flex-direction: column;
+	padding: 0 1rem 1rem;
+	flex: 1;
+
+	.user-search-searchbar {
+		border: 1px solid black;
+	}
+
+	.list-of-users {
+		padding: 1rem 0;
+	}
+
+	.user-search-error,
+	.search-fallback {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		padding: 5rem 0 0;
+		flex: 1;
+	}
+
+	.pagination-controls {
+		display: flex;
+		justify-content: center;
+		gap: 0.5rem;
+		margin-top: auto;
+
+		> * {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 1px solid lightgrey;
+			padding: 0.75rem;
+		}
+	}
+}

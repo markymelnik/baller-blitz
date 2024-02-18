@@ -216,9 +216,9 @@ export const DatabaseQuery = {
     }
   },
 
-  async searchAllUsersFromDB (query: string): Promise<any> {
+  async searchAllUsersFromDB (query: string, pageSize: number, offset: number): Promise<any> {
     try {
-      const response = await pool.query(USER_QUERY.GET_ALL_USERS, [`%${query}%`]);
+      const response = await pool.query(USER_QUERY.GET_ALL_USERS, [`%${query}%`, pageSize, offset]);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred');

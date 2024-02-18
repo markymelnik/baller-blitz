@@ -29,11 +29,8 @@
 	}
 }
 
-.to-front-from-home-btn {
-	position: absolute;
-	top: 12vh;
-	left: 50%;
-	transform: translateX(-50%);
+.to-front-from-home-btn,
+.nav-to-search-btn {
 	font-size: 1.05rem;
 	border: 1px solid lightgrey;
 

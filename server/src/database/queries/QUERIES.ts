@@ -32,7 +32,7 @@ export const USER_QUERY: UserQueryTypes = {
   ASSIGN_DEFAULT_ROLE: `INSERT INTO user_roles (user_id, role_id) VALUES ($1, $2)`,
   UPDATE_EMAIL_VERIFY: `UPDATE users SET is_verified = true WHERE id = $1;`,
   UPDATE_USERNAME_BY_ID: `UPDATE users SET username = $2 WHERE id = $1;`,
-  GET_ALL_USERS: `SELECT id, email, username FROM users WHERE username ILIKE $1 OR email ILIKE $1;`,
+  GET_ALL_USERS: `SELECT id, email, username FROM users WHERE (username ILIKE $1 OR email ILIKE $1) ORDER BY username LIMIT $2 OFFSET $3;`,
 };
 
 export const GAME_QUERY: GameQueryTypes = {
