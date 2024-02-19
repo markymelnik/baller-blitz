@@ -2,18 +2,19 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import http from 'http';
-import { AuthController } from './api/auth/AuthController';
+import { AuthController } from './api/AuthController';
 import { corsOptions } from './config/corsConfig';
 import { TokenController } from './api/token/TokenController';
 import { ErrorHandler } from './middleware/error-handler';
 import { loginLimiter, resendVerifyEmailLimiter, signupLimiter } from './middleware/rate-limiting';
 import { errorConfig } from './config/errorConfig';
-import { GameController } from './api/games/GamesController';
-import { PredictionController } from './api/prediction/PredictionController';
-import { initCron } from './database/jobs/cronJobs';
-import { verifyEmailHandler } from './utils/auth/verifyEmailHandler';
+import { GameController } from './api/GamesController';
+import { PredictionController } from './api/PredictionController';
+import { initCron } from './jobs/cronJobs';
 import { initWebSocketServer } from './initWebSocket';
+import { UserController } from './api/UserController';
 import 'dotenv/config';
+import { FriendController } from './api/FriendController';
 
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
@@ -34,7 +35,10 @@ app.get('/', (req, res) => {
 app.post('/signup', signupLimiter, AuthController.signupUserHandler);
 app.post('/login', loginLimiter, AuthController.loginUserHandler);
 app.post('/logout', AuthController.logoutUserHandler);
+
 app.post('/refresh-token', TokenController.refreshAccessToken);
+
+app.post('/check-email', AuthController.emailCheckHandler);
 
 app.get('/profile', TokenController.validateAccessToken, (req, res) => {
   res.json({ message: 'You have hit a protected route' });
@@ -47,11 +51,25 @@ app.patch('/games/:id', TokenController.validateAccessToken, GameController.upda
 
 app.get('/predictions', TokenController.validateAccessToken, PredictionController.getAllUserPredictionsByUserId);
 app.post('/predictions', TokenController.validateAccessToken, PredictionController.makePrediction);
+app.patch('/predictions', TokenController.validateAccessToken, PredictionController.updatePrediction);
 app.get('/predictions/current', TokenController.validateAccessToken, PredictionController.getCurrentUserPredictions);
 app.get('/predictions/stats', TokenController.validateAccessToken, PredictionController.getUserPredictionStats);
 
 app.get('/verify', resendVerifyEmailLimiter, TokenController.validateAccessToken, AuthController.resendEmailVerificationHandler);
-app.get('/verify-email', verifyEmailHandler)
+app.get('/verify-email', AuthController.verifyEmailHandler);
+
+app.get('/users/search', TokenController.validateAccessToken, UserController.searchAllUsers);
+app.get('/profile/:username', TokenController.validateAccessToken, UserController.getUserPublicProfile);
+
+app.post('/update-username', TokenController.validateAccessToken, UserController.updateUsername);
+
+app.post('/friends/request', TokenController.validateAccessToken, FriendController.createFriendRequest);
+app.post('/friends/accept', TokenController.validateAccessToken, FriendController.acceptFriendRequest);
+app.post('/friends/reject', TokenController.validateAccessToken, FriendController.rejectFriendRequest);
+app.get('/friends/requests', TokenController.validateAccessToken, FriendController.getIncomingFriendRequestsByUserId);
+app.get('/friends/pending', TokenController.validateAccessToken, FriendController.getOutgoingFriendRequestsByUserId);
+app.get('/friends', TokenController.validateAccessToken, FriendController.getAllFriendsByUserId);
+app.delete('/friends/:friendId', TokenController.validateAccessToken, FriendController.deleteFriend);
 
 app.use(ErrorHandler(errorConfig));
 

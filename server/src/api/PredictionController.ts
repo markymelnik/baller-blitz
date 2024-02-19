@@ -70,5 +70,4 @@ export const PredictionController = {
 			next(error);
 		}
 	},
-
 }

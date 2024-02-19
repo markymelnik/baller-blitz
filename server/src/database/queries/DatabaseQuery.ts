@@ -2,7 +2,7 @@ import { DatabaseError, DuplicateEmailError } from "../../errors/ErrorClasses";
 import { Game } from "../models/gameModel";
 import { Prediction } from "../models/predictionModel";
 import { DatabaseUser, RequestingUser } from "../models/userModel";
-import { GAME_QUERY, PREDICTION_QUERY, USER_QUERY } from "./QUERIES";
+import { FRIEND_QUERY, GAME_QUERY, PREDICTION_QUERY, USER_QUERY } from "./QUERIES";
 import pool from "../pool";
 
 export const DatabaseQuery = {
@@ -87,7 +87,7 @@ export const DatabaseQuery = {
 
   async addGameIntoDB(game: Game): Promise<number> {
     const {
-			game_id,
+      game_id,
       game_date,
       away_tricode,
       home_tricode,
@@ -98,7 +98,7 @@ export const DatabaseQuery = {
     } = game;
     try {
       const response = await pool.query(GAME_QUERY.ADD_GAME, [
-				game_id,
+        game_id,
         game_date,
         away_tricode,
         home_tricode,
@@ -113,7 +113,10 @@ export const DatabaseQuery = {
     }
   },
 
-  async updateGameInDB(gameId: number, updates: Record<string, any>): Promise<any> {
+  async updateGameInDB(
+    gameId: number,
+    updates: Record<string, any>
+  ): Promise<any> {
     let QUERY: string = `UPDATE games SET `;
     const QUERY_PARAMS = [];
     let querySetParts = [];
@@ -139,23 +142,30 @@ export const DatabaseQuery = {
     } catch (error) {
       throw new Error('Failed to update game');
     }
-
   },
 
   async insertPredictionIntoDB(prediction: Prediction): Promise<any> {
     const { user_id, game_id, predicted_winner } = prediction;
     try {
-      const response = await pool.query(PREDICTION_QUERY.MAKE_PREDICTION, [user_id, game_id, predicted_winner]);
+      const response = await pool.query(PREDICTION_QUERY.MAKE_PREDICTION, [
+        user_id,
+        game_id,
+        predicted_winner,
+      ]);
       return response.rows[0];
     } catch (error) {
-        throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred');
     }
   },
 
   async updatePredictionInDB(prediction: Prediction): Promise<any> {
     const { user_id, game_id, predicted_winner } = prediction;
     try {
-      const response = await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION, [user_id, game_id, predicted_winner]);
+      const response = await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION, [
+        user_id,
+        game_id,
+        predicted_winner,
+      ]);
       return response.rows[0];
     } catch (error) {
       throw new DatabaseError('A database error occurred');
@@ -164,7 +174,9 @@ export const DatabaseQuery = {
 
   async getUserPredictionStatsFromDB(user_id: number): Promise<any> {
     try {
-      const response = await pool.query(PREDICTION_QUERY.GET_PREDICTION_STATS, [user_id]);
+      const response = await pool.query(PREDICTION_QUERY.GET_PREDICTION_STATS, [
+        user_id,
+      ]);
       return response.rows[0] || null;
     } catch (error) {
       console.error(error);
@@ -180,9 +192,15 @@ export const DatabaseQuery = {
     }
   },
 
-  async getCurrentPredictionsFromDB(user_id: number, game_id: number[]): Promise<any> {
+  async getCurrentPredictionsFromDB(
+    user_id: number,
+    game_id: number[]
+  ): Promise<any> {
     try {
-      const response = await pool.query(PREDICTION_QUERY.GET_CURRENT_USER_PREDICTIONS, [user_id, game_id]);
+      const response = await pool.query(
+        PREDICTION_QUERY.GET_CURRENT_USER_PREDICTIONS,
+        [user_id, game_id]
+      );
       return response.rows || null;
     } catch (error) {
       throw new DatabaseError('A database error occurred');
@@ -191,46 +209,138 @@ export const DatabaseQuery = {
 
   async getAllPredictionsByUserIdFromDB(user_id: number): Promise<any> {
     try {
-      const response = await pool.query(PREDICTION_QUERY.GET_ALL_PREDICTIONS, [user_id]);
+      const response = await pool.query(PREDICTION_QUERY.GET_ALL_PREDICTIONS, [
+        user_id,
+      ]);
       return response.rows || null;
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
   },
 
-  async markEmailVerifiedInDB (userId: number): Promise<any> {
+  async markEmailVerifiedInDB(userId: number): Promise<any> {
     try {
-      const response = await pool.query(USER_QUERY.UPDATE_EMAIL_VERIFY, [userId]);
+      const response = await pool.query(USER_QUERY.UPDATE_EMAIL_VERIFY, [
+        userId,
+      ]);
       return response.rows || null;
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
   },
 
-  async updateUsernameInDB (userId: number, newUsername: string): Promise<any> {
+  async updateUsernameInDB(userId: number, newUsername: string): Promise<any> {
     try {
-      const response = await pool.query(USER_QUERY.UPDATE_USERNAME_BY_ID, [userId, newUsername]);
+      const response = await pool.query(USER_QUERY.UPDATE_USERNAME_BY_ID, [
+        userId,
+        newUsername,
+      ]);
       return response.rows[0];
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
   },
 
-  async searchAllUsersFromDB (query: string, pageSize: number, offset: number): Promise<any> {
+  async searchAllUsersFromDB(
+    query: string,
+    pageSize: number,
+    offset: number
+  ): Promise<any> {
     try {
-      const response = await pool.query(USER_QUERY.GET_ALL_USERS, [`%${query}%`, pageSize, offset]);
+      const response = await pool.query(USER_QUERY.GET_ALL_USERS, [
+        `%${query}%`,
+        pageSize,
+        offset,
+      ]);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
   },
 
-  async getUserDetailsByUsernameFromDB (username: string) {
+  async getUserDetailsByUsernameFromDB(username: string) {
     try {
-      const response = await pool.query(USER_QUERY.FIND_USER_BY_USERNAME, [username]);
+      const response = await pool.query(USER_QUERY.FIND_USER_BY_USERNAME, [
+        username,
+      ]);
       return response.rows[0];
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
+  },
+
+  async insertFriendRequestIntoDB(requesterId: number, addresseeId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.CREATE_FRIEND_REQUEST, [
+        requesterId,
+        addresseeId,
+        'pending'
+      ]);
+      console.log(response.rows);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while creating friend request');
+    }
+  },
+
+  async acceptFriendRequestInDB(requestId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.UPDATE_FRIEND_REQUEST, ['accepted', requestId]);
+      console.log(response.rows);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while updating friend request');
+    }
+  },
+
+  async rejectFriendRequestInDB(requestId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.UPDATE_FRIEND_REQUEST, ['rejected', requestId]);
+      console.log(response.rows);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while updating friend request');
+    }
+  },
+
+  async getIncomingFriendRequestsFromDB(userId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.READ_INCOMING_FRIEND_REQUESTS, ['pending', userId]);
+      console.log(response.rows);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while gettiing incoming friend requests');
+    }
+  },
+
+  async getOutgoingFriendRequestsFromDB(userId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.READ_OUTGOING_FRIEND_REQUESTS, ['pending', userId]);
+      console.log(response.rows);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while getting outgoing friend requests');
+    }
+  },
+
+  async getAllFriendsByUserIdFromDB(userId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.READ_ALL_FRIENDS, [userId, 'accepted']);
+      console.log(response.rows);
+      return response.rows;
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while updating friend request');
+    }
+  },
+
+  async deleteFriendFromDB(userId: number, friendId: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.DELETE_FRIEND, [userId, friendId, 'accepted']);
+      console.log(response.rows);
+      return response.rows;
+      
+    }catch (error) {
+      throw new DatabaseError('A database error occurred while deleting friend');
+    }
   }
-}
+};

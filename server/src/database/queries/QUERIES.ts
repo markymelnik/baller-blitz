@@ -25,6 +25,15 @@ type PredictionQueryTypes = {
   GET_ALL_PREDICTIONS: string,
 };
 
+type FriendQueryTypes = {
+  CREATE_FRIEND_REQUEST: string;
+  UPDATE_FRIEND_REQUEST: string;
+  READ_INCOMING_FRIEND_REQUESTS: string;
+  READ_OUTGOING_FRIEND_REQUESTS: string;
+  READ_ALL_FRIENDS: string;
+  DELETE_FRIEND: string;
+}
+
 export const USER_QUERY: UserQueryTypes = {
   CREATE_USER: `INSERT INTO users (email, password, username) VALUES($1, $2, $3) RETURNING *;`,
   GET_USER_ROLE_BY_ID: `SELECT roles.name FROM user_roles JOIN roles ON user_roles.role_id = roles.id WHERE user_roles.user_id = $1;`,
@@ -75,3 +84,12 @@ WHERE p.user_id = $1 AND g.status = 'finished' AND p.is_correct IS NOT NULL;`,
 };
 
  /* `SELECT * FROM predictions WHERE user_id = $1;`,  */
+
+ export const FRIEND_QUERY: FriendQueryTypes = {
+  CREATE_FRIEND_REQUEST: `INSERT INTO friends (requesterId, addresseeId, status) VALUES ($1, $2, $3) RETURNING *;`,
+  UPDATE_FRIEND_REQUEST: `UPDATE friends SET status = $1 WHERE id = $2 RETURNING *;`,
+  READ_INCOMING_FRIEND_REQUESTS: `SELECT * FROM friends WHERE addressee_id = $1 AND status = $2;`,
+  READ_OUTGOING_FRIEND_REQUESTS: `SELECT * FROM friends where requester_id = $1 AND status = $2;`,
+  READ_ALL_FRIENDS: `SELECT * FROM friends WHERE (requester_id = $1 OR addressee_id = $2) AND status = $2;`,
+  DELETE_FRIEND: `DELETE FROM friends WHERE (requester_id = $1 AND addressee_id = $2) OR (requester_id = $2 AND addressee_id = $1) AND status = $3 RETURNING *;`,
+ }
