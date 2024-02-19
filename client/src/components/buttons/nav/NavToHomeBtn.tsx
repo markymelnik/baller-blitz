@@ -3,14 +3,13 @@ import { Icons } from '../../../lib/Icons.ts';
 import { NavigateToButtonCreator } from './NavigateToButtonCreator.tsx';
 import './nav-to-btns.scss';
 
-export const NavigateToHomeButton = () => {
+export const NavToHomeBtn = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/'}
-      /* buttonText={'Home'} */
       className={'nav-to-home-btn'}
     >
-      <Icons.Home size={35} />    
+      <Icons.ArrowLeft size={28} />    
       </NavigateToButtonCreator>
   );
 };

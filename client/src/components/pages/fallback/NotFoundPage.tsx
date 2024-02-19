@@ -1,5 +1,5 @@
 import { Content } from '../../../lib/Content.ts';
-import { NavigateToHomeButton } from '../../buttons/nav/NavigateToHomeButton.tsx';
+import { NavToHomeBtn } from '../../buttons/nav/NavToHomeBtn.tsx';
 import './fallback.scss';
 
 export const NotFoundPage = () => {
@@ -7,7 +7,7 @@ export const NotFoundPage = () => {
   return (
     <div className='not-found-page'>
       <h2 className='fallback-header'>{Content.fallback.notFound}</h2>
-      <NavigateToHomeButton />
+      <NavToHomeBtn />
     </div>
   );
 };

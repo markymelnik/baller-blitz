@@ -56,12 +56,15 @@ export const ProfilePage = () => {
             </div>
           </div>
         </div>
+        <div className="profile-page-divider">
+          <div className="divider"></div>
+        </div>
         <div className='profile-page-bot'>
           <ul className='profile-page-blobs'>
             {isLoading ? (
               <Skeleton className='blob-skeleton-wrapper' count={2} />
             ) : (
-              <UserStats allPredictedGames={allPredictedGames} />
+              <UserStats />
             )}
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />

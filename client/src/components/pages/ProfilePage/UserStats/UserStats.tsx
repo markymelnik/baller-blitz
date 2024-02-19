@@ -1,20 +1,10 @@
 import { useFetchUserStats } from '../../../../hooks/user/useFetchUserStats';
 import { Content } from '../../../../lib/Content';
-import { PredictedGame } from '../../../../types/gameTypes';
 import { UserStatistics } from '../../../../types/userTypes';
+import { formatPercent } from '../../../../utils/formatPercent';
 import './user-stats.scss';
 
-function formatPercent(percentage: number) {
-	return `${Math.round(percentage * 10) / 10}%`;
-}
-
-type UserStatsProps = {
-  allPredictedGames: PredictedGame[];
-}
-
-export const UserStats = ({ allPredictedGames }: UserStatsProps) => {
-
-	const numberOfPredictedGames = allPredictedGames.length;
+export const UserStats = () => {
 
 	const userStats = useFetchUserStats();
 	
@@ -34,7 +24,7 @@ export const UserStats = ({ allPredictedGames }: UserStatsProps) => {
           </div>
           <div className='stat-title'>{Content.profile.userStats.winPrediction}</div>
         </div>
-        {numberOfPredictedGames < 1 ? (
+        {total_predictions < 1 ? (
           <></>
         ) : (
           <div className='correct-rate'>

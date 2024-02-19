@@ -6,6 +6,7 @@ import './user-search.scss';
 import { UserResult } from "../UserResult/UserResult";
 import { Icons } from "../../../../lib/Icons";
 import { useSearch } from "../../../useSearch";
+import { UserProfileInfo } from "../../../../types/userTypes";
 
 export const UserSearch = () => {
   ring.register();
@@ -39,6 +40,8 @@ export const UserSearch = () => {
 
   const showSpinner = areResultsLoading || isLoading;
 
+  console.log(users);
+
   return (
     <div className='user-search-container'>
       <input
@@ -68,7 +71,7 @@ export const UserSearch = () => {
         <>
           {users.length < 1 && <div className='search-fallback'>No Results</div>}
           <ul className='list-of-users'>
-            {users.map((user) => (
+            {users.map((user: UserProfileInfo) => (
               <UserResult key={user.id} user={user} />
             ))}
           </ul>

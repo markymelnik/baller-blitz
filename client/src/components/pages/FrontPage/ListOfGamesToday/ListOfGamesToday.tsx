@@ -60,51 +60,65 @@ export const ListOfGamesToday = () => {
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
-      {isLoading ? (
-        <div className='skeleton-message-container'>
-          <Skeleton className='skeleton-message' />
-        </div>
-      ) : (
-        <div className='list-message-container'>
-          {gamesState === 'NOT_STARTED' && (
-            <div className='list-message'>{Content.front.games.status[1]}</div>
-          )}
-          {gamesState === 'IN_PROGRESS' && (
-            <div className='list-message'>{Content.front.games.status[2]}</div>
-          )}
-          {gamesState === 'FINISHED' && (
-            <div className='list-message'>
-              {Content.front.games.status[3]} <br />
-              {Content.front.games.status[4]}
-            </div>
-          )}
-        </div>
-      )}
+      {numberOfGames > 0 &&
+        (isLoading ? (
+          <div className='skeleton-message-container'>
+            <Skeleton className='skeleton-message' />
+          </div>
+        ) : (
+          <div className='list-message-container'>
+            {gamesState === 'NOT_STARTED' && (
+              <div className='list-message'>
+                {Content.front.games.status[1]}
+              </div>
+            )}
+            {gamesState === 'IN_PROGRESS' && (
+              <div className='list-message'>
+                {Content.front.games.status[2]}
+              </div>
+            )}
+            {gamesState === 'FINISHED' && (
+              <div className='list-message'>
+                {Content.front.games.status[3]} <br />
+                {Content.front.games.status[4]}
+              </div>
+            )}
+          </div>
+        ))}
       <div className='list-divider'>
         <div className='divider'></div>
       </div>
-      <ul className='list-of-games-today'>
-        {isLoading ? (
-          <Skeleton className='skeleton-wrapper' count={numberOfGames} />
-        ) : (
-          todaysGames.map((game) => {
-            const predictedGame = predictedGames.find(
-              (prediction) => prediction.game_id === +game.gameId
-            );
-            const isPredicted = !!predictedGame;
+      {numberOfGames < 1 ? (
+        <div className='no-games-today'>
+          <div className='no-games-box'>
+            <div className='no-games-text'>No games scheduled for today.</div>
+            <div className='no-games-text'>Come back tomorrow!</div>
+          </div>
+        </div>
+      ) : (
+        <ul className='list-of-games-today'>
+          {isLoading ? (
+            <Skeleton className='skeleton-wrapper' count={numberOfGames} />
+          ) : (
+            todaysGames.map((game) => {
+              const predictedGame = predictedGames.find(
+                (prediction) => prediction.game_id === +game.gameId
+              );
+              const isPredicted = !!predictedGame;
 
-            return (
-              <GameCard
-                game={game}
-                key={game.gameId}
-                isPredicted={isPredicted}
-                predictedWinner={predictedGame?.predicted_winner}
-                onSuccessfulSubmission={handleGamesListUpdate}
-              />
-            );
-          })
-        )}
-      </ul>
+              return (
+                <GameCard
+                  game={game}
+                  key={game.gameId}
+                  isPredicted={isPredicted}
+                  predictedWinner={predictedGame?.predicted_winner}
+                  onSuccessfulSubmission={handleGamesListUpdate}
+                />
+              );
+            })
+          )}
+        </ul>
+      )}
       <div className='list-divider'>
         <div className='divider'></div>
       </div>

@@ -1,5 +1,5 @@
 import { SignupForm } from '../../forms/SignupForm/SignupForm.tsx';
-import { NavToLoginFromSignupButton } from '../../buttons/nav/NavToLoginFromSignupButton.tsx';
+import { NavToLoginFromSignupButton } from '../../buttons/nav/signuplogin/NavToLoginFromSignupButton.tsx';
 import './signup-page.scss';
 import { Content } from '../../../lib/Content.ts';
 

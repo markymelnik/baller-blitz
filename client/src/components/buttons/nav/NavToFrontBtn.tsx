@@ -1,15 +1,16 @@
 import { Icons } from '../../../lib/Icons.ts';
+import { Content } from '../../../lib/Content.ts';
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
 
-export const NavBackToFrontButton = () => {
+export const NavToFrontBtn = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/front'}
-      /* buttonText={'Games'} */
-      className={'nav-to-front-btn'}
+      buttonText={Content.front.games.title}
+      className={'to-front-from-home-btn'}
     >
-    <Icons.ArrowLeft size={20} />
+      <Icons.Basketball size={30} strokeWidth={1.2} />
     </NavigateToButtonCreator>
   );
 };

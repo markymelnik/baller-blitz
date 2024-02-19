@@ -20,3 +20,9 @@ export interface UserStatistics {
   correct_predictions: number;
   accuracy_percentage: number;
 }
+
+export interface UserProfileInfo {
+  id: number;
+  email: string;
+  username: string;
+}

@@ -3,7 +3,7 @@ import { Icons } from '../../../lib/Icons.ts';
 import { NavigateToButtonCreator } from './NavigateToButtonCreator.tsx';
 import './nav-to-btns.scss';
 
-export const NavigateToProfileButton = () => {
+export const NavToProfileBtn = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/profile'}

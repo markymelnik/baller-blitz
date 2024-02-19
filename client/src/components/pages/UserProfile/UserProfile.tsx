@@ -3,7 +3,10 @@ import { useQuery } from 'react-query';
 
 import { ApiClient } from '../../../api/ApiClient';
 import { useAccessToken } from '../../../hooks/stateSelectors';
+
 import './user-profile.scss';
+import { ProfileStats } from './ProfileStats/ProfileStats';
+import { ProfileIntro } from './ProfileIntro/ProfileIntro';
 
 const fetchUserProfile = async (accessToken: string, username: string) => {
 	const response = await ApiClient.fetchUserProfile(accessToken, username);
@@ -15,9 +18,8 @@ export const UserProfile = () => {
 	const { username } = useParams();
 
 	const { data, isLoading, error } = useQuery(['userProfile', username], () => fetchUserProfile(accessToken, username!));
-
-	const { userProfile, userStats } = { ...data };
-
+	const { userProfile = {}, userStats = {} } = data || {};
+	
   if (isLoading) {
     return <div>loading...</div>;
   }
@@ -27,15 +29,10 @@ export const UserProfile = () => {
   }
 
 	return (
+
 		<div className="user-profile-container">
-			<div className="user-profile-top">
-			{userProfile.username}
-			</div>
-			<div className="user-profile-stats">
-				<div className="total-pred">Total Predictions: {userStats.total_predictions}</div>
-				<div className="correct-pred">Correct Predictions: {userStats.correct_predictions}</div>
-				<div className="win-accuracy">Win Accuracy: {userStats.accuracy_percentage}</div>
-			</div>
+			<ProfileIntro userProfile={userProfile} />
+			<ProfileStats userStats={userStats} />
 		</div>
 	)
 }

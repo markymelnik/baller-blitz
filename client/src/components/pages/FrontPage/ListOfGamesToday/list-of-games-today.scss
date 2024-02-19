@@ -27,6 +27,24 @@
 	}
 }
 
+.no-games-today {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	min-height: 68vh;
+
+	.no-games-box {
+		display: inline-flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: 0.75rem 0 0;
+
+		.no-games-text {
+			font-size: 1.05rem;
+		}
+	}
+}
+
 .list-divider {
 	width: 100%;
 	padding: 1rem 0 1rem;

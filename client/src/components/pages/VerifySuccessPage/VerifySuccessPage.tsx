@@ -1,5 +1,5 @@
 import { Content } from '../../../lib/Content';
-import { NavigateToHomeButton } from '../../buttons/nav/NavigateToHomeButton';
+import { NavToHomeBtn } from '../../buttons/nav/NavToHomeBtn';
 import './verify-success-page.scss';
 
 export const VerifySuccessPage = () => {
@@ -7,7 +7,7 @@ export const VerifySuccessPage = () => {
 	return (
 		<div className="verify-success-page">
 			<div className="verify-success-title">{Content.verifySuccess.message}</div>
-			<NavigateToHomeButton />
+			<NavToHomeBtn />
 		</div>
 	)
 }
