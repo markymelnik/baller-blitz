@@ -29,8 +29,7 @@
 	}
 }
 
-.to-front-from-home-btn,
-.nav-to-search-btn {
+.to-front-from-home-btn {
 	font-size: 1.05rem;
 	border: 1px solid lightgrey;
 
@@ -43,4 +42,8 @@
 	.nav-btn-text {
 		font-size: 1.5rem;
 	}
+}
+
+.nav-to-search-btn {
+	padding: 0.25rem;
 }

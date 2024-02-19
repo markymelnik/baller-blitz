@@ -19,6 +19,8 @@ import { VerifySuccessPage } from './components/pages/VerifySuccessPage/VerifySu
 import { VerifyEmailOverlay } from './components/overlays/VerifyOverlay/VerifyOverlay.tsx';
 import { SettingsPage } from './components/pages/SettingsPage/SettingsPage.tsx';
 import { SearchPage } from './components/pages/SearchPage/SearchPage.tsx';
+import { UserProfile } from './components/pages/UserProfile/UserProfile.tsx';
+import { SearchProvider } from './components/SearchProvider.tsx';
 
 const App = () => {
   useRefreshUserSession();
@@ -26,6 +28,7 @@ const App = () => {
   const queryClient = new QueryClient();
 
   return (
+    <SearchProvider>
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <div className='app-container'>
@@ -47,6 +50,7 @@ const App = () => {
               >
                 <Route path='/front' element={<FrontPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
+                <Route path='/profile/:username' element={<UserProfile />} />
                 <Route path='/settings' element={<SettingsPage />} />
                 <Route path='/search' element={<SearchPage />} />
                 <Route path='/verify-success' element={<VerifySuccessPage />} />
@@ -61,6 +65,7 @@ const App = () => {
       </div>
     </BrowserRouter>
     </QueryClientProvider>
+    </SearchProvider>
   );
 };
 

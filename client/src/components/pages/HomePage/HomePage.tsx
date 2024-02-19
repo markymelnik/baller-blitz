@@ -6,13 +6,11 @@ import { NavToFrontFromHomeButton } from '../../buttons/nav/NavToFrontFromHomeBu
 import './home-page.scss';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
 import { Content } from '../../../lib/Content.ts';
-import { NavToSearchBtn } from '../../buttons/nav/NavToSearchBtn.tsx';
 
 export const HomePage = () => {
   const UnauthenticatedLoginButton = useUnauthorizedRender(NavigateToLoginButton, ['user','admin']);
   const UnauthenticatedSignupButton = useUnauthorizedRender(NavigateToSignupButton, ['user','admin']);
   const AuthenticatedToFrontButton = useAuthorizedRender(NavToFrontFromHomeButton, ['user','admin']);
-  const AuthenticatedToSearchButton = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
   const AuthenticatedLogoutButton = useAuthorizedRender(LogoutButton, ['user','admin']);
   return (
     <>
@@ -22,7 +20,6 @@ export const HomePage = () => {
         <UnauthenticatedLoginButton />
         <UnauthenticatedSignupButton />
         <AuthenticatedToFrontButton />
-        <AuthenticatedToSearchButton />
       </div>
       <div className='home-bot'>
         <AuthenticatedLogoutButton />

@@ -5,16 +5,17 @@ import { useUserSeach } from "../../../../hooks/user/useUserSearch";
 import './user-search.scss';
 import { UserResult } from "../UserResult/UserResult";
 import { Icons } from "../../../../lib/Icons";
+import { useSearch } from "../../../useSearch";
 
 export const UserSearch = () => {
   ring.register();
 
-  const [query, setQuery] = useState<string>('');
-  const [debouncedQuery, setDebouncedQuery] = useState(query);
+  const { searchQuery, setSearchQuery } = useSearch();
+  const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
   const [page, setPage] = useState<number>(1);
   const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
   const pageSize = 10;
-
+  
   const {
     data,
     isLoading,
@@ -26,7 +27,7 @@ export const UserSearch = () => {
   useEffect(() => {
     setAreResultingLoading(true);
     const timer = setTimeout(() => {
-        setDebouncedQuery(query);
+        setDebouncedQuery(searchQuery);
         setAreResultingLoading(false);
     }, 500);
 
@@ -34,19 +35,17 @@ export const UserSearch = () => {
       clearTimeout(timer);
       setAreResultingLoading(false);
     }
-}, [query]);
+}, [searchQuery]);
 
   const showSpinner = areResultsLoading || isLoading;
 
-  console.log(users);
-  
   return (
     <div className='user-search-container'>
       <input
         type='text'
         placeholder='Search users...'
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
         className='user-search-searchbar'
       />
       {showSpinner && (

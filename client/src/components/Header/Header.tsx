@@ -9,6 +9,8 @@ import { NavToSettingsButton } from '../buttons/nav/NavToSettingsButton.tsx';
 import { NavToProfileFromSettingsButton } from '../buttons/nav/NavToProfileFromSettingsButton.tsx';
 import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import './header.scss';
+import { NavToSearchFromProfileBtn } from '../buttons/nav/NavToSearchFromProfileBtn.tsx';
+import { NavToSearchBtn } from '../buttons/nav/NavToSearchBtn.tsx';
 
 export const Header = () => {
   const location = useLocation();
@@ -20,6 +22,8 @@ export const Header = () => {
   const AuthenticatedToFrontButton = useAuthorizedRender(NavBackToFrontButton, ['user','admin']);
   const AuthenticatedToSettingsButton = useAuthorizedRender(NavToSettingsButton, ['user','admin']);
   const AuthenticatedToProfileButton = useAuthorizedRender(NavToProfileFromSettingsButton, ['user','admin']);
+  const AuthenticatedNavToSearchFromProfileButton = useAuthorizedRender(NavToSearchFromProfileBtn, ['user','admin']);
+  const AuthenticatedToSearchButton = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
 	
   return (
     <header className='header-container'>
@@ -28,6 +32,7 @@ export const Header = () => {
         {location.pathname === '/login' && <NavigateToHomeButton />}
         {location.pathname === '/front' && <AuthenticatedToHomeButton />}
         {location.pathname === '/profile' && <AuthenticatedToFrontButton />}
+        {location.pathname.startsWith('/profile') && location.pathname !== '/profile' && <AuthenticatedNavToSearchFromProfileButton />}
         {location.pathname === '/settings' && <AuthenticatedToProfileButton />}
         {location.pathname === '/search' && <AuthenticatedToHomeButton />}
       </div>
@@ -36,8 +41,10 @@ export const Header = () => {
       </div>
       <div className='header-right'>
 				{location.pathname === '/front' && <AuthenticatedProfileButton />}
+        {location.pathname === '/profile' && <AuthenticatedToSearchButton />}
         {location.pathname === '/profile' && <AuthenticatedToSettingsButton />}
         {location.pathname === '/search' && <AuthenticatedProfileButton />}
+        {location.pathname === '/' && <AuthenticatedToSearchButton />}
 			</div>
     </header>
   );

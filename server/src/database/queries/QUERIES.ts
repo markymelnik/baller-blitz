@@ -3,6 +3,7 @@ type UserQueryTypes = {
   GET_USER_ROLE_BY_ID: string;
   FIND_USER_BY_ID: string;
   FIND_USER_BY_EMAIL: string;
+  FIND_USER_BY_USERNAME: string;
   ASSIGN_DEFAULT_ROLE: string;
   UPDATE_EMAIL_VERIFY: string;
   UPDATE_USERNAME_BY_ID: string;
@@ -29,6 +30,7 @@ export const USER_QUERY: UserQueryTypes = {
   GET_USER_ROLE_BY_ID: `SELECT roles.name FROM user_roles JOIN roles ON user_roles.role_id = roles.id WHERE user_roles.user_id = $1;`,
   FIND_USER_BY_ID: `SELECT * FROM users WHERE id = $1;`,
   FIND_USER_BY_EMAIL: `SELECT * FROM users WHERE email = $1;`,
+  FIND_USER_BY_USERNAME: `SELECT id, email, username FROM users WHERE username = $1;`,
   ASSIGN_DEFAULT_ROLE: `INSERT INTO user_roles (user_id, role_id) VALUES ($1, $2)`,
   UPDATE_EMAIL_VERIFY: `UPDATE users SET is_verified = true WHERE id = $1;`,
   UPDATE_USERNAME_BY_ID: `UPDATE users SET username = $2 WHERE id = $1;`,

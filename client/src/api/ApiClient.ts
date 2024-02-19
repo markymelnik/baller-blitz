@@ -269,5 +269,24 @@ export const ApiClient = {
 
     const data = await response.json();
     return data;
+  },
+
+  async fetchUserProfile(accessToken: string, username: string) {
+    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(`/profile/${username}`);
+    const response = await fetch(BACKEND_ENDPOINT_URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to get users')
+    }
+
+    const data = await response.json();
+    console.log(data);
+    return data;
   }
 };

@@ -25,12 +25,24 @@ export const UserController = {
 			next(error);
 		}
 	},
+
 	async searchAllUsers (request: Request, response: Response, next: NextFunction) {
 		try {
 			const { query, page = 1, pageSize = 10 } = request.query;
 			const offset = (+page - 1) * +pageSize;
 			const res = await DatabaseQuery.searchAllUsersFromDB(query, pageSize, offset);
 			response.status(200).json({ users: res });
+		} catch (error) {
+			next(error);
+		}
+	},
+	
+	async getUserPublicProfile (request: Request, response: Response, next: NextFunction) {
+		try {
+			const username = request.params.username;
+			const userDetails = await DatabaseQuery.getUserDetailsByUsernameFromDB(username);
+			const userStats = await DatabaseQuery.getUserPredictionStatsFromDB(userDetails.id);
+			response.status(200).json({ userProfile: userDetails, userStats: userStats })
 		} catch (error) {
 			next(error);
 		}

@@ -223,5 +223,14 @@ export const DatabaseQuery = {
     } catch (error) {
       throw new DatabaseError('A database error occurred');
     }
+  },
+
+  async getUserDetailsByUsernameFromDB (username: string) {
+    try {
+      const response = await pool.query(USER_QUERY.FIND_USER_BY_USERNAME, [username]);
+      return response.rows[0];
+    } catch (error) {
+      throw new DatabaseError('A database error occurred');
+    }
   }
-};
+}

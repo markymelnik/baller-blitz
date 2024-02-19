@@ -6,10 +6,9 @@ export const NavToSearchBtn = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/search'}
-      buttonText={'Friends'}
       className={'nav-to-search-btn'}
     >
-      <Icons.UserPlus size={27} />
+      <Icons.Search size={30} />
     </NavigateToButtonCreator>
   );
 };
