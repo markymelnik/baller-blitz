@@ -1,4 +1,6 @@
+import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender';
 import { useAccessToken } from '../../../hooks/stateSelectors';
+import { NavToSearchBtn } from '../../buttons/nav/NavToSearchBtn';
 import { useFriends } from '../hooks/useFriends';
 
 import { FriendCard } from './FriendCard/FriendCard';
@@ -9,12 +11,21 @@ export const FriendsList = () => {
 
   const { data: friends, isLoading } = useFriends(accessToken);
 
+  const AuthenticatedNavToFriendsBtn = useAuthorizedRender(NavToSearchBtn, [
+    'user',
+    'admin',
+  ]);
+
   if (isLoading) {
     return <div>loading...</div>;
   }
 
-  console.log(friends);
-  return (
+  return friends.length < 1 ? (
+    <div className='no-friends-fallback'>
+      <div className='fallback-text'>Search for friends!</div>
+      <AuthenticatedNavToFriendsBtn />
+    </div>
+  ) : (
     <div className='friends-list'>
       {friends.map((friend) => (
         <FriendCard key={friend.id} friend={friend} />

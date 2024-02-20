@@ -4,10 +4,11 @@ import { useQuery } from 'react-query';
 
 import { ApiClient } from '../../../api/ApiClient';
 import { useAccessToken } from '../../../hooks/stateSelectors';
+import { DeleteFriendBtn } from '../../friends/hooks/DeleteFriend/DeleteFriendBtn';
 
-import './user-profile.scss';
-import { ProfileStats } from './ProfileStats/ProfileStats';
 import { ProfileIntro } from './ProfileIntro/ProfileIntro';
+import { ProfileStats } from './ProfileStats/ProfileStats';
+import './user-profile.scss';
 
 const fetchUserProfile = async (accessToken: string, username: string) => {
 	const response = await ApiClient.fetchUserProfile(accessToken, username);
@@ -43,6 +44,7 @@ export const UserProfile = () => {
 		<div className="user-profile-container">
 			<ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
 			{isFriends && <ProfileStats userStats={userStats} />}
+			{isFriends && <DeleteFriendBtn userProfile={userProfile} />}
 		</div>
 	)
 }

@@ -1,5 +1,15 @@
 .req-friends-list {
 	display: flex;
 	flex-direction: column;
+}
 
+.no-req-friends-fallback {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 1;
+
+	.fallback-text {
+		padding: 4rem 0 2rem;
+	}
 }

@@ -65,7 +65,7 @@ export const FriendController = {
 	async deleteFriend(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			const friendId = request.body;
+			const { friendId } = request.body;
 			const result = await DatabaseQuery.deleteFriendFromDB(userId, friendId);
 			response.status(200).json(result);
 		} catch (error) {

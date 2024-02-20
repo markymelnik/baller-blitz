@@ -26,7 +26,7 @@ export const ProfileStats = ({ userStats }: UserStatsProps) => {
           </div>
         )}
       </div>
-      <div className='stat'></div>
+      
     </div>
 	)
 }

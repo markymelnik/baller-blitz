@@ -71,7 +71,7 @@ app.get('/friends/requests', TokenController.validateAccessToken, FriendControll
 app.get('/friends/pending', TokenController.validateAccessToken, FriendController.getOutgoingFriendRequestsByUserId);
 app.get('/friends/status', TokenController.validateAccessToken, FriendController.getFriendRequestStatus);
 app.get('/friends', TokenController.validateAccessToken, FriendController.getAllFriendsByUserId);
-app.delete('/friends/:friendId', TokenController.validateAccessToken, FriendController.deleteFriend);
+app.delete('/friends', TokenController.validateAccessToken, FriendController.deleteFriend);
 
 app.use(ErrorHandler(errorConfig));
 
