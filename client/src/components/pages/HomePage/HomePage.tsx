@@ -5,6 +5,8 @@ import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts'
 import { NavToFrontBtn } from '../../buttons/nav/NavToFrontBtn.tsx';
 import './home-page.scss';
 import { Content } from '../../../lib/Content.ts';
+import { FriendsList } from '../../friends/FriendsList/FriendsList.tsx';
+import { PendingFriendRequests } from '../../friends/hooks/PendingFriendRequests.tsx';
 
 export const HomePage = () => {
 
@@ -14,16 +16,17 @@ export const HomePage = () => {
   
   return (
     <>
-    <div className='home-page'>
-      <div className='home-welcome'>{Content.home.intro}</div>
-      <div className='home-center'>
-        <UnauthenticatedLoginButton />
-        <UnauthenticatedSignupButton />
-        <AuthenticatedToFrontButton />
+      <div className='home-page'>
+        <div className='home-welcome'>{Content.home.intro}</div>
+        <div className='home-center'>
+          <UnauthenticatedLoginButton />
+          <UnauthenticatedSignupButton />
+          <AuthenticatedToFrontButton />
+        </div>
+        <div className='home-bot'></div>
       </div>
-      <div className='home-bot'>
-      </div>
-    </div>
+      <FriendsList />
+      <PendingFriendRequests />
     </>
   );
 };

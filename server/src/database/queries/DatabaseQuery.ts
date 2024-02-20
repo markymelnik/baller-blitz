@@ -276,16 +276,15 @@ export const DatabaseQuery = {
         addresseeId,
         'pending'
       ]);
-      console.log(response.rows);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while creating friend request');
     }
   },
 
-  async acceptFriendRequestInDB(requestId: number) {
+  async acceptFriendRequestInDB(id: number) {
     try {
-      const response = await pool.query(FRIEND_QUERY.UPDATE_FRIEND_REQUEST, ['accepted', requestId]);
+      const response = await pool.query(FRIEND_QUERY.UPDATE_FRIEND_REQUEST, ['accepted', id]);
       console.log(response.rows);
       return response.rows;
     } catch (error) {
@@ -303,10 +302,9 @@ export const DatabaseQuery = {
     }
   },
 
-  async getIncomingFriendRequestsFromDB(userId: number) {
+  async getIncomingFriendRequestsFromDB(addressee_id: number) {
     try {
-      const response = await pool.query(FRIEND_QUERY.READ_INCOMING_FRIEND_REQUESTS, ['pending', userId]);
-      console.log(response.rows);
+      const response = await pool.query(FRIEND_QUERY.READ_INCOMING_FRIEND_REQUESTS, ['pending', addressee_id]);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while gettiing incoming friend requests');
@@ -316,17 +314,17 @@ export const DatabaseQuery = {
   async getOutgoingFriendRequestsFromDB(userId: number) {
     try {
       const response = await pool.query(FRIEND_QUERY.READ_OUTGOING_FRIEND_REQUESTS, ['pending', userId]);
-      console.log(response.rows);
+    
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while getting outgoing friend requests');
     }
   },
 
-  async getAllFriendsByUserIdFromDB(userId: number) {
+  async getAllFriendsByUserIdFromDB(id: number) {
     try {
-      const response = await pool.query(FRIEND_QUERY.READ_ALL_FRIENDS, [userId, 'accepted']);
-      console.log(response.rows);
+      const response = await pool.query(FRIEND_QUERY.READ_ALL_FRIENDS, ['accepted', id]);
+      console.log(response);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while updating friend request');
@@ -336,11 +334,19 @@ export const DatabaseQuery = {
   async deleteFriendFromDB(userId: number, friendId: number) {
     try {
       const response = await pool.query(FRIEND_QUERY.DELETE_FRIEND, [userId, friendId, 'accepted']);
-      console.log(response.rows);
+    
       return response.rows;
-      
-    }catch (error) {
+    } catch (error) {
       throw new DatabaseError('A database error occurred while deleting friend');
+    }
+  },
+
+  async getFriendRequestStatus(requester_id: number, addressee_id: number) {
+    try {
+      const response = await pool.query(FRIEND_QUERY.READ_FRIEND_REQUEST_STATUS, [requester_id, addressee_id]);
+      return response.rows[0];
+    } catch (error) {
+      throw new DatabaseError('A database error occurred while reading friend request status');
     }
   }
 };

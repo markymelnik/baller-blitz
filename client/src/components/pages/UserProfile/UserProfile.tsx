@@ -29,7 +29,6 @@ export const UserProfile = () => {
   }
 
 	return (
-
 		<div className="user-profile-container">
 			<ProfileIntro userProfile={userProfile} />
 			<ProfileStats userStats={userStats} />

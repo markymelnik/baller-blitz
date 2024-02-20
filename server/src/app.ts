@@ -64,10 +64,12 @@ app.get('/profile/:username', TokenController.validateAccessToken, UserControlle
 app.post('/update-username', TokenController.validateAccessToken, UserController.updateUsername);
 
 app.post('/friends/request', TokenController.validateAccessToken, FriendController.createFriendRequest);
-app.post('/friends/accept', TokenController.validateAccessToken, FriendController.acceptFriendRequest);
-app.post('/friends/reject', TokenController.validateAccessToken, FriendController.rejectFriendRequest);
+app.post('/friends/accept/:requestId', TokenController.validateAccessToken, FriendController.acceptFriendRequest);
+app.post('/friends/reject/:requestId', TokenController.validateAccessToken, FriendController.rejectFriendRequest);
+
 app.get('/friends/requests', TokenController.validateAccessToken, FriendController.getIncomingFriendRequestsByUserId);
 app.get('/friends/pending', TokenController.validateAccessToken, FriendController.getOutgoingFriendRequestsByUserId);
+app.get('/friends/status', TokenController.validateAccessToken, FriendController.getFriendRequestStatus);
 app.get('/friends', TokenController.validateAccessToken, FriendController.getAllFriendsByUserId);
 app.delete('/friends/:friendId', TokenController.validateAccessToken, FriendController.deleteFriend);
 

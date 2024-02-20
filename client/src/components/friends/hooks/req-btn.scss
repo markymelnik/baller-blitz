@@ -1,0 +1,9 @@
+.send-req-btn {
+	border: 1px solid black;
+	padding: 0.25rem;
+
+	&.sent {
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}

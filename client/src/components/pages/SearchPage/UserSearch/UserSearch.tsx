@@ -40,8 +40,6 @@ export const UserSearch = () => {
 
   const showSpinner = areResultsLoading || isLoading;
 
-  console.log(users);
-
   return (
     <div className='user-search-container'>
       <input
