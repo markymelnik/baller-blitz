@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useAccessToken } from "../../../hooks/stateSelectors";
 
 import { useFriendRequestStatus } from "./useFriendRequestStatus";
@@ -32,6 +34,10 @@ export const RequestButton = ({ user }: RequestButtonProps ) => {
 			}
 		})
 	}
+
+	useEffect(() => {
+    refetch();
+  }, [user.id, refetch]);
 
 	return (
 		<button className={`send-req-btn ${friendRequestStatus === 'pending' ? `sent` : ``}`} onClick={handleSendRequest} disabled={friendRequestStatus === 'pending'}>

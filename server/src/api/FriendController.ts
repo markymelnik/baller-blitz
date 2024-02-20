@@ -55,7 +55,6 @@ export const FriendController = {
 	async getAllFriendsByUserId(request: Request, response: Response, next: NextFunction) {
 		try {
 			const userId = request.user.id;
-			console.log(userId);
 			const result = await DatabaseQuery.getAllFriendsByUserIdFromDB(userId);
 			response.status(200).json(result);
 		} catch (error) {

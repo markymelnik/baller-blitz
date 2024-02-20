@@ -285,7 +285,6 @@ export const DatabaseQuery = {
   async acceptFriendRequestInDB(id: number) {
     try {
       const response = await pool.query(FRIEND_QUERY.UPDATE_FRIEND_REQUEST, ['accepted', id]);
-      console.log(response.rows);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while updating friend request');
@@ -295,7 +294,6 @@ export const DatabaseQuery = {
   async rejectFriendRequestInDB(requestId: number) {
     try {
       const response = await pool.query(FRIEND_QUERY.UPDATE_FRIEND_REQUEST, ['rejected', requestId]);
-      console.log(response.rows);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while updating friend request');
@@ -324,7 +322,6 @@ export const DatabaseQuery = {
   async getAllFriendsByUserIdFromDB(id: number) {
     try {
       const response = await pool.query(FRIEND_QUERY.READ_ALL_FRIENDS, ['accepted', id]);
-      console.log(response);
       return response.rows;
     } catch (error) {
       throw new DatabaseError('A database error occurred while updating friend request');

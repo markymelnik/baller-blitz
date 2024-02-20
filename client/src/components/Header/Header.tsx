@@ -28,6 +28,8 @@ export const Header = () => {
         {location.pathname.startsWith('/profile') && <AuthenticatedBackBtn />}
         {location.pathname === '/settings' && <AuthenticatedBackBtn />}
         {location.pathname === '/search' && <AuthenticatedBackBtn />}
+        {location.pathname === '/friends' && <AuthenticatedBackBtn />}
+        {location.pathname === '/req-friends' && <AuthenticatedBackBtn />}
       </div>
       <div className="header-middle">
         {location.pathname === '/settings' && <div className='settings-page-header'>{Content.settings.title}</div>}
@@ -38,6 +40,8 @@ export const Header = () => {
         {location.pathname === '/profile' && <AuthenticatedToSettingsButton />}
         {location.pathname.startsWith('/profile') && <AuthenticatedToSearchButton />}
         {location.pathname === '/search' && <AuthenticatedToProfileButton />}
+        {location.pathname === '/friends' && <AuthenticatedToSearchButton />}
+        {location.pathname === '/req-friends' && <AuthenticatedToSearchButton />}
 			</div>
     </header>
   );

@@ -21,6 +21,8 @@ import { SettingsPage } from './components/pages/SettingsPage/SettingsPage.tsx';
 import { SearchPage } from './components/pages/SearchPage/SearchPage.tsx';
 import { UserProfile } from './components/pages/UserProfile/UserProfile.tsx';
 import { SearchProvider } from './components/SearchProvider.tsx';
+import { FriendsPage } from './components/pages/FriendsPage/FriendsPage.tsx';
+import { ReqFriendsPage } from './components/pages/ReqFriendsPage/ReqFriendsPage.tsx';
 
 const App = () => {
   useRefreshUserSession();
@@ -54,6 +56,8 @@ const App = () => {
                 <Route path='/settings' element={<SettingsPage />} />
                 <Route path='/search' element={<SearchPage />} />
                 <Route path='/verify-success' element={<VerifySuccessPage />} />
+                <Route path='/friends' element={<FriendsPage />} />
+                <Route path='/req-friends' element={<ReqFriendsPage />} />
               </Route>
             }
             
