@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
@@ -19,7 +20,17 @@ export const UserProfile = () => {
 
 	const { data, isLoading, error } = useQuery(['userProfile', username], () => fetchUserProfile(accessToken, username!));
 	const { userProfile = {}, userStats = {} } = data || {};
+
+	const [isFriends, setIsFriends] = useState<boolean>(false);
+
+	console.log(userProfile);
 	
+	const confirmFriendStatus = () => {
+		setIsFriends(true);
+	}
+
+	console.log(isFriends);
+
   if (isLoading) {
     return <div>loading...</div>;
   }
@@ -30,8 +41,8 @@ export const UserProfile = () => {
 
 	return (
 		<div className="user-profile-container">
-			<ProfileIntro userProfile={userProfile} />
-			<ProfileStats userStats={userStats} />
+			<ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
+			{isFriends && <ProfileStats userStats={userStats} />}
 		</div>
 	)
 }

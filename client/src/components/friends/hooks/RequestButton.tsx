@@ -8,22 +8,26 @@ import './req-btn.scss';
 
 type RequestButtonProps = {
 	user: any;
+	onOpen: () => void;
 }
 
-export const RequestButton = ({ user }: RequestButtonProps ) => {
+export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
 
 	const accessToken = useAccessToken()!;
 
 	const { data: friendRequestStatus, refetch } = useFriendRequestStatus(user.id, accessToken);
-	const { mutate: sendFriendRequest, isSuccess, isLoading } = useSendFriendRequest(accessToken);
+	const { mutate: sendFriendRequest, isLoading } = useSendFriendRequest(accessToken);
 
 	console.log(friendRequestStatus);
 
-	let buttonText = 'Send Request'
+	let buttonText = '';
 	if (friendRequestStatus === 'pending') {
 		buttonText = 'Request Sent';
 	} else if (friendRequestStatus === 'accepted') {
-		buttonText = 'Already Friends'
+		buttonText = 'Already Friends';
+		setTimeout(onOpen, 0);
+	} else {
+		buttonText = 'Send Request'
 	}
 
 	const handleSendRequest = (event) => {
@@ -39,9 +43,13 @@ export const RequestButton = ({ user }: RequestButtonProps ) => {
     refetch();
   }, [user.id, refetch]);
 
+	if (isLoading) {
+		return <div>Loading...</div>
+	}
+
 	return (
-		<button className={`send-req-btn ${friendRequestStatus === 'pending' ? `sent` : ``}`} onClick={handleSendRequest} disabled={friendRequestStatus === 'pending'}>
+		friendRequestStatus !== 'accepted' ? (<button className={`send-req-btn ${friendRequestStatus === 'pending' ? `sent` : ``}`} onClick={handleSendRequest} disabled={friendRequestStatus === 'pending'}>
         {buttonText}
-      </button>
+      </button>) : (  <div>Friends</div>)
 	)
 }

@@ -60,7 +60,6 @@ const App = () => {
                 <Route path='/req-friends' element={<ReqFriendsPage />} />
               </Route>
             }
-            
             <Route path='/unauthenticated' element={<UnauthenticatedPage />} />
             <Route path='/unauthorized' element={<UnauthorizedPage />} />
             <Route path='*' element={<NotFoundPage />} />

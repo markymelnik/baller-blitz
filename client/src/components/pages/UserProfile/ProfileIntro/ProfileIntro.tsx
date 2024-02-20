@@ -4,15 +4,16 @@ import './profile-intro.scss';
 
 interface ProfileIntroProps {
   userProfile: UserProfileInfo;
+	onOpen: () => void;
 }
 
-export const ProfileIntro = ({ userProfile }: ProfileIntroProps) => {
+export const ProfileIntro = ({ userProfile, onOpen }: ProfileIntroProps) => {
 	return (
 		<>
 		<div className="profile-intro">
 			<div className="profile-username">{userProfile.username}</div>
 		</div>
-		<RequestButton user={userProfile} />
+		<RequestButton user={userProfile} onOpen={onOpen} />
 		</>
 	)
 }

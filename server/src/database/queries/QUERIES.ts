@@ -87,11 +87,34 @@ WHERE p.user_id = $1 AND g.status = 'finished' AND p.is_correct IS NOT NULL;`,
  /* `SELECT * FROM predictions WHERE user_id = $1;`,  */
 
  export const FRIEND_QUERY: FriendQueryTypes = {
-  CREATE_FRIEND_REQUEST: `INSERT INTO friends (requester_id, addressee_id, status) VALUES ($1, $2, $3) RETURNING *;`,
-  UPDATE_FRIEND_REQUEST: `UPDATE friends SET status = $1 WHERE id = $2 RETURNING *;`,
-  READ_INCOMING_FRIEND_REQUESTS: `SELECT * FROM friends WHERE addressee_id = $2 AND status = $1;`,
-  READ_OUTGOING_FRIEND_REQUESTS: `SELECT * FROM friends where requester_id = $1 AND status = $2;`,
-  READ_ALL_FRIENDS: `SELECT * FROM friends WHERE (requester_id = $2 OR addressee_id = $2) AND status = $1;`,
-  DELETE_FRIEND: `DELETE FROM friends WHERE (requester_id = $1 AND addressee_id = $2) OR (requester_id = $2 AND addressee_id = $1) AND status = $3 RETURNING *;`,
-  READ_FRIEND_REQUEST_STATUS: `SELECT status FROM friends WHERE requester_id = $1 AND addressee_id = $2;`,
- }
+   CREATE_FRIEND_REQUEST: `
+   INSERT INTO friends (requester_id, addressee_id, status)
+   VALUES ($1, $2, $3)
+   ON CONFLICT (requester_id, addressee_id)
+   DO UPDATE SET status = CASE
+                              WHEN friends.status = 'rejected' THEN 'pending'
+                              ELSE friends.status
+                          END
+   WHERE friends.status = 'rejected'
+   RETURNING *;
+ `,
+   UPDATE_FRIEND_REQUEST: `UPDATE friends SET status = $1 WHERE id = $2 RETURNING *;`,
+   READ_INCOMING_FRIEND_REQUESTS: `SELECT f.id AS request_id, u.id AS user_id, u.username
+  FROM friends f
+  JOIN users u
+  ON f.requester_id = u.id
+  WHERE f.addressee_id = $2
+  AND f.status = $1;`,
+   READ_OUTGOING_FRIEND_REQUESTS: `SELECT * FROM friends where requester_id = $1 AND status = $2;`,
+   READ_ALL_FRIENDS: `
+  SELECT u.id, u.username
+  FROM friends f
+  JOIN users u
+  ON (f.requester_id = u.id OR f.addressee_id = u.id)
+  WHERE (f.requester_id = $2 OR f.addressee_id = $2)
+  AND f.status = $1
+  AND u.id <> $2;
+`,
+   DELETE_FRIEND: `DELETE FROM friends WHERE (requester_id = $1 AND addressee_id = $2) OR (requester_id = $2 AND addressee_id = $1) AND status = $3 RETURNING *;`,
+   READ_FRIEND_REQUEST_STATUS: `SELECT status FROM friends WHERE (requester_id = $2 AND addressee_id = $1) OR (requester_id = $1 AND addressee_id = $2);`,
+ };

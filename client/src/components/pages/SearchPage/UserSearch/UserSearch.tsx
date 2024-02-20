@@ -7,6 +7,7 @@ import { UserResult } from "../UserResult/UserResult";
 import { Icons } from "../../../../lib/Icons";
 import { useSearch } from "../../../useSearch";
 import { UserProfileInfo } from "../../../../types/userTypes";
+import { useUserDetails } from "../../../../hooks/stateSelectors";
 
 export const UserSearch = () => {
   ring.register();
@@ -16,6 +17,8 @@ export const UserSearch = () => {
   const [page, setPage] = useState<number>(1);
   const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
   const pageSize = 10;
+
+  
   
   const {
     data,
@@ -23,7 +26,13 @@ export const UserSearch = () => {
     isError,
   } = useUserSeach(debouncedQuery, page, pageSize);
 
-  const users = data ?? [];
+  const userDetails = useUserDetails();
+  const clientId = userDetails?.id;
+
+  const dataUsers = data ?? [];
+  const users = dataUsers.filter(user => user.id !== clientId) ?? [];
+  
+  console.log(users);
 
   useEffect(() => {
     setAreResultingLoading(true);

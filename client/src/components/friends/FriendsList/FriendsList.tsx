@@ -16,7 +16,6 @@ export const FriendsList = () => {
   console.log(friends);
   return (
     <div className='friends-list'>
-      <div className='friends-list-title'>Friends</div>
       {friends.map((friend) => (
         <FriendCard key={friend.id} friend={friend} />
       ))}

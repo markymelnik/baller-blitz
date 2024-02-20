@@ -13,15 +13,20 @@ export const RequestingFriends = () => {
 	const { mutate: acceptFriendRequest } = useAcceptFriendRequest(accessToken);
 	const { mutate: rejectFriendRequest } = useRejectFriendRequest(accessToken);
 
-	const handleAccept = (requestId: number) => {
+	const handleAccept = (requestId: number, event) => {
+		event.stopPropagation();
+		console.log('hit accept')
+		console.log(requestId);
 		acceptFriendRequest(requestId, {
 			onSuccess: () => {
+				console.log('success accept')
 				refetch();
 			}
 		})
 	}
 
-	const handleReject = (requestId: number) => {
+	const handleReject = (requestId: number, event) => {
+		event.stopPropagation();
     rejectFriendRequest(requestId, {
       onSuccess: () => {
         refetch();
@@ -37,9 +42,8 @@ export const RequestingFriends = () => {
 
   return (
     <ul className='req-friends-list'>
-			<div className="req-friends-title">Requesting Friends</div>
-      {incomingFriendRequests.map((friend) => (
-        <ReqFriendCard key={friend.id} friend={friend} handleAccept={handleAccept} handleReject={handleReject} />
+      {incomingFriendRequests.map((request) => (
+        <ReqFriendCard key={request.request_id} request={request} handleAccept={handleAccept} handleReject={handleReject} />
       ))}
     </ul>
   );

@@ -5,7 +5,6 @@ import { Icons } from '../../../lib/Icons.ts';
 import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
 import { useFetchCurrentPredictions } from '../../../hooks/predictions/useFetchCurrentPredictions.ts';
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
-import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton.tsx';
 
 import { UserHistory } from './UserHistory/UserHistory.tsx';
 import { UserPredictions } from './UserPredictions/UserPredictions.tsx';
@@ -69,7 +68,6 @@ export const ProfilePage = () => {
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />
           </ul>
-          <LogoutButton />
         </div>
       </div>
     </SkeletonTheme>

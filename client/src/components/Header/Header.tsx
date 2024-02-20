@@ -33,10 +33,14 @@ export const Header = () => {
       </div>
       <div className="header-middle">
         {location.pathname === '/settings' && <div className='settings-page-header'>{Content.settings.title}</div>}
+        {location.pathname === '/friends' && <div className='friends-page-header'>Friends</div>}
+        {location.pathname === '/req-friends' && <div className='req-friends-page-header'>Friend Requests</div>}
       </div>
       <div className='header-right'>
+        {location.pathname === '/' && <AuthenticatedToProfileButton />}
         {location.pathname === '/' && <AuthenticatedToSearchButton />}
 				{location.pathname === '/front' && <AuthenticatedToProfileButton />}
+        {location.pathname === '/front' && <AuthenticatedToSearchButton />}
         {location.pathname === '/profile' && <AuthenticatedToSettingsButton />}
         {location.pathname.startsWith('/profile') && <AuthenticatedToSearchButton />}
         {location.pathname === '/search' && <AuthenticatedToProfileButton />}

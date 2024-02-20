@@ -96,32 +96,34 @@ export const ListOfGamesToday = () => {
           </div>
         </div>
       ) : (
-        <ul className='list-of-games-today'>
-          {isLoading ? (
-            <Skeleton className='skeleton-wrapper' count={numberOfGames} />
-          ) : (
-            todaysGames.map((game) => {
-              const predictedGame = predictedGames.find(
-                (prediction) => prediction.game_id === +game.gameId
-              );
-              const isPredicted = !!predictedGame;
+        <>
+          <ul className='list-of-games-today'>
+            {isLoading ? (
+              <Skeleton className='skeleton-wrapper' count={numberOfGames} />
+            ) : (
+              todaysGames.map((game) => {
+                const predictedGame = predictedGames.find(
+                  (prediction) => prediction.game_id === +game.gameId
+                );
+                const isPredicted = !!predictedGame;
 
-              return (
-                <GameCard
-                  game={game}
-                  key={game.gameId}
-                  isPredicted={isPredicted}
-                  predictedWinner={predictedGame?.predicted_winner}
-                  onSuccessfulSubmission={handleGamesListUpdate}
-                />
-              );
-            })
-          )}
-        </ul>
+                return (
+                  <GameCard
+                    game={game}
+                    key={game.gameId}
+                    isPredicted={isPredicted}
+                    predictedWinner={predictedGame?.predicted_winner}
+                    onSuccessfulSubmission={handleGamesListUpdate}
+                  />
+                );
+              })
+            )}
+          </ul>
+          <div className='list-divider'>
+            <div className='divider'></div>
+          </div>
+        </>
       )}
-      <div className='list-divider'>
-        <div className='divider'></div>
-      </div>
     </SkeletonTheme>
   );
 };

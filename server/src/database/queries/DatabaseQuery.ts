@@ -271,6 +271,7 @@ export const DatabaseQuery = {
 
   async insertFriendRequestIntoDB(requesterId: number, addresseeId: number) {
     try {
+      console.log('insert:', requesterId, addresseeId)
       const response = await pool.query(FRIEND_QUERY.CREATE_FRIEND_REQUEST, [
         requesterId,
         addresseeId,
@@ -340,7 +341,8 @@ export const DatabaseQuery = {
 
   async getFriendRequestStatus(requester_id: number, addressee_id: number) {
     try {
-      const response = await pool.query(FRIEND_QUERY.READ_FRIEND_REQUEST_STATUS, [requester_id, addressee_id]);
+      console.log(requester_id, addressee_id)
+      const response = await pool.query(FRIEND_QUERY.READ_FRIEND_REQUEST_STATUS, [addressee_id, requester_id]);
       return response.rows[0];
     } catch (error) {
       throw new DatabaseError('A database error occurred while reading friend request status');

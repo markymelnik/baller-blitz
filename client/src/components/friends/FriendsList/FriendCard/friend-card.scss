@@ -1,7 +1,21 @@
 .friend-card {
 	display: flex;
-	flex-direction: column;
 	padding: 1rem;
-	gap: 0.5rem;
-	border: 1px solid black;
+	margin: 0 0 1rem;
+	gap: 1rem;
+	border: 1px solid lightgrey;
+
+	.friend-card-left {
+		width: 4rem;
+		height: 4rem;
+		border: 1px solid lightgrey;
+		border-radius: 50%;
+	}
+
+	.friend-card-right {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		flex-grow: 1;
+	}
 }
