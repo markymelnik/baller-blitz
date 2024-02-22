@@ -1,25 +1,43 @@
 import { NavigateToSignupButton } from '../../buttons/nav/signuplogin/NavigateToSignupButton.tsx';
 import { NavigateToLoginButton } from '../../buttons/nav/signuplogin/NavigateToLoginButton.tsx';
 import { useUnauthorizedRender } from '../../../hooks/auth/useUnauthorizedRender.ts';
+import { NavToGamesBtn } from '../../buttons/nav/NavToFrontBtn.tsx';
 import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
-import { NavToFrontBtn } from '../../buttons/nav/NavToFrontBtn.tsx';
 import './home-page.scss';
-import { Content } from '../../../lib/Content.ts';
 
 export const HomePage = () => {
-  const UnauthenticatedLoginButton = useUnauthorizedRender(NavigateToLoginButton, ['user','admin']);
-  const UnauthenticatedSignupButton = useUnauthorizedRender(NavigateToSignupButton, ['user','admin']);
-  const AuthenticatedToFrontButton = useAuthorizedRender(NavToFrontBtn, ['user','admin']);
-  
-  
+  const UnauthenticatedHome = useUnauthorizedRender(
+    () => (
+      <div className='home-unauth'>
+        <h2 className='unauth-title'>Get started</h2>
+        <ul className='unauth-btns'>
+          <li>
+            <NavigateToLoginButton />
+          </li>
+          <li>
+            <NavigateToSignupButton />
+          </li>
+        </ul>
+      </div>
+    ),
+    ['user', 'admin']
+  );
+
+  const AuthenticatedHome = useAuthorizedRender(
+    () => (
+      <div className='home-auth'>
+        <NavToGamesBtn />
+      </div>
+    ),
+    ['user', 'admin']
+  );
+
   return (
     <div className='home-page'>
-      <div className='home-welcome'>{Content.home.intro}</div>
-      <div className='home-center'>
-        <UnauthenticatedLoginButton />
-        <UnauthenticatedSignupButton />
-        <AuthenticatedToFrontButton />
-      </div>
+      <h1 className='home-welcome'>Ball Battle</h1>
+      <UnauthenticatedHome />
+      <AuthenticatedHome />
+
       <div className='home-bot'></div>
     </div>
   );

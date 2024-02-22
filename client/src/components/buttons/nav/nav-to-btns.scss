@@ -11,11 +11,11 @@
 .nav-to-login-btn {
 	padding: 1rem;
 	height: 3.25rem;
-	width: 10rem;
+	width: 100%;
 	border: 1px solid black;
 }
 
-.nav-to-front-btn,
+.nav-to-games-btn,
 .nav-to-profile-from-settings-btn {
 	display: flex;
 	align-items: center;
@@ -32,7 +32,7 @@
 	}
 }
 
-.to-front-from-home-btn {
+.to-games-from-home-btn {
 	font-size: 1.05rem;
 	border: 1px solid lightgrey;
 

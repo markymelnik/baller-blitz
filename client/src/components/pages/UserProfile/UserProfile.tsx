@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 
-import { ApiClient } from '../../../api/ApiClient';
 import { useAccessToken } from '../../../hooks/stateSelectors';
-import { RequestButton } from '../../RequestButton/RequestButton';
+import { ApiClient } from '../../../api/ApiClient';
 
 import { DeleteFriendBtn } from './DeleteFriend/DeleteFriendBtn';
+import { RequestButton } from './RequestButton/RequestButton';
 import { ProfileIntro } from './ProfileIntro/ProfileIntro';
 import { ProfileStats } from './ProfileStats/ProfileStats';
 import './user-profile.scss';

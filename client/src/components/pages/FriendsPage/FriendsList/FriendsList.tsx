@@ -2,7 +2,7 @@ import { useAuthorizedRender } from '../../../../hooks/auth/useAuthorizedRender'
 import { useAccessToken } from '../../../../hooks/stateSelectors';
 import { FriendListCard } from '../../../../types/notifTypes';
 import { NavToSearchBtn } from '../../../buttons/nav/NavToSearchBtn';
-import { useFriends } from '../../../RequestButton/useFriends';
+import { useFriends } from '../../UserProfile/RequestButton/useFriends';
 
 import { FriendCard } from './FriendCard/FriendCard';
 import './friends-list.scss';

@@ -25,8 +25,8 @@ export const ReqFriendCard = ({ request, handleAccept, handleReject }: ReqFriend
         <div className='req-friend-id'>{request.user_id}</div>
 
         <div className='req-friend-btns'>
-          <button onClick={(event) => handleAccept(request.request_id, event)}>Accept</button>
-          <button onClick={(event) => handleReject(request.request_id, event)}>Reject</button>
+          <button className='req-accept-btn' onClick={(event) => handleAccept(request.request_id, event)}>Accept</button>
+          <button className='req-reject-btn'onClick={(event) => handleReject(request.request_id, event)}>Reject</button>
         </div>
       </div>
     </li>

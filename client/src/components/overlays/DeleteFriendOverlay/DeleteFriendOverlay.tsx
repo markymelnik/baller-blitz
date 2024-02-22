@@ -37,7 +37,7 @@ export const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOver
 	if (!isOpen) return null;
 
   return createPortal(
-    <div className='portal-wrapper'>
+    <div className='df-portal-wrapper'>
       <div className='delete-friend-overlay' ref={overlayRef}>
 				<div className="delete-friend-prompt">Are you sure?</div>
 				<div className="delete-friend-btns">

@@ -10,7 +10,7 @@ import { UnauthenticatedPage } from './components/pages/fallback/Unauthenticated
 import { NotFoundPage } from './components/pages/fallback/NotFoundPage.tsx';
 import { PrivateRoutes } from './routes/PrivateRoutes.tsx';
 import { useRefreshUserSession } from './hooks/auth/useRefreshUserSession.ts';
-import { FrontPage } from './components/pages/FrontPage/FrontPage.tsx';
+import { GamesPage } from './components/pages/GamesPage/GamesPage.tsx';
 import { PublicRoutes } from './routes/PublicRoutes.tsx';
 import ScrollToTop from './hooks/page/useScrollToTop.ts';
 import { Header } from './components/header/Header.tsx';
@@ -52,7 +52,7 @@ const App = () => {
               <Route
                 element={<PrivateRoutes allowedRoles={['admin', 'user']} />}
               >
-                <Route path='/front' element={<FrontPage />} />
+                <Route path='/games' element={<GamesPage />} />
                 <Route path='/profile' element={<ProfilePage />} />
                 <Route path='/profile/:username' element={<UserProfile />} />
                 <Route path='/settings' element={<SettingsPage />} />

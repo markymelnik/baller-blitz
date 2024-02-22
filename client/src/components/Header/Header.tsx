@@ -7,10 +7,9 @@ import { NavToSettingsBtn } from '../buttons/nav/NavToSettingsBtn.tsx';
 import { NavToSearchBtn } from '../buttons/nav/NavToSearchBtn.tsx';
 import { NavBackBtn } from '../buttons/nav/NavBackBtn.tsx';
 import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
-import './header.scss';
-import { NavToFriendsBtn } from '../buttons/nav/NavToFriendsBtn.tsx';
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
 import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
+import './header.scss';
 
 export const Header = () => {
   const location = useLocation();
@@ -22,7 +21,6 @@ export const Header = () => {
   const AuthenticatedToSearchButton = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
   const AuthenticatedBackBtn = useAuthorizedRender(NavBackBtn, ['user','admin']);
   const UnauthenticatedBackBtn = useUnauthorizedRender(NavBackBtn, ['user','admin']);
-  const AuthenticatedToFriendsBtn = useAuthorizedRender(NavToFriendsBtn, ['user','admin']);
   const AuthenticatedToNotifBtn = useAuthorizedRender(NavToNotifBtn, ['user','admin']);
 	
   return (
@@ -30,7 +28,7 @@ export const Header = () => {
       <div className='header-left'>
         {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
         {location.pathname === '/login' && <UnauthenticatedBackBtn />}
-        {location.pathname === '/front' && <AuthenticatedBackBtn />}
+        {location.pathname === '/games' && <AuthenticatedBackBtn />}
         {location.pathname.startsWith('/profile') && <AuthenticatedBackBtn />}
         {location.pathname === '/settings' && <AuthenticatedBackBtn />}
         {location.pathname === '/search' && <AuthenticatedBackBtn />}
@@ -46,12 +44,12 @@ export const Header = () => {
       <div className='header-right'>
         {location.pathname === '/' && <AuthenticatedToProfileButton />}
         {location.pathname === '/' && <AuthenticatedToSearchButton />}
-				{location.pathname === '/front' && <AuthenticatedToProfileButton />}
-        {location.pathname === '/front' && <AuthenticatedToSearchButton />}
+				{location.pathname === '/games' && <AuthenticatedToProfileButton />}
+        {location.pathname === '/games' && <AuthenticatedToSearchButton />}
 
         {location.pathname === '/profile' && <AuthenticatedToNotifBtn />}
 
-        {location.pathname === '/profile' && <AuthenticatedToFriendsBtn />}
+        
         {location.pathname === '/profile' && <AuthenticatedToSettingsButton />}
         {location.pathname.startsWith('/profile') && location.pathname !== '/profile' && <AuthenticatedToProfileButton />}
         {location.pathname.startsWith('/profile') && <AuthenticatedToSearchButton />}

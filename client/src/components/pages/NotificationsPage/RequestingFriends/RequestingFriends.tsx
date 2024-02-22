@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 
-import { useAcceptFriendRequest } from "../../../RequestButton/useAcceptFriendRequest";
-import { useRejectFriendRequest } from "../../../RequestButton/useRejectFriendRequest";
+import { useAcceptFriendRequest } from "../../UserProfile/RequestButton/useAcceptFriendRequest";
+import { useRejectFriendRequest } from "../../UserProfile/RequestButton/useRejectFriendRequest";
 import { useAuthorizedRender } from "../../../../hooks/auth/useAuthorizedRender";
 import { useAccessToken } from "../../../../hooks/stateSelectors";
 import { RequestFriendData } from "../../../../types/notifTypes";
@@ -22,11 +22,8 @@ export const RequestingFriends = () => {
 
 	const handleAccept = (requestId: number, event: MouseEvent) => {
 		event.stopPropagation();
-		console.log('hit accept')
-		console.log(requestId);
 		acceptFriendRequest(requestId, {
 			onSuccess: () => {
-				console.log('success accept')
 				refetch();
 			}
 		})
@@ -44,8 +41,6 @@ export const RequestingFriends = () => {
 	if (isLoading) {
 		return <div className="hello"></div>
 	}
-
-	console.log(incomingFriendRequests)
 
   return (
 		<div className='req-friends-container'>

@@ -102,7 +102,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
   if (overlayState === SelectOverlayState.RESULT) {
     const message = isSubmissionSuccessful ? Content.overlay.selectWinner.submit.success : Content.overlay.selectWinner.submit.failure;
     return createPortal(
-      <div className="portal-wrapper">
+      <div className="sw-portal-wrapper">
         <div className="select-winner-overlay success" ref={overlayRef} onClick={handleOverlayClick}>
           <OverlayCloseButton onClose={handleOverlayResetAndClose}/>
           <div className="select-overlay-message">{message}</div>
@@ -114,7 +114,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
   }
 
   return createPortal(
-    <div className='portal-wrapper'>
+    <div className='sw-portal-wrapper'>
       <div
         className='select-winner-overlay'
         ref={overlayRef}

@@ -3,10 +3,19 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	padding: 10vh 0 0;
+	padding: 8vh 0 0;
 
 	.profile-page-top {
+		display: flex;
 		width: 100%;
+
+		.profile-page-right {
+			display: flex;
+			justify-content: right;
+			align-items:last baseline;
+			padding: 1rem 0;
+			flex: 1;
+		}
 
 		.profile-container {
 			display: flex;
@@ -44,7 +53,7 @@
 		justify-content: center;
 
 		.divider {
-			border-bottom: 4px solid lightgrey;
+			border-bottom: 1px solid black;
 			width: 100%;
 		}
 	}
@@ -62,8 +71,8 @@
 			flex: 1;
 
 			.blob-skeleton-wrapper {
-				margin: 2rem 0 0;
-				height: 5rem;
+				margin: 2rem 0 7.75rem;
+				height: 14vh;
 			}
 		}
 		

@@ -3,22 +3,42 @@
 	width: 100%;
 	display: flex;
   flex-direction: column;
-	justify-content: space-between;
-	padding: 10vh 0 0;
+	padding: 6vh 0 0;
 
 	.home-welcome {
-		text-align: center;
-		font-size: 3rem;
-		padding: 2rem 0;
+		font-size: 2.5rem;
+		padding: 0.5rem 0 0 1rem;
+		z-index: 2;
 	}
 
-	.home-center {
-		position: relative;
-		height: 50vh;
-		flex: 1;
+	.home-auth,
+	.home-unauth {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		padding: 2rem 0 0;
+	}
+
+	.home-auth {
+		padding: 24vh 0 0;
+		position: relative;
+	}
+
+	.home-unauth {
+		padding: 12vh 0 0;
+		flex: 1;
+
+		.unauth-title {
+			line-height: 1.5;
+			font-size: 1.5rem;
+			padding: 0 0 1.5rem;
+			font-weight: bold;
+		}
+
+		.unauth-btns {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			width: 100%;
+		}
 	}
 }

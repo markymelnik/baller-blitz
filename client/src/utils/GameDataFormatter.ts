@@ -1,5 +1,5 @@
 import { Game } from "../types/gameTypes.ts";
-import { GameState } from "../components/pages/FrontPage/GameState.ts";
+import { GameState } from "../components/pages/GamesPage/GameState.ts";
 
 export const GameDataFormatter = {
   determineStatus(gameStatus: number): string {

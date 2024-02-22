@@ -23,7 +23,6 @@ export const Content = {
     },
     logout: {
       title: 'Logout',
-
     },
     email: {
       title: 'Email address',
@@ -38,33 +37,31 @@ export const Content = {
   home: {
     intro: 'Hello.',
   },
-  front: {
-    games: {
-			title: 'Games',
-      status: {
-        1: `Game information`,
-        2: `Games are live!`,
-        3: `All games have finished`,
-        4: `New game information at 12 PM ET!`,
-      },
+  games: {
+    title: 'Games',
+    status: {
+      1: `Game information`,
+      2: `Games are live!`,
+      3: `All games have finished`,
+      4: `New game information at 12 PM ET!`,
     },
   },
-	profile: {
-		currentPredictions: {
-			title: 'Current Predictions',
-			none: 'No predictions made today'
-		},
-		historyPredictions: {
-			title: 'Past History',
-			none: 'No History'
-		},
+  profile: {
+    currentPredictions: {
+      title: 'Current Predictions',
+      none: 'No predictions made today',
+    },
+    historyPredictions: {
+      title: 'Past History',
+      none: 'No History',
+    },
     userStats: {
       title: 'User Stats',
-      winPrediction: 'Win Prediction'
-    }
-	},
+      winPrediction: 'Win Prediction',
+    },
+  },
   verifySuccess: {
-    message: 'Your email is verified!'
+    message: 'Your email is verified!',
   },
   fallback: {
     unauthenticated: 'Unauthenticated Access',
@@ -86,14 +83,14 @@ export const Content = {
         success: 'Success! Your prediction was saved.',
         failure: 'You already predicted this match!',
       },
-      submitWarning: 'Are you sure?'
+      submitWarning: 'Are you sure?',
     },
     alreadyPredicted: {
       prompt: '',
       state: {
         1: 'Confirm',
         2: 'Submit',
-      }
+      },
     },
     startedOverlay: {
       message: 'The game has started!',
@@ -109,7 +106,7 @@ export const Content = {
         prompt: `Resend verification link`,
         sent: `Sent!`,
         tooMany: `Too many attempts. Wait to try again.`,
-      }
+      },
     },
-  }
+  },
 };

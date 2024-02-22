@@ -5,6 +5,8 @@ import { Icons } from '../../../lib/Icons.ts';
 import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
 import { useFetchCurrentPredictions } from '../../../hooks/predictions/useFetchCurrentPredictions.ts';
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
+import { NavToFriendsBtn } from '../../buttons/nav/NavToFriendsBtn.tsx';
 
 import { UserHistory } from './UserHistory/UserHistory.tsx';
 import { UserPredictions } from './UserPredictions/UserPredictions.tsx';
@@ -14,6 +16,8 @@ import './profile-page.scss';
 export const ProfilePage = () => {
   const isAuthenticated = useAuth();
   const userDetails = useUserDetails();
+
+  const AuthenticatedToFriendsBtn = useAuthorizedRender(NavToFriendsBtn, ['user','admin']);
 
   const allPredictedGames = useFetchAllPredictions();
   const currentPredictedGames = useFetchCurrentPredictions();
@@ -53,6 +57,9 @@ export const ProfilePage = () => {
                 {is_verified && 'Verified'}
               </div>
             </div>
+          </div>
+          <div className="profile-page-right">
+          <AuthenticatedToFriendsBtn />
           </div>
         </div>
         <div className="profile-page-divider">
