@@ -20,16 +20,21 @@ export const FriendsList = () => {
     return <div>loading...</div>;
   }
 
-  return friends.length < 1 ? (
-    <div className='no-friends-fallback'>
-      <div className='fallback-text'>Search for friends!</div>
-      <AuthenticatedNavToFriendsBtn />
-    </div>
-  ) : (
-    <div className='friends-list'>
-      {friends.map((friend) => (
-        <FriendCard key={friend.id} friend={friend} />
-      ))}
-    </div>
+  return (
+    <>
+    <div className='friends-list-title'>Friends</div>
+      {friends.length < 1 ? (
+        <div className='no-friends-fallback'>
+          <div className='fallback-text'>Search for friends!</div>
+          <AuthenticatedNavToFriendsBtn />
+        </div>
+      ) : (
+        <div className='friends-list'>
+          {friends.map((friend) => (
+            <FriendCard key={friend.id} friend={friend} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }

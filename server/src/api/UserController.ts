@@ -31,7 +31,8 @@ export const UserController = {
 			const { query, page = 1, pageSize = 10 } = request.query;
 			const offset = (+page - 1) * +pageSize;
 			const res = await DatabaseQuery.searchAllUsersFromDB(query, pageSize, offset);
-			response.status(200).json({ users: res });
+			const total = res.length > 0 ? res[0].total_count : 0;
+			response.status(200).json({ users: res, total });
 		} catch (error) {
 			next(error);
 		}

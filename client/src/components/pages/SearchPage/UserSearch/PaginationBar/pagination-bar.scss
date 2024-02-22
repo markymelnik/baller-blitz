@@ -1,0 +1,27 @@
+.pagination-bar {
+	display: flex;
+	justify-content: center;
+
+	.pagination-controls {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: auto;
+
+		> * {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 0.5rem;
+		}
+
+		.page-left-arrow,
+		.page-right-arrow {
+
+			&.none {
+				pointer-events: none;
+				opacity: 0.4;
+			}
+		}
+	}
+}

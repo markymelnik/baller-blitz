@@ -21,18 +21,4 @@
 		flex: 1;
 	}
 
-	.pagination-controls {
-		display: flex;
-		justify-content: center;
-		gap: 0.5rem;
-		margin-top: auto;
-
-		> * {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			border: 1px solid lightgrey;
-			padding: 0.75rem;
-		}
-	}
 }

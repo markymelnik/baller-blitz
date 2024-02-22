@@ -2,37 +2,23 @@ import { useEffect, useState } from "react";
 import { ring } from "ldrs";
 
 import { useUserSeach } from "../../../../hooks/user/useUserSearch";
-import './user-search.scss';
 import { UserResult } from "../UserResult/UserResult";
-import { Icons } from "../../../../lib/Icons";
 import { useSearch } from "../../../useSearch";
 import { UserProfileInfo } from "../../../../types/userTypes";
 import { useUserDetails } from "../../../../hooks/stateSelectors";
 
+import './user-search.scss';
+import { PaginationBar } from "./PaginationBar/PaginationBar";
+
 export const UserSearch = () => {
   ring.register();
+  const userDetails = useUserDetails();
 
   const { searchQuery, setSearchQuery } = useSearch();
   const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
   const [page, setPage] = useState<number>(1);
   const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
   const pageSize = 10;
-
-  
-  
-  const {
-    data,
-    isLoading,
-    isError,
-  } = useUserSeach(debouncedQuery, page, pageSize);
-
-  const userDetails = useUserDetails();
-  const clientId = userDetails?.id;
-
-  const dataUsers = data ?? [];
-  const users = dataUsers.filter(user => user.id !== clientId) ?? [];
-  
-  console.log(users);
 
   useEffect(() => {
     setAreResultingLoading(true);
@@ -45,7 +31,17 @@ export const UserSearch = () => {
       clearTimeout(timer);
       setAreResultingLoading(false);
     }
-}, [searchQuery]);
+}, [searchQuery, page]);
+
+  const { data, isLoading, isError } = useUserSeach(debouncedQuery, page, pageSize);
+  
+  const clientId = userDetails?.id;
+
+  const dataUsers = data?.users ?? [];
+  const users = dataUsers.filter(user => user.id !== clientId) ?? [];
+
+  const totalCount = data?.totalCount ?? 0;
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   const showSpinner = areResultsLoading || isLoading;
 
@@ -84,15 +80,7 @@ export const UserSearch = () => {
           </ul>
         </>
       )}
-      <div className='pagination-controls'>
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          <Icons.ArrowLeft size={20} />
-        </button>
-        <span>{page}</span>
-        <button onClick={() => setPage(page + 1)}>
-          <Icons.ArrowRight size={20} />
-        </button>
-      </div>
+      {totalCount > 0 && <PaginationBar setPage={setPage} page={page} totalPages={totalPages}/> }
     </div>
   );
 };
