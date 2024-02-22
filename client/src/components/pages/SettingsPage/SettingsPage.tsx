@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 import { Icons } from '../../../lib/Icons';
 import { Content } from '../../../lib/Content';
+import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton';
 
 import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
 import './settings-page.scss';
-import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton';
 
 export const SettingsPage = () => {
 

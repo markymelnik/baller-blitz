@@ -1,10 +1,13 @@
-import { useAuthorizedRender } from "../../../hooks/auth/useAuthorizedRender";
-import { useAccessToken } from "../../../hooks/stateSelectors";
-import { NavToSearchBtn } from "../../buttons/nav/NavToSearchBtn";
-import { useAcceptFriendRequest } from "../hooks/useAcceptFriendRequest";
-import { useIncomingFriendRequest } from "../hooks/useIncomingFriendRequest";
-import { useRejectFriendRequest } from "../hooks/useRejectFriendRequest";
+import { MouseEvent } from "react";
 
+import { useAcceptFriendRequest } from "../../../RequestButton/useAcceptFriendRequest";
+import { useRejectFriendRequest } from "../../../RequestButton/useRejectFriendRequest";
+import { useAuthorizedRender } from "../../../../hooks/auth/useAuthorizedRender";
+import { useAccessToken } from "../../../../hooks/stateSelectors";
+import { RequestFriendData } from "../../../../types/notifTypes";
+import { NavToSearchBtn } from "../../../buttons/nav/NavToSearchBtn";
+
+import { useIncomingFriendRequest } from "./useIncomingFriendRequest";
 import { ReqFriendCard } from "./ReqFriendCard/ReqFriendCard";
 import './req-friends.scss';
 
@@ -17,7 +20,7 @@ export const RequestingFriends = () => {
 
 	const AuthenticatedNavToFriendsBtn = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
 
-	const handleAccept = (requestId: number, event) => {
+	const handleAccept = (requestId: number, event: MouseEvent) => {
 		event.stopPropagation();
 		console.log('hit accept')
 		console.log(requestId);
@@ -29,7 +32,7 @@ export const RequestingFriends = () => {
 		})
 	}
 
-	const handleReject = (requestId: number, event) => {
+	const handleReject = (requestId: number, event: MouseEvent) => {
 		event.stopPropagation();
     rejectFriendRequest(requestId, {
       onSuccess: () => {
@@ -42,12 +45,12 @@ export const RequestingFriends = () => {
 		return <div className="hello"></div>
 	}
 
-	console.log(incomingFriendRequests.length);
+	console.log(incomingFriendRequests)
 
   return (
 		<div className='req-friends-container'>
 			<div className='req-friends-title'>
-				Friend Requests
+				Friend Requests <span>{incomingFriendRequests > 0 && (`(${incomingFriendRequests.length})`)}</span>
 			</div>
 			{incomingFriendRequests.length < 1 ? (
 				<div className='no-req-friends-fallback'>
@@ -56,7 +59,7 @@ export const RequestingFriends = () => {
 				</div>
 			) : (
 				<ul className='req-friends-list'>
-					{incomingFriendRequests.map((request) => (
+					{incomingFriendRequests.map((request: RequestFriendData) => (
 						<ReqFriendCard
 							key={request.request_id}
 							request={request}

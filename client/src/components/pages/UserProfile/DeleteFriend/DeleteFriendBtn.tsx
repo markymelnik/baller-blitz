@@ -23,7 +23,7 @@ export const DeleteFriendBtn = ({ userProfile }: DeleteFriendBtnProps) => {
 	return (
 		<div className="delete-friend-container">
 <button className="open-delete-friend-btn" onClick={handleDeleteFriendOverlayButtonClick}>
-			Remove
+			Unfriend
 		</button>
 		<DeleteFriendOverlay isOpen={isDeleteFriendOverlayOpen} onClose={handleDeleteFriendOverlayClose} userProfile={userProfile} />
 		</div>

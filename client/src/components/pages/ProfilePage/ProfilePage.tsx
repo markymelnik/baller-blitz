@@ -61,9 +61,13 @@ export const ProfilePage = () => {
         <div className='profile-page-bot'>
           <ul className='profile-page-blobs'>
             {isLoading ? (
-              <Skeleton className='blob-skeleton-wrapper' count={2} />
+              <Skeleton className='blob-skeleton-wrapper' count={1} />
             ) : (
+              <>
               <UserStats />
+              <div className="spacer" style={{ flexGrow: 1 }}></div>
+              </>
+              
             )}
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />

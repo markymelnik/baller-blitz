@@ -40,6 +40,7 @@ export const Header = () => {
       <div className="header-middle">
         {location.pathname === '/settings' && <div className='settings-page-header'>{Content.settings.title}</div>}
         {location.pathname === '/friends' && <div className='friends-page-header'>Friends</div>}
+        {location.pathname === '/search' && <div className='search-page-header'>Search</div>}
         {location.pathname === '/notifications' && <div className='notif-page-header'>Notifications</div>}
       </div>
       <div className='header-right'>

@@ -4,8 +4,9 @@ import { useQuery } from 'react-query';
 
 import { ApiClient } from '../../../api/ApiClient';
 import { useAccessToken } from '../../../hooks/stateSelectors';
-import { DeleteFriendBtn } from '../../friends/hooks/DeleteFriend/DeleteFriendBtn';
+import { RequestButton } from '../../RequestButton/RequestButton';
 
+import { DeleteFriendBtn } from './DeleteFriend/DeleteFriendBtn';
 import { ProfileIntro } from './ProfileIntro/ProfileIntro';
 import { ProfileStats } from './ProfileStats/ProfileStats';
 import './user-profile.scss';
@@ -43,6 +44,7 @@ export const UserProfile = () => {
 	return (
 		<div className="user-profile-container">
 			<ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
+			<RequestButton user={userProfile} onOpen={confirmFriendStatus} />
 			{isFriends && <ProfileStats userStats={userStats} />}
 			{isFriends && <DeleteFriendBtn userProfile={userProfile} />}
 		</div>

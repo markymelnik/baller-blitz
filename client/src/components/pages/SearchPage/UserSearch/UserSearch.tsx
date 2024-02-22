@@ -81,9 +81,10 @@ export const UserSearch = () => {
               <UserResult key={user.id} user={user} />
             ))}
           </ul>
+          {totalCount > 0 && <PaginationBar setPage={setPage} page={page} totalPages={totalPages}/> }
         </>
       )}
-      {totalCount > 0 && <PaginationBar setPage={setPage} page={page} totalPages={totalPages}/> }
+      
     </div>
   );
 };

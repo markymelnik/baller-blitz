@@ -30,8 +30,6 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
         />
       </div>
 
-      {!isHistoryOpen && <div className='prediction-list-divider'></div>}
-
       {isHistoryOpen && (
         <>
           {numberOfPredictedGames < 1 ? (

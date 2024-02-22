@@ -1,8 +1,7 @@
 .user-predictions {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem 0 0;
-	margin-top: auto;
+	padding: 1rem 0;
 
 	.user-pred-fallback {
 		font-size: 1.25rem;
@@ -24,15 +23,6 @@
 
 		.rotate-icon {
 			transition: transform 0.3s ease;
-		}
-	}
-
-	.prediction-list-divider {
-		border-bottom: 1px solid lightgrey;
-		margin: 1rem 0 0;
-
-		&.top {
-			margin: 0 0 1rem;
 		}
 	}
 

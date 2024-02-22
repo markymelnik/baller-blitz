@@ -23,7 +23,6 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
   return (
     
     <div className='user-predictions'>
-      <div className='prediction-list-divider top'></div>
       <div
         className='current-predictions-header'
         onClick={handleCurrentButtonClick}
@@ -51,8 +50,6 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
               </div>
             </ul>
           )}
-
-          <div className='prediction-list-divider bottom'></div>
         </>
       )}
     </div>

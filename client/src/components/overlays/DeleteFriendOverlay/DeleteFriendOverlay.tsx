@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 
 import { useOutsideClick } from '../../../hooks/page/useOutsideClick';
 import { useAccessToken } from '../../../hooks/stateSelectors';
-import { useDeleteFriend } from '../../friends/hooks/DeleteFriend/useDeleteFriend';
+import { useDeleteFriend } from '../../pages/UserProfile/DeleteFriend/useDeleteFriend';
 import './delete-friend-overlay.scss';
 import { UserProfileInfo } from '../../../types/userTypes';
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate';

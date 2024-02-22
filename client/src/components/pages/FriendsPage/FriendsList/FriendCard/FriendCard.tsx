@@ -1,7 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+
+import { FriendListCard } from '../../../../../types/notifTypes';
 import './friend-card.scss';
 
-export const FriendCard = ({ friend }) => {
+interface FriendCardProps {
+  friend: FriendListCard;
+}
+export const FriendCard = ({ friend }: FriendCardProps) => {
   const navigate = useNavigate();
 
   const handleFriendCardClick = () => {

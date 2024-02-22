@@ -1,4 +1,4 @@
-import { RequestingFriends } from '../../friends/RequestingFriends/RequestingFriends';
+import { RequestingFriends } from './RequestingFriends/RequestingFriends';
 import './notif-page.scss';
 
 export const NotificationsPage = () => {

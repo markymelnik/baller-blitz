@@ -7,7 +7,6 @@ export const useAcceptFriendRequest = (accessToken: string) => {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
         },
-        
       })
 
       if (!response.ok) {
@@ -15,7 +14,6 @@ export const useAcceptFriendRequest = (accessToken: string) => {
       }
   
       return response.json();
-
     }
   );
 };

@@ -1,4 +1,4 @@
-import { FriendsList } from '../../friends/FriendsList/FriendsList';
+import { FriendsList } from './FriendsList/FriendsList';
 import './friends-page.scss';
 
 export const FriendsPage = () => {

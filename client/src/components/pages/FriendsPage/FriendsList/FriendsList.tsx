@@ -1,7 +1,8 @@
-import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender';
-import { useAccessToken } from '../../../hooks/stateSelectors';
-import { NavToSearchBtn } from '../../buttons/nav/NavToSearchBtn';
-import { useFriends } from '../hooks/useFriends';
+import { useAuthorizedRender } from '../../../../hooks/auth/useAuthorizedRender';
+import { useAccessToken } from '../../../../hooks/stateSelectors';
+import { FriendListCard } from '../../../../types/notifTypes';
+import { NavToSearchBtn } from '../../../buttons/nav/NavToSearchBtn';
+import { useFriends } from '../../../RequestButton/useFriends';
 
 import { FriendCard } from './FriendCard/FriendCard';
 import './friends-list.scss';
@@ -20,9 +21,11 @@ export const FriendsList = () => {
     return <div>loading...</div>;
   }
 
+  console.log(friends);
+
   return (
     <>
-    <div className='friends-list-title'>Friends</div>
+    <div className='friends-list-title'>Friends <span>{friends.length > 0 && (`(${friends.length})`)}</span></div>
       {friends.length < 1 ? (
         <div className='no-friends-fallback'>
           <div className='fallback-text'>Search for friends!</div>
@@ -30,7 +33,7 @@ export const FriendsList = () => {
         </div>
       ) : (
         <div className='friends-list'>
-          {friends.map((friend) => (
+          {friends.map((friend: FriendListCard) => (
             <FriendCard key={friend.id} friend={friend} />
           ))}
         </div>

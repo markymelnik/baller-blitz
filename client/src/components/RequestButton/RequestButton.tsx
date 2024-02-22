@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { MouseEvent, useEffect } from "react";
 
-import { useAccessToken } from "../../../hooks/stateSelectors";
-import { UserProfileInfo } from "../../../types/userTypes";
+import { useAccessToken } from "../../hooks/stateSelectors";
+import { UserProfileInfo } from "../../types/userTypes";
+import { Icons } from "../../lib/Icons";
 
 import { useFriendRequestStatus } from "./useFriendRequestStatus";
 import { useSendFriendRequest } from "./useSendFriendRequest";
+
 import './req-btn.scss';
 
 type RequestButtonProps = {
@@ -19,7 +21,7 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
 	const { data: friendRequestStatus, refetch } = useFriendRequestStatus(user.id, accessToken);
 	const { mutate: sendFriendRequest, isLoading } = useSendFriendRequest(accessToken);
 
-	console.log(friendRequestStatus);
+	console.log(user);
 
 	let buttonText = '';
 	if (friendRequestStatus === 'pending') {
@@ -31,11 +33,11 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
 		buttonText = 'Send Request'
 	}
 
-	const handleSendRequest = (event) => {
+	const handleSendRequest = (event: MouseEvent) => {
 		event.stopPropagation();
 		sendFriendRequest(user.id, {
 			onSuccess: () => {
-				refetch(user.id);
+				refetch();
 			}
 		})
 	}
@@ -51,6 +53,6 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
 	return (
 		friendRequestStatus !== 'accepted' ? (<button className={`send-req-btn ${friendRequestStatus === 'pending' ? `sent` : ``}`} onClick={handleSendRequest} disabled={friendRequestStatus === 'pending'}>
         {buttonText}
-      </button>) : (  <div>Friends</div>)
+      </button>) : (  <div className='friends-badge'>Friends <span>{<Icons.Check size={20} />}</span></div>)
 	)
 }
