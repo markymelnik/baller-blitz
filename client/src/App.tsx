@@ -20,9 +20,10 @@ import { VerifyEmailOverlay } from './components/overlays/VerifyOverlay/VerifyOv
 import { SettingsPage } from './components/pages/SettingsPage/SettingsPage.tsx';
 import { SearchPage } from './components/pages/SearchPage/SearchPage.tsx';
 import { UserProfile } from './components/pages/UserProfile/UserProfile.tsx';
-import { SearchProvider } from './components/SearchProvider.tsx';
+import { SearchProvider } from './contexts/SearchProvider.tsx';
 import { FriendsPage } from './components/pages/FriendsPage/FriendsPage.tsx';
-import { ReqFriendsPage } from './components/pages/ReqFriendsPage/ReqFriendsPage.tsx';
+import { NotificationsPage } from './components/pages/NotificationsPage/NotificationsPage.tsx';
+import { PaginationProvider } from './contexts/PaginationProvider.tsx';
 
 const App = () => {
   useRefreshUserSession();
@@ -31,6 +32,7 @@ const App = () => {
 
   return (
     <SearchProvider>
+    <PaginationProvider>
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <div className='app-container'>
@@ -57,7 +59,7 @@ const App = () => {
                 <Route path='/search' element={<SearchPage />} />
                 <Route path='/verify-success' element={<VerifySuccessPage />} />
                 <Route path='/friends' element={<FriendsPage />} />
-                <Route path='/req-friends' element={<ReqFriendsPage />} />
+                <Route path='/notifications' element={<NotificationsPage />} />
               </Route>
             }
             <Route path='/unauthenticated' element={<UnauthenticatedPage />} />
@@ -68,6 +70,7 @@ const App = () => {
       </div>
     </BrowserRouter>
     </QueryClientProvider>
+    </PaginationProvider>
     </SearchProvider>
   );
 };

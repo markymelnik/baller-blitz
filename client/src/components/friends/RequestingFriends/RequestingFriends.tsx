@@ -44,21 +44,29 @@ export const RequestingFriends = () => {
 
 	console.log(incomingFriendRequests.length);
 
-  return incomingFriendRequests.length < 1 ? (
-    <div className='no-req-friends-fallback'>
-      <div className='fallback-text'>Search for friends!</div>
-			<AuthenticatedNavToFriendsBtn />
-    </div>
-  ) : (
-    <ul className='req-friends-list'>
-      {incomingFriendRequests.map((request) => (
-        <ReqFriendCard
-          key={request.request_id}
-          request={request}
-          handleAccept={handleAccept}
-          handleReject={handleReject}
-        />
-      ))}
-    </ul>
-  );
+  return (
+		<div className='req-friends-container'>
+			<div className='req-friends-title'>
+				Friend Requests
+			</div>
+			{incomingFriendRequests.length < 1 ? (
+				<div className='no-req-friends-fallback'>
+					<div className='fallback-text'>Search for friends!</div>
+					<AuthenticatedNavToFriendsBtn />
+				</div>
+			) : (
+				<ul className='req-friends-list'>
+					{incomingFriendRequests.map((request) => (
+						<ReqFriendCard
+							key={request.request_id}
+							request={request}
+							handleAccept={handleAccept}
+							handleReject={handleReject}
+						/>
+					))}
+				</ul>
+			)}
+		</div>
+	);
+	
 }

@@ -1,9 +1,9 @@
 import { RequestingFriends } from '../../friends/RequestingFriends/RequestingFriends';
-import './req-friends-page.scss';
+import './notif-page.scss';
 
-export const ReqFriendsPage = () => {
+export const NotificationsPage = () => {
 	return (
-		<div className="req-friends-page">
+		<div className="notifications-page">
 			<RequestingFriends />
 		</div>
 	)

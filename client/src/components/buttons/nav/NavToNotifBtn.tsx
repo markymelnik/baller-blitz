@@ -2,13 +2,13 @@ import { Icons } from '../../../lib/Icons.ts';
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
 
-export const NavToReqFriendsBtn = () => {
+export const NavToNotifBtn = () => {
   return (
     <NavigateToButtonCreator
-      toRoute={'/req-friends'}
-      className={'nav-to-req-friends-btn'}
+      toRoute={'/notifications'}
+      className={'nav-to-notif-btn'}
     >
-      <Icons.UserAdd size={30} />
+      <Icons.Bell size={30} />
     </NavigateToButtonCreator>
   );
 };

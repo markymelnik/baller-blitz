@@ -1,15 +1,30 @@
-.req-friends-list {
+.req-friends-container {
 	display: flex;
 	flex-direction: column;
-}
 
-.no-req-friends-fallback {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1;
+	.req-friends-title {
+		font-size: 1.25rem;
+		padding: 0 0 1rem;
+		margin: 0 0 1rem;
+		border-bottom: 1px solid lightgrey;
+	}
 
-	.fallback-text {
-		padding: 4rem 0 2rem;
+	.req-friends-list {
+		display: flex;
+		flex-direction: column;
+	}
+	
+	.no-req-friends-fallback {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 1;
+	
+		.fallback-text {
+			padding: 4rem 0 2rem;
+		}
 	}
 }
+
+
+

@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 
 import { useAccessToken } from "../../../hooks/stateSelectors";
+import { UserProfileInfo } from "../../../types/userTypes";
 
 import { useFriendRequestStatus } from "./useFriendRequestStatus";
 import { useSendFriendRequest } from "./useSendFriendRequest";
 import './req-btn.scss';
 
 type RequestButtonProps = {
-	user: any;
+	user: UserProfileInfo;
 	onOpen: () => void;
 }
 

@@ -1,7 +1,10 @@
-.nav-to-home-btn,
 .nav-to-profile-btn  {
 	height: 2.5rem;
 	width: 2.5rem;
+}
+
+.nav-to-home-btn {
+	font-size: 2rem;
 }
 
 .nav-to-signup-btn,
@@ -46,6 +49,7 @@
 
 .nav-to-settings-btn,
 .nav-to-search-btn,
-.nav-to-friends-btn {
+.nav-to-friends-btn,
+.nav-to-notif-btn {
 	padding: 0.25rem;
 }

@@ -3,22 +3,25 @@ import { ring } from "ldrs";
 
 import { useUserSeach } from "../../../../hooks/user/useUserSearch";
 import { UserResult } from "../UserResult/UserResult";
-import { useSearch } from "../../../useSearch";
+import { useSearch } from "../../../../contexts/useSearch";
+import { usePagination } from "../../../../contexts/usePagination";
 import { UserProfileInfo } from "../../../../types/userTypes";
 import { useUserDetails } from "../../../../hooks/stateSelectors";
 
-import './user-search.scss';
 import { PaginationBar } from "./PaginationBar/PaginationBar";
+import './user-search.scss';
 
 export const UserSearch = () => {
   ring.register();
   const userDetails = useUserDetails();
 
   const { searchQuery, setSearchQuery } = useSearch();
-  const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
-  const [page, setPage] = useState<number>(1);
-  const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
+  const { page, setPage } = usePagination();
   const pageSize = 10;
+  const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
+  const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
+
+  console.log(page);
 
   useEffect(() => {
     setAreResultingLoading(true);
