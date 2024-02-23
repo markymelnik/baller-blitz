@@ -47,12 +47,12 @@ export const ProfilePage = () => {
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
-      <div className='profile-page'>
+      <main className='profile-page'>
         <div className='profile-page-top'>
           <div className='profile-container'>
             <div className='profile-photo'></div>
             <div className='profile-details'>
-              <div className='profile-username'>{username}</div>
+              <h1 className='profile-username'>{username}</h1>
               <div className='profile-verified'>
                 <span>
                   <Icons.SealCheck size={16} />
@@ -62,7 +62,9 @@ export const ProfilePage = () => {
             </div>
           </div>
           <div className='profile-page-right'>
+            <nav className="profile-page-nav">
             <AuthenticatedToFriendsBtn />
+            </nav>
           </div>
         </div>
         <div className='profile-page-divider'>
@@ -75,7 +77,7 @@ export const ProfilePage = () => {
             <UserHistory allPredictedGames={allPredictedGames} />
           </ul>
         </div>
-      </div>
+      </main>
     </SkeletonTheme>
   );
 };

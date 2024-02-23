@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Icons } from '../../../lib/Icons';
 import { Content } from '../../../lib/Content';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton';
-import { ColorBtn } from '../../buttons/ColorBtn/ColorBtn';
 
 import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
@@ -23,11 +22,11 @@ export const SettingsPage = () => {
 	}
 
 	return (
-    <div className='settings-page'>
+    <main className='settings-page'>
       <ul className='sp-settings-list'>
         <li className='sp-settings-item'>
             <button className="sp-open-btn" onClick={handleSEClick}>
-              <div className="sp-btn-text">Email</div>
+              <h2 className="sp-btn-text">Email</h2>
               <Icons.ArrowDown size ={16} className={
                   isSeeEmailOpen ? `sp-btn-icon email` : `sp-rotate-icon`
                 }/>
@@ -40,7 +39,7 @@ export const SettingsPage = () => {
         </li>
         <li className='sp-settings-item'>
             <button className='sp-open-btn' onClick={handleUUClick}>
-              <div className='sp-btn-text'>{Content.auth.username.title}</div>
+              <h2 className='sp-btn-text'>{Content.auth.username.title}</h2>
               <Icons.ArrowDown
                 size={16}
                 className={
@@ -55,8 +54,7 @@ export const SettingsPage = () => {
             )}
         </li>
       </ul>
-      <ColorBtn />
       <LogoutButton />
-    </div>
+    </main>
   );
 }

@@ -1,11 +1,4 @@
-@import '@styles/colors.scss';
-
 .color-btn {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px solid;
-  @include theme-color(border-color, border);
-	height: 3rem;
-	width: 3rem;
+	height: 2.5rem;
+	width: 2.5rem;
 }

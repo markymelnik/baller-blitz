@@ -21,8 +21,6 @@ export const UserSearch = () => {
   const [debouncedQuery, setDebouncedQuery] = useState(searchQuery);
   const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
 
-  console.log(page);
-
   useEffect(() => {
     setAreResultingLoading(true);
     const timer = setTimeout(() => {

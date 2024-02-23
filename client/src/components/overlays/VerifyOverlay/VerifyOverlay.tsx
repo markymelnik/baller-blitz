@@ -42,7 +42,7 @@ export const VerifyEmailOverlay = () => {
   if (isAuthenticated && !isVerified && userDetails && !emailVerified) {
     return createPortal(
       <div className='verify-wrapper'>
-        <div className='verify-overlay'>
+        <div className='verify-overlay' role="dialog">
           <div className='verify-overlay-top'>
             {/* <div className="overlay-graphic"></div> */}
           </div>

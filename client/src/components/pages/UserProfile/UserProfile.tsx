@@ -25,13 +25,9 @@ export const UserProfile = () => {
 
 	const [isFriends, setIsFriends] = useState<boolean>(false);
 
-	console.log(userProfile);
-	
 	const confirmFriendStatus = () => {
 		setIsFriends(true);
 	}
-
-	console.log(isFriends);
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -42,11 +38,11 @@ export const UserProfile = () => {
   }
 
 	return (
-		<div className="user-profile-container">
+		<main className="user-profile-container">
 			<ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
 			<RequestButton user={userProfile} onOpen={confirmFriendStatus} />
 			{isFriends && <ProfileStats userStats={userStats} />}
 			{isFriends && <DeleteFriendBtn userProfile={userProfile} />}
-		</div>
+		</main>
 	)
 }

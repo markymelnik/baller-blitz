@@ -5,9 +5,9 @@ import './verify-success-page.scss';
 export const VerifySuccessPage = () => {
 
 	return (
-		<div className="verify-success-page">
+		<main className="verify-success-page">
 			<div className="verify-success-title">{Content.verifySuccess.message}</div>
 			<NavToHomeBtn />
-		</div>
+		</main>
 	)
 }

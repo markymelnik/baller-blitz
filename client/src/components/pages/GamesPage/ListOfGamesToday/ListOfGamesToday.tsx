@@ -77,26 +77,23 @@ export const ListOfGamesToday = () => {
         ) : (
           <div className='list-message-container'>
             {gamesState === 'NOT_STARTED' && (
-              <div className='list-message'>
+              <h2 className='list-message'>
                 {Content.games.status[1]}
-              </div>
+              </h2>
             )}
             {gamesState === 'IN_PROGRESS' && (
-              <div className='list-message'>
+              <h2 className='list-message'>
                 {Content.games.status[2]}
-              </div>
+              </h2>
             )}
             {gamesState === 'FINISHED' && (
-              <div className='list-message'>
+              <h2 className='list-message'>
                 {Content.games.status[3]} <br />
                 {Content.games.status[4]}
-              </div>
+              </h2>
             )}
           </div>
         ))}
-      <div className='list-divider'>
-        <div className='divider'></div>
-      </div>
       {numberOfGames < 1 ? (
         <div className='no-games-today'>
           <div className='no-games-box'>
@@ -128,9 +125,6 @@ export const ListOfGamesToday = () => {
               })
             )}
           </ul>
-          <div className='list-divider'>
-            <div className='divider'></div>
-          </div>
         </>
       )}
     </SkeletonTheme>

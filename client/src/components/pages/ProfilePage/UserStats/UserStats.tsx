@@ -16,7 +16,7 @@ export const UserStats = () => {
 
   return (
     <div className='user-stats'>
-      <div className='stats-header'>{Content.profile.userStats.title}</div>
+      <h2 className='stats-header'>{Content.profile.userStats.title}</h2>
       <div className='stat'>
         <div className='stat-type'>
           <div className='stat-percentage'>

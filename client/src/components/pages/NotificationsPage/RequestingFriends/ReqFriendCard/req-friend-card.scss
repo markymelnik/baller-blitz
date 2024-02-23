@@ -34,7 +34,8 @@
 			}
 
 			.req-accept-btn {
-				border: 1px solid black;
+				border: 1px solid;
+				@include theme-color(border-color, border);
 			}
 		}
 	}

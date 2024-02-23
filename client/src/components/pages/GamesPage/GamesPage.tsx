@@ -3,11 +3,11 @@ import './games-page.scss';
 
 export const GamesPage = () => {
   return (
-    <div className='games-page'>
-      <div className='games-page-header'>Games</div>
+    <main className='games-page'>
+      <h1 className='games-page-header'>Games</h1>
         <ListOfGamesToday />
       <div className='games-page-bot'>
       </div>
-    </div>
+    </main>
   );
 };

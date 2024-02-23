@@ -6,7 +6,7 @@ import { Content } from '../../../lib/Content.ts';
 export const SignupPage = () => {
 
   return (
-    <div className='signup-page'>
+    <main className='signup-page'>
       <div className='signup-page-wrapper'>
         <SignupForm />
         <div className='signup-page-bot'>
@@ -14,6 +14,6 @@ export const SignupPage = () => {
           <NavToLoginFromSignupButton />
         </div>
       </div>
-    </div>
+    </main>
   );
 };

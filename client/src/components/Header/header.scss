@@ -14,12 +14,25 @@
 	transition: top 0.6s;
 	@include theme-color(background-color, bg);
 
-	> :first-child {
+	.header-left {
 		position: absolute;
 		left: 1rem;
+
+		.header-left-nav {
+			
+		}
+
+		
 	}
 
-	> :last-child {
+	.header-middle {
+		
+		> * {
+			font-size: 1.25rem;
+		}
+	}
+
+	.header-right-nav {
 		position: absolute;
 		right: 1rem;
 		display: flex;

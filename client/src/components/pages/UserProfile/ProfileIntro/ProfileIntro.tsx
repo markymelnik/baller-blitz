@@ -10,7 +10,7 @@ export const ProfileIntro = ({ userProfile }: ProfileIntroProps) => {
 	return (
 
 		<div className="profile-intro">
-			<div className="profile-username">{userProfile.username}</div>
+			<h1 className="profile-username">{userProfile.username}</h1>
 		</div>
 	
 	)

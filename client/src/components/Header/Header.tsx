@@ -10,6 +10,7 @@ import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
 import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
 import './header.scss';
+import { ColorBtn } from '../buttons/ColorBtn/ColorBtn.tsx';
 
 export const Header = () => {
   const location = useLocation();
@@ -26,36 +27,36 @@ export const Header = () => {
   return (
     <header className='header-container'>
       <div className='header-left'>
-        {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
-        {location.pathname === '/login' && <UnauthenticatedBackBtn />}
-        {location.pathname === '/games' && <AuthenticatedBackBtn />}
-        {location.pathname.startsWith('/profile') && <AuthenticatedBackBtn />}
-        {location.pathname === '/settings' && <AuthenticatedBackBtn />}
-        {location.pathname === '/search' && <AuthenticatedBackBtn />}
-        {location.pathname === '/friends' && <AuthenticatedBackBtn />}
-        {location.pathname === '/notifications' && <AuthenticatedBackBtn />}
+        {location.pathname === '/' && <ColorBtn />}
+        <nav className="header-left-nav">
+          {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
+          {location.pathname === '/login' && <UnauthenticatedBackBtn />}
+          {location.pathname === '/games' && <AuthenticatedBackBtn />}
+          {location.pathname.startsWith('/profile') && <AuthenticatedBackBtn />}
+          {location.pathname === '/settings' && <AuthenticatedBackBtn />}
+          {location.pathname === '/search' && <AuthenticatedBackBtn />}
+          {location.pathname === '/friends' && <AuthenticatedBackBtn />}
+          {location.pathname === '/notifications' && <AuthenticatedBackBtn />}
+        </nav>
       </div>
       <div className="header-middle">
-        {location.pathname === '/settings' && <div className='settings-page-header'>{Content.settings.title}</div>}
-        {location.pathname === '/friends' && <div className='friends-page-header'>Friends</div>}
-        {location.pathname === '/search' && <div className='search-page-header'>Search</div>}
-        {location.pathname === '/notifications' && <div className='notif-page-header'>Notifications</div>}
+        {location.pathname === '/settings' && <h1 className='settings-page-header'>{Content.settings.title}</h1>}
+        {location.pathname === '/friends' && <h1 className='friends-page-header'>Friends</h1>}
+        {location.pathname === '/search' && <h1 className='search-page-header'>Search</h1>}
+        {location.pathname === '/notifications' && <h1 className='notif-page-header'>Notifications</h1>}
       </div>
-      <div className='header-right'>
+      <nav className='header-right-nav'>
         {location.pathname === '/' && <AuthenticatedToProfileButton />}
         {location.pathname === '/' && <AuthenticatedToSearchButton />}
 				{location.pathname === '/games' && <AuthenticatedToProfileButton />}
         {location.pathname === '/games' && <AuthenticatedToSearchButton />}
-
         {location.pathname === '/profile' && <AuthenticatedToNotifBtn />}
-
-        
         {location.pathname === '/profile' && <AuthenticatedToSettingsButton />}
         {location.pathname.startsWith('/profile') && location.pathname !== '/profile' && <AuthenticatedToProfileButton />}
         {location.pathname.startsWith('/profile') && <AuthenticatedToSearchButton />}
         {location.pathname === '/search' && <AuthenticatedToProfileButton />}
         {location.pathname === '/friends' && <AuthenticatedToSearchButton />}
-			</div>
+			</nav>
     </header>
   );
 };

@@ -3,6 +3,8 @@
 .friends-list {
 	display: flex;
 	flex-direction: column;
+	border-bottom: 1px solid;
+	@include theme-color(border-color, border);
 }
 
 .no-friends-fallback {
@@ -18,8 +20,8 @@
 
 .friends-list-title {
 	font-size: 1.25rem;
-	padding: 0 0 1rem;
-	margin: 0 0 1rem;
+	padding: 0 0 1.25rem;
+	margin: 0 0 1.25rem;
 	border-bottom: 1px solid;
 	@include theme-color(border-color, border);
 }

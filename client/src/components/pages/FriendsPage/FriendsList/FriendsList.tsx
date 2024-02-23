@@ -21,22 +21,20 @@ export const FriendsList = () => {
     return <div>loading...</div>;
   }
 
-  console.log(friends);
-
   return (
     <>
-    <div className='friends-list-title'>Friends <span>{friends.length > 0 && (`(${friends.length})`)}</span></div>
+      <div className='friends-list-title'>Friends <span>{friends.length > 0 && (`(${friends.length})`)}</span></div>
       {friends.length < 1 ? (
         <div className='no-friends-fallback'>
           <div className='fallback-text'>Search for friends!</div>
           <AuthenticatedNavToFriendsBtn />
         </div>
       ) : (
-        <div className='friends-list'>
+        <ul className='friends-list'>
           {friends.map((friend: FriendListCard) => (
             <FriendCard key={friend.id} friend={friend} />
           ))}
-        </div>
+        </ul>
       )}
     </>
   );

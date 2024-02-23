@@ -18,6 +18,8 @@
 		margin: 1.25rem;
 		padding: 1.5rem;
 		@include theme-color(background-color, bg);
+		border: 1px solid;
+  	@include theme-color(border-color, border);
 
 		&.success {
 			padding: 4rem 1.5rem 1.5rem;

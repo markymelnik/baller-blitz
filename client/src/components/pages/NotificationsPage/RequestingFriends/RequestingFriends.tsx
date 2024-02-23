@@ -45,13 +45,14 @@ export const RequestingFriends = () => {
   return (
 		<div className='req-friends-container'>
 			<div className='req-friends-title'>
-				Friend Requests <span>{incomingFriendRequests > 0 && (`(${incomingFriendRequests.length})`)}</span>
+				<h2 className="req-friends-title-text">Friend Requests</h2>
+				<span>{incomingFriendRequests > 0 && (`(${incomingFriendRequests.length})`)}</span>
 			</div>
 			{incomingFriendRequests.length < 1 ? (
-				<div className='no-req-friends-fallback'>
-					<div className='fallback-text'>Search for friends!</div>
+				<nav className='no-req-friends-fallback'>
+					<h3 className='fallback-text'>Search for friends!</h3>
 					<AuthenticatedNavToFriendsBtn />
-				</div>
+				</nav>
 			) : (
 				<ul className='req-friends-list'>
 					{incomingFriendRequests.map((request: RequestFriendData) => (

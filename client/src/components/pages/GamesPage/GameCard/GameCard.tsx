@@ -38,7 +38,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
         setIsStartedOverlayOpen(true);
       }
     } else if (gameStatus === GameState.FINISHED) {
-      console.log('click finished card')
+      /* console.log('click finished card') */
     }
   };
 
@@ -90,11 +90,13 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
             <div className='game-card-live'>Live</div>
           </div>
         )}
-        {gameStatus === GameState.FINISHED && isPredicted && (
+        {gameStatus === GameState.FINISHED && (
           <div className='top-right'>
             <div className='game-card-predicted'>
-              <div className='predicted-text'>Predicted {predictedWinner}</div>
+              {isPredicted && <><div className='predicted-text'>Predicted {predictedWinner}</div>
               <Icons.Check size={18} />
+              </>}
+              
               <div className='predicted-outcome'>{`Winner: ${GameDataFormatter.determineWinner(
                 game
               )}`}</div>

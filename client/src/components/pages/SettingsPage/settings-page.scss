@@ -20,6 +20,10 @@
 			border-top: 1px solid;
 			@include theme-color(border-color, border);
 			text-align: left;
+
+			.sp-btn-text {
+				font-size: 1rem;
+			}
 	
 			.sp-btn-icon {
 				transition: transform 0.3s ease;

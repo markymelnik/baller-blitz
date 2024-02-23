@@ -27,7 +27,7 @@ export const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
 
 	return createPortal(
 		<div className="so-portal-wrapper">
-			<div className="started-overlay" ref={overlayRef}>
+			<div className="started-overlay" ref={overlayRef} role="dialog">
 			<OverlayCloseButton onClose={handleOverlayClose} />
 				<div className="started-overlay-message">{Content.overlay.startedOverlay.message}</div>
 				<OverlayOKButton onClose={handleOverlayClose} />

@@ -5,9 +5,12 @@ import './fallback.scss';
 export const NotFoundPage = () => {
 
   return (
-    <div className='not-found-page'>
+    <main className='not-found-page'>
       <h2 className='fallback-header'>{Content.fallback.notFound}</h2>
+      <nav className="nav-home-wrapper">
       <NavToHomeBtn />
-    </div>
+      </nav>
+      
+    </main>
   );
 };

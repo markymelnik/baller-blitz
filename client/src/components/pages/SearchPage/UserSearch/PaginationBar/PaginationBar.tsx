@@ -11,8 +11,6 @@ export const PaginationBar = ({ setPage, page, totalPages }: PaginationBarProps)
 
 	const isNone: boolean = page >= totalPages;
 
-	console.log(isNone);
-
 	return (
 		<div className="pagination-bar">
 			<div className='pagination-controls'>

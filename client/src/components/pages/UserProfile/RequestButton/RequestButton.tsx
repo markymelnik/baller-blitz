@@ -29,8 +29,6 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log(user);
-
   let buttonText = '';
   if (friendRequestStatus === 'pending') {
     buttonText = 'Friend Request Sent';
@@ -65,7 +63,7 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
             stroke='2.5'
             bg-opacity='0'
             speed='2'
-            color='black'
+            color='var(--spinner-color)'
           ></l-ring>
         </div>
       </div>

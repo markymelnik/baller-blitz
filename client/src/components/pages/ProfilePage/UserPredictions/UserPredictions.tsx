@@ -21,20 +21,17 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
   };
 
   return (
-    
     <div className='user-predictions'>
       <div
         className='current-predictions-header'
         onClick={handleCurrentButtonClick}
       >
-        <div className='current-text'>{Content.profile.currentPredictions.title}</div>
+        <h3 className='current-text'>{Content.profile.currentPredictions.title}</h3>
         <Icons.ArrowDown
           size={20}
           className={isCurrentOpen ? `icon` : `rotate-icon`}
         />
       </div>
-
-      {!isCurrentOpen && <div className='prediction-list-divider'></div>}
     
       {isCurrentOpen && (
         <>

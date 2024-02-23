@@ -103,10 +103,9 @@ export const AlreadyPredictedOverlay = ({ isOpen, onClose, game, predictedWinner
 
 	return createPortal(
 		<div className="ap-portal-wrapper">
-			<div className="already-predicted-overlay" ref={overlayRef} onClick={handleOverlayClick}>
+			<div className="already-predicted-overlay" ref={overlayRef} onClick={handleOverlayClick} role="dialog">
 				<OverlayCloseButton onClose={handleOverlayClose} />
 				<div className="already-predicted-overlay-message">{`You chose ${predictedWinner}!`}</div>
-				{/* <OverlayOKButton onClose={handleOverlayClose} /> */}
 				<div className="switch-prediction">
 					<div className="switch-pred-text">{`Switch to ${otherTeam} instead?`}</div>
 					<div className='already-submit-warning'>

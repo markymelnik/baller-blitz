@@ -119,6 +119,7 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
         className='select-winner-overlay'
         ref={overlayRef}
         onClick={handleOverlayClick}
+        role="dialog"
       >
         <OverlayCloseButton onClose={handleOverlayResetAndClose} />
         <div className='overlay-top'>

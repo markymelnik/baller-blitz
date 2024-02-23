@@ -7,6 +7,8 @@ import { useDeleteFriend } from '../../pages/UserProfile/DeleteFriend/useDeleteF
 import './delete-friend-overlay.scss';
 import { UserProfileInfo } from '../../../types/userTypes';
 import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate';
+import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton';
+import { Content } from '../../../lib/Content';
 
 type DeleteOverlayProps = {
   isOpen: boolean;
@@ -38,11 +40,13 @@ export const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOver
 
   return createPortal(
     <div className='df-portal-wrapper'>
-      <div className='delete-friend-overlay' ref={overlayRef}>
+      <div className='delete-friend-overlay' ref={overlayRef} role="dialog">
+				<OverlayCloseButton onClose={onClose} />
 				<div className="delete-friend-prompt">Are you sure?</div>
+				<div className='delete-friend-overlay-message'>{Content.common.confirm}</div>
 				<div className="delete-friend-btns">
 					<button className="df-close-btn" onClick={onClose}>Close</button>
-				<button className="dl-confirm-btn" onClick={() => handleDeleteBtnClick(userProfile.id)}>Remove</button>
+				<button className="df-confirm-btn" onClick={() => handleDeleteBtnClick(userProfile.id)}>Remove</button>
 				</div>
 				
 			</div>

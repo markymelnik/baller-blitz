@@ -3,7 +3,7 @@
 .friend-card {
 	display: flex;
 	padding: 1rem;
-	margin: 0 0 1rem;
+	margin: 0 0 1.25rem;
 	gap: 1rem;
 	border: 1px solid;
   @include theme-color(border-color, border);
@@ -13,7 +13,7 @@
 		width: 6rem;
 		height: 6rem;
 		border: 1px solid;
-  @include theme-color(border-color, border);
+  	@include theme-color(border-color, border);
 		border-radius: 50%;
 	}
 

@@ -2,10 +2,9 @@ import { FriendsList } from './FriendsList/FriendsList';
 import './friends-page.scss';
 
 export const FriendsPage = () => {
-
-	return (
-		<div className="friends-page">
-		<FriendsList />
-	</div>
-	)
-}
+  return (
+    <main className='friends-page'>
+      <FriendsList />
+    </main>
+  );
+};

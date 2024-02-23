@@ -73,15 +73,15 @@ input, textarea {
 body.light input, 
 body.light textarea {
 	background-color: #fff;
-  border: 1px solid #fff;
+  border: 1px solid #000;
 	color: #000;
 }
 
 body.dark input, 
 body.dark textarea {
-	background-color: black;
-  border: 1px solid #000;
-	color: #fff;
+	background-color: #000;
+  border: 1px solid #fff;
+	color: white;
 }
 
 input:-webkit-autofill,

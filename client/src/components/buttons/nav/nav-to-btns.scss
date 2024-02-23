@@ -4,11 +4,6 @@
 	@include theme-color(color, text);
 }
 
-.nav-to-profile-btn  {
-	height: 2.5rem;
-	width: 2.5rem;
-}
-
 .nav-to-home-btn {
 	font-size: 2rem;
 }
@@ -22,47 +17,32 @@
   @include theme-color(border-color, border);
 }
 
-.nav-to-games-btn,
-.nav-to-profile-from-settings-btn {
-	display: flex;
-	align-items: center;
-	gap: 0.25rem;
-	padding: 1rem 0;
-
-	.nav-btn-text {
-		order: 2;
-		font-size: 1.05rem;
-	}
-
-	svg {
-		order: 1;
-	}
+.nav-to-profile-btn,
+.nav-to-settings-btn,
+.nav-to-search-btn,
+.nav-to-friends-btn,
+.nav-to-notif-btn  {
+	height: 2.5rem;
+	width: 2.5rem;
 }
 
-.to-games-from-home-btn {
-	font-size: 1.05rem;
-	border: 1px solid;
-  @include theme-color(border-color, border);
+.nav-to-games-btn {
+/* 	border: 1px solid;
+  @include theme-color(border-color, border); */
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 	padding: 1rem 2rem;
 
 	.nav-btn-text {
-		font-size: 1.5rem;
+		font-size: 1.75rem;
 	}
-}
-
-.nav-to-settings-btn,
-.nav-to-search-btn,
-.nav-to-friends-btn {
-	padding: 0.25rem;
 }
 
 .nav-to-notif-btn {
 	position: relative;
-	padding: 0.25rem;
 
 	.number-of-notifs {
 		font-size: 0.75rem;
