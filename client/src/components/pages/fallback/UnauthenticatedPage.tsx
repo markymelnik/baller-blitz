@@ -2,7 +2,7 @@ import { Content } from '../../../lib/Content.ts';
 import { NavToHomeBtn } from '../../buttons/nav/NavToHomeBtn.tsx';
 import './fallback.scss';
 
-export const UnauthenticatedPage = () => {
+const UnauthenticatedPage = () => {
 
   return (
     <main className='unauthenticated-page'>
@@ -13,3 +13,5 @@ export const UnauthenticatedPage = () => {
     </main>
   );
 };
+
+export default UnauthenticatedPage;

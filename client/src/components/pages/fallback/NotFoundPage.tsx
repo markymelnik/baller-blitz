@@ -2,7 +2,7 @@ import { Content } from '../../../lib/Content.ts';
 import { NavToHomeBtn } from '../../buttons/nav/NavToHomeBtn.tsx';
 import './fallback.scss';
 
-export const NotFoundPage = () => {
+const NotFoundPage = () => {
 
   return (
     <main className='not-found-page'>
@@ -13,3 +13,5 @@ export const NotFoundPage = () => {
     </main>
   );
 };
+
+export default NotFoundPage;

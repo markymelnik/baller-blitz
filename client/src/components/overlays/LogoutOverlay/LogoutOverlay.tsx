@@ -16,7 +16,7 @@ type LogoutOverlayProps = {
   onClose: () => void;
 };
 
-export const LogoutOverlay = ({ isOpen, onClose }: LogoutOverlayProps) => {
+const LogoutOverlay = ({ isOpen, onClose }: LogoutOverlayProps) => {
   const overlayRef = useRef(null);
 
   const delayNavigate = useDelayNavigate();
@@ -62,3 +62,5 @@ export const LogoutOverlay = ({ isOpen, onClose }: LogoutOverlayProps) => {
     document.getElementById('portal-root')!
   );
 };
+
+export default LogoutOverlay;

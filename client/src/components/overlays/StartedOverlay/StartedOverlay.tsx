@@ -13,7 +13,7 @@ type StartedOverlayProps = {
 	onClose: () => void;
 }
 
-export const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
+const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
 	const overlayRef = useRef(null);
 
 	const handleOverlayClose = () => {
@@ -36,3 +36,5 @@ export const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
 		document.getElementById('portal-root')!
 	)
 }
+
+export default StartedOverlay;

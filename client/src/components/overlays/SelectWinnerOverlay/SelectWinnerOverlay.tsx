@@ -22,7 +22,7 @@ type SelectWinnerOverlayProps = {
   onSuccessfulSubmission: () => void;
 }
 
-export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmission }: SelectWinnerOverlayProps) => {
+const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmission }: SelectWinnerOverlayProps) => {
 	const overlayRef = useRef(null);
   const buttonRef = useRef(null);
 
@@ -187,3 +187,5 @@ export const SelectWinnerOverlay = ({ isOpen, onClose, game, onSuccessfulSubmiss
     document.getElementById('portal-root')!
   );
 };
+
+export default SelectWinnerOverlay;

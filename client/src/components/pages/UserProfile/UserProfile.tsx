@@ -17,18 +17,20 @@ const fetchUserProfile = async (accessToken: string, username: string) => {
   return response;
 }
 
-export const UserProfile = () => {
-	const accessToken = useAccessToken()!;
-	const { username } = useParams();
+const UserProfile = () => {
+  const accessToken = useAccessToken()!;
+  const { username } = useParams();
 
-	const { data, isLoading, error } = useQuery(['userProfile', username], () => fetchUserProfile(accessToken, username!));
-	const { userProfile = {}, userStats = {} } = data || {};
+  const { data, isLoading, error } = useQuery(['userProfile', username], () =>
+    fetchUserProfile(accessToken, username!)
+  );
+  const { userProfile = {}, userStats = {} } = data || {};
 
-	const [isFriends, setIsFriends] = useState<boolean>(false);
+  const [isFriends, setIsFriends] = useState<boolean>(false);
 
-	const confirmFriendStatus = () => {
-		setIsFriends(true);
-	}
+  const confirmFriendStatus = () => {
+    setIsFriends(true);
+  };
 
   if (isLoading) {
     return <></>;
@@ -38,12 +40,14 @@ export const UserProfile = () => {
     return <div>{Content.userProfile.error}</div>;
   }
 
-	return (
-		<main className="user-profile-container">
-			<ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
-			<RequestButton user={userProfile} onOpen={confirmFriendStatus} />
-			{isFriends && <ProfileStats userStats={userStats} />}
-			{isFriends && <DeleteFriendBtn userProfile={userProfile} />}
-		</main>
-	)
-}
+  return (
+    <main className='user-profile-container'>
+      <ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
+      <RequestButton user={userProfile} onOpen={confirmFriendStatus} />
+      {isFriends && <ProfileStats userStats={userStats} />}
+      {isFriends && <DeleteFriendBtn userProfile={userProfile} />}
+    </main>
+  );
+};
+
+export default UserProfile;

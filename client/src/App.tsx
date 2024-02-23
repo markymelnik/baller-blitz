@@ -1,14 +1,17 @@
 import { BrowserRouter, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { Suspense, lazy } from 'react';
 
 import { useRefreshUserSession } from './hooks/auth/useRefreshUserSession.ts';
 import ScrollToTop from './hooks/page/useScrollToTop.ts';
 import { Header } from './components/header/Header.tsx';
 import AuthenticationCheck from './AuthenticationCheck.tsx';
-import { VerifyEmailOverlay } from './components/overlays/VerifyOverlay/VerifyOverlay.tsx';
 import { SearchProvider } from './contexts/SearchProvider.tsx';
 import { PaginationProvider } from './contexts/PaginationProvider.tsx';
-import { AppRoutes } from './AppRoutes.tsx';
+import AppRoutes from './AppRoutes.tsx';
+import { LoadingScreen } from './components/loading-screen/LoadingScreen.tsx';
+
+const VerifyEmailOverlay = lazy(() => import('./components/overlays/VerifyOverlay/VerifyOverlay.tsx'));
 
 const App = () => {
   useRefreshUserSession();
@@ -23,13 +26,17 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <div className='app-container'>
-        <VerifyEmailOverlay />
         <AuthenticationCheck>
           <ScrollToTop />
+          <Suspense fallback={<LoadingScreen />}>
+          <VerifyEmailOverlay />
           <Header />
-          <Routes>
-            {AppRoutes}
-          </Routes>
+          
+            <Routes>
+            
+              {AppRoutes}
+            </Routes>
+          </Suspense>
         </AuthenticationCheck>
       </div>
     </BrowserRouter>

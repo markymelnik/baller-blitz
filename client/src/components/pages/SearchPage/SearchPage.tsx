@@ -1,11 +1,12 @@
 import { UserSearch } from './UserSearch/UserSearch';
 import './search-page.scss';
 
-export const SearchPage = () => {
+const SearchPage = () => {
+  return (
+    <main className='search-page-container'>
+      <UserSearch />
+    </main>
+  );
+};
 
-	return (
-		<main className="search-page-container">
-			<UserSearch />
-		</main>
-	)
-}
+export default SearchPage;

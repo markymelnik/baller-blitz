@@ -22,8 +22,8 @@ export const Content = {
       prompt: 'Create your account',
       validationPrompt: {
         1: 'Must be between 10 and 20 characters',
-        2: 'Must container upper and lower case letters',
-        3: 'Must contain at least 1 number',
+        2: 'Must have upper and lower case letters',
+        3: 'Must have at least 1 number',
       },
       alreadyUser: 'Already have an account?',
     },

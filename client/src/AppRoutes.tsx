@@ -1,23 +1,27 @@
 import { Route } from 'react-router-dom';
+import { lazy } from 'react';
 
 import { PublicRoutes } from './routes/PublicRoutes';
 import { PrivateRoutes } from './routes/PrivateRoutes';
-import { HomePage } from './components/pages/HomePage/HomePage';
-import { SignupPage } from './components/pages/SignupPage/SignupPage';
-import { LoginPage } from './components/pages/LoginPage/LoginPage';
-import { GamesPage } from './components/pages/GamesPage/GamesPage';
-import { ProfilePage } from './components/pages/ProfilePage/ProfilePage';
-import { UserProfile } from './components/pages/UserProfile/UserProfile';
-import { SettingsPage } from './components/pages/SettingsPage/SettingsPage';
-import { SearchPage } from './components/pages/SearchPage/SearchPage';
-import { VerifySuccessPage } from './components/pages/VerifySuccessPage/VerifySuccessPage';
-import { FriendsPage } from './components/pages/FriendsPage/FriendsPage';
-import { NotificationsPage } from './components/pages/NotificationsPage/NotificationsPage';
-import { UnauthenticatedPage } from './components/pages/fallback/UnauthenticatedPage';
-import { UnauthorizedPage } from './components/pages/fallback/UnauthorizedPage';
-import { NotFoundPage } from './components/pages/fallback/NotFoundPage';
 
-export const AppRoutes = [
+const HomePage = lazy(() => import('./components/pages/HomePage/HomePage'));
+const SignupPage = lazy(() => import('./components/pages/SignupPage/SignupPage'));
+const LoginPage = lazy(() => import('./components/pages/LoginPage/LoginPage'));
+
+const GamesPage = lazy(() => import('./components/pages/GamesPage/GamesPage'));
+const ProfilePage = lazy(() => import('./components/pages/ProfilePage/ProfilePage'));
+const UserProfile = lazy(() => import('./components/pages/UserProfile/UserProfile'));
+const SettingsPage = lazy(() => import('./components/pages/SettingsPage/SettingsPage'));
+const SearchPage = lazy(() => import('./components/pages/SearchPage/SearchPage'));
+const VerifySuccessPage = lazy(() => import('./components/pages/VerifySuccessPage/VerifySuccessPage'));
+const FriendsPage = lazy(() => import('./components/pages/FriendsPage/FriendsPage'));
+const NotificationsPage = lazy(() => import('./components/pages/NotificationsPage/NotificationsPage'));
+
+const UnauthenticatedPage = lazy(() => import('./components/pages/fallback/UnauthenticatedPage'));
+const UnauthorizedPage = lazy(() => import('./components/pages/fallback/UnauthorizedPage'));
+const NotFoundPage = lazy(() => import('./components/pages/fallback/NotFoundPage'));
+
+const AppRoutes = [
   <Route key='home' path='/' element={<HomePage />} />,
 
   <Route key='public' element={<PublicRoutes />}>
@@ -40,3 +44,5 @@ export const AppRoutes = [
   <Route key='unauthorized' path='/unauthorized' element={<UnauthorizedPage />} />,
   <Route key='notfound' path='*' element={<NotFoundPage />} />,
 ];
+
+export default AppRoutes;

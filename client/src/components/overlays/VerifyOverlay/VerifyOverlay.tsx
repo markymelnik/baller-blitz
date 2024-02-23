@@ -6,10 +6,10 @@ import { useAccessToken, useAuth, useUserDetails } from '../../../hooks/stateSel
 import { useVerify } from '../../../hooks/auth/useVerify';
 import { ApiClient } from '../../../api/ApiClient';
 import { useWebSocket } from '../../../hooks/useWebSocket';
-import './verify-overlay.scss';
 import { Content } from '../../../lib/Content';
+import './verify-overlay.scss';
 
-export const VerifyEmailOverlay = () => {
+const VerifyEmailOverlay = () => {
   const isAuthenticated = useAuth();
   const isVerified = useVerify();
   const accessToken = useAccessToken()!; // !
@@ -106,3 +106,5 @@ export const VerifyEmailOverlay = () => {
     return null;
   }
 };
+
+export default VerifyEmailOverlay;

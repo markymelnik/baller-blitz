@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { lazy, useState } from 'react';
 
-import './delete-friend-btn.scss';
-import { DeleteFriendOverlay } from '../../../overlays/DeleteFriendOverlay/DeleteFriendOverlay';
 import { UserProfileInfo } from '../../../../types/userTypes';
 import { Content } from '../../../../lib/Content';
+import './delete-friend-btn.scss';
+
+const DeleteFriendOverlay = lazy(() => import('../../../overlays/DeleteFriendOverlay/DeleteFriendOverlay'));
 
 interface DeleteFriendBtnProps {
   userProfile: UserProfileInfo;

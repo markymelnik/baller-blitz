@@ -8,7 +8,7 @@ import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
 import './settings-page.scss';
 
-export const SettingsPage = () => {
+const SettingsPage = () => {
 
 	const [isUsernameUpdateOpen, setIsUsernameUpdateOpen] = useState<boolean>(false);
 	const [isSeeEmailOpen, setIsSeeEmailOpen] = useState<boolean>(false);
@@ -58,3 +58,5 @@ export const SettingsPage = () => {
     </main>
   );
 }
+
+export default SettingsPage;

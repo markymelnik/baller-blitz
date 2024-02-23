@@ -13,7 +13,7 @@ import { UserPredictions } from './UserPredictions/UserPredictions.tsx';
 import { UserStats } from './UserStats/UserStats.tsx';
 import './profile-page.scss';
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
   const isAuthenticated = useAuth();
   const userDetails = useUserDetails();
 
@@ -81,3 +81,5 @@ export const ProfilePage = () => {
     </SkeletonTheme>
   );
 };
+
+export default ProfilePage;

@@ -16,7 +16,7 @@ type DeleteOverlayProps = {
 	userProfile: UserProfileInfo;
 };
 
-export const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOverlayProps) => {
+const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOverlayProps) => {
 	const delayNavigate = useDelayNavigate();
 	const overlayRef = useRef(null);
 	useOutsideClick(overlayRef, onClose);
@@ -53,3 +53,4 @@ export const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOver
     </div>, document.getElementById('portal-root')!
   );
 }
+export default DeleteFriendOverlay;

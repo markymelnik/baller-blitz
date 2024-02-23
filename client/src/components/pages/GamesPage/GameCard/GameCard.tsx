@@ -1,12 +1,9 @@
-import { useState } from "react";
+import { lazy, useState } from "react";
 
 import { Icons } from "../../../../lib/Icons.ts";
 import { Game } from "../../../../types/gameTypes.ts"
 import { GameDataFormatter } from "../../../../utils/GameDataFormatter.ts";
-import { SelectWinnerOverlay } from "../../../overlays/SelectWinnerOverlay/SelectWinnerOverlay.tsx";
 import { GameState } from "../GameState.ts";
-import { StartedOverlay } from "../../../overlays/StartedOverlay/StartedOverlay.tsx";
-import { AlreadyPredictedOverlay } from "../../../overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx";
 import './game-card.scss';
 
 type GameCard = {
@@ -15,6 +12,10 @@ type GameCard = {
   predictedWinner: string | undefined;
   onSuccessfulSubmission: () => void;
 }
+
+const SelectWinnerOverlay = lazy(() => import('../../../overlays/SelectWinnerOverlay/SelectWinnerOverlay.tsx'));
+const StartedOverlay = lazy(() => import('../../../overlays/StartedOverlay/StartedOverlay.tsx'));
+const AlreadyPredictedOverlay = lazy(() => import('../../../overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx'));
 
 export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmission }: GameCard) => {
 

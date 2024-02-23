@@ -6,7 +6,7 @@ import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts'
 import { Content } from '../../../lib/Content.ts';
 import './home-page.scss';
 
-export const HomePage = () => {
+const HomePage = () => {
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
       <nav className='home-unauth'>
@@ -44,3 +44,5 @@ export const HomePage = () => {
     </main>
   );
 };
+
+export default HomePage;

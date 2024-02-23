@@ -22,7 +22,7 @@ type AlreadyPredictedOverlayProps = {
 	onSuccessfulSubmission: () => void;
 }
 
-export const AlreadyPredictedOverlay = ({ isOpen, onClose, game, predictedWinner, onSuccessfulSubmission }: AlreadyPredictedOverlayProps) => {
+const AlreadyPredictedOverlay = ({ isOpen, onClose, game, predictedWinner, onSuccessfulSubmission }: AlreadyPredictedOverlayProps) => {
 	const overlayRef = useRef(null);
 
 	const accessToken = useAccessToken();
@@ -119,3 +119,5 @@ export const AlreadyPredictedOverlay = ({ isOpen, onClose, game, predictedWinner
 		document.getElementById('portal-root')!
 	)
 }
+
+export default AlreadyPredictedOverlay;

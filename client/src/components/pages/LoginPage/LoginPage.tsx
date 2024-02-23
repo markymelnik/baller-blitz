@@ -3,7 +3,7 @@ import { NavToSignupFromLoginButton } from '../../buttons/nav/signuplogin/NavToS
 import { Content } from '../../../lib/Content.ts';
 import './login-page.scss';
 
-export const LoginPage = () => {
+const LoginPage = () => {
 
   return (
     <main className='login-page'>
@@ -17,3 +17,5 @@ export const LoginPage = () => {
     </main>
   );
 };
+
+export default LoginPage;
