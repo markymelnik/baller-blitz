@@ -3,12 +3,23 @@ export const Content = {
     okay: 'Okay',
     close: 'Close',
     confirm: 'Confirm',
+    remove: 'Remove',
     areYouSure: 'Are you sure?',
+    edit: 'Edit',
+    accept: 'Accept',
+    reject: 'Reject',
+    unfriend: 'Unfriend',
+  },
+  main: {
+    title: {
+      ball: 'Ball',
+      battle: 'Battle.',
+    },
   },
   auth: {
     signup: {
       title: 'Sign up',
-      prompt: 'Enter an email and address',
+      prompt: 'Create your account',
       validationPrompt: {
         1: 'Must be between 10 and 20 characters',
         2: 'Must container upper and lower case letters',
@@ -18,7 +29,10 @@ export const Content = {
     },
     login: {
       title: 'Login',
-      prompt: 'Enter your email and address',
+      prompt: {
+        noEmail: 'Welcome back',
+        yesEmail: 'Enter your password'
+      },
       needAccount: `Don't have an account?`,
     },
     logout: {
@@ -35,7 +49,8 @@ export const Content = {
     },
   },
   home: {
-    intro: 'Hello.',
+    title: 'Home',
+    prompt: 'Get started',
   },
   games: {
     title: 'Games',
@@ -44,6 +59,10 @@ export const Content = {
       2: `Games are live!`,
       3: `All games have finished`,
       4: `New game information at 12 PM ET!`,
+    },
+    no: {
+      1: 'No games scheduled for today.',
+      2: 'Come back tomorrow!',
     },
   },
   profile: {
@@ -60,6 +79,13 @@ export const Content = {
       winPrediction: 'Win Prediction',
     },
   },
+  userProfile: {
+    error: 'Error loading user profile',
+    stats: {
+      predicted: 'correct out of',
+      total: 'predictions made',
+    }
+  },
   verifySuccess: {
     message: 'Your email is verified!',
   },
@@ -70,6 +96,26 @@ export const Content = {
   },
   settings: {
     title: 'Settings',
+    username: {
+      prompt: 'Edit username',
+      success: 'Success! Username updated!'
+    }
+  },
+  friends: {
+    title: 'Friends',
+    fallback: 'Search for friends!',
+  },
+  search: {
+    title: 'Search',
+    error: 'Error fetching users',
+    noResults: 'No Results',
+  },
+  notifs: {
+    title: 'Notifications',
+    friendRequests: {
+      title: 'Friend Requests',
+      fallback: 'Search for friends!',
+    }
   },
   overlay: {
     selectWinner: {

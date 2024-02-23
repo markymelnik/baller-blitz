@@ -10,7 +10,6 @@ export const NotFoundPage = () => {
       <nav className="nav-home-wrapper">
       <NavToHomeBtn />
       </nav>
-      
     </main>
   );
 };

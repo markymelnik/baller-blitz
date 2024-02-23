@@ -10,7 +10,6 @@ export const UnauthenticatedPage = () => {
       <nav className="nav-home-wrapper">
       <NavToHomeBtn />
       </nav>
-      
     </main>
   );
 };

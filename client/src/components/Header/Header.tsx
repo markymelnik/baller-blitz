@@ -41,9 +41,9 @@ export const Header = () => {
       </div>
       <div className="header-middle">
         {location.pathname === '/settings' && <h1 className='settings-page-header'>{Content.settings.title}</h1>}
-        {location.pathname === '/friends' && <h1 className='friends-page-header'>Friends</h1>}
-        {location.pathname === '/search' && <h1 className='search-page-header'>Search</h1>}
-        {location.pathname === '/notifications' && <h1 className='notif-page-header'>Notifications</h1>}
+        {location.pathname === '/friends' && <h1 className='friends-page-header'>{Content.friends.title}</h1>}
+        {location.pathname === '/search' && <h1 className='search-page-header'>{Content.search.title}</h1>}
+        {location.pathname === '/notifications' && <h1 className='notif-page-header'>{Content.notifs.title}</h1>}
       </div>
       <nav className='header-right-nav'>
         {location.pathname === '/' && <AuthenticatedToProfileButton />}

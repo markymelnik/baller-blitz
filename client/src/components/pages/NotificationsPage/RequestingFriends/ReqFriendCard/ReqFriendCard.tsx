@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { RequestFriendData } from '../../../../../types/notifTypes';
 import './req-friend-card.scss';
+import { Content } from '../../../../../lib/Content';
 
 interface ReqFriendCard {
   request: RequestFriendData;
@@ -25,8 +26,8 @@ export const ReqFriendCard = ({ request, handleAccept, handleReject }: ReqFriend
         <div className='req-friend-id'>{request.user_id}</div>
 
         <div className='req-friend-btns'>
-          <button className='req-accept-btn' onClick={(event) => handleAccept(request.request_id, event)}>Accept</button>
-          <button className='req-reject-btn'onClick={(event) => handleReject(request.request_id, event)}>Reject</button>
+          <button className='req-accept-btn' onClick={(event) => handleAccept(request.request_id, event)}>{Content.common.accept}</button>
+          <button className='req-reject-btn'onClick={(event) => handleReject(request.request_id, event)}>{Content.common.reject}</button>
         </div>
       </div>
     </li>

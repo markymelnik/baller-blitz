@@ -104,7 +104,7 @@ export const SignupForm = () => {
       className='signup-form'
     >
       <div className='sf-top'>
-        <h1 className='sf-heading'>Create your account</h1>
+        <h1 className='sf-heading'>{Content.auth.signup.prompt}</h1>
       </div>
       <div className='sf-inputs-container'>
         <Controller
@@ -125,7 +125,7 @@ export const SignupForm = () => {
               <label htmlFor='sf-email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && !emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
-                  Edit
+                  {Content.common.edit}
                 </div>
               )}
             </div>

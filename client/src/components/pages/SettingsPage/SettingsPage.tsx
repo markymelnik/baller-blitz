@@ -26,7 +26,7 @@ export const SettingsPage = () => {
       <ul className='sp-settings-list'>
         <li className='sp-settings-item'>
             <button className="sp-open-btn" onClick={handleSEClick}>
-              <h2 className="sp-btn-text">Email</h2>
+              <h2 className="sp-btn-text">{Content.auth.email.title}</h2>
               <Icons.ArrowDown size ={16} className={
                   isSeeEmailOpen ? `sp-btn-icon email` : `sp-rotate-icon`
                 }/>

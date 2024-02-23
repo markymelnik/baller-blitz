@@ -7,6 +7,7 @@ import { useSearch } from "../../../../contexts/useSearch";
 import { usePagination } from "../../../../contexts/usePagination";
 import { UserProfileInfo } from "../../../../types/userTypes";
 import { useUserDetails } from "../../../../hooks/stateSelectors";
+import { Content } from "../../../../lib/Content";
 
 import { PaginationBar } from "./PaginationBar/PaginationBar";
 import './user-search.scss';
@@ -69,12 +70,12 @@ export const UserSearch = () => {
       )}
       {isError && (
         <div className='user-search-error'>
-          <div className='error-message'>Error fetching users</div>
+          <div className='error-message'>{Content.search.error}</div>
         </div>
       )}
       {users && !showSpinner && (
         <>
-          {users.length < 1 && <div className='search-fallback'>No Results</div>}
+          {users.length < 1 && <div className='search-fallback'>{Content.search.noResults}</div>}
           <ul className='list-of-users'>
             {users.map((user: UserProfileInfo) => (
               <UserResult key={user.id} user={user} />

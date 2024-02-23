@@ -33,7 +33,7 @@ export const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOver
 	}
 
 	if (isLoading) {
-		return <div>loading...</div>
+		return <></>;
 	}
 
 	if (!isOpen) return null;
@@ -42,11 +42,11 @@ export const DeleteFriendOverlay = ({ isOpen, onClose, userProfile }: DeleteOver
     <div className='df-portal-wrapper'>
       <div className='delete-friend-overlay' ref={overlayRef} role="dialog">
 				<OverlayCloseButton onClose={onClose} />
-				<div className="delete-friend-prompt">Are you sure?</div>
+				<div className="delete-friend-prompt">{Content.common.areYouSure}</div>
 				<div className='delete-friend-overlay-message'>{Content.common.confirm}</div>
 				<div className="delete-friend-btns">
 					<button className="df-close-btn" onClick={onClose}>Close</button>
-				<button className="df-confirm-btn" onClick={() => handleDeleteBtnClick(userProfile.id)}>Remove</button>
+				<button className="df-confirm-btn" onClick={() => handleDeleteBtnClick(userProfile.id)}>{Content.common.remove}</button>
 				</div>
 				
 			</div>

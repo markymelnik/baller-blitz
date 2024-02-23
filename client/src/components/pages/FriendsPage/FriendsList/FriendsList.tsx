@@ -1,5 +1,6 @@
 import { useAuthorizedRender } from '../../../../hooks/auth/useAuthorizedRender';
 import { useAccessToken } from '../../../../hooks/stateSelectors';
+import { Content } from '../../../../lib/Content';
 import { FriendListCard } from '../../../../types/notifTypes';
 import { NavToSearchBtn } from '../../../buttons/nav/NavToSearchBtn';
 import { useFriends } from '../../UserProfile/RequestButton/useFriends';
@@ -18,15 +19,15 @@ export const FriendsList = () => {
   ]);
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <></>;
   }
 
   return (
     <>
-      <div className='friends-list-title'>Friends <span>{friends.length > 0 && (`(${friends.length})`)}</span></div>
+      <div className='friends-list-title'>{Content.friends.title} <span>{friends.length > 0 && (`(${friends.length})`)}</span></div>
       {friends.length < 1 ? (
         <div className='no-friends-fallback'>
-          <div className='fallback-text'>Search for friends!</div>
+          <div className='fallback-text'>{Content.friends.fallback}</div>
           <AuthenticatedNavToFriendsBtn />
         </div>
       ) : (

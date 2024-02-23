@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 
 import { useAccessToken } from '../../../hooks/stateSelectors';
 import { ApiClient } from '../../../api/ApiClient';
+import { Content } from '../../../lib/Content';
 
 import { DeleteFriendBtn } from './DeleteFriend/DeleteFriendBtn';
 import { RequestButton } from './RequestButton/RequestButton';
@@ -30,11 +31,11 @@ export const UserProfile = () => {
 	}
 
   if (isLoading) {
-    return <div>loading...</div>;
+    return <></>;
   }
 
   if (error) {
-    return <div>error</div>;
+    return <div>{Content.userProfile.error}</div>;
   }
 
 	return (

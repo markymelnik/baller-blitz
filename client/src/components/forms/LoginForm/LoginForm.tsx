@@ -99,7 +99,7 @@ export const LoginForm = () => {
     >
       <div className='lf-top'>
         <h1 className='lf-heading'>
-          {emailExists ? `Enter your password` : 'Welcome back'}
+          {emailExists ? (`${Content.auth.login.prompt.yesEmail}`) : (`${Content.auth.login.prompt.noEmail}`)}
         </h1>
       </div>
       <div className='lf-inputs-container'>
@@ -121,7 +121,7 @@ export const LoginForm = () => {
               <label htmlFor='lf-email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
-                  Edit
+                  {Content.common.edit}
                 </div>
               )}
             </div>

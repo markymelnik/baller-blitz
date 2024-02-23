@@ -4,10 +4,10 @@ import { ring } from 'ldrs';
 import { useAccessToken } from "../../../../hooks/stateSelectors";
 import { UserProfileInfo } from "../../../../types/userTypes";
 import { Icons } from "../../../../lib/Icons";
+import { Content } from "../../../../lib/Content";
 
 import { useFriendRequestStatus } from "./useFriendRequestStatus";
 import { useSendFriendRequest } from "./useSendFriendRequest";
-
 import './req-btn.scss';
 
 type RequestButtonProps = {
@@ -82,7 +82,7 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
     </button>
   ) : (
     <div className='friends-badge'>
-      Friends <span>{<Icons.Check size={16} />}</span>
+      {Content.friends.title} <span>{<Icons.Check size={16} />}</span>
     </div>
   );
 }

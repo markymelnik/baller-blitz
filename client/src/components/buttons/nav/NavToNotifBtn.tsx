@@ -10,7 +10,6 @@ export const NavToNotifBtn = () => {
 
 	const { data: incomingFriendRequests, isLoading } = useIncomingFriendRequest(accessToken);
 
-
   if (isLoading) {
     return <></>;
   }

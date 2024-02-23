@@ -1,7 +1,7 @@
 import { ring } from 'ldrs';
 
-import './loading-screen.scss';
 import { useAuthLoading } from '../../hooks/stateSelectors';
+import './loading-screen.scss';
 
 export const LoadingScreen = () => {
   ring.register();

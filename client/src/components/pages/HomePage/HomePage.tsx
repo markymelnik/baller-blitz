@@ -3,13 +3,14 @@ import { NavigateToLoginButton } from '../../buttons/nav/signuplogin/NavigateToL
 import { useUnauthorizedRender } from '../../../hooks/auth/useUnauthorizedRender.ts';
 import { NavToGamesBtn } from '../../buttons/nav/NavToGamesBtn.tsx';
 import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
+import { Content } from '../../../lib/Content.ts';
 import './home-page.scss';
 
 export const HomePage = () => {
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
       <nav className='home-unauth'>
-        <h2 className='unauth-title'>Get started</h2>
+        <h2 className='unauth-title'>{Content.home.prompt}</h2>
         <ul className='unauth-btns'>
           <li>
             <NavigateToLoginButton />
@@ -35,7 +36,7 @@ export const HomePage = () => {
   return (
     <main className='home-page'>
       <h1 className='home-welcome'>
-        Ball <br /> Battle.
+        {Content.main.title.ball} <br /> {Content.main.title.battle}
       </h1>
       <UnauthenticatedHome />
       <AuthenticatedHome />

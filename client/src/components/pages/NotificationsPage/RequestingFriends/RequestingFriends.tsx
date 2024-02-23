@@ -6,6 +6,7 @@ import { useAuthorizedRender } from "../../../../hooks/auth/useAuthorizedRender"
 import { useAccessToken } from "../../../../hooks/stateSelectors";
 import { RequestFriendData } from "../../../../types/notifTypes";
 import { NavToSearchBtn } from "../../../buttons/nav/NavToSearchBtn";
+import { Content } from "../../../../lib/Content";
 
 import { useIncomingFriendRequest } from "./useIncomingFriendRequest";
 import { ReqFriendCard } from "./ReqFriendCard/ReqFriendCard";
@@ -45,12 +46,12 @@ export const RequestingFriends = () => {
   return (
 		<div className='req-friends-container'>
 			<div className='req-friends-title'>
-				<h2 className="req-friends-title-text">Friend Requests</h2>
+				<h2 className="req-friends-title-text">{Content.notifs.friendRequests.title}</h2>
 				<span>{incomingFriendRequests > 0 && (`(${incomingFriendRequests.length})`)}</span>
 			</div>
 			{incomingFriendRequests.length < 1 ? (
 				<nav className='no-req-friends-fallback'>
-					<h3 className='fallback-text'>Search for friends!</h3>
+					<h3 className='fallback-text'>{Content.notifs.friendRequests.fallback}</h3>
 					<AuthenticatedNavToFriendsBtn />
 				</nav>
 			) : (

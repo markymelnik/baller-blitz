@@ -97,8 +97,8 @@ export const ListOfGamesToday = () => {
       {numberOfGames < 1 ? (
         <div className='no-games-today'>
           <div className='no-games-box'>
-            <div className='no-games-text'>No games scheduled for today.</div>
-            <div className='no-games-text'>Come back tomorrow!</div>
+            <div className='no-games-text'>{Content.games.no[1]}</div>
+            <div className='no-games-text'>{Content.games.no[2]}</div>
           </div>
         </div>
       ) : (

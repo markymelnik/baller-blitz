@@ -8,7 +8,7 @@ export const NavToFriendsBtn = () => {
       toRoute={'/friends'}
       className={'nav-to-friends-btn'}
     >
-      <Icons.Users size={30} className='icon'/>
+      <Icons.Users size={32} className='icon'/>
     </NavigateToButtonCreator>
   );
 };

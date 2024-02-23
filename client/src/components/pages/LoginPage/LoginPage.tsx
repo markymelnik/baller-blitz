@@ -1,7 +1,7 @@
 import { LoginForm } from '../../forms/LoginForm/LoginForm.tsx';
 import { NavToSignupFromLoginButton } from '../../buttons/nav/signuplogin/NavToSignupFromLoginButton.tsx';
-import './login-page.scss';
 import { Content } from '../../../lib/Content.ts';
+import './login-page.scss';
 
 export const LoginPage = () => {
 

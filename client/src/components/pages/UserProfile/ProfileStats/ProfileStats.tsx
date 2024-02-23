@@ -22,8 +22,8 @@ export const ProfileStats = ({ userStats }: UserStatsProps) => {
           <></>
         ) : (
           <div className='correct-rate'>
-            <div className='correct-pred'><span>{`${userStats.correct_predictions}`}</span> correct out of</div>
-            <div className="correct-total"><span>{`${userStats.total_predictions}`}</span> predictions made</div>
+            <div className='correct-pred'><span>{`${userStats.correct_predictions}`}</span> {Content.userProfile.stats.predicted}</div>
+            <div className="correct-total"><span>{`${userStats.total_predictions}`}</span> {Content.userProfile.stats.total}</div>
           </div>
         )}
       </div>

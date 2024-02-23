@@ -8,6 +8,7 @@ import { ApiClient } from '../../../../api/ApiClient';
 import { setUserDetails } from '../../../../redux/slices/userSlice';
 import './update-username.scss';
 import { Icons } from '../../../../lib/Icons';
+import { Content } from '../../../../lib/Content';
 
 export const UpdateUsername = () => {
   const dispatch = useDispatch();
@@ -76,7 +77,7 @@ export const UpdateUsername = () => {
 
   return (
     <div className='update-username'>
-      <div className='uu-title'>Edit username</div>
+      <div className='uu-title'>{Content.settings.username.prompt}</div>
       <div className='uu-top'>
         <input
           id='update-username'
@@ -95,7 +96,7 @@ export const UpdateUsername = () => {
       </div>
       <div className='uu-bot'>
         {success ? (
-          <div className='uu-message'>Success! Username updated!</div>
+          <div className='uu-message'>{Content.settings.username.success}</div>
         ) : (
           <div className='uu-message'>
             {usernameError && (
