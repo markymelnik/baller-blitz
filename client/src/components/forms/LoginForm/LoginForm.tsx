@@ -111,13 +111,14 @@ export const LoginForm = () => {
             <div className='lf-email'>
               <input
                 type='email'
+                id='lf-email'
                 placeholder=' '
                 autoComplete='current-email'
                 {...field}
                 disabled={emailChecked && emailExists}
                 className={errors.email ? 'input-error' : ''}
               />
-              <label htmlFor='email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
+              <label htmlFor='lf-email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
                   Edit
@@ -135,6 +136,7 @@ export const LoginForm = () => {
               <div className='lf-password'>
                 <input
                   type={showPassword ? 'text' : 'password'}
+                  id='lf-password'
                   placeholder=' '
                   autoComplete='current-password'
                   {...field}
@@ -145,7 +147,7 @@ export const LoginForm = () => {
                   }}
                   className={errors.password ? 'input-error' : ''}
                 />
-                <label htmlFor='password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
+                <label htmlFor='lf-password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
                 <button className='show-login-pw-btn' type='button' onClick={() => setShowPassword(prev => !prev)}>
                   {showPassword ? <Icons.EyeOpen size={20} /> : <Icons.EyeClose size={20} />}
                 </button>

@@ -1,7 +1,10 @@
+@import '@styles/colors.scss';
+
 .about-user {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid black;
+	border: 1px solid;
+  @include theme-color(border-color, border);
 	padding: 1.5rem;
 
 	.about-user-header {

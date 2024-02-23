@@ -1,11 +1,13 @@
+@import '@styles/colors.scss';
+
 .user-search-container {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem;
 	flex: 1;
 
 	.user-search-searchbar {
-		border: 1px solid black;
+		border: 1px solid;
+  @include theme-color(border-color, border);
 	}
 
 	.list-of-users {
@@ -20,5 +22,4 @@
 		padding: 5rem 0 0;
 		flex: 1;
 	}
-
 }

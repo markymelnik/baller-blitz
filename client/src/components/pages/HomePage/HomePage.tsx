@@ -38,7 +38,8 @@ export const HomePage = () => {
       <UnauthenticatedHome />
       <AuthenticatedHome />
 
-      <div className='home-bot'></div>
+      <div className='home-bot'>
+      </div>
     </div>
   );
 };

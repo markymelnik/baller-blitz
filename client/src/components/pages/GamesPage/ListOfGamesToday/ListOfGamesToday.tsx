@@ -26,6 +26,15 @@ export const ListOfGamesToday = () => {
   const [gamesState, setGamesState] = useState<string>('NOT_STARTED');
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
+  /* useEffect(() => {
+    const interval = setInterval(() => {
+      handleGamesListUpdate();
+      console.log('hit data fetch');
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, []) */
+
   useEffect(() => {
     if (todaysGames) {
       setTimeout(() => {

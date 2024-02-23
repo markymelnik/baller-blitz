@@ -1,8 +1,11 @@
+@import '@styles/colors.scss';
+
 .send-req-btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid black;
+	border: 1px solid;
+  @include theme-color(border-color, border);
 	padding: 0.25rem;
 	height: 3.25rem;
 	font-size: 1.15rem;

@@ -13,11 +13,11 @@ export const LoadingScreen = () => {
   return (
     <div className='loading-screen'>
       <l-ring
-        size='50'
-        stroke='3.5'
+        size='40'
+        stroke='4'
         bg-opacity='0'
         speed='2'
-        color='white'
+        color='var(--spinner-color)'
       ></l-ring>
     </div>
   );

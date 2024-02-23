@@ -1,3 +1,10 @@
+@import './colors.scss';
+
+@font-face {
+	font-family: 'Lexend';
+	src: url('../../assets/Lexend.ttf') format('truetype');
+}
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -10,8 +17,21 @@ html {
 }
 
 body {
-	background-color: white;
-	color: black;
+	font-family: 'Lexend';
+
+	&.light {
+		background-color: #fff;
+		color: #000;
+		--spinner-color: #000;
+		--input-autofill-bg: #fff;
+	}
+
+	&.dark {
+		background-color: #000;
+		color: #fff;
+		--spinner-color: #fff;
+		--input-autofill-bg: #000;
+	}
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -47,15 +67,28 @@ button {
 input, textarea {
 	font: inherit;
 	color: inherit;
-	border: 1px solid #ccc;
 	padding: 0.5rem;
+}
+
+body.light input, 
+body.light textarea {
+	background-color: #fff;
+  border: 1px solid #fff;
+	color: #000;
+}
+
+body.dark input, 
+body.dark textarea {
+	background-color: black;
+  border: 1px solid #000;
+	color: #fff;
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-box-shadow: 0 0 0 30px var(--input-autofill-bg) inset !important;
 }
 
 .app-container {

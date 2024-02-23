@@ -1,3 +1,5 @@
+@import '@styles/colors.scss';
+
 .loading-screen {
 	position: fixed;
 	top: 0;
@@ -7,6 +9,13 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: grey;
+	@include theme-color(background-color, bg);
 	z-index: 10;
+
+	svg {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		
+	}
 }

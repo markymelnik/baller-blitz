@@ -1,15 +1,19 @@
+@import '@styles/colors.scss';
+
 .req-friend-card {
 	display: flex;
 	gap: 1rem;
 	margin: 0 0 1rem;
-	border: 1px solid lightgrey;
+	border: 1px solid;
+  @include theme-color(border-color, border);
 	padding: 1rem;
 	min-height: 8rem;
 
 	.req-friend-card-left {
 		width: 6rem;
 		height: 6rem;
-		border: 1px solid lightgrey;
+		border: 1px solid;
+  @include theme-color(border-color, border);
 		border-radius: 50%;
 	}
 

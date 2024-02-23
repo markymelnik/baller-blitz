@@ -115,13 +115,14 @@ export const SignupForm = () => {
             <div className='sf-email'>
               <input
                 type='text'
+                id='sf-email'
                 placeholder=' '
                 autoComplete='current-email'
                 {...field}
                 disabled={emailChecked && !emailExists}
                 className={errors.email ? 'input-error' : ''}
               />
-              <label htmlFor='email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
+              <label htmlFor='sf-email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && !emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
                   Edit
@@ -140,6 +141,7 @@ export const SignupForm = () => {
               <div className='sf-password'>
                 <input
                   type={showPassword ? 'text' : 'password'}
+                  id='sf-password'
                   placeholder=' '
                   autoComplete='current-password'
                   {...field}
@@ -147,7 +149,7 @@ export const SignupForm = () => {
                   maxLength={20}
                   className={errors.password ? 'input-error' : ''}
                 />
-                <label htmlFor='password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
+                <label htmlFor='sf-password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
                 <button
                   className='show-signup-pw-btn'
                   type='button'

@@ -1,3 +1,5 @@
+@import '@styles/colors.scss';
+
 .sw-portal-wrapper {
 	position: fixed;
 	top: 0;
@@ -14,16 +16,18 @@
 		flex-direction: column;
 		align-items: center;
 		margin: 1.25rem;
-		padding: 1.5rem;
-		border: 1px solid black;
-		background: white;
+		padding: 2.5rem 1.5rem 1.5rem;
+		border: 1px solid;
+  @include theme-color(border-color, border);
+		@include theme-color(background-color, bg);
 
 		.select-overlay-message {
 			padding: 1rem 0 2.5rem;
 		}
 
 		.select-overlay-ok-btn {
-			border: 1px solid black;
+			border: 1px solid;
+  @include theme-color(border-color, border);
 
 			padding: 1rem 2rem;
 		}

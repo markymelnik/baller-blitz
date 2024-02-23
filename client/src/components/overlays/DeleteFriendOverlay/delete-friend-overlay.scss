@@ -1,3 +1,5 @@
+@import '@styles/colors.scss';
+
 .df-portal-wrapper {
 	position: fixed;
 	top: 0;
@@ -14,14 +16,15 @@
 		min-height: 30vh;
 		position: absolute;
 		top: 35vh;
-		border: 1px solid black;
+		border: 1px solid;
+  @include theme-color(border-color, border);
 		padding: 1rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
 		gap: 2rem;
-		background: white;
+		@include theme-color(background-color, bg);
 
 		.delete-friend-btns {
 			display: flex;
@@ -29,7 +32,8 @@
 
 			> * {
 				padding: 0.5rem 1rem;
-				border: 1px solid black;
+				border: 1px solid;
+  @include theme-color(border-color, border);
 			}
 		}
 	}

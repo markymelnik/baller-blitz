@@ -11,7 +11,7 @@ export const NavBackBtn = () => {
 
 	return (
 		<button className="nav-back-btn" onClick={handleBackClick}>
-			<Icons.ArrowLeft size={27} />
+			<Icons.ArrowLeft size={27} className='icon'/>
 		</button>
 	)
 }

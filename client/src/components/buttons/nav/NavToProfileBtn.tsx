@@ -8,7 +8,7 @@ export const NavToProfileBtn = () => {
     <NavigateToButtonCreator
       toRoute={'/profile'}
       className={'nav-to-profile-btn'}>
-        <Icons.Profile size={30} />
+        <Icons.Profile size={30} className='icon'/>
     </NavigateToButtonCreator>
   );
 };

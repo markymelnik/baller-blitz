@@ -28,6 +28,8 @@ import { PaginationProvider } from './contexts/PaginationProvider.tsx';
 const App = () => {
   useRefreshUserSession();
 
+  document.body.classList.add('light');
+
   const queryClient = new QueryClient();
 
   return (

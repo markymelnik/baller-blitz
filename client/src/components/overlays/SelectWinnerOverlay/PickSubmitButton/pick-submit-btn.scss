@@ -1,15 +1,19 @@
+@import '@styles/colors.scss';
+
 .pick-submit-btn {
 	background: none;
 	border: none;
 	padding: 1rem 2.5rem;
-	border: 1px solid lightgrey;
+	border: 1px solid;
+  @include theme-color(border-color, border);
 	font-size: 1.05rem;
 
 	&.select-winner {
-		border: 1px solid white;
+		border: 1px solid #fff;
 	}
 	
 	&.submit {
-		border: 1px solid black;
+		border: 1px solid;
+  @include theme-color(border-color, border);
 	}
 }

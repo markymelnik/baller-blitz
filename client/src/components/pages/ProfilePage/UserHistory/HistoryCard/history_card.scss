@@ -1,8 +1,11 @@
+@import '@styles/colors.scss';
+
 .history-card {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	border-bottom: 1px solid lightgrey;
+	border-bottom: 1px solid;
+	@include theme-color(border-color, border);
 	gap: 0.5rem;
 	padding: 1rem;
 	list-style: none;

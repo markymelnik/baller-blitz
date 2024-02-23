@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Icons } from '../../../lib/Icons';
 import { Content } from '../../../lib/Content';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton';
+import { ColorBtn } from '../../buttons/ColorBtn/ColorBtn';
 
 import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
@@ -54,6 +55,7 @@ export const SettingsPage = () => {
             )}
         </li>
       </ul>
+      <ColorBtn />
       <LogoutButton />
     </div>
   );

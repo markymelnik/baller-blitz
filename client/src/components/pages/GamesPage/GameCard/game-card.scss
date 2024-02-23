@@ -1,9 +1,11 @@
+@import '@styles/colors.scss';
+
 .game-card {
 	position: relative;
 	display: flex;
-	gap: 0.25rem;
-	border: 1px solid black;
-	padding: 1.25rem 1.25rem 1rem;
+	border: 1px solid;
+  @include theme-color(border-color, border);
+	padding: 1.5rem 1rem 0.75rem;
 
 	&.finished {
 		opacity: 0.5;
@@ -18,8 +20,19 @@
 		top: 0;
 		right: 0;
 		padding: 0.25rem 0.5rem;
-		border-bottom: 1px solid black;
-		border-left: 1px solid black;
+		border-bottom: 1px solid;
+		border-left: 1px solid;
+		@include theme-color(border-color, border);
+
+		body.light & {
+			border-bottom: 1px solid #000;
+			border-left: 1px solid #000;
+		}
+	
+		body.dark & {
+			border-bottom: 1px solid #fff;
+			border-left: 1px solid #fff;
+		}
 	}
 
 	.game-card-predicted {

@@ -9,7 +9,7 @@ export const NavToGamesBtn = () => {
       buttonText={'Games'}
       className={'to-games-from-home-btn'}
     >
-      <Icons.Basketball size={30} strokeWidth={1.2} />
+      <Icons.Basketball size={30} strokeWidth={1.2} className='icon'/>
     </NavigateToButtonCreator>
   );
 };

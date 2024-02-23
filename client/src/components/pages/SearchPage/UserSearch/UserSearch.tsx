@@ -56,6 +56,7 @@ export const UserSearch = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         className='user-search-searchbar'
+        name='user-search'
       />
       {showSpinner && (
         <div className='user-search-error'>
@@ -64,7 +65,7 @@ export const UserSearch = () => {
             stroke='3'
             bg-opacity='0'
             speed='2'
-            color='black'
+            color='var(--spinner-color)'
           ></l-ring>
         </div>
       )}

@@ -1,12 +1,11 @@
 @import '@styles/colors.scss';
 
-.user-result {
+.color-btn {
 	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	padding: 1rem;
+	justify-content: center;
+	align-items: center;
 	border: 1px solid;
   @include theme-color(border-color, border);
-	margin: 0 0 1rem;
-	min-height: 8rem;
+	height: 3rem;
+	width: 3rem;
 }

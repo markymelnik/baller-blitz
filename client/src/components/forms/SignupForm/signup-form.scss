@@ -1,3 +1,5 @@
+@import '@styles/colors.scss';
+
 .signup-form {
 	display: flex;
 	flex-direction: column;
@@ -29,7 +31,8 @@
 				height: 3.25rem;
 				width: 100%;
 				padding: 0.75rem;
-				border: 1px solid black;
+				border: 1px solid;
+  @include theme-color(border-color, border);
 				outline: none;
 			}
 	
@@ -41,7 +44,7 @@
 				margin: 0 0 0 0.35rem;
 				pointer-events: none;
 				transition: all 0.1s ease;
-				background: white;
+				@include theme-color(background-color, bg);
 			}
 	
 			input:not(:placeholder-shown) + label,
@@ -75,7 +78,8 @@
 
 	.signup-submit-btn {
 		height: 3.25rem;
-		border: 1px solid black;
+		border: 1px solid;
+  @include theme-color(border-color, border);
 		margin: 1.5rem 0 0;
 	}
 }

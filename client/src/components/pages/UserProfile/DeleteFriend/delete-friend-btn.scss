@@ -1,9 +1,12 @@
+@import '@styles/colors.scss';
+
 .delete-friend-container {
 	display: flex;
 	margin-top: auto;
 
 	.open-delete-friend-btn {
 		padding: 1rem 2rem;
-		border: 1px solid lightgrey;
+		border: 1px solid;
+  @include theme-color(border-color, border);
 	}
 }

@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+/* import { useEffect, useState } from 'react'; */
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 import { Icons } from '../../../lib/Icons.ts';
 import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
@@ -17,20 +17,23 @@ export const ProfilePage = () => {
   const isAuthenticated = useAuth();
   const userDetails = useUserDetails();
 
-  const AuthenticatedToFriendsBtn = useAuthorizedRender(NavToFriendsBtn, ['user','admin']);
+  const AuthenticatedToFriendsBtn = useAuthorizedRender(NavToFriendsBtn, [
+    'user',
+    'admin',
+  ]);
 
   const allPredictedGames = useFetchAllPredictions();
   const currentPredictedGames = useFetchCurrentPredictions();
 
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  /* const [isLoading, setIsLoading] = useState<boolean>(true); */
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (userDetails) {
       setTimeout(() => {
         setIsLoading(false);
       }, 600);
     }
-  }, [userDetails]);
+  }, [userDetails]); */
 
   if (!isAuthenticated) {
     return <p className='profile-error'>Log In to view profile</p>;
@@ -58,24 +61,16 @@ export const ProfilePage = () => {
               </div>
             </div>
           </div>
-          <div className="profile-page-right">
-          <AuthenticatedToFriendsBtn />
+          <div className='profile-page-right'>
+            <AuthenticatedToFriendsBtn />
           </div>
         </div>
-        <div className="profile-page-divider">
-          <div className="divider"></div>
+        <div className='profile-page-divider'>
+          <div className='divider'></div>
         </div>
         <div className='profile-page-bot'>
           <ul className='profile-page-blobs'>
-            {isLoading ? (
-              <Skeleton className='blob-skeleton-wrapper' count={1} />
-            ) : (
-              <>
-              <UserStats />
-              <div className="spacer" style={{ flexGrow: 1 }}></div>
-              </>
-              
-            )}
+            <UserStats />
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />
           </ul>
