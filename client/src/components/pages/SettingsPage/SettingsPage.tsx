@@ -22,7 +22,7 @@ const SettingsPage = () => {
 	}
 
 	return (
-    <main className='settings-page'>
+    <main className='settings-page main-page'>
       <ul className='sp-settings-list'>
         <li className='sp-settings-item'>
             <button className="sp-open-btn" onClick={handleSEClick}>

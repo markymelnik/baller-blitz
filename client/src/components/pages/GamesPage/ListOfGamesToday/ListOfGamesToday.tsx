@@ -105,7 +105,11 @@ export const ListOfGamesToday = () => {
         <>
           <ul className='list-of-games-today'>
             {isLoading ? (
-              <Skeleton className='skeleton-wrapper' count={numberOfGames} />
+              new Array(numberOfGames).fill(0).map((_, index) => (
+                <li key={index} className='skeleton-wrapper'>
+                  <Skeleton height={130} />
+                </li>
+              ))
             ) : (
               todaysGames.map((game) => {
                 const predictedGame = predictedGames.find(

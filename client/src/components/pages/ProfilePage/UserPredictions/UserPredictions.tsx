@@ -27,10 +27,13 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
         onClick={handleCurrentButtonClick}
       >
         <h3 className='current-text'>{Content.profile.currentPredictions.title}</h3>
+        <button className="current-pred-open">
         <Icons.ArrowDown
           size={20}
           className={isCurrentOpen ? `icon` : `rotate-icon`}
         />
+        </button>
+        
       </div>
     
       {isCurrentOpen && (
@@ -43,7 +46,9 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
                 <CurrentCard key={game.game_id} gameInfo={game} />
               ))}
               <div className='current-predictions-list-bot'>
+                <button className="current-pred-close">
                 <Icons.ArrowUp size={25} onClick={handleCurrentButtonClick} />
+                </button>
               </div>
             </ul>
           )}

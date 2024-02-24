@@ -3,7 +3,7 @@ import './notif-page.scss';
 
 const NotificationsPage = () => {
 	return (
-		<main className="notifications-page">
+		<main className="notifications-page main-page">
 			<RequestingFriends />
 		</main>
 	)

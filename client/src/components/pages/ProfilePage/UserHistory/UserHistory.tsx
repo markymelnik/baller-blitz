@@ -24,10 +24,13 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
     <div className='user-history'>
       <div className='history-header' onClick={handleHistoryButtonClick}>
         <h3 className='history-text'>{Content.profile.historyPredictions.title}</h3>
+        <button className="history-open">
         <Icons.ArrowDown
           size={20}
           className={isHistoryOpen ? `icon` : `rotate-icon`}
         />
+        </button>
+        
       </div>
 
       {isHistoryOpen && (
@@ -40,7 +43,10 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
                 <HistoryCard key={game.game_id} gameInfo={game} />
               ))}
               <div className='history-card-list-bot'>
+                <button className="history-close">
                 <Icons.ArrowUp size={25} onClick={handleHistoryButtonClick} />
+                </button>
+                
               </div>
             </div>
           )}

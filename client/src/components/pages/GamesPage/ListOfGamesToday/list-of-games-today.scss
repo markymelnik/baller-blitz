@@ -28,9 +28,9 @@
 	border-bottom: 1px solid;
   @include theme-color(border-color, border);
 
-	.skeleton-wrapper {
-		margin-bottom: 1rem;
-		height: 8.1rem;
+	@media (min-width: 768px) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
 	}
 }
 

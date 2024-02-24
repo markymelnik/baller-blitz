@@ -6,7 +6,7 @@ import { Content } from '../../../lib/Content.ts';
 const SignupPage = () => {
 
   return (
-    <main className='signup-page'>
+    <main className='signup-page main-page'>
       <div className='signup-page-wrapper'>
         <SignupForm />
         <div className='signup-page-bot'>

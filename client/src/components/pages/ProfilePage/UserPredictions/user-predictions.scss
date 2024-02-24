@@ -1,7 +1,7 @@
 .user-predictions {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem 0;
+	padding: 1.25rem 0;
 
 	.user-pred-fallback {
 		font-size: 1.25rem;
@@ -29,16 +29,20 @@
 	.current-predictions-list {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-		padding: 1rem 0 0;
+		gap: 1.25rem;
+		padding: 1.25rem 0 0;
 
 		.current-predictions-list-bot {
 			display: flex;
 			justify-content: right;
 		}
+
+		@media (min-width: 768px) {
+			padding: 1.25rem;
+		}
 	}
 
 	.prediction-none {
-		padding: 1rem 0 0;
+		padding: 1.25rem 0 0;
 	}
 }

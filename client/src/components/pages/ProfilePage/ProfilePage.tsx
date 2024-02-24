@@ -47,7 +47,7 @@ const ProfilePage = () => {
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
-      <main className='profile-page'>
+      <main className='profile-page main-page'>
         <div className='profile-page-top'>
           <div className='profile-container'>
             <div className='profile-photo'></div>

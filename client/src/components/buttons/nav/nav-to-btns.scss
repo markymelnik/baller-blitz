@@ -27,6 +27,7 @@
 }
 
 .nav-to-games-btn {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -36,6 +37,13 @@
 
 	.nav-btn-text {
 		font-size: 1.75rem;
+	}
+
+	.up-right-arr {
+		position: absolute;
+		bottom: -6rem;
+		left: -1rem;
+		transform: rotate(35deg);
 	}
 }
 

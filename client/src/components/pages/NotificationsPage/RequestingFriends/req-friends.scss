@@ -18,6 +18,12 @@
 	.req-friends-list {
 		display: flex;
 		flex-direction: column;
+		gap: 1.25rem;
+
+		@media (min-width: 768px) {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
 	}
 	
 	.no-req-friends-fallback {

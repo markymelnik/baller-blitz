@@ -3,7 +3,7 @@ import './search-page.scss';
 
 const SearchPage = () => {
   return (
-    <main className='search-page-container'>
+    <main className='search-page main-page'>
       <UserSearch />
     </main>
   );

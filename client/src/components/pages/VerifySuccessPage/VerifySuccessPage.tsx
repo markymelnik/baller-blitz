@@ -4,7 +4,7 @@ import './verify-success-page.scss';
 
 const VerifySuccessPage = () => {
   return (
-    <main className='verify-success-page'>
+    <main className='verify-success-page main-page'>
       <div className='verify-success-title'>
         {Content.verifySuccess.message}
       </div>

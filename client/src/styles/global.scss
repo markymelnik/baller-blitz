@@ -14,6 +14,7 @@
 html {
 	font-size: 16px;
 	line-height: 1;
+	
 }
 
 body {
@@ -98,4 +99,10 @@ input:-webkit-autofill:active {
 	min-height: 100vh;
 	width: 100%;
 	padding: 1.25rem;
+
+	.main-page {
+		width: clamp(0px, 100%, 768px);
+	}
 }
+
+

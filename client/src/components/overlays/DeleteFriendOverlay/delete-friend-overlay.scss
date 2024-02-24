@@ -1,7 +1,11 @@
 @import '@styles/colors.scss';
 
 .df-portal-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
 	position: fixed;
+	padding: 1rem;
 	top: 0;
 	left: 0;
 	height: 100vh;
@@ -12,7 +16,7 @@
 	justify-content: center;
 
 	.delete-friend-overlay {
-		width: 80%;
+		width: clamp(300px, 90%, 360px);
 		min-height: 20vh;
 		position: absolute;
 		top: 35vh;

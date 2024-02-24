@@ -6,7 +6,7 @@ import './login-page.scss';
 const LoginPage = () => {
 
   return (
-    <main className='login-page'>
+    <main className='login-page main-page'>
       <div className='login-form-wrapper'>
         <LoginForm />
         <div className='login-page-bot'>

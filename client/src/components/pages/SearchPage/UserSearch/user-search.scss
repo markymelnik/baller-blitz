@@ -7,11 +7,16 @@
 
 	.user-search-searchbar {
 		border: 1px solid;
-  @include theme-color(border-color, border);
+  	@include theme-color(border-color, border);
+		height: 2.5rem;
 	}
 
 	.list-of-users {
-		padding: 1rem 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		padding: 1.25rem 0;
+		
 	}
 
 	.user-search-error,

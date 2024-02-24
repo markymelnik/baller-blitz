@@ -3,7 +3,7 @@ import './friends-page.scss';
 
 const FriendsPage = () => {
   return (
-    <main className='friends-page'>
+    <main className='friends-page main-page'>
       <FriendsList />
     </main>
   );

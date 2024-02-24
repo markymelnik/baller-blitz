@@ -1,7 +1,7 @@
 .user-history {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem 0;
+	padding: 1.25rem 0;
 
 	.history-fallback {
 		font-size: 1.25rem;
@@ -30,12 +30,16 @@
 	.history-card-list {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-		padding: 1rem 0 0;
+		gap: 1.25rem;
+		padding: 1.25rem 0 0;
 
 		.history-card-list-bot {
 			display: flex;
 			justify-content: right;
+		}
+
+		@media (min-width: 768px) {
+			padding: 1.25rem;
 		}
 	}
 

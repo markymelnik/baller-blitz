@@ -5,7 +5,7 @@ import './games-page.scss';
 
 const GamesPage = () => {
   return (
-    <main className='games-page'>
+    <main className='games-page main-page'>
       <h1 className='games-page-header'>{Content.games.title}</h1>
         <ListOfGamesToday />
       <div className='games-page-bot'>

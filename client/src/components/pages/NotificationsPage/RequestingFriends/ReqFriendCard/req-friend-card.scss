@@ -3,7 +3,6 @@
 .req-friend-card {
 	display: flex;
 	gap: 1rem;
-	margin: 0 0 1rem;
 	border: 1px solid;
   @include theme-color(border-color, border);
 	padding: 1rem;
@@ -13,7 +12,7 @@
 		width: 6rem;
 		height: 6rem;
 		border: 1px solid;
-  @include theme-color(border-color, border);
+  	@include theme-color(border-color, border);
 		border-radius: 50%;
 	}
 
@@ -30,7 +29,6 @@
 			.req-accept-btn,
 			.req-reject.btn {
 				padding: 0.5rem 1rem;
-				
 			}
 
 			.req-accept-btn {

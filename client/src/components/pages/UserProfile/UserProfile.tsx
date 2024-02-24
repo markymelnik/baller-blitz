@@ -41,7 +41,7 @@ const UserProfile = () => {
   }
 
   return (
-    <main className='user-profile-container'>
+    <main className='user-profile-container main-page'>
       <ProfileIntro userProfile={userProfile} onOpen={confirmFriendStatus} />
       <RequestButton user={userProfile} onOpen={confirmFriendStatus} />
       {isFriends && <ProfileStats userStats={userStats} />}

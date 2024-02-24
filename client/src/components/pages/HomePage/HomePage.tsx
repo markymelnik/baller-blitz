@@ -34,9 +34,10 @@ const HomePage = () => {
   );
 
   return (
-    <main className='home-page'>
+    <main className='home-page main-page'>
       <h1 className='home-welcome'>
-        {Content.main.title.ball} <br /> {Content.main.title.battle}
+        <div className="home-title">{Content.main.title.ball} </div>
+        <div className="home-title"> {Content.main.title.battle} </div>
       </h1>
       <UnauthenticatedHome />
       <AuthenticatedHome />

@@ -6,6 +6,7 @@
 	border: 1px solid;
   @include theme-color(border-color, border);
 	padding: 1.5rem 1rem 0.75rem;
+	cursor: pointer;
 
 	&.finished {
 		opacity: 0.5;

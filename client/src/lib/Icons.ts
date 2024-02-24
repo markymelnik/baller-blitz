@@ -1,4 +1,4 @@
-import { PiArrowBendDownRight, PiBell, PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiEye, PiEyeSlash, PiHouseLight, PiMagnifyingGlass, PiMoon, PiSealCheck, PiShieldWarning, PiSignOut, PiSun, PiUser, PiUserCirclePlus, PiUsers, PiWarningCircle, PiX } from "react-icons/pi";
+import { PiArrowBendRightUp, PiBell, PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiEye, PiEyeSlash, PiHouseLight, PiMagnifyingGlass, PiMoon, PiSealCheck, PiShieldWarning, PiSignOut, PiSun, PiUser, PiUserCirclePlus, PiUsers, PiWarningCircle, PiX } from "react-icons/pi";
 import { TbBallBasketball } from "react-icons/tb";
 import { MdCheck } from "react-icons/md";
 import { BsGear } from "react-icons/bs";
@@ -28,5 +28,5 @@ export const Icons = {
 	Bell: PiBell,
 	Sun: PiSun,
 	Moon: PiMoon,
-	ArrowDownRight: PiArrowBendDownRight,
+	ArrowUpRight: PiArrowBendRightUp,
 }
