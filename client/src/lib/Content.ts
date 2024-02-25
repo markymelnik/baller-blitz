@@ -58,7 +58,7 @@ export const Content = {
       1: `Game information`,
       2: `Games are live!`,
       3: `All games have finished`,
-      4: `New game information at 12 PM ET!`,
+      4: `New game information at 12 PM EST!`,
     },
     no: {
       1: 'No games scheduled for today.',

@@ -12,7 +12,7 @@ import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
 import './header.scss';
 import { ColorBtn } from '../buttons/ColorBtn/ColorBtn.tsx';
 
-export const Header = () => {
+const Header = () => {
   const location = useLocation();
 
   useHeaderHideOnScroll();
@@ -60,3 +60,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default Header;

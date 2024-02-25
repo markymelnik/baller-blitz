@@ -8,6 +8,7 @@ import { usePagination } from "../../../../contexts/usePagination";
 import { UserProfileInfo } from "../../../../types/userTypes";
 import { useUserDetails } from "../../../../hooks/stateSelectors";
 import { Content } from "../../../../lib/Content";
+import { Icons } from "../../../../lib/Icons";
 
 import { PaginationBar } from "./PaginationBar/PaginationBar";
 import './user-search.scss';
@@ -49,6 +50,10 @@ export const UserSearch = () => {
 
   return (
     <div className='user-search-container'>
+      <div className="user-search-top">
+        <div className="searchbar-icon">
+          <Icons.Search size={18} />
+        </div>
       <input
         type='text'
         placeholder='Search users...'
@@ -57,6 +62,8 @@ export const UserSearch = () => {
         className='user-search-searchbar'
         name='user-search'
       />
+      </div>
+      
       {showSpinner && (
         <div className='user-search-error'>
           <l-ring

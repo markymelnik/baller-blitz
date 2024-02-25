@@ -5,18 +5,41 @@
 	flex-direction: column;
 	flex: 1;
 
-	.user-search-searchbar {
-		border: 1px solid;
-  	@include theme-color(border-color, border);
-		height: 2.5rem;
+	.user-search-top {
+		width: 100%;
+		display: flex;
+
+		.searchbar-icon {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 2.5rem;
+			width: 2.5rem;
+			border: 1px solid;
+			@include theme-color(border-color, border);
+			border-right: none;
+		}
+
+		.user-search-searchbar {
+			width: 100%;
+			border: 1px solid;
+			@include theme-color(border-color, border);
+			border-left: none;
+			height: 2.5rem;
+
+			&:focus {
+				outline: none;
+			}
+		}
 	}
+
+	
 
 	.list-of-users {
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
 		padding: 1.25rem 0;
-		
 	}
 
 	.user-search-error,

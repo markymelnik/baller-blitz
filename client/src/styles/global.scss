@@ -1,8 +1,8 @@
 @import './colors.scss';
 
 @font-face {
-	font-family: 'Lexend';
-	src: url('../../assets/Lexend.ttf') format('truetype');
+	font-family: 'Outfit';
+	src: url('../../assets/Outfit.ttf') format('truetype');
 }
 
 * {
@@ -18,7 +18,7 @@ html {
 }
 
 body {
-	font-family: 'Lexend';
+	font-family: 'Outfit';
 
 	&.light {
 		background-color: #fff;

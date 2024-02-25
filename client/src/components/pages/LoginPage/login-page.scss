@@ -5,6 +5,12 @@
   flex-direction: column;
 	padding: 10vh 0 0;
 
+	.login-form-wrapper {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.login-page-bot {
 		display: flex;
 		justify-content: center;
