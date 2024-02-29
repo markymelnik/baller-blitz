@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .so-portal-wrapper {
 	display: flex;
@@ -9,7 +10,7 @@
 	left: 0;
 	height: 100vh;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.6);
 	z-index: 2;
 
 	.started-overlay {
@@ -22,8 +23,8 @@
 		margin: 1.25rem;
 		padding: 1.5rem;
 		@include theme-color(background-color, bg);
-		border: 1px solid;
-  	@include theme-color(border-color, border);
+		box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
+		border-radius: $round-edge;
 
 		.started-overlay-message {
 			font-size: 1.1rem;
@@ -41,6 +42,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			
 		}
 	}
 }

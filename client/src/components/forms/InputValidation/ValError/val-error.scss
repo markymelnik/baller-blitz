@@ -1,7 +1,9 @@
+@import '@styles/variables';
+
 .val-error {
 	display: flex;
 	gap: 0.25rem;
-	color: red;
+	color: $red;
 	height: 1rem;
 	margin: 0.25rem 0 0;
 }

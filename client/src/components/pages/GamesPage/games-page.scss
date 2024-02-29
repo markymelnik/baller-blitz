@@ -5,6 +5,10 @@
   flex-direction: column;
 	padding: 8vh 0 0;
 	overflow: auto;
+
+	@media (min-width: 768px) {
+		padding: 12vh 0 0;
+	}
 }
 
 .games-page-header {

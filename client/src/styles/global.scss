@@ -1,4 +1,5 @@
 @import './colors.scss';
+@import './variables.scss';
 
 @font-face {
 	font-family: 'Outfit';
@@ -14,24 +15,23 @@
 html {
 	font-size: 16px;
 	line-height: 1;
-	
 }
 
 body {
 	font-family: 'Outfit';
 
 	&.light {
-		background-color: #fff;
-		color: #000;
-		--spinner-color: #000;
-		--input-autofill-bg: #fff;
+		background-color: $white;
+		color: $black;
+		--spinner-color: #1A1A1A;
+		--input-autofill-bg: #FAF9F6;
 	}
 
 	&.dark {
-		background-color: #000;
-		color: #fff;
-		--spinner-color: #fff;
-		--input-autofill-bg: #000;
+		background-color: $black;
+		color: $white;
+		--spinner-color: #FAF9F6;
+		--input-autofill-bg: #1A1A1A;
 	}
 }
 
@@ -69,20 +69,21 @@ input, textarea {
 	font: inherit;
 	color: inherit;
 	padding: 0.5rem;
+	cursor: default;
 }
 
 body.light input, 
 body.light textarea {
-	background-color: #fff;
-  border: 1px solid #000;
-	color: #000;
+	background-color: #FAF9F6;
+  border: 1px solid $black;
+	color: #1A1A1A;
 }
 
 body.dark input, 
 body.dark textarea {
-	background-color: #000;
-  border: 1px solid #fff;
-	color: white;
+	background-color: #1A1A1A;
+  border: 1px solid $white;
+	color: #FAF9F6;
 }
 
 input:-webkit-autofill,
@@ -99,6 +100,7 @@ input:-webkit-autofill:active {
 	min-height: 100vh;
 	width: 100%;
 	padding: 1.25rem;
+	min-height: 100vh;
 
 	.main-page {
 		width: clamp(0px, 100%, 768px);

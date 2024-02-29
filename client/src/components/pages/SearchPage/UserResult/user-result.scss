@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .user-result {
 	display: flex;
@@ -8,4 +9,9 @@
 	border: 1px solid;
   @include theme-color(border-color, border);
 	min-height: 8rem;
+	border-radius: $round-edge;
+
+	&:hover {
+		cursor: pointer;
+	}
 }

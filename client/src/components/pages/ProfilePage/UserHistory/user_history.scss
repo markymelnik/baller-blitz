@@ -15,6 +15,10 @@
 
 		.history-text {
 			font-size: 1.25rem;
+
+			&:hover {
+				cursor: pointer;
+			}
 		}
 
 		.icon {

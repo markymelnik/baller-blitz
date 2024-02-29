@@ -1,10 +1,12 @@
-$light-theme-bg: #fff;
-$light-theme-text: #000;
-$light-theme-border: #000;
+@import './variables.scss';
 
-$dark-theme-bg: #000;
-$dark-theme-text: #fff;
-$dark-theme-border: #fff;
+$light-theme-bg: $white;
+$light-theme-text: $black;
+$light-theme-border: $light-grey;
+
+$dark-theme-bg: $black;
+$dark-theme-text: $white;
+$dark-theme-border: $dark-grey;
 
 $themes: (
   light: (

@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .delete-friend-container {
 	display: flex;
@@ -7,6 +8,11 @@
 	.open-delete-friend-btn {
 		padding: 1rem 2rem;
 		border: 1px solid;
-  @include theme-color(border-color, border);
+		@include theme-color(border-color, border);
+		border-radius: $round-edge;
+
+		&:hover {
+			@include theme-color(border-color, text);
+		}
 	}
 }

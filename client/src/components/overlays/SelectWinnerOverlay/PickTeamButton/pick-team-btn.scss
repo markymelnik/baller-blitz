@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .away-team,
 .home-team {
@@ -8,13 +9,19 @@
 	gap: 0.5rem;
 	border: 1px solid;
   @include theme-color(border-color, border);
+	border-radius: $round-edge;
 	padding: 1rem;
 	width: 100%;
+
+	&:hover {
+		cursor: pointer;
+		@include theme-color(border-color, text);
+	}
 
 	&.confirm,
 	&.submit {
 		border: 1px solid;
-  @include theme-color(border-color, border);
+  	@include theme-color(border-color, text);
 	}
 
 	.tricode {

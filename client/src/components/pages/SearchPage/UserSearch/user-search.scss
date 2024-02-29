@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .user-search-container {
 	display: flex;
@@ -18,6 +19,9 @@
 			border: 1px solid;
 			@include theme-color(border-color, border);
 			border-right: none;
+			border-radius: $round-edge;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
 		}
 
 		.user-search-searchbar {
@@ -26,14 +30,15 @@
 			@include theme-color(border-color, border);
 			border-left: none;
 			height: 2.5rem;
+			border-radius: $round-edge;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
 
 			&:focus {
 				outline: none;
 			}
 		}
 	}
-
-	
 
 	.list-of-users {
 		display: flex;
@@ -43,11 +48,17 @@
 	}
 
 	.user-search-error,
+	.user-search-spinner,
 	.search-fallback {
 		width: 100%;
 		display: flex;
 		justify-content: center;
 		padding: 5rem 0 0;
 		flex: 1;
+	}
+
+	.user-search-spinner {
+		@include theme-color(fill, text);
+		
 	}
 }

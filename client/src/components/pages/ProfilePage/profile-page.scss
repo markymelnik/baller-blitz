@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .profile-page {
 	min-height: 90vh;
@@ -54,7 +55,6 @@
 		justify-content: center;
 
 		.divider {
-			border-bottom: 1px solid;
 			@include theme-color(border-color, border);
 			width: 100%;
 		}
@@ -82,7 +82,8 @@
 			display: flex;
 			justify-content: center;
 			width: 24rem;
-			border: 1px solid black;
+			border: 1px solid;
+			@include theme-color(border-color, border);
 			padding: 2rem 0;
 		}
 	}

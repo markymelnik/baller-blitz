@@ -53,7 +53,7 @@ export const RequestButton = ({ user, onOpen }: RequestButtonProps ) => {
   useEffect(() => {
     refetch();
   }, [user.id, refetch]);
-
+  
   if (isLoading || isMutating) {
     return (
       <div className='send-req-btn'>

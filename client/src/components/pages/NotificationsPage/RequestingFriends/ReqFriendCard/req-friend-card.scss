@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .req-friend-card {
 	display: flex;
@@ -7,6 +8,7 @@
   @include theme-color(border-color, border);
 	padding: 1rem;
 	min-height: 8rem;
+	border-radius: $round-edge;
 
 	.req-friend-card-left {
 		width: 6rem;

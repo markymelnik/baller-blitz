@@ -58,10 +58,10 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
   return (
     <>
       <li
-        className={`game-card ${
-          gameStatus === GameState.FINISHED ? `finished` : ``
-        } ${
+        className={`game-card  ${
           gameStatus === GameState.NOT_STARTED && isPredicted ? `predicted` : ``
+        } ${gameStatus === GameState.IN_PROGRESS ? `started` : ``} ${
+          gameStatus === GameState.FINISHED ? `finished` : ``
         }`}
         onClick={handleGameCardClick}
       >
@@ -94,10 +94,15 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
         {gameStatus === GameState.FINISHED && (
           <div className='top-right'>
             <div className='game-card-predicted'>
-              {isPredicted && <><div className='predicted-text'>Predicted {predictedWinner}</div>
-              <Icons.Check size={18} />
-              </>}
-              
+              {isPredicted && (
+                <>
+                  <div className='predicted-text'>
+                    Predicted {predictedWinner}
+                  </div>
+                  <Icons.Check size={18} />
+                </>
+              )}
+
               <div className='predicted-outcome'>{`Winner: ${GameDataFormatter.determineWinner(
                 game
               )}`}</div>
@@ -110,8 +115,12 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
           </div>
           <div className='game-matchup'>
             <div className='game-teams'>
-              <div className='away-team-name'>{game.awayTeam.teamName || `TBD`}</div>
-              <div className='home-team-name'>{game.homeTeam.teamName || `TBD`}</div>
+              <div className='away-team-name'>
+                {game.awayTeam.teamName || `TBD`}
+              </div>
+              <div className='home-team-name'>
+                {game.homeTeam.teamName || `TBD`}
+              </div>
             </div>
             {gameStatus !== GameState.NOT_STARTED && (
               <div className='game-scores'>

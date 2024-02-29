@@ -1,4 +1,5 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .df-portal-wrapper {
 	display: flex;
@@ -10,7 +11,7 @@
 	left: 0;
 	height: 100vh;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.6);
 	z-index: 10;
 	display: flex;
 	justify-content: center;
@@ -20,8 +21,6 @@
 		min-height: 20vh;
 		position: absolute;
 		top: 35vh;
-		border: 1px solid;
-  	@include theme-color(border-color, border);
 		padding: 2rem;
 		display: flex;
 		flex-direction: column;
@@ -29,18 +28,21 @@
 		align-items: center;
 		gap: 2rem;
 		@include theme-color(background-color, bg);
+		border-radius: $round-edge;
+		box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
 
 		.delete-friend-btns {
 			display: flex;
 			gap: 1rem;
 
 			> * {
+				border-radius: $round-edge;
 				padding: 0.75rem 1.5rem;
-				color: red;
+				color: $red;
 			}
 
 			.df-confirm-btn {
-				border: 1px solid red;
+				border: 1px solid $red;
 			}
 		}
 	}

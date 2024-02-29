@@ -65,7 +65,7 @@ export const UserSearch = () => {
       </div>
       
       {showSpinner && (
-        <div className='user-search-error'>
+        <div className='user-search-spinner'>
           <l-ring
             size='25'
             stroke='3'

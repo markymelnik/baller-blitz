@@ -5,8 +5,8 @@ import { useDisableBodyScroll } from '../../../hooks/page/useDisableBodyScroll.t
 import { useOutsideClick } from '../../../hooks/page/useOutsideClick.ts';
 import { OverlayOKButton } from '../OKButton/OverlayOkButton.tsx';
 import { OverlayCloseButton } from '../OverlayCloseButton/OverlayCloseButton.tsx';
-import './started-overlay.scss';
 import { Content } from '../../../lib/Content.ts';
+import './started-overlay.scss';
 
 type StartedOverlayProps = {
 	isOpen: boolean;

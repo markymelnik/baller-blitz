@@ -1,8 +1,5 @@
 @import '@styles/colors.scss';
-
-.icon {
-	@include theme-color(color, text);
-}
+@import '@styles/variables.scss';
 
 .nav-to-home-btn {
 	font-size: 2rem;
@@ -11,10 +8,15 @@
 .nav-to-signup-btn,
 .nav-to-login-btn {
 	padding: 1rem;
-	height: 3.25rem;
+	height: 3.5rem;
 	width: 100%;
 	border: 1px solid;
   @include theme-color(border-color, border);
+	border-radius: $round-edge;
+
+	&:hover {
+		@include theme-color(border-color, text);
+	}
 }
 
 .nav-to-profile-btn,

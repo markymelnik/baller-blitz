@@ -5,6 +5,10 @@
   flex-direction: column;
 	padding: 10vh 0 0;
 
+	@media (min-width: 768px) {
+		padding: 12vh 0 0;
+	}
+
 	.login-form-wrapper {
 		display: flex;
 		flex-direction: column;

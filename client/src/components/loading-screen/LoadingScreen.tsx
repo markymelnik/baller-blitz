@@ -13,7 +13,7 @@ export const LoadingScreen = () => {
   return (
     <div className='loading-screen'>
       <l-ring
-        size='40'
+        size='35'
         stroke='4'
         bg-opacity='0'
         speed='2'
