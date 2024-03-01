@@ -9,15 +9,18 @@
 	flex: 1;
 
 	.sp-settings-list {
-		border-bottom: 1px solid;
-		@include theme-color(border-color, border);
+
+		>:nth-child(1) {
+			border-top: 1px solid;
+			@include theme-color(border-color, border);
+		}
 
 		.sp-open-btn {
 			display: flex;
 			gap: 0.5rem;
 			width: 100%;
 			padding: 1.25rem 0;
-			border-top: 1px solid;
+			border-bottom: 1px solid;
 			@include theme-color(border-color, border);
 			text-align: left;
 

@@ -4,22 +4,21 @@
 	height: 10vh;
 	position: fixed;
 	top: 0;
-	width: clamp(0px, 100%, 804px);
+	width: clamp(0px, 100%, 824px);
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding: 1rem 1.25rem;
 	z-index: 2;
 	transition: top 0.6s;
 	@include theme-color(background-color, bg);
 
 	@media (min-width: 992px) {
-		padding: 1rem 0;
+		padding: 1rem;
 	}
 
 	.header-left {
-		position: absolute;
-		left: 1rem;
+		
 	}
 
 	.header-middle {
@@ -29,8 +28,7 @@
 	}
 
 	.header-right-nav {
-		position: absolute;
-		right: 1rem;
+		
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;

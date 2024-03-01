@@ -1,0 +1,19 @@
+@import '../../../../../styles/colors.scss';
+@import '../../../../../styles/variables.scss';
+
+
+.home-game {
+	display: inline-block;
+	margin-right: 1.25rem;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+	border-radius: $round-edge;
+	padding: 1rem;
+	height: 20rem;
+	width: 15rem;
+
+	&:hover {
+		cursor: pointer;
+		@include theme-color(border-color, text);
+	}
+}

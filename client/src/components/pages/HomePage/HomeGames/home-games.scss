@@ -1,0 +1,32 @@
+.home-games {
+	display: flex;
+	flex-direction: column;
+	
+	.hg-header {
+		font-size: 1.25rem;
+		padding: 0 0 1rem;
+	}
+
+	.hg-slider {
+		overflow-x: auto;
+		white-space: nowrap;
+
+		.hg-list {
+			flex: 1;
+			
+			>:last-child {
+				margin-right: 0;
+			}
+		}
+	}
+
+	.hg-no-games {
+		border: 1px solid white;
+		height: 50vh;
+	}
+
+	.hg-loading {
+		height: 48vh;
+	}
+
+}

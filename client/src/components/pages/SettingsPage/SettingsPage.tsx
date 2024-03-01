@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Icons } from '../../../lib/Icons';
 import { Content } from '../../../lib/Content';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton';
+import { ColorBtn } from '../../buttons/ColorBtn/ColorBtn';
 
 import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
@@ -52,6 +53,9 @@ const SettingsPage = () => {
                 <UpdateUsername />
               </div>
             )}
+        </li>
+        <li className="sp-settings-item">
+          <ColorBtn />
         </li>
       </ul>
       <LogoutButton />

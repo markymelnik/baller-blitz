@@ -13,4 +13,9 @@
 	&:hover {
 		@include theme-color(border-color, text);
 	}
+
+	&.select-winner {
+		@include theme-color(border-color, bg);
+		cursor: default;
+	}
 }

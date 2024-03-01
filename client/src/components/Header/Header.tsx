@@ -10,7 +10,7 @@ import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
 import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
 import './header.scss';
-import { ColorBtn } from '../buttons/ColorBtn/ColorBtn.tsx';
+import Logo from '../pages/HomePage/Logo/Logo.tsx';
 
 const Header = () => {
   const location = useLocation();
@@ -27,8 +27,8 @@ const Header = () => {
   return (
     <header className='header-container'>
       <div className='header-left'>
-        {location.pathname === '/' && <ColorBtn />}
         <nav className="header-left-nav">
+          {location.pathname === '/' && <Logo />}
           {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
           {location.pathname === '/login' && <UnauthenticatedBackBtn />}
           {location.pathname === '/games' && <AuthenticatedBackBtn />}

@@ -1,12 +1,18 @@
 import { NavigateToSignupButton } from '../../buttons/nav/signuplogin/NavigateToSignupButton.tsx';
 import { NavigateToLoginButton } from '../../buttons/nav/signuplogin/NavigateToLoginButton.tsx';
 import { useUnauthorizedRender } from '../../../hooks/auth/useUnauthorizedRender.ts';
-import { NavToGamesBtn } from '../../buttons/nav/NavToGamesBtn.tsx';
+import { NavToGameBtnArrow } from '../../buttons/nav/NavToGamesBtnArrow.tsx';
 import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
 import { Content } from '../../../lib/Content.ts';
+import { useUserDetails } from '../../../hooks/stateSelectors.ts';
+
+import { HomeGames } from './HomeGames/HomeGames.tsx';
 import './home-page.scss';
 
 const HomePage = () => {
+
+  const userDetails = useUserDetails()!;
+
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
       <nav className='home-unauth'>
@@ -26,19 +32,22 @@ const HomePage = () => {
 
   const AuthenticatedHome = useAuthorizedRender(
     () => (
-      <nav className='home-auth'>
-        <NavToGamesBtn />
-      </nav>
+      <div className='home-auth'>
+        <div className='home-welcome'>
+          <div className="hw-hi">Hi {userDetails?.username}</div>
+          <div className="hw-back">Welcome back!</div>
+        </div>
+        <NavToGameBtnArrow />
+        <HomeGames />
+        
+      </div>
     ),
     ['user', 'admin']
   );
 
   return (
     <main className='home-page main-page'>
-      <h1 className='home-welcome'>
-        <div className="home-title">{Content.main.title.ball} </div>
-        <div className="home-title"> {Content.main.title.battle} </div>
-      </h1>
+      
       <UnauthenticatedHome />
       <AuthenticatedHome />
       <div className='home-bot'></div>
