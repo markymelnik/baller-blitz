@@ -23,8 +23,7 @@
 .nav-to-settings-btn,
 .nav-to-search-btn,
 .nav-to-friends-btn,
-.nav-to-notif-btn,
-.nav-back-btn  {
+.nav-to-notif-btn {
 	height: 2.5rem;
 	width: 2.5rem;
 }
@@ -54,5 +53,18 @@
   	@include theme-color(border-color, border);
 		padding: 0.15rem 0.25rem;
 		z-index: 4;
+	}
+}
+
+.nav-back-btn {
+	height: 2.5rem;
+	width: 2.5rem;
+	position: relative;
+
+	svg {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 1rem;
 	}
 }

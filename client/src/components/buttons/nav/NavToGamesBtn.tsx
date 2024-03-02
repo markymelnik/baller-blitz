@@ -8,7 +8,7 @@ export const NavToGamesBtn = () => {
       toRoute={'/games'}
       className={'nav-to-games-btn'}
     >
-      <Icons.Basketball size={32}  strokeWidth={1.2} />
+      <Icons.Stack size={32} />
     </NavigateToButtonCreator>
   );
 };

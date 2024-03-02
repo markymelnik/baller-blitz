@@ -66,6 +66,7 @@ export const Content = {
     },
   },
   profile: {
+    title: 'Profile',
     currentPredictions: {
       title: 'Current Predictions',
       none: 'No predictions made today',
@@ -75,7 +76,7 @@ export const Content = {
       none: 'No History',
     },
     userStats: {
-      title: 'User Stats',
+      title: 'Your stats',
       winPrediction: 'Win Prediction',
     },
   },

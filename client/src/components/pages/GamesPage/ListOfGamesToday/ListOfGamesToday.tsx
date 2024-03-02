@@ -39,7 +39,7 @@ export const ListOfGamesToday = () => {
     if (todaysGames) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 600);
+      }, 800);
     }
   }, [todaysGames]);
 
@@ -94,7 +94,7 @@ export const ListOfGamesToday = () => {
             )}
           </div>
         ))}
-      {numberOfGames < 1 ? (
+      {numberOfGames < 1 && !isLoading ? (
         <div className='no-games-today'>
           <div className='no-games-box'>
             <div className='no-games-text'>{Content.games.no[1]}</div>
@@ -106,9 +106,9 @@ export const ListOfGamesToday = () => {
           <ul className='list-of-games-today'>
             {isLoading ? (
               new Array(numberOfGames).fill(0).map((_, index) => (
-                <li key={index} className='skeleton-wrapper'>
-                  <Skeleton height={130} />
-                </li>
+                <div key={index} >
+                  <Skeleton className='log-skeleton-wrapper' />
+                </div>
               ))
             ) : (
               todaysGames.map((game) => {

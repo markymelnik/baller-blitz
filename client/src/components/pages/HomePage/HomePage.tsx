@@ -15,7 +15,11 @@ const HomePage = () => {
 
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
-      <nav className='home-unauth'>
+      <div className='home-unauth'>
+        <div className="hu-left">
+          
+        </div>
+        <div className="hu-right">
         <h2 className='unauth-title'>{Content.home.prompt}</h2>
         <ul className='unauth-btns'>
           <li>
@@ -25,7 +29,9 @@ const HomePage = () => {
             <NavigateToSignupButton />
           </li>
         </ul>
-      </nav>
+        </div>
+      
+      </div>
     ),
     ['user', 'admin']
   );

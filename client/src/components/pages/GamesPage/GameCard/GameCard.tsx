@@ -55,12 +55,16 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
     setIsAlreadyPredictedOverlayOpen(false);
   };
 
+  function predictionStatus(game: Game) {
+		const finalWinner = GameDataFormatter.determineWinner(game);
+		return finalWinner === predictedWinner;
+	}
+
   return (
     <>
       <li
-        className={`game-card  ${
-          gameStatus === GameState.NOT_STARTED && isPredicted ? `predicted` : ``
-        } ${gameStatus === GameState.IN_PROGRESS ? `started` : ``} ${
+        className={`game-card ${gameStatus === GameState.NOT_STARTED && isPredicted ? `predicted` : ``
+        }${gameStatus === GameState.IN_PROGRESS ? `started` : ``}${
           gameStatus === GameState.FINISHED ? `finished` : ``
         }`}
         onClick={handleGameCardClick}
@@ -99,7 +103,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
                   <div className='predicted-text'>
                     Predicted {predictedWinner}
                   </div>
-                  <Icons.Check size={18} />
+                  {predictionStatus(game) ? <Icons.Check size={18} /> : <Icons.Close size={18} />}
                 </>
               )}
 

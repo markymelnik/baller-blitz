@@ -26,11 +26,14 @@ const Header = () => {
   const AuthenticatedToGamesBtn = useAuthorizedRender(NavToGamesBtn, ['user','admin'])
   const UnauthenticatedBackBtn = useUnauthorizedRender(NavBackBtn, ['user','admin']);
   const AuthenticatedToNotifBtn = useAuthorizedRender(NavToNotifBtn, ['user','admin']);
+  const UnauthenticatedLogo = useUnauthorizedRender(Logo, ['user','admin']);
 	
   return (
     <header className='header-container'>
       {/* <div className='header-top'>
-        <Logo />
+        {location.pathname === '/' && <UnauthenticatedLogo />}
+        {location.pathname === '/signup' && <UnauthenticatedLogo />}
+        {location.pathname === '/login' && <UnauthenticatedLogo />}
       </div> */}
       <div className='header-bot'>
         <nav className='header-left-nav'>
@@ -57,6 +60,9 @@ const Header = () => {
           )}
           {location.pathname === '/notifications' && (
             <h2 className='notif-page-header'>{Content.notifs.title}</h2>
+          )}
+          {location.pathname === '/profile' && (
+            <h2 className='notif-page-header'>{Content.profile.title}</h2>
           )}
         </div>
 

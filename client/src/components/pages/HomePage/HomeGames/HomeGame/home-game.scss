@@ -7,13 +7,17 @@
 	border: 2px solid;
 	@include theme-color(border-color, border);
 	border-radius: $round-edge;
-
 	height: 20rem;
 	width: 15rem;
 
 	&:hover {
 		cursor: pointer;
 		@include theme-color(border-color, text);
+	}
+
+	&.finished {
+		pointer-events: none;
+		opacity: 0.5;
 	}
 
 	.hg-top {
@@ -26,7 +30,6 @@
 	}
 
 	.hg-bot {
-		
 		position: relative;
 		padding: 1rem;
 
@@ -51,6 +54,16 @@
 			border: 1px solid;
 			@include theme-color(border-color, border);
 			border-radius: $round-edge;
+		}
+
+		.hg-pred {
+
+		}
+
+		.hg-pred-outcome {
+			position: absolute;
+			top: 3.5rem;
+			right: 1.25rem;
 		}
 	}
 }

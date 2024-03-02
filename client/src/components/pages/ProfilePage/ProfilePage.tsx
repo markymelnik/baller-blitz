@@ -31,7 +31,7 @@ const ProfilePage = () => {
     if (userDetails) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 600);
+      }, 800);
     }
   }, [userDetails]); */
 
@@ -60,11 +60,6 @@ const ProfilePage = () => {
                 {is_verified && 'Verified'}
               </div>
             </div>
-          </div>
-          <div className='profile-page-right'>
-            <nav className="profile-page-nav">
-            <AuthenticatedToFriendsBtn />
-            </nav>
           </div>
         </div>
         <div className='profile-page-divider'>

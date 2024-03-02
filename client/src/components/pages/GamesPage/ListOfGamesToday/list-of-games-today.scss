@@ -22,12 +22,15 @@
 	flex-direction: column;
 	gap: 1.5rem;
 	padding: 1.25rem 0 1.25rem;
-	margin: 1.25rem 0 0;
   @include theme-color(border-color, border);
 
 	@media (min-width: 768px) {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.log-skeleton-wrapper {
+		height: 10rem;
 	}
 }
 
