@@ -37,9 +37,9 @@ const HomePage = () => {
           <div className="hw-hi">Hi {userDetails?.username}</div>
           <div className="hw-back">Welcome back!</div>
         </div>
-        <NavToGameBtnArrow />
-        <HomeGames />
         
+        <HomeGames />
+        <NavToGameBtnArrow />
       </div>
     ),
     ['user', 'admin']
@@ -47,7 +47,6 @@ const HomePage = () => {
 
   return (
     <main className='home-page main-page'>
-      
       <UnauthenticatedHome />
       <AuthenticatedHome />
       <div className='home-bot'></div>

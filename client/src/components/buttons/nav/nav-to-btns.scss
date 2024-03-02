@@ -23,16 +23,18 @@
 .nav-to-settings-btn,
 .nav-to-search-btn,
 .nav-to-friends-btn,
-.nav-to-notif-btn  {
+.nav-to-notif-btn,
+.nav-back-btn  {
 	height: 2.5rem;
 	width: 2.5rem;
 }
 
-.nav-to-games-btn {
+.nav-to-games-btn-arr {
 	position: relative;
 	display: flex;
 	align-items: center;
 	gap: 0.25rem;
+	padding: 2rem 0;
 
 	.nav-btn-text {
 		font-size: 1rem;

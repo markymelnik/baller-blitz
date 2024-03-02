@@ -5,13 +5,12 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	padding: 10vh 0 0;
 	flex: 1;
 
 	.sp-settings-list {
 
-		>:nth-child(1) {
-			border-top: 1px solid;
+		.sp-settings-divider {
+			border-bottom: 1px solid;
 			@include theme-color(border-color, border);
 		}
 
@@ -20,7 +19,6 @@
 			gap: 0.5rem;
 			width: 100%;
 			padding: 1.25rem 0;
-			border-bottom: 1px solid;
 			@include theme-color(border-color, border);
 			text-align: left;
 

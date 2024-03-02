@@ -25,6 +25,7 @@ const SettingsPage = () => {
 	return (
     <main className='settings-page main-page'>
       <ul className='sp-settings-list'>
+      <div className="sp-settings-divider"></div>
         <li className='sp-settings-item'>
             <button className="sp-open-btn" onClick={handleSEClick}>
               <h2 className="sp-btn-text">{Content.auth.email.title}</h2>
@@ -38,6 +39,7 @@ const SettingsPage = () => {
               </div>
             )}
         </li>
+        <div className="sp-settings-divider"></div>
         <li className='sp-settings-item'>
             <button className='sp-open-btn' onClick={handleUUClick}>
               <h2 className='sp-btn-text'>{Content.auth.username.title}</h2>
@@ -54,6 +56,7 @@ const SettingsPage = () => {
               </div>
             )}
         </li>
+        <div className="sp-settings-divider"></div>
         <li className="sp-settings-item">
           <ColorBtn />
         </li>

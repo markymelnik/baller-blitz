@@ -1,15 +1,39 @@
 .home-games {
 	display: flex;
 	flex-direction: column;
-	
-	.hg-header {
-		font-size: 1.25rem;
+
+	.home-games-top {
+		display: flex;
+		justify-content: space-between;
 		padding: 0 0 1rem;
+
+		.hg-header {
+			font-size: 1.25rem;
+			
+		}
+
+		.hg-slider-btns {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+
+			.slider-btn-left,
+			.slider-btn-right {
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
 	}
+	
+	
 
 	.hg-slider {
 		overflow-x: auto;
 		white-space: nowrap;
+		scrollbar-width: none;
+  	-ms-overflow-style: none;
 
 		.hg-list {
 			flex: 1;
@@ -18,6 +42,10 @@
 				margin-right: 0;
 			}
 		}
+	}
+
+	.hg-slider::-webkit-scrollbar {
+		display: none;
 	}
 
 	.hg-no-games {

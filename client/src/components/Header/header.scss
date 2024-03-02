@@ -1,14 +1,12 @@
 @import '@styles/colors.scss';
 
 .header-container {
-	height: 10vh;
-	position: fixed;
+	/* height: 10vh; */
+	/* position: fixed; */
 	top: 0;
-	width: clamp(0px, 100%, 824px);
+	width: clamp(0px, 100%, 798px);
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 1.25rem;
+	flex-direction: column;
 	z-index: 2;
 	transition: top 0.6s;
 	@include theme-color(background-color, bg);
@@ -17,21 +15,38 @@
 		padding: 1rem;
 	}
 
-	.header-left {
-		
+	.header-top {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding: 0.25rem 0 1rem;
+		border-bottom: 1px solid;
+		@include theme-color(border-color, border);
 	}
 
-	.header-middle {
-		>* {
-			font-size: 1.25rem;
-		}
-	}
-
-	.header-right-nav {
-		
+	.header-bot {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		justify-content: space-between;
+		padding: 0 0 1rem;
+
+		.header-middle {
+			font-size: 0.75rem;
+		}
+
+		.header-left-nav,
+		.header-right-nav {
+			height: 2.5rem;
+			
+		}
+
+		.header-right-nav {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			min-width: 2.5rem;
+		}
 	}
 
 	&.hidden {

@@ -16,7 +16,7 @@ const VerifyEmailOverlay = lazy(() => import('./components/overlays/VerifyOverla
 const App = () => {
   useRefreshUserSession();
 
-  document.body.classList.add('dark');
+  document.body.classList.add('light');
 
   const queryClient = new QueryClient();
 

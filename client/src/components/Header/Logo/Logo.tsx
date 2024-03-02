@@ -1,4 +1,4 @@
-import { Content } from '../../../../lib/Content';
+import { Content } from '../../../lib/Content';
 import './logo.scss';
 
 const Logo = () => {

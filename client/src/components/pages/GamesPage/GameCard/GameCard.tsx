@@ -6,7 +6,7 @@ import { GameDataFormatter } from "../../../../utils/GameDataFormatter.ts";
 import { GameState } from "../GameState.ts";
 import './game-card.scss';
 
-type GameCard = {
+type GameCardProps = {
 	game: Game;
   isPredicted: boolean;
   predictedWinner: string | undefined;
@@ -17,7 +17,7 @@ const SelectWinnerOverlay = lazy(() => import('../../../overlays/SelectWinnerOve
 const StartedOverlay = lazy(() => import('../../../overlays/StartedOverlay/StartedOverlay.tsx'));
 const AlreadyPredictedOverlay = lazy(() => import('../../../overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay.tsx'));
 
-export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmission }: GameCard) => {
+export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmission }: GameCardProps) => {
 
   const [isSelectionOverlayOpen, setIsSelectionOverlayOpen] = useState<boolean>(false);
   const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
