@@ -16,12 +16,14 @@ export const HomeGames = () => {
   useFetchGamesToday(fetchTrigger);
 
 	const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const [isLeftDisabled, setIsLeftDisabled] = useState<boolean>(true);
+  const [isRightDisabled, setIsRightDisabled] = useState<boolean>(false);
+  
   const predictedGames = useFetchCurrentPredictions()!;
   const todaysGames = useGamesToday();
 
-  const sliderRef = useRef(null);
-
-
+  const sliderRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
     if (predictedGames) {
@@ -30,6 +32,25 @@ export const HomeGames = () => {
       }, 1000);
     }
   }, [predictedGames]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sliderRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+        setIsLeftDisabled(scrollLeft <= 0);
+        setIsRightDisabled(scrollLeft + clientWidth >= scrollWidth - 1);
+      }
+    };
+
+    const slider = sliderRef.current;
+    slider?.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => {
+      slider?.removeEventListener('scroll', handleScroll);
+    };
+  });
+
 
   if (!predictedGames) {
     return <Skeleton className='hg-list-skeleton'/>;
@@ -63,30 +84,31 @@ export const HomeGames = () => {
         <div className='home-games-top'>
           <h2 className='hg-header'>{`Your predictions`}</h2>
           <div className='hg-slider-btns'>
-            <div className='slider-btn-left' onClick={scrollLeft}>
+            <div className={`slider-btn-left ${isLeftDisabled ? 'disabled' : ''}`} onClick={scrollLeft}>
               <Icons.ArrowLeft size={25} />
             </div>
-            <div className='slider-btn-right'>
-              <Icons.ArrowRight size={25} onClick={scrollRight} />
+            <div className={`slider-btn-right ${isRightDisabled ? 'disabled' : ''}`} onClick={scrollRight}>
+              <Icons.ArrowRight size={25} />
             </div>
           </div>
         </div>
 
-        {numberOfGames < 1 && !isLoading ? (
-          <div className='hg-no-games'>
-            <div className='no-games-msg'>
-              No predictions
-              <br />
-              Place predictions in Games
-            </div>
-          </div>
-        ) : isLoading ? (
+        {isLoading ? (
           <div className='hg-loading'>
             {new Array(numberOfGames).fill(0).map((_, index) => (
-              <div key={index} >
-                <Skeleton className='hg-list-skeleton'/>
+              <div key={index}>
+                <Skeleton className='hg-list-skeleton' />
               </div>
             ))}
+          </div>
+        ) : numberOfGames < 1 ? (
+          <div className='hg-no-games'>
+            <div className='no-games-card'>
+              <div className="no-games-text">
+                No predictions! <br />
+                Place predictions in Games
+              </div>
+            </div>
           </div>
         ) : (
           <div className='hg-slider' ref={sliderRef}>

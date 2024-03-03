@@ -7,3 +7,12 @@
 		opacity: 1;
 	}
 }
+
+@mixin hover-shadow-effect($transition-duration: 0.2s) {
+  transition: box-shadow $transition-duration ease;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 3px 8px;
+  }
+}

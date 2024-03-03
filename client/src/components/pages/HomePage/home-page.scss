@@ -11,25 +11,35 @@
 
 	.home-unauth {
 		display: flex;
+		flex-direction: column-reverse;
 		gap: 1rem;
 		width: 100%;
-		min-height: 70vh;
+
+		@media (min-width: 768px) {
+			flex-direction: row;
+		}
 
 		.hu-left {
-			width: 50%;
 			border: 1px solid;
 			padding: 1rem;
 			@include theme-color(border-color, border);
-	
+
+			@media (min-width: 768px) {
+				width: 50%;
+			}
 		}
 
 		.hu-right {
-			width: 50%;
 			display: inherit;
 			flex-direction: column;
 			border: 1px solid;
 			padding: 1rem;
 			@include theme-color(border-color, border);
+			flex: 1;
+
+			@media (min-width: 768px) {
+				width: 50%;
+			}
 
 			.unauth-title {
 				line-height: 1.5;
@@ -64,6 +74,4 @@
 			}
 		}
 	}
-
-	
 }

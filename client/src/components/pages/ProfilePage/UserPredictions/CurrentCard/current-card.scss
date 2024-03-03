@@ -10,4 +10,10 @@
 	gap: 0.5rem;
 	padding: 1rem;
 	border-radius: $round-edge;
+
+	.current-card-matchup {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+	}
 }

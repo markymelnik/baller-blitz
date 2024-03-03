@@ -1,7 +1,10 @@
+@import '@styles/variables.scss';
+
 .user-history {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem 0;
+	padding: 1.5rem;
+	box-shadow: $shadow-thin;
 
 	.history-fallback {
 		font-size: 1rem;

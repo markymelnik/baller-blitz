@@ -1,5 +1,5 @@
-@import '@styles/colors.scss';
-@import '@styles/variables.scss';
+@import '../../../../../styles/colors.scss';
+@import '../../../../../styles/variables.scss';
 
 .history-card {
 	position: relative;
@@ -13,25 +13,31 @@
 	border-radius: $round-edge;
 
 	&.correct {
-		border: 1px solid blue;
+		border: 1px solid $green;
 
 		.history-game-outcome {
-			color: blue;
+			color: $green;
 		}
 	}
 
 	&.incorrect {
-		border: 1px solid orange;
+		border: 1px solid $red;
 
 		.history-game-outcome {
-			color: orange;
+			color: $red;
 		}
 	}
 
 	.history-game-outcome {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 0.5rem;
+		right: 0.5rem;
 		padding: 0.25rem;
+	}
+
+	.history-game-matchup {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 	}
 }

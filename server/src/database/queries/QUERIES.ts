@@ -75,7 +75,7 @@ export const PREDICTION_QUERY: PredictionQueryTypes = {
     g.home_tricode AS home_team
   FROM predictions p
   JOIN games g ON p.game_id = g.game_id
-  WHERE p.user_id = $1 AND p.game_id = ANY($2) AND g.status <> 'finished';`,
+  WHERE p.user_id = $1 AND p.game_id = ANY($2);`,
   
   GET_ALL_PREDICTIONS: `SELECT p.prediction_id, p.user_id, 
   p.game_id, 

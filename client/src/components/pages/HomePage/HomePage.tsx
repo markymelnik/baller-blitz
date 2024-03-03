@@ -17,7 +17,6 @@ const HomePage = () => {
     () => (
       <div className='home-unauth'>
         <div className="hu-left">
-          
         </div>
         <div className="hu-right">
         <h2 className='unauth-title'>{Content.home.prompt}</h2>
@@ -30,7 +29,6 @@ const HomePage = () => {
           </li>
         </ul>
         </div>
-      
       </div>
     ),
     ['user', 'admin']
@@ -43,7 +41,6 @@ const HomePage = () => {
           <div className="hw-hi">Hi {userDetails?.username}</div>
           <div className="hw-back">Welcome back!</div>
         </div>
-        
         <HomeGames />
         <NavToGameBtnArrow />
       </div>

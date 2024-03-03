@@ -9,7 +9,7 @@ import { SearchProvider } from './contexts/SearchProvider.tsx';
 import { PaginationProvider } from './contexts/PaginationProvider.tsx';
 import AppRoutes from './AppRoutes.tsx';
 import { LoadingScreen } from './components/loading-screen/LoadingScreen.tsx';
-import Header from './components/header/Header.tsx';
+import { Header } from './components/header/Header.tsx';
 
 const VerifyEmailOverlay = lazy(() => import('./components/overlays/VerifyOverlay/VerifyOverlay.tsx'));
 

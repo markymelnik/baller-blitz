@@ -1,3 +1,4 @@
+import { Icons } from '../../../../../lib/Icons';
 import { PredictedGame } from '../../../../../types/gameTypes';
 import { GameDataFormatter } from '../../../../../utils/GameDataFormatter';
 import './history_card.scss';
@@ -11,16 +12,17 @@ export const HistoryCard = ({ gameInfo }: HistoryCard) => {
 
   return (
     <li className={`history-card ${is_correct ? `correct` : `incorrect`}`}>
-      <div className='history-game-outcome'>{`${
-        is_correct ? `Correct` : `Incorrect`
-      }`}</div>
+      <div className='history-game-outcome'>
+        {is_correct ? <Icons.Check size={25} /> : <Icons.Close size={25} />}
+      </div>
       <div className='history-game-id'>{`${GameDataFormatter.formatDate(
         game_date
       )}`}</div>
       <div className='history-game-matchup'>
-        {away_team} vs. {home_team}
+        <div className="hg-team">{away_team}</div>
+        <div className="hg-team">{home_team}</div>
       </div>
-      <div className='history-game-choice'>You chose: {predicted_winner}</div>
+      <div className='history-game-choice'>Prediction: {predicted_winner}</div>
       <div className='history-game-winner'>
         Winner:{' '}
         {GameDataFormatter.getHistoryWinner(

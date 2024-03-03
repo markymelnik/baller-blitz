@@ -7,6 +7,7 @@
 	width: clamp(0px, 100%, 798px);
 	display: flex;
 	flex-direction: column;
+	padding: 0 0 1rem;
 	z-index: 2;
 	transition: top 0.6s;
 	@include theme-color(background-color, bg);
@@ -15,20 +16,28 @@
 		padding: 1rem;
 	}
 
-	.header-top {
+/* 	.header-top {
 		width: 100%;
 		display: flex;
+		justify-content: center;
 		padding: 0.25rem 0 1rem;
-	}
+	} */
 
 	.header-bot {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
-		padding: 0 0 1rem;
 
 		.header-middle {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
 			font-size: 0.75rem;
+
+			.header-h1 {
+				font-size: 1.25rem;
+			}
 		}
 
 		.header-right-nav {

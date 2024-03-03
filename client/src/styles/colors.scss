@@ -3,22 +3,26 @@
 $light-theme-bg: $white;
 $light-theme-text: $black;
 $light-theme-border: $light-grey;
+$light-theme-shadow: $light-shadow;
 
 $dark-theme-bg: $black;
 $dark-theme-text: $white;
 $dark-theme-border: $dark-grey;
+$dark-theme-shadow: $dark-shadow;
 
 $themes: (
   light: (
     bg: $light-theme-bg,
     text: $light-theme-text,
-    border: $light-theme-border
+    border: $light-theme-border,
+    shadow: $light-theme-shadow,
   ),
   dark: (
     bg: $dark-theme-bg,
     text: $dark-theme-text,
-    border: $dark-theme-border
-  )
+    border: $dark-theme-border,
+    shadow: $dark-theme-shadow,
+  ),
 );
 
 @mixin theme-color($property, $color-key) {
@@ -27,4 +31,12 @@ $themes: (
       #{$property}: map-get(map-get($themes, $theme), $color-key);
     }
   }
+}
+
+@function create-box-shadow($color, $units...) {
+  $shadow: '';
+  @each $unit in $units {
+    $shadow: #{$shadow} #{$unit};
+  }
+  @return #{$shadow} #{$color};
 }

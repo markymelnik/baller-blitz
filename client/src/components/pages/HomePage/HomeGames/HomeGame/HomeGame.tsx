@@ -40,10 +40,12 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
 	return (
     <>
       <li
-        className={`home-game ${gameStatus === 3 && `finished`}`}
+        className={`home-game ${gameStatus === 2 && `live`} ${gameStatus === 3 && `finished`}`}
         onClick={handleGameClick}
       >
-        <div className='hg-top'></div>
+        <div className={`hg-top ${gameStatus === 2 && `live`}`}>
+          <div className="hg-photo"></div>
+        </div>
 
         <div className='hg-bot'>
           <div className='hg-date'>
@@ -68,10 +70,10 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
           {gameStatus === 1 && (
             <div className='hg-status'>{game.gameStatusText}</div>
           )}
-          {gameStatus === 2 && <div className='hg-status'>LIVE</div>}
+          {gameStatus === 2 && <div className='hg-status live'><span></span>LIVE</div>}
           {gameStatus === 3 && <div className='hg-status'>Finished</div>}
 
-          <div className='hg-pred'>You predicted: {predictedWinner}</div>
+          <div className='hg-pred'>Prediction: {predictedWinner}</div>
 
           {gameStatus === 3 && (
             <div className='hg-pred-outcome'>

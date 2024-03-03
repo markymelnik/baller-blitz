@@ -1,15 +1,15 @@
-@import '../../../../styles/colors.scss';
-@import '../../../../styles/variables.scss';
+@import '@styles/colors.scss';
+@import '@styles/variables.scss';
+@import '@styles/transitions.scss';
 
 .user-stats {
 	display: flex;
 	flex-direction: column;
 	padding: 1.25rem 1.5rem;
 	height: 10rem;
-	margin: 0 0 2rem;
-	border: 1px solid;
-	@include theme-color(border-color, border);
-	border-radius: 10px;
+	/* border: 1px solid;
+	@include theme-color(border-color, border); */
+	box-shadow: $shadow-thin;
 
 	.stats-header {
 		font-size: 1.25rem;
@@ -55,6 +55,5 @@
 
 .user-stats-skeleton {
 	height: 10rem;
-	margin: 0 0 2rem;
 	border-radius: 10px;
 }

@@ -14,8 +14,9 @@ export const CurrentCard = ({ gameInfo }: CurrentCard) => {
       <div className='current-date'>
         {GameDataFormatter.formatDate(game_date)}
       </div>
-      <div className='current-matchup'>
-        {away_team} vs {home_team}
+      <div className='current-card-matchup'>
+        <div className="cc-team">{away_team}</div>
+        <div className="cc-team">{home_team}</div>
       </div>
       <div className='current-predicted-winner'>
         Predicted: {predicted_winner}

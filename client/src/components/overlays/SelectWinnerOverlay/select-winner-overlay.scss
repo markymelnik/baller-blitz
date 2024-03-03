@@ -10,7 +10,7 @@
 	left: 0;
 	height: 100vh;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.6);
+	background: rgba(0, 0, 0, 0.5);
 	z-index: 2;
 
 	.select-winner-overlay {
@@ -24,7 +24,7 @@
 		padding: 2.5rem 1.5rem 1.5rem;
 		@include theme-color(background-color, bg);
 		border-radius: $round-edge;
-		box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
+		box-shadow: $shadow-thick;
 
 		.select-overlay-message {
 			padding: 1rem 0 2.5rem;
