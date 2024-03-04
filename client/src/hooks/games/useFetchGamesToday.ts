@@ -13,6 +13,8 @@ export const useFetchGamesToday = (trigger: boolean) => {
     const fetchData = async () => {
 			try {
 				const response = await fetch(ENV.DATA_PATH);
+
+				console.log(response);
 				
 				if (!response.ok) {
 					console.log('Error occurred');
