@@ -11,7 +11,7 @@ export const DatabaseQuery = {
       const response = await pool.query(USER_QUERY.FIND_USER_BY_ID, [userId]);
       return response.rows[0] || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred.');
+      throw new DatabaseError('A database error occurred whildung user by id.');
     }
   },
 
@@ -22,7 +22,7 @@ export const DatabaseQuery = {
       console.log(response.rows);
       return response.rows[0] || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred.');
+      throw new DatabaseError('A database error occurred finding user by email.');
     }
   },
 
@@ -31,7 +31,7 @@ export const DatabaseQuery = {
       const result = await pool.query(USER_QUERY.GET_USER_ROLE_BY_ID, [userId]);
       return result.rows[0].name;
     } catch (error) {
-      throw new DatabaseError('A database error occurred.');
+      throw new DatabaseError('A database error occurred finding role by id.');
     }
   },
 
@@ -64,7 +64,7 @@ export const DatabaseQuery = {
           'This email is already in use. Try a different one.'
         );
       } else {
-        throw new DatabaseError('Unknown issue inserting user into database');
+        throw new DatabaseError('Database error inserting user into database');
       }
     }
   },
@@ -74,7 +74,7 @@ export const DatabaseQuery = {
       const response = await pool.query(GAME_QUERY.GET_GAME_BY_ID, [userId]);
       return response.rows[0] || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred.');
+      throw new DatabaseError('A database error occurred getting game by id.');
     }
   },
 
@@ -83,7 +83,7 @@ export const DatabaseQuery = {
       const response = await pool.query(GAME_QUERY.GET_ALL_GAMES);
       return response.rows || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred getting all games');
     }
   },
 
@@ -111,7 +111,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows[0].game_id || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred adding game');
     }
   },
 
@@ -156,7 +156,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows[0];
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred adding prediction');
     }
   },
 
@@ -170,7 +170,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows[0];
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred updating predictions');
     }
   },
 
@@ -182,7 +182,7 @@ export const DatabaseQuery = {
       return response.rows[0] || null;
     } catch (error) {
       console.error(error);
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred getting stats');
     }
   },
 
@@ -190,7 +190,7 @@ export const DatabaseQuery = {
     try {
       await pool.query(PREDICTION_QUERY.UPDATE_PREDICTION_OUTCOME);
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred updating prediction outcome');
     }
   },
 
@@ -205,7 +205,7 @@ export const DatabaseQuery = {
       );
       return response.rows || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred getting current predictions');
     }
   },
 
@@ -216,7 +216,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred getting all predictions by user id');
     }
   },
 
@@ -227,7 +227,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows || null;
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred getting email verified');
     }
   },
 
@@ -239,7 +239,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows[0];
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred while updating username');
     }
   },
 
@@ -256,7 +256,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows;
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred searching for users');
     }
   },
 
@@ -267,7 +267,7 @@ export const DatabaseQuery = {
       ]);
       return response.rows[0];
     } catch (error) {
-      throw new DatabaseError('A database error occurred');
+      throw new DatabaseError('A database error occurred getting user details by username');
     }
   },
 
