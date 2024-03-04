@@ -64,6 +64,7 @@ export const ApiClient = {
 
   async checkIfEmailExists(email: string) {
     try {
+      console.log(email):
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/check-email');
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
@@ -73,6 +74,7 @@ export const ApiClient = {
         body: JSON.stringify({ email: email }),
       });
       const data = await response.json();
+      console.log(data);
       return data;
     } catch (error) {
       const authenticationError = new AuthenticationError('Failed to logout');
