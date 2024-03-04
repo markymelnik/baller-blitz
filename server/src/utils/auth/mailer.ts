@@ -4,8 +4,8 @@ import { BACKEND_URL } from '../../env';
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
 	auth: {
-		user: 'markymelnik@gmail.com',
-		pass: 'bzup mycs yogc isut',
+		user: 'ballbattleapp@gmail.com',
+		pass: 'ortz jjyv ifhx ycgv',
 	}
 })
 
@@ -17,7 +17,7 @@ export const sendVerificationEmail = async (userEmail: string, token: string) =>
 		from: 'Cool App',
 		to: userEmail,
 		subject: 'Verify Email Address',
-		html: `Click the link below or paste it into your browser to complete the signup process.<br/><a href="${verificationUrl}">Verify email</a>`,
+		html: `Click the link below or paste it into your browser to complete the signup process.<br/><a href="${verificationUrl}">${verificationUrl}</a>`,
 	}
 
 	try {

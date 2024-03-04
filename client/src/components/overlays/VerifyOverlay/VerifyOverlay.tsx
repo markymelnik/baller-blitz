@@ -22,6 +22,9 @@ const VerifyEmailOverlay = () => {
   const handleButtonClick = async () => {
 		try {
       const response = await ApiClient.resendEmailVerification(accessToken);
+      // THIS NEEDS TO BE REWORKED
+      // THIS WORKS IN DEPLOYED ENVIRONMENT
+      // HANDLE 200 RESPONSE FOR LOCAL ENVIRONMENT
       if (response) {
         if (response.status === 429) {
           setResendStatus('limited');
