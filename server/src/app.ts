@@ -44,6 +44,8 @@ app.get('/profile', TokenController.validateAccessToken, (req, res) => {
   res.json({ message: 'You have hit a protected route' });
 });
 
+app.get('/live-games', /* TokenController.validateAccessToken,  */GameController.getLiveGameData);
+
 app.get('/games', TokenController.validateAccessToken, GameController.getAllGames);
 app.post('/games', TokenController.validateAccessToken, GameController.addGame);
 app.get('/games/:id', TokenController.validateAccessToken, GameController.getGameById);
