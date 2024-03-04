@@ -71,8 +71,8 @@ export const TokenController = {
 		response.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
 			path: '/',
-			secure: true,
-			sameSite: 'none',
+			secure: false,
+			sameSite: 'lax',
 			maxAge: 1 * 24 * 60 * 60 * 1000,
 		});
 	},
