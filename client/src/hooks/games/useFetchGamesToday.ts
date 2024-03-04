@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { setGamesToday } from "../../redux/slices/gamesTodaySlice.ts";
 import { Game } from "../../types/gameTypes.ts";
 import { createBackendEndpointUrl } from "../../utils/createBackendEndpointUrl.ts";
-import { createBackendEndpointUrl } from "../../utils/createBackendEndpointUrl.ts";
 
 export const useFetchGamesToday = (trigger: boolean) => {
 
