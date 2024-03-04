@@ -117,7 +117,7 @@ export const AuthController = {
       httpOnly: true,
       path: '/',
       secure: true,
-      sameSite: 'lax',
+      sameSite: 'none',
       expires: new Date(0),
     });
 
