@@ -5,7 +5,7 @@ import { DatabaseQuery } from "../database/queries/DatabaseQuery";
 import { TokenController } from "./token/TokenController";
 import { authenticateLoginCredentials } from "../utils/auth/authenticateLoginCredentials";
 import { TokenCreator } from "./token/TokenCreator";
-import { ACCESS_TOKEN_SECRET, FRONTEND_PORT, FRONTEND_URL } from "../env";
+import { ACCESS_TOKEN_SECRET, FRONTEND_URL } from "../env";
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import { sendVerificationEmail } from "../utils/auth/mailer";
 import { validateSignupCredentials } from "../utils/auth/validateSignupCredentials";
@@ -225,7 +225,7 @@ export const AuthController = {
       };
   
       response
-        .redirect(`${FRONTEND_URL}:${FRONTEND_PORT}/verify-success`);
+        .redirect(`${FRONTEND_URL}/verify-success`);
   
     } catch (error) {
       response.status(401).send('Invalid or expired token');

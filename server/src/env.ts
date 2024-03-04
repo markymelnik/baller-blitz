@@ -11,6 +11,7 @@ const SALT_ROUNDS = parseInt(process.env.SALT_ROUNDS!);
 const FRONTEND_PORT = process.env.FRONTEND_PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 
+const BACKEND_URL = process.env.BACKEND_URL;
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
 const DB_PORT = parseInt(process.env.DB_PORT!);
@@ -32,6 +33,7 @@ export {
 	FRONTEND_PORT,
 	FRONTEND_URL,
 	
+	BACKEND_URL,
 	BACKEND_PORT,
 
 	DB_PORT,
