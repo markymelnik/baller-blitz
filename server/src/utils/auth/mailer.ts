@@ -16,7 +16,7 @@ export const sendVerificationEmail = async (userEmail: string, token: string) =>
 		from: 'Ball Battle',
 		to: userEmail,
 		subject: 'Verify Email Address',
-		html: `Click the link below or paste it into your browser to complete the signup process.<br/><a href="${verificationUrl}">${verificationUrl}</a>`,
+		html: `Click the link below or paste it into your browser to complete the signup process!<br/><br/><a href="${verificationUrl}">${verificationUrl}</a>`,
 	}
 
 	try {
