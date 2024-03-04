@@ -72,7 +72,7 @@ export const TokenController = {
 			httpOnly: true,
 			path: '/',
 			secure: true,
-			sameSite: 'lax',
+			sameSite: 'none',
 			maxAge: 1 * 24 * 60 * 60 * 1000,
 		});
 	},
