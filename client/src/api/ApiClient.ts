@@ -64,7 +64,7 @@ export const ApiClient = {
 
   async checkIfEmailExists(email: string) {
     try {
-      console.log(email):
+      console.log(email);
       const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/check-email');
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
