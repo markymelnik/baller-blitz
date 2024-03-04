@@ -213,8 +213,6 @@ export const AuthController = {
       const refreshToken = TokenCreator.generateRefreshToken({
         userId: databaseUser.id,
       });
-
-      console.log('hit');
   
       TokenController.setRefreshTokenCookie(response, refreshToken);
   
@@ -229,8 +227,7 @@ export const AuthController = {
         accessToken,
       };
   
-      response
-        .redirect(`${FRONTEND_URL}/verify-success`);
+      response.status(200).redirect(`${FRONTEND_URL}/verify-success`);
   
     } catch (error) {
       response.status(401).send('Invalid or expired token');
