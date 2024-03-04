@@ -174,7 +174,7 @@ export const AuthController = {
 
     } catch (error) {
       console.error('Error in resendEmailVerificationHandler:', error);
-    response.status(500).send({ error: 'Failed to send verification email.' });
+      response.status(500).send({ error: 'Failed to send verification email.' });
     }
   },
 

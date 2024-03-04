@@ -11,7 +11,7 @@ export const useWebSocket = (accessToken: string) => {
     let socket: Socket | null = null;
 
     if (accessToken) {
-      socket = socketIOClient(ENV.BACKEND_URL, {
+      socket = socketIOClient(`${ENV.BACKEND_URL}`, {
         query: {
           token: accessToken,
         },
