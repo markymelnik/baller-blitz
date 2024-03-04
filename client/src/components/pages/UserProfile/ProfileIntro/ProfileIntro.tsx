@@ -9,7 +9,10 @@ interface ProfileIntroProps {
 export const ProfileIntro = ({ userProfile }: ProfileIntroProps) => {
   return (
     <div className='profile-intro'>
-      <h1 className='profile-username'>{userProfile.username}</h1>
+      <div className="profile-picture">
+        <div className="image"></div>
+      </div>
+      <h2 className='profile-username'>{userProfile.username}</h2>
     </div>
   );
 };

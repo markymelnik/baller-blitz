@@ -21,8 +21,8 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
   };
 
   return (
-    <div className='user-history'>
-      <div className='history-header' onClick={handleHistoryButtonClick}>
+    <div className='user-history' onClick={handleHistoryButtonClick}>
+      <div className='history-header'>
         <h3 className='history-text'>{Content.profile.historyPredictions.title}</h3>
         <button className="history-open">
         <Icons.ArrowDown

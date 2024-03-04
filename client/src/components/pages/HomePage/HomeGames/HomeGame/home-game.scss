@@ -10,9 +10,12 @@
 	width: 15rem;
 	box-shadow: $shadow-thin;
 	@include hover-shadow-effect;
+	border: 1px solid;
+	@include theme-color(border-color, card-border);
 
 	&:hover {
 		cursor: pointer;
+		@include theme-color(border-color, text);
 	}
 
 	&.finished {
@@ -33,17 +36,27 @@
 
 	.hg-bot {
 		position: relative;
-		padding: 1rem;
+		padding: 1.25rem;
 
 		.hg-date {
 			padding: 0 0 1rem;
 		}
 
-		.hg-matchup {
+		.hg-data {
 			display: flex;
-			gap: 1rem;
-			font-size: 1.5rem;
-			padding: 0 0 0.5rem;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 0 1rem;
+
+			.hg-matchup {
+				display: flex;
+				gap: 1rem;
+				font-size: 1.5rem;
+			}
+
+			.hg-info {
+				font-size: 1.25rem;
+			}
 		}
 
 		.hg-status {
@@ -51,16 +64,15 @@
 			top: -1rem;
 			right: 1rem;
 			padding: 0.35rem 0.7rem;
-			font-size: 1rem;
+			font-size: 0.9rem;
 			@include theme-color(background-color, bg);
-/* 			border: 1px solid;
-			@include theme-color(border-color, border); */
 			border-radius: $round-edge;
 			box-shadow: $shadow-thin;
 
 			&.live {
 				color: $white;
 				background-color: $red;
+				animation: PulsateLive 3s infinite;
 			}
 		}
 

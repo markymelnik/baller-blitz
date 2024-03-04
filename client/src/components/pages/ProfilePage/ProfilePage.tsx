@@ -5,11 +5,13 @@ import { Icons } from '../../../lib/Icons.ts';
 import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
 import { useFetchCurrentPredictions } from '../../../hooks/predictions/useFetchCurrentPredictions.ts';
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { NavToSettingsBtn } from '../../buttons/nav/NavToSettingsBtn.tsx';
 
 import { UserHistory } from './UserHistory/UserHistory.tsx';
 import { UserPredictions } from './UserPredictions/UserPredictions.tsx';
 import { UserStats } from './UserStats/UserStats.tsx';
 import './profile-page.scss';
+
 
 const ProfilePage = () => {
   const isAuthenticated = useAuth();
@@ -24,7 +26,7 @@ const ProfilePage = () => {
     if (userDetails) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 800);
+      }, 600);
     }
   }, [userDetails]); */
 
@@ -61,6 +63,9 @@ const ProfilePage = () => {
         <div className='profile-page-bot'>
           <ul className='profile-page-blobs'>
             <UserStats />
+            <div className="pp-to-settings-wrapper">
+              <NavToSettingsBtn />
+            </div>
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />
           </ul>

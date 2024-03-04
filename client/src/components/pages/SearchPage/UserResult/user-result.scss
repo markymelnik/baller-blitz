@@ -13,5 +13,6 @@
 
 	&:hover {
 		cursor: pointer;
+		@include theme-color(border-color, text);
 	}
 }

@@ -21,10 +21,9 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
   };
 
   return (
-    <div className='user-predictions'>
+    <div className='user-predictions' onClick={handleCurrentButtonClick}>
       <div
         className='current-predictions-header'
-        onClick={handleCurrentButtonClick}
       >
         <h3 className='current-text'>{Content.profile.currentPredictions.title}</h3>
         <button className="current-pred-open">

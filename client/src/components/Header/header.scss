@@ -1,12 +1,10 @@
 @import '@styles/colors.scss';
 
 .header-container {
-	/* height: 10vh; */
-	/* position: fixed; */
-	top: 0;
 	width: clamp(0px, 100%, 798px);
 	display: flex;
-	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 	padding: 0 0 1rem;
 	z-index: 2;
 	transition: top 0.6s;
@@ -16,38 +14,25 @@
 		padding: 1rem;
 	}
 
-/* 	.header-top {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		padding: 0.25rem 0 1rem;
-	} */
+	.header-middle {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 0.75rem;
 
-	.header-bot {
-		position: relative;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-
-		.header-middle {
-			position: absolute;
-			left: 50%;
-			transform: translateX(-50%);
-			font-size: 0.75rem;
-
-			.header-h1 {
-				font-size: 1.25rem;
-			}
-		}
-
-		.header-right-nav {
-			height: 2.5rem;
-			display: flex;
-			align-items: center;
-			gap: 0.25rem;
-			min-width: 2.5rem;
+		.header-h1 {
+			font-size: 1.25rem;
 		}
 	}
+
+	.header-right-nav {
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		min-width: 2.5rem;
+	}
+
 
 	&.hidden {
 		top: -6.5rem;

@@ -1,10 +1,19 @@
 @import '@styles/variables.scss';
+@import '@styles/transitions.scss';
+@import '@styles/colors.scss';
 
 .user-history {
 	display: flex;
 	flex-direction: column;
 	padding: 1.5rem;
-	box-shadow: $shadow-thin;
+	border-radius: $round-edge;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+
+	&:hover {
+		cursor: pointer;
+		@include theme-color(border-color, text);
+	}
 
 	.history-fallback {
 		font-size: 1rem;
@@ -37,16 +46,12 @@
 	.history-card-list {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
-		padding: 1.25rem 0 0;
+		gap: 1.5rem;
+		padding: 1.5rem 0 0;
 
 		.history-card-list-bot {
 			display: flex;
 			justify-content: right;
-		}
-
-		@media (min-width: 768px) {
-			padding: 1.25rem;
 		}
 	}
 

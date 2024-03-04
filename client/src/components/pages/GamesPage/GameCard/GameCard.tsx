@@ -92,7 +92,7 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
                 <div className='predicted-text'>Not Predicted</div>
               </div>
             )}
-            <div className='game-card-live'>Live</div>
+            <div className='game-card-live'>• Live</div>
           </div>
         )}
         {gameStatus === GameState.FINISHED && (

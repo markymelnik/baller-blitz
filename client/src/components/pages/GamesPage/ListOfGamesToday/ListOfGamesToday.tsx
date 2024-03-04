@@ -39,7 +39,7 @@ export const ListOfGamesToday = () => {
     if (todaysGames) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 800);
+      }, 600);
     }
   }, [todaysGames]);
 

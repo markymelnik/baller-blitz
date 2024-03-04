@@ -18,7 +18,7 @@ export const UserStats = () => {
     if (userStats) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 800);
+      }, 600);
     }
   }, [userStats]);
 	

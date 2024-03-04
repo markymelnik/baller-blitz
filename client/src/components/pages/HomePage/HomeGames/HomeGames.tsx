@@ -29,7 +29,7 @@ export const HomeGames = () => {
     if (predictedGames) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 600);
     }
   }, [predictedGames]);
 

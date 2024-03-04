@@ -4,4 +4,9 @@
 	display: flex;
 	flex-direction: column;
 	flex: 1;
+
+	.user-profile-mid {
+		display: flex;
+		justify-content: center;
+	}
 }

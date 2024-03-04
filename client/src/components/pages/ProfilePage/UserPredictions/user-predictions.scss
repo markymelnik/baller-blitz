@@ -1,12 +1,19 @@
 @import '@styles/variables.scss';
 @import '@styles/transitions.scss';
+@import '@styles/colors.scss';
 
 .user-predictions {
 	display: flex;
 	flex-direction: column;
 	padding: 1.5rem;
-	box-shadow: $shadow-thin;
-	@include hover-shadow-effect;
+	border-radius: $round-edge;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+
+	&:hover {
+		cursor: pointer;
+		@include theme-color(border-color, text);
+	}
 
 	.user-pred-fallback {
 		font-size: 1rem;
@@ -38,16 +45,12 @@
 	.current-predictions-list {
 		display: flex;
 		flex-direction: column;
-		gap: 1.25rem;
-		padding: 1.25rem 0 0;
+		gap: 1.5rem;
+		padding: 1.5rem 0 0;
 
 		.current-predictions-list-bot {
 			display: flex;
 			justify-content: right;
-		}
-
-		@media (min-width: 768px) {
-			padding: 1.25rem;
 		}
 	}
 

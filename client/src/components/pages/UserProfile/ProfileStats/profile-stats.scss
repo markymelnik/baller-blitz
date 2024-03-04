@@ -1,21 +1,24 @@
 @import '@styles/colors.scss';
+@import '@styles/variables.scss';
 
 .profile-stats {
 	display: flex;
 	flex-direction: column;
-	padding: 4rem 0;
+	padding: 1.5rem;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+	border-radius: $round-edge;
+	height: 10rem;
 
 	.stats-header {
 		font-size: 1.25rem;
-		padding: 0 0 1rem;
-		margin: 0 0 1rem;
-		@include theme-color(border-color, border);
+		padding: 0 0 1.5rem;
 	}
 
 	.stat {
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		gap: 0.25rem;
 		line-height: 1.5rem;
 
 		.stat-type {
@@ -30,6 +33,10 @@
 			.stat-title {
 				font-size: 1rem;
 			}
+
+			.stat-fallback {
+				font-size: 1rem;
+			}
 		}
 
 		.correct-rate {
@@ -41,4 +48,9 @@
 			}
 		}
 	}
+}
+
+.profile-stats-skeleton {
+	height: 10rem;
+	border-radius: 10px;
 }

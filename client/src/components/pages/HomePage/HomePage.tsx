@@ -17,9 +17,11 @@ const HomePage = () => {
     () => (
       <div className='home-unauth'>
         <div className="hu-left">
+          <div className="hu-intro">Ball <br/> Battle</div>
         </div>
         <div className="hu-right">
-        <h2 className='unauth-title'>{Content.home.prompt}</h2>
+          <div className="hu-initial-prompt">
+          <h2 className='unauth-title'>{Content.home.prompt}</h2>
         <ul className='unauth-btns'>
           <li>
             <NavigateToLoginButton />
@@ -28,6 +30,8 @@ const HomePage = () => {
             <NavigateToSignupButton />
           </li>
         </ul>
+          </div>
+        
         </div>
       </div>
     ),
@@ -52,7 +56,6 @@ const HomePage = () => {
     <main className='home-page main-page'>
       <UnauthenticatedHome />
       <AuthenticatedHome />
-      <div className='home-bot'></div>
     </main>
   );
 };

@@ -28,7 +28,7 @@ export const UserSearch = () => {
     const timer = setTimeout(() => {
         setDebouncedQuery(searchQuery);
         setAreResultingLoading(false);
-    }, 500);
+    }, 600);
 
     return () => {
       clearTimeout(timer);

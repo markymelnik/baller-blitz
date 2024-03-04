@@ -52,6 +52,8 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
             {GameDataFormatter.formatDate(game.gameTimeUTC)}
           </div>
 
+          <div className="hg-data">
+
           <div className='hg-matchup'>
             <div className='hg-teams'>
               <div className='team-tricode'>{game.awayTeam.teamTricode}</div>
@@ -67,10 +69,17 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
             </div>
           </div>
 
+          {gameStatus === 2 && <div className="hg-info">
+            {game.gameStatusText}
+          </div>}
+
+          </div>
+          
+
           {gameStatus === 1 && (
             <div className='hg-status'>{game.gameStatusText}</div>
           )}
-          {gameStatus === 2 && <div className='hg-status live'><span></span>LIVE</div>}
+          {gameStatus === 2 && <div className='hg-status live'>• LIVE</div>}
           {gameStatus === 3 && <div className='hg-status'>Finished</div>}
 
           <div className='hg-pred'>Prediction: {predictedWinner}</div>

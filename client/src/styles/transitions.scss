@@ -8,6 +8,18 @@
 	}
 }
 
+@keyframes PulsateLive {
+	0% {
+			box-shadow: 0 0 1px $red;
+	}
+	50% {
+			box-shadow: 0 0 5px $red;
+	}
+	100% {
+			box-shadow: 0 0 1px $red;
+	}
+}
+
 @mixin hover-shadow-effect($transition-duration: 0.2s) {
   transition: box-shadow $transition-duration ease;
 

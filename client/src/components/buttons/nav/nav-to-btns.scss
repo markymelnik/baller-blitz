@@ -20,7 +20,6 @@
 }
 
 .nav-to-profile-btn,
-.nav-to-settings-btn,
 .nav-to-search-btn,
 .nav-to-friends-btn,
 .nav-to-notif-btn {
@@ -67,4 +66,12 @@
 		transform: translateY(-50%);
 		right: 1rem;
 	}
+}
+
+.nav-to-settings-btn {
+	font-size: 1.25rem;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 }

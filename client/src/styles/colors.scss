@@ -3,25 +3,25 @@
 $light-theme-bg: $white;
 $light-theme-text: $black;
 $light-theme-border: $light-grey;
-$light-theme-shadow: $light-shadow;
+$light-theme-card-border: $white;
 
 $dark-theme-bg: $black;
 $dark-theme-text: $white;
 $dark-theme-border: $dark-grey;
-$dark-theme-shadow: $dark-shadow;
+$dark-theme-card-border: $dark-grey;
 
 $themes: (
   light: (
     bg: $light-theme-bg,
     text: $light-theme-text,
     border: $light-theme-border,
-    shadow: $light-theme-shadow,
+    card-border: $light-theme-card-border,
   ),
   dark: (
     bg: $dark-theme-bg,
     text: $dark-theme-text,
     border: $dark-theme-border,
-    shadow: $dark-theme-shadow,
+    card-border: $dark-theme-card-border,
   ),
 );
 

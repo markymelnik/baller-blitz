@@ -1,8 +1,24 @@
+@import '@styles/colors';
+
 .profile-intro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	padding: 1rem 0 0.5rem;
 
+	.profile-picture {
+		padding: 0 0 1rem;
+
+		.image {
+			height: 7rem;
+			width: 7rem;
+			border: 2px solid;
+			@include theme-color(border-color, border);
+			border-radius: 50%;
+		}
+	}
 	.profile-username {
-		font-size: 1.75rem;
+		font-size: 1.5rem;
 	}
 	
 }
