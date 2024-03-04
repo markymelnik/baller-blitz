@@ -115,8 +115,10 @@ export const AuthController = {
   logoutUserHandler(request: Request, response: Response) {
     response.cookie('refreshToken', '', {
       httpOnly: true,
+      path: '/',
       secure: true,
-      maxAge: 1,
+      sameSite: 'none',
+      expires: new Date(0),
     });
 
     const responseObject: LogoutResponse = {
@@ -172,7 +174,7 @@ export const AuthController = {
 
     } catch (error) {
       console.error('Error in resendEmailVerificationHandler:', error);
-    response.status(500).send({ error: 'Failed to send verification email.' });
+      response.status(500).send({ error: 'Failed to send verification email.' });
     }
   },
 
@@ -211,8 +213,6 @@ export const AuthController = {
       const refreshToken = TokenCreator.generateRefreshToken({
         userId: databaseUser.id,
       });
-
-      console.log('hit');
   
       TokenController.setRefreshTokenCookie(response, refreshToken);
   
@@ -227,8 +227,7 @@ export const AuthController = {
         accessToken,
       };
   
-      response
-        .redirect(`${FRONTEND_URL}/verify-success`);
+      response.status(200).redirect(`${FRONTEND_URL}/verify-success`);
   
     } catch (error) {
       response.status(401).send('Invalid or expired token');

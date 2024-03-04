@@ -78,7 +78,7 @@
 				}
 
 				&:hover {
-					@include theme-color(border-color, border);
+					@include theme-color(border-color, text);
 				}
 			}
 
