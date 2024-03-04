@@ -1,8 +1,11 @@
 import { useMutation } from "react-query";
 
+import { createBackendEndpointUrl } from "../../../../utils/createBackendEndpointUrl";
+
 export const useRejectFriendRequest = (accessToken: string) => {
   return useMutation( async (requestId: number) => {
-    const response = await fetch(`http://localhost:4000/friends/reject/${requestId}`, {
+    const BACKEND_ENDPOINT = createBackendEndpointUrl(`/friends/reject/${requestId}`);
+    const response = await fetch(`${BACKEND_ENDPOINT}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${accessToken}`,

@@ -11,7 +11,7 @@ import { BackendUser } from "../types/userTypes.ts";
 export const AuthManager = {
 	async signupUser(formData: SignupCredentials, dispatch: AppDispatch) {
 		try {
-			const responseData = await ApiClient.processUserSignup('/signup', formData);
+			const responseData = await ApiClient.processUserSignup(formData);
 			const { user, accessToken } = responseData;
 
 			dispatch(setAccessToken(accessToken));
@@ -28,7 +28,7 @@ export const AuthManager = {
 
 	async loginUser(formData: LoginCredentials, dispatch: AppDispatch) {
 		try {
-			const responseData = await ApiClient.processUserLogin('/login', formData);
+			const responseData = await ApiClient.processUserLogin(formData);
 			const { user, accessToken } = responseData;
 	
 			dispatch(setAccessToken(accessToken));
@@ -45,7 +45,7 @@ export const AuthManager = {
 
 	async logoutUser(dispatch: AppDispatch) {
 		try {
-			const response = await ApiClient.processUserLogout('/logout');
+			const response = await ApiClient.processUserLogout();
 	
 			dispatch(clearAccessToken());
 			dispatch(unauthenticateUser());
@@ -73,7 +73,7 @@ export const AuthManager = {
 	
 	async refreshUserSession(dispatch: AppDispatch) {
 		try {
-			const responseData: BackendUser = await ApiClient.refreshAccessToken('/refresh-token');
+			const responseData: BackendUser = await ApiClient.refreshAccessToken();
 			const { user, accessToken } = {...responseData};
 	
 			dispatch(setAccessToken(accessToken));

@@ -1,8 +1,11 @@
-import { useMutation } from "react-query"
+import { useMutation } from "react-query";
+
+import { createBackendEndpointUrl } from "../../../../utils/createBackendEndpointUrl"
 
 export const useDeleteFriend = (accessToken: string, onSuccess: () => void) => {
 	return useMutation( async (friendId: number) => {
-		const response = await fetch(`http://localhost:4000/friends`, {
+		const BACKEND_ENDPOINT = createBackendEndpointUrl('/friends');
+		const response = await fetch(`${BACKEND_ENDPOINT}`, {
 			method: 'DELETE',
 			headers: {
 				'Authorization': `Bearer ${accessToken}`,
