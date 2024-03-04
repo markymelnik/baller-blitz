@@ -22,7 +22,7 @@ const VerifyEmailOverlay = () => {
   const handleButtonClick = async () => {
 		try {
       const response = await ApiClient.resendEmailVerification(accessToken);
-
+      console.log(response);
       if (response) {
         if (response.status === 200) {
             setResendStatus('disabled');

@@ -19,6 +19,8 @@ import { FriendController } from './api/FriendController';
 const BACKEND_PORT = process.env.BACKEND_PORT;
 
 const app = express();
+app.set('trust proxy', 1);
+
 const server = http.createServer(app);
 
 app.use(cookieParser());
