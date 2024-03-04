@@ -44,7 +44,7 @@ const VerifyEmailOverlay = () => {
       <div className='verify-wrapper'>
         <div className='verify-overlay' role="dialog">
           <div className='verify-overlay-top'>
-            {/* <div className="overlay-graphic"></div> */}
+            <div className="overlay-graphic"></div>
           </div>
           <div className='verify-overlay-mid'>
             <div className='verify-step'>{Content.overlay.verifyOverlay.heading[1]}</div>

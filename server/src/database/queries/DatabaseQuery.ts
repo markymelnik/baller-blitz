@@ -17,7 +17,9 @@ export const DatabaseQuery = {
 
   async findUserByEmailFromDB(email: string): Promise<DatabaseUser> {
     try {
+      console.log(email);
       const response = await pool.query(USER_QUERY.FIND_USER_BY_EMAIL, [email]);
+      console.log(response.rows);
       return response.rows[0] || null;
     } catch (error) {
       throw new DatabaseError('A database error occurred.');

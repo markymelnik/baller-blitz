@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import socketIOClient, { Socket } from 'socket.io-client';
 
+import { ENV } from '../env';
+
 export const useWebSocket = (accessToken: string) => {
   const [emailVerified, setIsVerified] = useState<boolean>(false);
 
@@ -9,7 +11,7 @@ export const useWebSocket = (accessToken: string) => {
     let socket: Socket | null = null;
 
     if (accessToken) {
-      socket = socketIOClient('http://localhost:4000', {
+      socket = socketIOClient(ENV.BACKEND_URL, {
         query: {
           token: accessToken,
         },
