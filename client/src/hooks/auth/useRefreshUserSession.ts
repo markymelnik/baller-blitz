@@ -12,7 +12,7 @@ export const useRefreshUserSession = () => {
     const fetchToken = async () => {
       try {
         const response: BackendUser | undefined = await AuthManager.refreshUserSession(dispatch);
-        console.log(response);
+      /*   console.log(response); */
 
         if (response && 'message' in response && response.message === 'Refresh token not found') {
           dispatch(unauthenticateUser());
