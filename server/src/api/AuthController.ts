@@ -115,7 +115,7 @@ export const AuthController = {
   logoutUserHandler(request: Request, response: Response) {
     response.cookie('refreshToken', '', {
       httpOnly: true,
-      /* secure: true, */
+      secure: true,
       maxAge: 1,
     });
 
@@ -168,7 +168,7 @@ export const AuthController = {
 
       const res = await sendVerificationEmail(databaseUser.email, verificationToken);
       
-      response.redirect('http://localhost:5173/verify-success');
+      response.redirect(`${FRONTEND_URL}/verify-success`);
 
     } catch (error) {
       console.error('Error in resendEmailVerificationHandler:', error);
@@ -200,6 +200,7 @@ export const AuthController = {
       const databaseUserRole: string = await DatabaseQuery.getUserRoleByIdFromDB(
         databaseUser.id
       );
+
       if (!databaseUserRole) {
         return response.status(404).send('User role not found.');
       }
@@ -210,6 +211,8 @@ export const AuthController = {
       const refreshToken = TokenCreator.generateRefreshToken({
         userId: databaseUser.id,
       });
+
+      console.log('hit');
   
       TokenController.setRefreshTokenCookie(response, refreshToken);
   

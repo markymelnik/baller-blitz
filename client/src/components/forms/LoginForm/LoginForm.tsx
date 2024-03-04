@@ -34,8 +34,9 @@ export const LoginForm = () => {
 
   const handleEmailSubmit = async (formData: { email: string }) => {
     try {
+      /* console.log(formData.email); */
       const response = await AuthManager.checkIfEmailExists(formData.email);
-
+      /* console.log(response); */
       setEmailChecked(true);
 
       if (response.error) {

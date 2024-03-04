@@ -9,6 +9,9 @@ const pool = new Pool({
   database: `${DB_NAME}`,
   password: `${DB_PASS}`,
   port: +`${DB_PORT}`,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 if (process.env.NODE_ENV !== 'test') {

@@ -5,6 +5,7 @@ import { fetchGames } from '../utils/games/fetchGames';
 import { determineWinner } from '../utils/games/determineWinner';
 import { transformGamesTodayData } from '../utils/games/transformGamesTodayData';
 import { insertGamesTodayIntoDatabase } from '../utils/games/insertGamesTodayIntoDatabase';
+import { DATA_SOURCE } from '../env';
 
 export const GameController = {
   async getGameById(request: Request, response: Response, next: NextFunction) {
@@ -80,6 +81,17 @@ export const GameController = {
       await insertGamesTodayIntoDatabase(transformedGames);
       
       console.log('Running game retrieval, transformation, and storage.');
+    } catch(error) {
+      console.error(error);
+    }
+  },
+
+  async getLiveGameData(request: Request, response: Response, next: NextFunction) {
+    try {
+      const res = await fetch(`${DATA_SOURCE}`);
+      const data = await res.json();
+      const games = data.scoreboard.games;
+      response.status(200).json(games)
     } catch(error) {
       console.error(error);
     }

@@ -1,7 +1,7 @@
 import { Server as HttpServer} from 'http';
 import { Server } from 'socket.io';
 import jwt from 'jsonwebtoken';
-import { ACCESS_TOKEN_SECRET } from './env';
+import { ACCESS_TOKEN_SECRET, FRONTEND_URL } from './env';
 import { DatabaseQuery } from './database/queries/DatabaseQuery';
 
 async function validateAccessToken(token: string) {
@@ -18,7 +18,7 @@ export const initWebSocketServer = (server: HttpServer) => {
 
   const io = new Server(server, {
     cors: {
-      origin: 'http://localhost:5173',
+      origin: `${FRONTEND_URL}`,
       methods: ['GET', 'POST'],
       credentials: true,
     },

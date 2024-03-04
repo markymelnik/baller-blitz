@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Content } from '../../../lib/Content';
 import './logo.scss';
 
-const Logo = () => {
+export const Logo = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -17,5 +17,3 @@ const Logo = () => {
     </h1>
   );
 };
-
-export default Logo;

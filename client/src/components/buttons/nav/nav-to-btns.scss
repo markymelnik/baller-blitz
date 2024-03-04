@@ -49,8 +49,12 @@
 		left: 0;
 		@include theme-color(background-color, bg);
 		border: 1px solid;
-  	@include theme-color(border-color, border);
-		padding: 0.15rem 0.25rem;
+  	@include theme-color(border-color, text);
+		height: 1.1rem;
+		width: 1.1rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		z-index: 4;
 	}
 }

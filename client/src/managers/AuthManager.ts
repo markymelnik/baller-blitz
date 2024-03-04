@@ -61,7 +61,6 @@ export const AuthManager = {
 
 	async checkIfEmailExists(email: string) {
 		try {
-
 			const response = await ApiClient.checkIfEmailExists(email);
 			return response;
 		}

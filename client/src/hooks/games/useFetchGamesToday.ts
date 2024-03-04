@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { setGamesToday } from "../../redux/slices/gamesTodaySlice.ts";
 import { Game } from "../../types/gameTypes.ts";
-import { ENV } from "../../env.ts";
+import { createBackendEndpointUrl } from "../../utils/createBackendEndpointUrl.ts";
 
 export const useFetchGamesToday = (trigger: boolean) => {
 
@@ -12,16 +12,17 @@ export const useFetchGamesToday = (trigger: boolean) => {
 	useEffect(() => {
     const fetchData = async () => {
 			try {
-				const response = await fetch(ENV.DATA_PATH);
+				const BACKEND_ENDPOINT = createBackendEndpointUrl('/live-games');
+				const response = await fetch(`${BACKEND_ENDPOINT}`);
+				console.log(response);
 				
 				if (!response.ok) {
-					console.log('Error occurred');
+					console.log(`Error occurred: ${response.status}`);
 					return;
 				}
 
-				const data = await response.json();
-
-				const todaysGames: Game[] = data.scoreboard.games; // Ensure this works
+				const todaysGames: Game[] = await response.json();
+				console.log(todaysGames);
 
 				dispatch(setGamesToday(todaysGames));
 			} catch (error) {

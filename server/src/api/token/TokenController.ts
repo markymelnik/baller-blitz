@@ -3,7 +3,6 @@ import { NextFunction, Request, Response } from 'express';
 import { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } from '../../env';
 import { DatabaseQuery } from '../../database/queries/DatabaseQuery';
 import { TokenError } from '../../errors/ErrorClasses';
-import { RefreshTokenProps } from '../../database/models/tokenModel';
 import { TokenCreator } from './TokenCreator';
 import { LoginResponse } from '../../database/models/userModel';
 
@@ -72,7 +71,7 @@ export const TokenController = {
 		response.cookie('refreshToken', refreshToken, {
 			httpOnly: true,
 			path: '/',
-			/* secure: false, */
+			secure: false,
 			sameSite: 'lax',
 			maxAge: 1 * 24 * 60 * 60 * 1000,
 		});
