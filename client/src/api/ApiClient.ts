@@ -5,8 +5,8 @@ import { Prediction } from '../types/predictionTypes.ts';
 import { createBackendEndpointUrl } from '../utils/createBackendEndpointUrl.ts';
 
 export const ApiClient = {
-  async processUserSignup(path: string, formData: SignupCredentials) {
-    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+  async processUserSignup(formData: SignupCredentials) {
+    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/signup');
 
     try {
       const response = await fetch(BACKEND_ENDPOINT_URL, {
@@ -23,8 +23,8 @@ export const ApiClient = {
     }
   },
 
-  async processUserLogin(path: string, formData: LoginCredentials) {
-    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+  async processUserLogin(formData: LoginCredentials) {
+    const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/login');
     try {
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
@@ -42,9 +42,9 @@ export const ApiClient = {
     }
   },
 
-  async processUserLogout(path: string) {
+  async processUserLogout() {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/logout');
 
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
@@ -80,9 +80,9 @@ export const ApiClient = {
     }
   },
 
-  async refreshAccessToken(path: string) {
+  async refreshAccessToken() {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/refresh-token');
 
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
@@ -100,13 +100,9 @@ export const ApiClient = {
     }
   },
 
-  async storePredictionInApi(
-    path: string,
-    accessToken: string,
-    prediction: Prediction
-  ) {
+  async storePredictionInApi(accessToken: string, prediction: Prediction) {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/predictions');
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'POST',
         headers: {
@@ -125,12 +121,11 @@ export const ApiClient = {
   },
 
   async updatePredictionInApi(
-    path: string,
     accessToken: string,
     prediction: Prediction
   ) {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/predictions');
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'PATCH',
         headers: {
@@ -148,16 +143,13 @@ export const ApiClient = {
   },
 
   async fetchCurrentPredictionsFromApi(
-    path: string,
     accessToken: string,
     gameIds: number[]
   ) {
     try {
       const gameIdsQueryString = gameIds.join(',');
 
-      const BACKEND_ENDPOINT_URL = `${createBackendEndpointUrl(
-        path
-      )}?gameIds=${encodeURIComponent(gameIdsQueryString)}`;
+      const BACKEND_ENDPOINT_URL = `${createBackendEndpointUrl('/predictions/current')}?gameIds=${encodeURIComponent(gameIdsQueryString)}`;
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'GET',
         headers: {
@@ -176,9 +168,9 @@ export const ApiClient = {
     }
   },
 
-  async fetchUserStatsFromApi(path: string, accessToken: string) {
+  async fetchUserStatsFromApi(accessToken: string) {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/predictions/stats');
 
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         headers: {
@@ -196,9 +188,9 @@ export const ApiClient = {
     }
   },
 
-  async fetchAllPredictionsFromApi(path: string, accessToken: string) {
+  async fetchAllPredictionsFromApi(accessToken: string) {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/predictions');
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -213,9 +205,9 @@ export const ApiClient = {
     }
   },
 
-  async resendEmailVerification(path: string, accessToken: string) {
+  async resendEmailVerification(accessToken: string) {
     try {
-      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl(path);
+      const BACKEND_ENDPOINT_URL = createBackendEndpointUrl('/verify');
       const response = await fetch(BACKEND_ENDPOINT_URL, {
         method: 'GET',
         headers: {

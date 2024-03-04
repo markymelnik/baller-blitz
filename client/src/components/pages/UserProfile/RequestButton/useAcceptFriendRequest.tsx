@@ -1,19 +1,22 @@
-import { useMutation } from "react-query"
+import { useMutation } from "react-query";
+
+import { createBackendEndpointUrl } from "../../../../utils/createBackendEndpointUrl";
 
 export const useAcceptFriendRequest = (accessToken: string) => {
   return useMutation( async (requestId: number) => {
-      const response = await fetch(`http://localhost:4000/friends/accept/${requestId}`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${accessToken}`,
-        },
-      })
+    const BACKEND_ENDPOINT = createBackendEndpointUrl(`/friends/accept/${requestId}`);
+    const response = await fetch(`${BACKEND_ENDPOINT}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+      },
+    })
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      return response.json();
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    return response.json();
     }
   );
 };

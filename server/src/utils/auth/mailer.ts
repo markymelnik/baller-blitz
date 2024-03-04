@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { BACKEND_PORT, FRONTEND_URL } from '../../env';
+import { FRONTEND_URL } from '../../env';
 
 const transporter = nodemailer.createTransport({
 	service: 'gmail',
@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 })
 
 export const sendVerificationEmail = async (userEmail: string, token: string) => {
-	const verificationUrl = `${FRONTEND_URL}:${BACKEND_PORT}/verify-email?token=${token}`;
+	const verificationUrl = `${FRONTEND_URL}/verify-email?token=${token}`;
 	
 	const mailOptions = {
 		from: 'Cool App',

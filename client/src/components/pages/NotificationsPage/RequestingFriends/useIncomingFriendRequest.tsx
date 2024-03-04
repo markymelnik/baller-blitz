@@ -1,8 +1,11 @@
-import { useQuery } from "react-query"
+import { useQuery } from "react-query";
+
+import { createBackendEndpointUrl } from "../../../../utils/createBackendEndpointUrl"
 
 export const useIncomingFriendRequest = (accessToken: string) => {
 	return useQuery(['incomingFriendRequests'], async () => {
-		const response = await fetch('http://localhost:4000/friends/requests', {
+		const BACKEND_ENDPOINT = createBackendEndpointUrl('/friends/requests');
+		const response = await fetch(`${BACKEND_ENDPOINT}`, {
 			method: 'GET',
 			headers: {
 				'Authorization': `Bearer ${accessToken}`,

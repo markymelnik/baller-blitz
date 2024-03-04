@@ -21,7 +21,7 @@ const VerifyEmailOverlay = () => {
 
   const handleButtonClick = async () => {
 		try {
-      const response = await ApiClient.resendEmailVerification('/verify', accessToken);
+      const response = await ApiClient.resendEmailVerification(accessToken);
 
       if (response) {
         if (response.status === 200) {
