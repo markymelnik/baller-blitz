@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { setGamesToday } from "../../redux/slices/gamesTodaySlice.ts";
-import { Game } from "../../types/gameTypes.ts";
+/* import { setGamesToday } from "../../redux/slices/gamesTodaySlice.ts";
+import { Game } from "../../types/gameTypes.ts"; */
 import { ENV } from "../../env.ts";
 
 export const useFetchGamesToday = (trigger: boolean) => {
@@ -24,12 +24,12 @@ export const useFetchGamesToday = (trigger: boolean) => {
 		
 				
 				console.log(responseText);
-				console.log(data);
+				/* console.log(data);
 
 				const todaysGames: Game[] = data.scoreboard.games; // Ensure this works
 				console.log(todaysGames);
 
-				dispatch(setGamesToday(todaysGames));
+				dispatch(setGamesToday(todaysGames)); */
 			} catch (error) {
 				console.log(error);
 			}
