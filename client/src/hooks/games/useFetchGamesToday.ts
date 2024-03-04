@@ -15,11 +15,16 @@ export const useFetchGamesToday = (trigger: boolean) => {
 				const response = await fetch(ENV.DATA_PATH);
 				
 				if (!response.ok) {
-					console.log('Error occurred');
+					console.log(`Error occurred: ${response.status}`);
 					return;
 				}
 
-				const data = await response.json();
+				const responseText = await response.text();
+
+		
+				
+				console.log(responseText);
+				console.log(data);
 
 				const todaysGames: Game[] = data.scoreboard.games; // Ensure this works
 				console.log(todaysGames);
