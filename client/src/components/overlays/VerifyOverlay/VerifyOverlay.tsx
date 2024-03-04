@@ -22,17 +22,14 @@ const VerifyEmailOverlay = () => {
   const handleButtonClick = async () => {
 		try {
       const response = await ApiClient.resendEmailVerification(accessToken);
-
       if (response) {
-        if (response.status === 200) {
-            setResendStatus('disabled');
-            setTimeout(() => setResendStatus(''), 5000);
-        } else if (response.status === 429) {
-            setResendStatus('limited');
+        if (response.status === 429) {
+          setResendStatus('limited');
             setTimeout(() => setResendStatus(''), 5000);
         }
       } else {
-        console.error('No response received from resendEmailVerification');
+        setResendStatus('disabled');
+        setTimeout(() => setResendStatus(''), 5000);
       }
     } catch (error) {
       console.error(error);
