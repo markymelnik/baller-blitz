@@ -13,8 +13,6 @@ export const useFetchGamesToday = (trigger: boolean) => {
     const fetchData = async () => {
 			try {
 				const response = await fetch(ENV.DATA_PATH);
-
-				console.log(response);
 				
 				if (!response.ok) {
 					console.log('Error occurred');
@@ -24,6 +22,7 @@ export const useFetchGamesToday = (trigger: boolean) => {
 				const data = await response.json();
 
 				const todaysGames: Game[] = data.scoreboard.games; // Ensure this works
+				console.log(todaysGames);
 
 				dispatch(setGamesToday(todaysGames));
 			} catch (error) {
