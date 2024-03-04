@@ -22,6 +22,9 @@ const DB_PASS = process.env.DB_PASS;
 
 const DATA_SOURCE = process.env.DATA_SOURCE;
 
+const MAILER_USER = process.env.MAILER_USER;
+const MAILER_PASS = process.env.MAILER_PASS;
+
 export {
   ACCESS_TOKEN_SECRET,
   ACCESS_TOKEN_EXPIRY,
@@ -43,4 +46,7 @@ export {
 	DB_PASS,
 
 	DATA_SOURCE,
+
+	MAILER_USER,
+	MAILER_PASS
 };
