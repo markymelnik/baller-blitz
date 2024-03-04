@@ -115,8 +115,10 @@ export const AuthController = {
   logoutUserHandler(request: Request, response: Response) {
     response.cookie('refreshToken', '', {
       httpOnly: true,
+      path: '/',
       secure: true,
-      maxAge: 1,
+      sameSite: 'lax',
+      expires: new Date(0),
     });
 
     const responseObject: LogoutResponse = {

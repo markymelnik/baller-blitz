@@ -14,7 +14,6 @@ export const useFetchGamesToday = (trigger: boolean) => {
 			try {
 				const BACKEND_ENDPOINT = createBackendEndpointUrl('/live-games');
 				const response = await fetch(`${BACKEND_ENDPOINT}`);
-				console.log(response);
 				
 				if (!response.ok) {
 					console.log(`Error occurred: ${response.status}`);
@@ -22,7 +21,6 @@ export const useFetchGamesToday = (trigger: boolean) => {
 				}
 
 				const todaysGames: Game[] = await response.json();
-				console.log(todaysGames);
 
 				dispatch(setGamesToday(todaysGames));
 			} catch (error) {
