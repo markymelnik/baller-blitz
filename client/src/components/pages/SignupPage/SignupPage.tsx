@@ -1,4 +1,4 @@
-import { SignupForm } from '../../forms/SignupForm/SignupForm.tsx';
+import { SignupForm } from './SignupForm/SignupForm.tsx';
 import { NavToLoginFromSignupButton } from '../../buttons/nav/signuplogin/NavToLoginFromSignupButton.tsx';
 import { Content } from '../../../lib/Content.ts';
 import './signup-page.scss';

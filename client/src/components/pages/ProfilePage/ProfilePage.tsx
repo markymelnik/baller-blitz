@@ -62,10 +62,11 @@ const ProfilePage = () => {
         </div>
         <div className='profile-page-bot'>
           <ul className='profile-page-blobs'>
-            <UserStats />
-            <div className="pp-to-settings-wrapper">
+          <div className="pp-to-settings-wrapper">
               <NavToSettingsBtn />
             </div>
+            <UserStats />
+            
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />
           </ul>

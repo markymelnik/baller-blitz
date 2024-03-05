@@ -2,15 +2,15 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import { LoginCredentials } from '../../../types/authTypes.ts';
-import { AuthManager } from '../../../managers/AuthManager.ts';
-import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
-import { handleError } from '../../../errors/handleError.ts';
-import { ValError } from '../InputValidation/ValError/ValError.tsx';
-import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
-import { Content } from '../../../lib/Content.ts';
+import { LoginCredentials } from '../../../../types/authTypes.ts';
+import { AuthManager } from '../../../../managers/AuthManager.ts';
+import { AuthenticationError } from '../../../../errors/ErrorClasses.ts';
+import { handleError } from '../../../../errors/handleError.ts';
+import { ValError } from '../../../forms/InputValidation/ValError/ValError.tsx';
+import { useDelayNavigate } from '../../../../hooks/page/useDelayNavigate.ts';
+import { Content } from '../../../../lib/Content.ts';
 import './login-form.scss';
-import { Icons } from '../../../lib/Icons.ts';
+import { Icons } from '../../../../lib/Icons.ts';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();

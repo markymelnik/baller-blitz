@@ -17,7 +17,7 @@
 			height: 2.5rem;
 			width: 2.5rem;
 			border: 1px solid;
-			@include theme-color(border-color, border);
+			@include theme-color(border-color, text);
 			border-right: none;
 			border-radius: $round-edge;
 			border-top-right-radius: 0;
@@ -27,12 +27,13 @@
 		.user-search-searchbar {
 			width: 100%;
 			border: 1px solid;
-			@include theme-color(border-color, border);
+			@include theme-color(border-color, text);
 			border-left: none;
 			height: 2.5rem;
 			border-radius: $round-edge;
 			border-top-left-radius: 0;
 			border-bottom-left-radius: 0;
+			padding: 0.5rem 0;
 
 			&:focus {
 				outline: none;

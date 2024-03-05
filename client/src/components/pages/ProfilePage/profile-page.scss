@@ -5,12 +5,17 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	padding: 0.5rem 0 0;
+
+	@media (min-width: 768px) {
+		padding: 2rem 0 0;
+	}
 
 	.profile-page-top {
 		display: flex;
 		justify-content: center;
 		width: 100%;
-		padding: 0 0 2rem;
+		padding: 0 0 1.25rem;
 
 		.profile-container {
 			display: flex;
@@ -24,6 +29,11 @@
 				border: 2px solid;
   			@include theme-color(border-color, border);
 				border-radius: 50%;
+
+				@media (min-width: 768px) {
+					height: 9rem;
+					width: 9rem;
+				}
 			}
 		
 			.profile-details {
@@ -73,9 +83,8 @@
 			}
 
 			.pp-to-settings-wrapper {
-				border: 1px solid;
-				@include theme-color(border-color, border);
-				padding: 1rem;
+				display: flex;
+				justify-content: flex-end;
 				border-radius: $round-edge;
 			}
 		}

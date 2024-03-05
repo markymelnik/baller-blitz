@@ -3,6 +3,11 @@
 	display: flex;
   flex-direction: column;
 	overflow: auto;
+	padding: 0.5rem 0 0;
+
+	@media (min-width: 768px) {
+		padding: 2rem 0 0;
+	}
 }
 
 .games-page-header {

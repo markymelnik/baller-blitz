@@ -7,10 +7,10 @@ export const NavToGameBtnArrow = () => {
   return (
     <NavigateToButtonCreator
       toRoute={'/games'}
-      buttonText={'See games'}
+      buttonText={'Games'}
       className={'nav-to-games-btn-arr'}
     >
-      <Icons.ArrowRight />
+      <Icons.ArrowRight size={20} strokeWidth={2}/>
     </NavigateToButtonCreator>
   );
 };

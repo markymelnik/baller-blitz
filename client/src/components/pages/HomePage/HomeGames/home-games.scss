@@ -4,6 +4,7 @@
 .home-games {
 	display: flex;
 	flex-direction: column;
+	padding: 0 0 0.5rem;
 
 	.home-games-top {
 		display: flex;
@@ -13,6 +14,10 @@
 
 		.hg-header {
 			font-size: 1.25rem;
+
+			@media (min-width: 768px) {
+				font-size: 1.5rem;
+			}
 		}
 
 		.hg-slider-btns {
@@ -43,7 +48,7 @@
 
 		.hg-list {
 			flex: 1;
-			padding: 0.5rem 0;
+			padding: 0.5rem 0 1rem;
 
 			.hg-list-skeleton {
 				height: 20rem;

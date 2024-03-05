@@ -1,7 +1,10 @@
+@import '@styles/colors';
+
 .login-page {
 	display: flex;
   flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	width: 100%;
 	min-height: 80vh;
 	
@@ -9,6 +12,22 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		width: clamp(200px, 100%, 375px);
+		border: 1px solid;
+		@include theme-color(border-color, border);
+		padding: 1.25rem;
+
+		.lf-top {
+			text-align: center;
+			padding: 1rem 0 2rem;
+	
+			.lf-heading {
+				font-size: 2rem;
+				font-weight: 600;
+				line-height: 1.25;
+			}
+		}
+		
 	}
 
 	.login-page-bot {

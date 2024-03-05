@@ -10,6 +10,10 @@
 	min-height: 8rem;
 	border-radius: $round-edge;
 
+	&:hover {
+		@include theme-color(border-color, text);
+	}
+
 	.req-friend-card-left {
 		width: 6rem;
 		height: 6rem;
@@ -31,11 +35,17 @@
 			.req-accept-btn,
 			.req-reject.btn {
 				padding: 0.5rem 1rem;
+
+				
 			}
 
 			.req-accept-btn {
 				border: 1px solid;
 				@include theme-color(border-color, border);
+
+				&:hover {
+					@include theme-color(border-color, text);
+				}
 			}
 		}
 	}

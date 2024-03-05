@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import { SignupCredentials } from '../../../types/authTypes.ts';
-import { AuthManager } from '../../../managers/AuthManager.ts';
-import { AuthenticationError } from '../../../errors/ErrorClasses.ts';
-import { handleError } from '../../../errors/handleError.ts';
-import { SignupValidation } from '../InputValidation/SignupValidation/SignupValidation.tsx';
-import { ValError } from '../InputValidation/ValError/ValError.tsx';
-import { useDelayNavigate } from '../../../hooks/page/useDelayNavigate.ts';
-import { Content } from '../../../lib/Content.ts';
+import { SignupCredentials } from '../../../../types/authTypes.ts';
+import { AuthManager } from '../../../../managers/AuthManager.ts';
+import { AuthenticationError } from '../../../../errors/ErrorClasses.ts';
+import { handleError } from '../../../../errors/handleError.ts';
+import { SignupValidation } from '../../../forms/InputValidation/SignupValidation/SignupValidation.tsx';
+import { ValError } from '../../../forms/InputValidation/ValError/ValError.tsx';
+import { useDelayNavigate } from '../../../../hooks/page/useDelayNavigate.ts';
+import { Content } from '../../../../lib/Content.ts';
 import './signup-form.scss';
-import { Icons } from '../../../lib/Icons.ts';
+import { Icons } from '../../../../lib/Icons.ts';
 
 export const SignupForm = () => {
   const dispatch = useDispatch();

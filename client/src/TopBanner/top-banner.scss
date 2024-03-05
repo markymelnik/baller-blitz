@@ -1,0 +1,41 @@
+@import '@styles/colors';
+
+.top-banner {
+	position: relative;
+	width: 100vw;
+	max-height: 3rem;
+	display: flex;
+	justify-content: center;
+	border: 1px solid;
+	padding: 1rem;
+	@include theme-color(border-color, text);
+	@include theme-color(background-color, text);
+	@include theme-color(color, bg);
+	overflow: hidden;
+	transition: transform 0.2s ease-in-out, padding 0.2s ease-in-out, max-height 0.3s ease;
+
+	&.hide {
+		transform: translateY(-100%);
+    padding: 0;
+		max-height: 0;
+	}
+
+	.banner-message {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+		font-size: 1rem;
+
+		p {
+			font-size: 1rem;
+		}
+	}
+
+	.close-banner-btn {
+		position: absolute;
+		right: 1rem;
+		top: 53%;
+		transform: translateY(-50%);
+
+	}
+}

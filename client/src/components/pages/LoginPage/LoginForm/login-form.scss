@@ -1,28 +1,17 @@
 @import '@styles/colors.scss';
 @import '@styles/variables.scss';
 
-.signup-form {
+.login-form {
 	display: flex;
 	flex-direction: column;
-	width: clamp(200px, 100%, 345px);
+	width: 100%;
 
-	.sf-top {
-		text-align: center;
-		padding: 1rem 0 2rem;
-		
-		.sf-heading {
-			font-size: 2rem;
-			font-weight: 600;
-			line-height: 1.25;
-		}
-	}
-
-	.sf-inputs-container {
+	.lf-inputs-container {
 		display: flex;
 		flex-direction: column;
-
-		.sf-email,
-		.sf-password {
+		
+		.lf-email,
+		.lf-password {
 			display: flex;
 			flex-direction: column;
 			position: relative;
@@ -41,14 +30,14 @@
 			label {
 				position: absolute;
 				left: 0.4rem;
-				top: 1.15rem;
+				top: 1.25rem;
 				padding: 0 0.4rem;
 				margin: 0 0 0 0.35rem;
 				pointer-events: none;
 				transition: all 0.1s ease;
 				@include theme-color(background-color, bg);
 			}
-	
+			
 			input:not(:placeholder-shown) + label,
 			input:focus + label {
 				top: -0.45rem;
@@ -65,7 +54,7 @@
 			}
 
 			.edit-email-btn,
-			.show-signup-pw-btn {
+			.show-login-pw-btn {
 				position: absolute;
 				right: 1rem;
 				transform: translateY(50%);
@@ -73,12 +62,12 @@
 			}
 		}
 
-		.sf-password {
+		.lf-password {
 			margin: 1rem 0 0;
 		}
 	}
 
-	.signup-submit-btn {
+	.login-submit-btn {
 		height: 3.5rem;
 		border: 1px solid;
   	@include theme-color(border-color, border);
