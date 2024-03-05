@@ -64,16 +64,11 @@
 }
 
 .nav-back-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	height: 2.5rem;
 	width: 2.5rem;
-	position: relative;
-
-	svg {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		right: 1rem;
-	}
 }
 
 .nav-to-settings-btn {

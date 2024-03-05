@@ -24,6 +24,6 @@ export const ColorBtn = () => {
 	}
 	
 	return (
-		<button className="color-btn" onClick={toggleTheme}>Toggle Theme {theme === 'light' ? <Icons.Moon size={25}/> : <Icons.Sun size={25} />}</button>
+		<button className="color-btn" onClick={toggleTheme}>{/* Toggle Theme  */}{theme === 'light' ? <Icons.Moon size={25}/> : <Icons.Sun size={25} />}</button>
 	)
 }

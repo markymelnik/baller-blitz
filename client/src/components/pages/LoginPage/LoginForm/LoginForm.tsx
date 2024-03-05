@@ -99,9 +99,9 @@ export const LoginForm = () => {
       className='login-form'
     >
       <div className='lf-top'>
-        <h1 className='lf-heading'>
+        <h2 className='lf-heading'>
           {emailExists ? (`${Content.auth.login.prompt.yesEmail}`) : (`${Content.auth.login.prompt.noEmail}`)}
-        </h1>
+        </h2>
       </div>
       <div className='lf-inputs-container'>
         <Controller

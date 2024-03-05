@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Icons } from '../lib/Icons';
 import './top-banner.scss';
 
 export const TopBanner = () => {
   const [isHidden, setIsHidden] = useState<boolean>(false);
-
-	useEffect(() => {
-    if (isHidden) {
-			const banner = document.querySelector('.top-banner');
-      const timer = setTimeout(() => {
-        banner?.remove();
-      }, 300);
-
-			return () => clearTimeout(timer);
-    }
-  }, [isHidden]);
 
   const handleClose = () => {
     setIsHidden(true);

@@ -12,6 +12,7 @@ import { NavBackBtn } from '../buttons/nav/NavBackBtn.tsx';
 import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
 import './header.scss';
+/* import { ColorBtn } from '../buttons/ColorBtn/ColorBtn.tsx'; */
 
 const Header = () => {
   const location = useLocation();
@@ -25,25 +26,21 @@ const Header = () => {
   const AuthenticatedToGamesBtn = useAuthorizedRender(NavToGamesBtn, ['user','admin'])
   const UnauthenticatedBackBtn = useUnauthorizedRender(NavBackBtn, ['user','admin']);
   const AuthenticatedToNotifBtn = useAuthorizedRender(NavToNotifBtn, ['user','admin']);
+/*   const UnauthenticatedThemeBtn = useUnauthorizedRender(ColorBtn, ['user','admin']); */
 
   const UnauthenticatedHeader = useUnauthorizedRender(
     () => (
-      <header className='header-container'>
-        <nav className='header-left-nav'>
-          {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
-          {location.pathname === '/login' && <UnauthenticatedBackBtn />}
-        </nav>
+      <>
+        {location.pathname !== '/' && (
+          <nav className='back-nav-container'>
+            <UnauthenticatedBackBtn />
+          </nav>
+        )}
 
-        <div className='header-middle'>
-        {location.pathname === '/signup' && (
-          <h1 className='header-h1'>Ball Battle</h1>
-        )}
-        {location.pathname === '/login' && (
-          <h1 className='header-h1'>Ball Battle</h1>
-        )}
-    
-      </div>
-      </header>
+      {/*   <div className='theme-btn-container'>
+          <UnauthenticatedThemeBtn />
+        </div> */}
+      </>
     ),
     ['user', 'admin']
   );
@@ -117,3 +114,20 @@ const Header = () => {
 };
 
 export default Header;
+
+
+  {/* <header className='header-container unauth'>
+          <nav className='header-left-nav'>
+            {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
+            {location.pathname === '/login' && <UnauthenticatedBackBtn />}
+          </nav>
+
+          <div className='header-middle'>
+            {location.pathname === '/signup' && (
+              <h1 className='header-h1'>Ball Battle</h1>
+            )}
+            {location.pathname === '/login' && (
+              <h1 className='header-h1'>Ball Battle</h1>
+            )}
+          </div>
+        </header> */}

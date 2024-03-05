@@ -1,7 +1,7 @@
 @import '@styles/colors';
 
 .top-banner {
-	position: relative;
+	position: fixed;
 	width: 100vw;
 	max-height: 3rem;
 	display: flex;
@@ -12,7 +12,7 @@
 	@include theme-color(background-color, text);
 	@include theme-color(color, bg);
 	overflow: hidden;
-	transition: transform 0.2s ease-in-out, padding 0.2s ease-in-out, max-height 0.3s ease;
+	transition: transform 0.3s ease-in-out, padding 0.3s ease-in-out, max-height 0.3s ease;
 
 	&.hide {
 		transform: translateY(-100%);

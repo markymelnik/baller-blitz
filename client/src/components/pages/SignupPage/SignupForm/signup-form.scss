@@ -36,6 +36,10 @@
   			@include theme-color(border-color, border);
 				outline: none;
 				border-radius: $round-edge;
+
+				&.input-error {
+					border-color: $red;
+				}
 			}
 	
 			label {
@@ -54,10 +58,6 @@
 				top: -0.45rem;
 				left: 0.4rem;
 				font-size: 0.9rem;
-			}
-
-			.input-error {
-				border: 1px solid $red;
 			}
 
 			.label-error {
@@ -81,12 +81,15 @@
 	.signup-submit-btn {
 		height: 3.5rem;
 		border: 1px solid;
-  	@include theme-color(border-color, border);
+		@include theme-color(background-color, text);
+  	@include theme-color(border-color, text);
+		@include theme-color(color, bg);
 		margin: 1.5rem 0 0;
 		border-radius: $round-edge;
 
 		&:hover {
-			@include theme-color(border-color, text);
+			@include theme-color(background-color, bg);
+			@include theme-color(color, text);
 		}
 	}
 }

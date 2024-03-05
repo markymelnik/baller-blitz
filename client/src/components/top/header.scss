@@ -33,8 +33,29 @@
 		min-width: 2.5rem;
 	}
 
-
 	&.hidden {
 		top: -6.5rem;
+	}
+}
+
+.back-nav-container {
+	position: absolute;
+	top: 1rem;
+	left: 1rem;
+
+	@media (min-width: 768px) {
+		top: 4rem;
+		left: 4rem;
+	}
+}
+
+.theme-btn-container {
+	position: absolute;
+	top: 2rem;
+	right: 2rem;
+
+	@media (min-width: 768px) {
+		top: 4rem;
+		right: 4rem;
 	}
 }

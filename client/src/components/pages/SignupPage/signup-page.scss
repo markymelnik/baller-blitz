@@ -2,20 +2,48 @@
 
 .signup-page {
 	display: flex;
-  flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	flex-direction: column;
 	width: 100%;
 	min-height: 80vh;
+
+	@media (min-width: 768px) {
+		flex-direction: row;
+	}
+
+	.sp-left {
+		min-height: 10vh;
+
+		@media (min-width: 768px) {
+			min-height: auto;
+			width: 55%;
+			border-right: 1px solid;
+			@include theme-color(border-color, border);
+		}
+	}
+
+	.sp-right {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		
+		@media (min-width: 768px) {
+			width: 45%;	
+		}
+
+		.sp-heading {
+			padding: 0 0 2rem;
+		}
+	}
 
 	.signup-page-wrapper {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		width: clamp(200px, 100%, 375px);
-		border: 1px solid;
-		@include theme-color(border-color, border);
-		padding: 1.25rem;
+		width: clamp(200px, 100%, 24rem);
+		/* border: 1px solid;
+		@include theme-color(border-color, border); */
+		padding: 1.25rem 0;
 		
 		.signup-page-bot {
 			display: flex;

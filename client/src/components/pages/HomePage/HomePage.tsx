@@ -15,31 +15,50 @@ const HomePage = () => {
 
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
-      <div className='home-unauth'>
-        <div className="hu-left">
-          <div className="hu-intro">Ball <br/> Battle</div>
-        </div>
-        <div className="hu-right">
-          <div className="hu-initial-prompt">
-          <h2 className='unauth-title'>{Content.home.prompt}</h2>
-        <ul className='unauth-btns'>
-          <li>
-            <NavigateToLoginButton />
-          </li>
-          <li>
-            <NavigateToSignupButton />
-          </li>
-        </ul>
+      <main className='home-page main-page unauth'>
+        <div className='home-unauth'>
+          <div className='hu-left'>
+            <h1 className='hu-intro'>
+              Ball <br /> Battle
+            </h1>
           </div>
-        
+          <div className='hu-right'>
+            <div className='hu-right-top'>
+              <div className="home-slogan">
+                <h2 className="slogan-top">
+                  Experience Basketball
+                </h2>
+                <div className="slogan-mid">
+                  <h3>Stay up to date with games</h3>
+                  <h3>Predict winners and track stats</h3>
+                </div>
+                
+              </div>
+            <div className='hu-initial-prompt'>
+              <h2 className='unauth-title'>{Content.home.prompt}</h2>
+              <ul className='unauth-btns'>
+                <li>
+                  <NavigateToLoginButton />
+                </li>
+                <li>
+                  <NavigateToSignupButton />
+                </li>
+              </ul>
+            </div>
+            </div>
+            {<div className='hu-right-bot'>
+      
+            </div>}
+          </div>
         </div>
-      </div>
+      </main>
     ),
     ['user', 'admin']
   );
 
   const AuthenticatedHome = useAuthorizedRender(
     () => (
+      <main className='home-page main-page auth'>
       <div className='home-auth'>
         <div className='home-welcome'>
           <div className="hw-hi">Hi {userDetails?.username}</div>
@@ -48,15 +67,18 @@ const HomePage = () => {
         <HomeGames />
         <NavToGameBtnArrow />
       </div>
+      </main>
     ),
     ['user', 'admin']
   );
 
   return (
-    <main className='home-page main-page'>
+  <>
       <UnauthenticatedHome />
       <AuthenticatedHome />
-    </main>
+  </>
+  
+
   );
 };
 

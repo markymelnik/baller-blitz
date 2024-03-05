@@ -104,7 +104,7 @@ export const SignupForm = () => {
       className='signup-form'
     >
       <div className='sf-top'>
-        <h1 className='sf-heading'>{Content.auth.signup.prompt}</h1>
+        <h2 className='sf-heading'>{Content.auth.signup.prompt}</h2>
       </div>
       <div className='sf-inputs-container'>
         <Controller
