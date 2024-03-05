@@ -12,8 +12,8 @@ export const Logo = () => {
 
   return (
     <h1 className='logo-container' onClick={handleClick}>
-      {Content.main.title.ball}
-      {Content.main.title.battle}
+      {Content.main.title.baller}
+      {Content.main.title.blitz}
     </h1>
   );
 };

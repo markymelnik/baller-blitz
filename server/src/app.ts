@@ -31,7 +31,7 @@ initCron();
 initWebSocketServer(server);
 
 app.get('/', (req, res) => {
-  res.send('NBA Battle');
+  res.send('Baller Blitz');
 });
 
 app.post('/signup', signupLimiter, AuthController.signupUserHandler);

@@ -1,4 +1,4 @@
-# NBA Battle
+# Baller Blitz
 
-NBA Battle
+Baller Blitz
 social media nba game competition platform

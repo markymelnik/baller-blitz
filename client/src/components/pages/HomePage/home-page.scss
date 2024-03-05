@@ -3,17 +3,15 @@
 .home-page {
 	display: flex;
   flex-direction: column;
-	padding: 0.5rem 0 0;
-	min-height: 80vh;
 
 	@media (min-width: 768px) {
-		padding: 2.5rem 0 0;
+		padding: 1rem;
 	}
 
 	.home-unauth {
+		position: relative;
 		display: flex;
 		flex-direction: column;
-		width: 100%;
 		flex: 1;
 		
 		@media (min-width: 768px) {
@@ -23,24 +21,38 @@
 		.hu-left {
 			display: flex;
 			flex-direction: column;
-			padding: 1.125rem 0;
+			justify-content: center;
 
 			@media (min-width: 768px) {
-				position: fixed;
-				/* height: 200vh; */
-				height: 80vh;
-				overflow-y: scroll;
-				width: 55%;
-				padding: 2.5rem;
-				
+				width: 50%;
+			}
+
+			.hu-player {
+				position: relative;
+		
+				svg {
+					position: absolute;
+					width: 8rem;
+					left: 24vw;
+					opacity: 0.4;
+					@include theme-color(stroke, border);
+					@include theme-color(fill, border);
+					stroke-width: 2;
+
+					@media (min-width: 768px) {
+						top: -6rem;
+						left: 6vw;
+						width: 24rem;
+					}
+				}
 			}
 
 			.hu-intro {
 				font-size: 3.5rem;
 
 				@media (min-width: 768px) {
-					font-size: 6rem;
-					padding: 0 0 4rem;
+					font-size: 6.25rem;
+					padding: 0 0 12rem;
 				}
 			}
 		}
@@ -51,23 +63,19 @@
 			justify-content: center;
 
 			@media (min-width: 768px) {
-				position: fixed;
-				right: 1.25rem;
-				height: 95.75%;
-				overflow-y: hidden;
-				width: 45%;
+				width: 50%;
 			}
 
 			.hu-right-top {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 1.25rem 0;
-				height: 60%;
+				padding: 3rem 0;
+				
 				
 				@media (min-width: 768px) {
 					border-left: 1px solid;
-	
+					height: 60%;
 					@include theme-color(border-color, border);
 					padding: 2.5rem;
 				}
@@ -91,7 +99,7 @@
 						flex-direction: inherit;
 						gap: 0.25rem;
 						font-size: 1rem;
-						padding: 0 0 2rem;
+						padding: 0 0 3rem;
 
 						@media (min-width: 768px) {
 							font-size: 1.25rem;
@@ -125,15 +133,36 @@
 			}
 
 			.hu-right-bot {
+				position: relative;
 				display: flex;
 				height: 40%;
-				padding: 1.25rem 0;
 
 				@media (min-width: 768px) {
 					padding: 2.5rem;
 					border-left: 1px solid;
 					border-top: 1px solid;
 					@include theme-color(border-color, border);
+					overflow: hidden;
+				}
+
+				svg {
+					height: 20rem;
+					width: 20rem;
+					position: absolute;
+					left: 50%;
+					transform: translateX(-50%);
+					transition: top 0.3s ease;
+
+					@media (min-width: 768px) {
+						height: 45rem;
+						width: 45rem;
+						left: 80%;
+						top: -3vh;
+						
+						&:hover {
+							top: -5vh;
+						}
+					}
 				}
 			}
 		}

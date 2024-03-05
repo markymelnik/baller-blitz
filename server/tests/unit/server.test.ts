@@ -14,9 +14,9 @@ describe('GET /', () => {
         server.close(done);
     })
 
-    it("responds with 'NBA Battle!'", async () => {
+    it("responds with 'Baller Blitz!'", async () => {
         const response = await supertest(app).get('/');
         expect(response.status).toBe(200);
-        expect(response.text).toBe('NBA Battle');
+        expect(response.text).toBe('Baller Blitz');
     });
 })

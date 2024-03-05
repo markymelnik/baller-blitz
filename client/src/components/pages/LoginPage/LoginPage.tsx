@@ -12,7 +12,7 @@ const LoginPage = () => {
 
       </div>
       <div className="lp-right">
-      <h1 className="lp-heading">Ball Battle</h1>
+      <h1 className="lp-heading">Baller Blitz</h1>
       <div className='login-form-wrapper'>
       
         <LoginForm />

@@ -4,7 +4,9 @@ import { useUnauthorizedRender } from '../../../hooks/auth/useUnauthorizedRender
 import { NavToGameBtnArrow } from '../../buttons/nav/NavToGamesBtnArrow.tsx';
 import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
 import { Content } from '../../../lib/Content.ts';
+import { Icons } from '../../../lib/Icons.ts';
 import { useUserDetails } from '../../../hooks/stateSelectors.ts';
+import { BallPlayer } from '../../../../assets/BallPlayer.tsx';
 
 import { HomeGames } from './HomeGames/HomeGames.tsx';
 import './home-page.scss';
@@ -18,8 +20,12 @@ const HomePage = () => {
       <main className='home-page main-page unauth'>
         <div className='home-unauth'>
           <div className='hu-left'>
+            <div className="hu-player">
+            <BallPlayer />
+            </div>
+          
             <h1 className='hu-intro'>
-              Ball <br /> Battle
+              Baller<br /> Blitz
             </h1>
           </div>
           <div className='hu-right'>
@@ -46,9 +52,9 @@ const HomePage = () => {
               </ul>
             </div>
             </div>
-            {<div className='hu-right-bot'>
-      
-            </div>}
+            <div className='hu-right-bot'>
+              <Icons.Basketball strokeWidth={0.4}/>
+            </div>
           </div>
         </div>
       </main>

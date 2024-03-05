@@ -2,10 +2,10 @@
 @import '@styles/variables.scss';
 
 .loading-screen {
-	position: relative;
 	height: 100vh;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	@include theme-color(background-color, bg);
 	z-index: 10;
 }

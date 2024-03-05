@@ -12,8 +12,8 @@ export const Content = {
   },
   main: {
     title: {
-      ball: 'Ball',
-      battle: 'Battle.',
+      baller: 'Baller',
+      blitz: 'Blitz',
     },
   },
   auth: {

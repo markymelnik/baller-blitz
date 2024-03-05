@@ -6,7 +6,7 @@ import App from '../src/App.tsx';
 describe('App Component', () => {
   test('renders Logo component', () => {
     render(<App />);
-    const logoElement = screen.getByText(/NBA Battle/i);
+    const logoElement = screen.getByText(/Baller Blitz/i);
     expect(logoElement).toBeTruthy();
   });
 });

@@ -13,7 +13,7 @@ const SignupPage = () => {
 
       </div>
       <div className="sp-right">
-      <h1 className="sp-heading">Ball Battle</h1>
+      <h1 className="sp-heading">Baller Blitz</h1>
       <div className='signup-page-wrapper'>
         <SignupForm />
         <div className='signup-page-bot'>

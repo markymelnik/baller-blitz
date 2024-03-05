@@ -124,10 +124,10 @@ export default Header;
 
           <div className='header-middle'>
             {location.pathname === '/signup' && (
-              <h1 className='header-h1'>Ball Battle</h1>
+              <h1 className='header-h1'>Baller Blitz</h1>
             )}
             {location.pathname === '/login' && (
-              <h1 className='header-h1'>Ball Battle</h1>
+              <h1 className='header-h1'>Baller Blitz</h1>
             )}
           </div>
         </header> */}
