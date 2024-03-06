@@ -13,6 +13,8 @@ import { HomeSidebar } from './HomeSidebar/HomeSidebar.tsx';
 import { Dashboard } from './Dashboard/Dashboard.tsx';
 import './home-page.scss';
 import { GamesTab } from './GamesTab/GamesTab.tsx';
+import { HomeRightbar } from './HomeRightbar/HomeRightbar.tsx';
+import { FriendsTab } from './FriendsTab/FriendsTab.tsx';
 
 const HomePage = () => {
   const isMobile = useIsMobile();
@@ -70,9 +72,12 @@ const HomePage = () => {
   const AuthenticatedHome = useAuthorizedRender(
     () => (
       <main className='home-page main-page auth'>
+        
         {!isMobile && <HomeSidebar activeTab={activeTab} setActiveTab={setActiveTab} />}
         {!isMobile && activeTab === 'dashboard' && <Dashboard />}
         {!isMobile && activeTab === 'games' && <GamesTab />}
+        {!isMobile && activeTab === 'friends' && <FriendsTab />}
+        {!isMobile && <HomeRightbar />}
 
         {isMobile && <Dashboard />}
       </main>

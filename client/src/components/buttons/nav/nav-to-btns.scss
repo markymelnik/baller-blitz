@@ -22,16 +22,11 @@
 	}
 }
 
-.nav-to-profile-btn,
 .nav-to-search-btn,
 .nav-to-friends-btn,
 .nav-to-notif-btn {
 	height: 2.5rem;
 	width: 2.5rem;
-}
-
-.nav-to-games-btn {
-
 }
 
 .nav-to-games-btn-arr {
@@ -87,4 +82,23 @@
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+}
+
+.nav-to-profile-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2.5rem;
+	width: 2.5rem;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+	border-radius: 50%;
+
+	&:hover {
+		@include theme-color(border-color, text);
+	}
+
+	.profile-btn-img {
+		font-size: 1rem;
+	}
 }

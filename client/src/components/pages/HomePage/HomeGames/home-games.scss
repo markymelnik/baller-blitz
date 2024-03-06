@@ -6,6 +6,12 @@
 	flex-direction: column;
 	padding: 0 0 0.5rem;
 
+/* 	@media (min-width: 768px) {
+		border: 1px solid;
+		@include theme-color(border-color, border);
+		border-radius: $round-edge;
+	} */
+
 	.home-games-top {
 		display: flex;
 		justify-content: space-between;
@@ -61,6 +67,12 @@
 				margin-right: 0.5rem;
 			}
 		}
+	}
+
+	.hg-list-desktop {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+		gap: 1.25rem;
 	}
 
 	.hg-slider::-webkit-scrollbar {

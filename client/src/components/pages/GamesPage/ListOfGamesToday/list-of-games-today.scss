@@ -2,6 +2,7 @@
 
 .list-message-container {
 	display: flex;
+	flex: 1;
 
 	.list-message {
 		font-size: 1.15rem;
@@ -20,6 +21,10 @@
 	.skeleton-message {
 		font-size: 1.25rem;
 		width: 12rem;
+
+		@media (min-width: 768px) {
+			margin: 2.5rem 0 0 1.25rem;
+		}
 	}
 }
 
@@ -35,10 +40,16 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		padding: 1.25rem;
+		
 	}
+
 
 	.log-skeleton-wrapper {
 		height: 10rem;
+
+		@media (min-width: 768px) {
+			height: 10rem;
+		}
 	}
 }
 

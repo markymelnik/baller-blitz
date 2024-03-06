@@ -3,25 +3,66 @@
 .home-sidebar {
 	display: flex;
 	flex-direction: column;
-	border-right: 1px solid;
+	border: 1px solid;
+	border-left: none;
 	@include theme-color(border-color, border);
-	width: 14rem;
+	border-top-right-radius: $round-edge;
+	border-bottom-right-radius: $round-edge;
 	padding: 1.25rem;
+	overflow: hidden;
 
 	.sidebar-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
 
 		.sidebar-item {
-			padding: 0.75rem 0;
+			padding: 1rem;
+			border-left: 2px solid;
+			@include theme-color(border-color, bg);
+			border-top-right-radius: $round-edge;
+			border-bottom-right-radius: $round-edge;
 
 			&.on {
-				@include theme-color(background-color, border);
+				background-color: $lightest-grey;
+			
+				border-left: 2px solid;
+				@include theme-color(border-color, text);
 				pointer-events: none;
 			}
 
 			&:hover {
 				cursor: pointer;
-				@include theme-color(background-color, border);
+				background-color: $lightest-grey;
 			}
+		}
+	}
+
+	.sidebar-to-profile-nav {
+		display: flex;
+		padding: 0 0 1.25rem;
+
+		button {
+			height: 5rem;
+			width: 5rem;
+		
+			.profile-btn-img {
+				font-size: 1.5rem;
+			}
+		}
+	}
+
+	.sidebar-space {
+		flex: 1;
+		@include theme-color(border-color, border);
+	}
+
+	.sidebar-divider {
+		padding: 0 0 1.25rem;
+
+		.divider {
+			border-bottom: 1px solid;
+			@include theme-color(border-color, border);
 		}
 	}
 }

@@ -92,14 +92,16 @@ const Header = () => {
           {isMobile ? (
             <>
               {' '}
-              {location.pathname === '/' && <AuthenticatedToProfileButton />}
               {location.pathname === '/' && <AuthenticatedToSearchButton />}
+              {location.pathname === '/' && <AuthenticatedToProfileButton />}
+
               {location.pathname === '/games' && (
                 <AuthenticatedToProfileButton />
               )}
               {location.pathname === '/games' && (
                 <AuthenticatedToSearchButton />
               )}
+
               {location.pathname === '/profile' && (
                 <AuthenticatedToFriendsButton />
               )}
@@ -107,14 +109,16 @@ const Header = () => {
               {location.pathname.startsWith('/profile') &&
                 location.pathname !== '/profile' && (
                   <AuthenticatedToProfileButton />
-                )}
+              )}
               {location.pathname.startsWith('/profile') &&
                 location.pathname !== '/profile' && (
                   <AuthenticatedToSearchButton />
-                )}
+              )}
+
               {location.pathname === '/search' && (
                 <AuthenticatedToProfileButton />
               )}
+              
               {location.pathname === '/friends' && (
                 <AuthenticatedToSearchButton />
               )}

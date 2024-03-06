@@ -17,11 +17,11 @@ export const HomeGames = () => {
 
   useFetchGamesToday(fetchTrigger);
 
-	const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [isLeftDisabled, setIsLeftDisabled] = useState<boolean>(true);
   const [isRightDisabled, setIsRightDisabled] = useState<boolean>(false);
-  
+
   const predictedGames = useFetchCurrentPredictions()!;
   const todaysGames = useGamesToday();
 
@@ -29,7 +29,7 @@ export const HomeGames = () => {
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
+  useEffect(() => {
     if (predictedGames) {
       setTimeout(() => {
         setIsLoading(false);
@@ -55,39 +55,40 @@ export const HomeGames = () => {
     };
   });
 
-
   if (!predictedGames) {
-    return <Skeleton className='hg-list-skeleton'/>;
+    return <Skeleton className='hg-list-skeleton' />;
   }
 
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({ left: -325, behavior: 'smooth' });
     }
-  }
+  };
 
   const scrollRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollBy({ left: 325, behavior: 'smooth' })
+      sliderRef.current.scrollBy({ left: 325, behavior: 'smooth' });
     }
-  }
+  };
 
   const handleGamesListUpdate = () => {
     setFetchTrigger((prev) => !prev);
   };
 
   const homeGames = todaysGames.filter((game) =>
-    predictedGames.some((predictedGame) => predictedGame.game_id === +game.gameId)
+    predictedGames.some(
+      (predictedGame) => predictedGame.game_id === +game.gameId
+    )
   );
 
   const numberOfGames = homeGames.length;
 
-	return (
+  return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
       <div className='home-games'>
         <div className='home-games-top'>
           <h2 className='hg-header'>{`Your predictions`}</h2>
-          {isMobile && (
+          {isMobile && numberOfGames > 1 && (
             <div className='hg-slider-btns'>
               <div
                 className={`slider-btn-left ${
@@ -108,42 +109,68 @@ export const HomeGames = () => {
             </div>
           )}
         </div>
-        {isLoading ? (
-          <div className='hg-loading'>
-            {new Array(numberOfGames).fill(0).map((_, index) => (
-              <div key={index}>
-                <Skeleton className='hg-list-skeleton' />
-              </div>
-            ))}
-          </div>
-        ) : numberOfGames < 1 ? (
-          <div className='hg-no-games'>
-            <div className='no-games-card'>
-              <div className='no-games-text'>
-                No predictions! <br />
-                Place predictions in Games
+
+        {isMobile ? (
+          isLoading ? (
+            <div className='hg-loading'>
+              {new Array(numberOfGames).fill(0).map((_, index) => (
+                <div key={index}>
+                  <Skeleton className='hg-list-skeleton' />
+                </div>
+              ))}
+            </div>
+          ) : numberOfGames < 1 ? (
+            <div className='hg-no-games'>
+              <div className='no-games-card'>
+                <div className='no-games-text'>
+                  No predictions! <br />
+                  Place predictions in Games
+                </div>
               </div>
             </div>
+          ) : (
+            <div className='hg-slider' ref={sliderRef}>
+              <ul className='hg-list'>
+                {homeGames.map((game) => {
+                  const predictedGame = predictedGames.find(
+                    (prediction) => prediction.game_id === +game.gameId
+                  );
+                  return (
+                    <HomeGame
+                      key={game.gameId}
+                      game={game}
+                      predictedWinner={predictedGame?.predicted_winner}
+                      onSuccessfulSubmission={handleGamesListUpdate}
+                    />
+                  );
+                })}
+              </ul>
+            </div>
+          )
+        ) : numberOfGames < 1 ? (
+          <div className='hg-no-games'>
+          <div className='no-games-card'>
+            <div className='no-games-text'>
+              No predictions! <br />
+              Place predictions in Games
+            </div>
           </div>
-        ) : (
-          <div className='hg-slider' ref={sliderRef}>
-            <ul className='hg-list'>
-              {homeGames.map((game) => {
-                const predictedGame = predictedGames.find(
-                  (prediction) => prediction.game_id === +game.gameId
-                );
-                return (
-                  <HomeGame
-                    key={game.gameId}
-                    game={game}
-                    predictedWinner={predictedGame?.predicted_winner}
-                    onSuccessfulSubmission={handleGamesListUpdate}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-        )}
+        </div>
+        ) : (    <ul className='hg-list-desktop'>
+        {homeGames.map((game) => {
+          const predictedGame = predictedGames.find(
+            (prediction) => prediction.game_id === +game.gameId
+          );
+          return (
+            <HomeGame
+              key={game.gameId}
+              game={game}
+              predictedWinner={predictedGame?.predicted_winner}
+              onSuccessfulSubmission={handleGamesListUpdate}
+            />
+          );
+        })}
+      </ul>)}
       </div>
     </SkeletonTheme>
   );

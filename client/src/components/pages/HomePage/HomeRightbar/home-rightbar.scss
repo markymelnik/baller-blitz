@@ -1,0 +1,29 @@
+@import '@styles/colors';
+@import '@styles/variables';
+
+.home-rightbar {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	/* border: 1px solid;
+	border-right: none;
+	@include theme-color(border-color, border);
+	border-top-left-radius: $round-edge;
+	border-bottom-left-radius: $round-edge; */
+	overflow: hidden;
+	padding: 0 1.25rem 0 0;
+
+	> * {
+		border: 1px solid;
+		@include theme-color(border-color, border);
+		border-radius: $round-edge;
+	}
+
+	.home-rb-top {
+		height: 60%;
+	}
+
+	.home-rb-bot {
+		height: 40%;
+	}
+}

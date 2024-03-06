@@ -103,15 +103,18 @@ export const ListOfGamesToday = () => {
         </div>
       ) : (
         <>
-          <ul className='list-of-games-today'>
+        
             {isLoading ? (
-              new Array(numberOfGames).fill(0).map((_, index) => (
+                <ul className='list-of-games-today'>
+              {new Array(numberOfGames).fill(0).map((_, index) => (
                 <div key={index} >
                   <Skeleton className='log-skeleton-wrapper' />
                 </div>
-              ))
+              ))}
+              </ul>
             ) : (
-              todaysGames.map((game) => {
+              <ul className='list-of-games-today'>
+              {todaysGames.map((game) => {
                 const predictedGame = predictedGames.find(
                   (prediction) => prediction.game_id === +game.gameId
                 );
@@ -126,9 +129,11 @@ export const ListOfGamesToday = () => {
                     onSuccessfulSubmission={handleGamesListUpdate}
                   />
                 );
-              })
+              })}
+              </ul>
             )}
-          </ul>
+        
+      
         </>
       )}
     </SkeletonTheme>

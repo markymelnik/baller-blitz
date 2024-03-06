@@ -3,21 +3,31 @@
 .home-page {
 	display: flex;
   flex-direction: column;
-	flex: 1;
+	min-height: 90vh;
+	width: 100%;
 
-	@media (min-width: 768px) {
-		flex-direction: row;
+	&.auth {
+		height: 80vh;
+
+		@media (min-width: 768px) {
+			padding: 1.25rem 0 0;
+		}
 	}
 
-	.games-home-container {}
+	@media (min-width: 768px) {
+		display: grid;
+		grid-template-columns: 14rem 6fr 2fr;
+
+	}
 
 	.home-unauth {
 		display: flex;
 		flex-direction: column;
-		flex: 1;
 		
 		@media (min-width: 768px) {
-			flex-direction: row;
+			flex-direction: row;	
+			width: 100vw;
+
 		}
 
 		.hu-left {
@@ -27,6 +37,7 @@
 
 			@media (min-width: 768px) {
 				width: 50%;
+				padding: 2.5rem;
 			}
 
 			.hu-player {
@@ -78,7 +89,6 @@
 				flex-direction: column;
 				justify-content: space-between;
 				padding: 3rem 0;
-				
 				
 				@media (min-width: 768px) {
 					border-left: 1px solid;

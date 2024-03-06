@@ -1,6 +1,12 @@
+@import '@styles/colors';
+
 .games-tab {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
 	flex: 1;
+
+	@media (min-width: 768px) {
+		overflow-y: scroll;
+	}
 }

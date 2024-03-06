@@ -5,6 +5,10 @@
 	flex-direction: column;
 	flex: 1;
 
+	@media (min-width: 768px) {
+		padding: 1.25rem;
+	}
+
 	.user-profile-mid {
 		display: flex;
 		justify-content: center;

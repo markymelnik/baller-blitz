@@ -11,6 +11,8 @@ export const Dashboard = () => {
         <div className='hw-back'>Welcome back!</div>
       </div>
       <HomeGames />
+      <div className="home-thing">Container 1</div>
+      <div className="home-thing">Container 2</div>
     </div>
   );
 };

@@ -10,6 +10,7 @@
 	@media (min-width: 768px) {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+		padding: 0 1.25rem;
 	}
 }
 
@@ -31,5 +32,6 @@
 
 	@media (min-width: 768px) {
 		font-size: 1.25rem;
+		padding: 0 0 1.25rem 1.25rem;
 	}
 }
