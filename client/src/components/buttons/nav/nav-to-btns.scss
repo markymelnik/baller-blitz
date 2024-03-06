@@ -72,6 +72,13 @@
 	align-items: center;
 	height: 2.5rem;
 	width: 2.5rem;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+	border-radius: 50%;
+
+	&:hover {
+		@include theme-color(border-color, text);
+	}
 }
 
 .nav-to-settings-btn {

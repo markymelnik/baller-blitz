@@ -1,19 +1,21 @@
+import { useState } from 'react';
+
 import { NavigateToSignupButton } from '../../buttons/nav/signuplogin/NavigateToSignupButton.tsx';
 import { NavigateToLoginButton } from '../../buttons/nav/signuplogin/NavigateToLoginButton.tsx';
 import { useUnauthorizedRender } from '../../../hooks/auth/useUnauthorizedRender.ts';
-import { NavToGameBtnArrow } from '../../buttons/nav/NavToGamesBtnArrow.tsx';
+import { useIsMobile } from '../../../hooks/page/useIsMobile.ts';
 import { useAuthorizedRender } from '../../../hooks/auth/useAuthorizedRender.ts';
 import { Content } from '../../../lib/Content.ts';
 import { Icons } from '../../../lib/Icons.ts';
-import { useUserDetails } from '../../../hooks/stateSelectors.ts';
 import { BallPlayer } from '../../../../assets/BallPlayer.tsx';
 
-import { HomeGames } from './HomeGames/HomeGames.tsx';
+import { HomeSidebar } from './HomeSidebar/HomeSidebar.tsx';
+import { Dashboard } from './Dashboard/Dashboard.tsx';
 import './home-page.scss';
+import { GamesTab } from './GamesTab/GamesTab.tsx';
 
 const HomePage = () => {
-
-  const userDetails = useUserDetails()!;
+  const isMobile = useIsMobile();
 
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
@@ -21,7 +23,7 @@ const HomePage = () => {
         <div className='home-unauth'>
           <div className='hu-left'>
             <div className="hu-player">
-            <BallPlayer />
+              <BallPlayer />
             </div>
           
             <h1 className='hu-intro'>
@@ -62,29 +64,27 @@ const HomePage = () => {
     ['user', 'admin']
   );
 
+  const [activeTab, setActiveTab] = useState<string>('dashboard');
+
+
   const AuthenticatedHome = useAuthorizedRender(
     () => (
       <main className='home-page main-page auth'>
-      <div className='home-auth'>
-        <div className='home-welcome'>
-          <div className="hw-hi">Hi {userDetails?.username}</div>
-          <div className="hw-back">Welcome back!</div>
-        </div>
-        <HomeGames />
-        <NavToGameBtnArrow />
-      </div>
+        {!isMobile && <HomeSidebar activeTab={activeTab} setActiveTab={setActiveTab} />}
+        {!isMobile && activeTab === 'dashboard' && <Dashboard />}
+        {!isMobile && activeTab === 'games' && <GamesTab />}
+
+        {isMobile && <Dashboard />}
       </main>
     ),
     ['user', 'admin']
   );
 
   return (
-  <>
+    <>
       <UnauthenticatedHome />
       <AuthenticatedHome />
-  </>
-  
-
+    </>
   );
 };
 

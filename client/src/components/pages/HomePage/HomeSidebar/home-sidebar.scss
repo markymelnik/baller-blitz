@@ -1,0 +1,27 @@
+@import '@styles/colors';
+
+.home-sidebar {
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid;
+	@include theme-color(border-color, border);
+	width: 14rem;
+	padding: 1.25rem;
+
+	.sidebar-nav {
+
+		.sidebar-item {
+			padding: 0.75rem 0;
+
+			&.on {
+				@include theme-color(background-color, border);
+				pointer-events: none;
+			}
+
+			&:hover {
+				cursor: pointer;
+				@include theme-color(background-color, border);
+			}
+		}
+	}
+}

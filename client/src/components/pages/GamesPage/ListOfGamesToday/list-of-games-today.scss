@@ -9,6 +9,7 @@
 
 		@media (min-width: 768px) {
 			font-size: 1.25rem;
+			padding: 1.25rem 0 0 1.25rem;
 		}
 	}
 }
@@ -33,6 +34,7 @@
 	@media (min-width: 768px) {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
+		padding: 1.25rem;
 	}
 
 	.log-skeleton-wrapper {

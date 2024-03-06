@@ -3,12 +3,14 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 import { useFetchGamesToday } from '../../../../hooks/games/useFetchGamesToday';
 import { useFetchCurrentPredictions } from '../../../../hooks/predictions/useFetchCurrentPredictions';
+import { useIsMobile } from '../../../../hooks/page/useIsMobile';
 import { useGamesToday } from '../../../../hooks/stateSelectors';
 import { Icons } from '../../../../lib/Icons';
 
 import { HomeGame } from './HomeGame/HomeGame';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './home-games.scss';
+
 
 export const HomeGames = () => {
   const [fetchTrigger, setFetchTrigger] = useState(false);
@@ -22,6 +24,8 @@ export const HomeGames = () => {
   
   const predictedGames = useFetchCurrentPredictions()!;
   const todaysGames = useGamesToday();
+
+  const isMobile = useIsMobile();
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -83,16 +87,27 @@ export const HomeGames = () => {
       <div className='home-games'>
         <div className='home-games-top'>
           <h2 className='hg-header'>{`Your predictions`}</h2>
-          <div className='hg-slider-btns'>
-            <div className={`slider-btn-left ${isLeftDisabled ? 'disabled' : ''}`} onClick={scrollLeft}>
-              <Icons.ArrowLeft size={25} />
+          {isMobile && (
+            <div className='hg-slider-btns'>
+              <div
+                className={`slider-btn-left ${
+                  isLeftDisabled ? 'disabled' : ''
+                }`}
+                onClick={scrollLeft}
+              >
+                <Icons.ArrowLeft size={25} />
+              </div>
+              <div
+                className={`slider-btn-right ${
+                  isRightDisabled ? 'disabled' : ''
+                }`}
+                onClick={scrollRight}
+              >
+                <Icons.ArrowRight size={25} />
+              </div>
             </div>
-            <div className={`slider-btn-right ${isRightDisabled ? 'disabled' : ''}`} onClick={scrollRight}>
-              <Icons.ArrowRight size={25} />
-            </div>
-          </div>
+          )}
         </div>
-
         {isLoading ? (
           <div className='hg-loading'>
             {new Array(numberOfGames).fill(0).map((_, index) => (
@@ -104,7 +119,7 @@ export const HomeGames = () => {
         ) : numberOfGames < 1 ? (
           <div className='hg-no-games'>
             <div className='no-games-card'>
-              <div className="no-games-text">
+              <div className='no-games-text'>
                 No predictions! <br />
                 Place predictions in Games
               </div>

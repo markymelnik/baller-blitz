@@ -50,6 +50,10 @@ ul, ol {
 	margin: 0;
 }
 
+li {
+	list-style-type: none;
+}
+
 a {
 	text-decoration: none;
 	color: inherit;
@@ -103,12 +107,7 @@ input:-webkit-autofill:active {
 	min-height: 100vh;
 
 	.main-page {
-		flex: 1;
-		width: clamp(0px, 100%, 992px);
-
-		&.unauth {
-			width: 100%;
-		}
+		width: 100%;
 	}
 }
 

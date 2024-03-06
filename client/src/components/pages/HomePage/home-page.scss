@@ -1,15 +1,17 @@
-@import '../../../styles/colors.scss';
+@import '@styles/colors';
 
 .home-page {
 	display: flex;
   flex-direction: column;
+	flex: 1;
 
 	@media (min-width: 768px) {
-		padding: 1rem;
+		flex-direction: row;
 	}
 
+	.games-home-container {}
+
 	.home-unauth {
-		position: relative;
 		display: flex;
 		flex-direction: column;
 		flex: 1;
@@ -38,11 +40,16 @@
 					@include theme-color(stroke, border);
 					@include theme-color(fill, border);
 					stroke-width: 2;
+					transition: transform 0.4s ease;
 
 					@media (min-width: 768px) {
 						top: -6rem;
 						left: 6vw;
 						width: 24rem;
+					}
+
+					&:hover {
+						transform: scale(1.05);
 					}
 				}
 			}
@@ -121,7 +128,6 @@
 						line-height: 1.5;
 						font-size: 1.75rem;
 						padding: 0 0 1.5rem;
-						font-weight: bold;
 					}
 			
 					.unauth-btns {
@@ -163,38 +169,6 @@
 							top: -5vh;
 						}
 					}
-				}
-			}
-		}
-	}
-
-	.home-auth {
-		position: relative;
-		flex-direction: column;
-
-		.home-welcome {
-			display: flex;
-			flex-direction: column;
-			gap: 0.25rem;
-			padding: 0 0 2.5rem;
-
-			@media (min-width: 768px) {
-				padding: 0 0 3rem;
-			}
-
-			.hw-hi {
-				font-size: 2rem;
-
-				@media (min-width: 768px) {
-					font-size: 3.25rem;
-				}
-			}
-
-			.hw-back {
-				font-size: 1rem;
-
-				@media (min-width: 768px) {
-					font-size: 1.25rem;
 				}
 			}
 		}
