@@ -1,0 +1,48 @@
+@import '@styles/colors';
+
+.mobile-overlay {
+	border: 1px solid;
+	@include theme-color(border-color, border);
+	@include theme-color(background-color, bg);
+	height: 100vh;
+	width: 16rem;
+	position: fixed;
+	top: 0;
+	left: 0;
+	transform: translateX(-100%);
+	transition: transform 0.3s ease;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	padding: 4rem $padding-mobile $padding-mobile;
+
+	&.slide-in {
+		transform: translateX(0);
+	}
+
+	.mo-close-btn {
+		position: absolute;
+		top: $padding-mobile;
+		left: $padding-mobile;
+
+		svg {
+			height: 1.75rem;
+			width: 1.75rem;
+		}
+	}
+
+	.mo-nav {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.25rem;
+
+		> * {
+			padding: 1rem 0;
+		}
+	}
+
+	.mo-space {
+		flex: 1;
+	}
+}

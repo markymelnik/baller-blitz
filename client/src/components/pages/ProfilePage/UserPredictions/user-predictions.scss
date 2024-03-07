@@ -5,7 +5,7 @@
 .user-predictions {
 	display: flex;
 	flex-direction: column;
-	padding: 1.5rem;
+	padding: $padding-mobile;
 	border-radius: $round-edge;
 	border: 1px solid;
 	@include theme-color(border-color, border);
@@ -21,11 +21,12 @@
 
 	.current-predictions-header {
 		display: flex;
+		justify-content: space-between;
 		align-items: center;
 		gap: 0.5rem;
 
 		.current-text {
-			font-size: 1.25rem;
+			font-size: 1rem;
 
 			&:hover {
 				cursor: pointer;
@@ -33,12 +34,12 @@
 		}
 
 		.icon {
-			transition: transform 0.3s ease;
-			transform: rotate(-180deg);
+			transition: transform 0.2s ease;
+			transform: rotate(90deg);
 		}
 
 		.rotate-icon {
-			transition: transform 0.3s ease;
+			transition: transform 0.2s ease;
 		}
 	}
 

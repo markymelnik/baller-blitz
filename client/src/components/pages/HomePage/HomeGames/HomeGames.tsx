@@ -109,16 +109,16 @@ export const HomeGames = () => {
             </div>
           )}
         </div>
-        {isMobile ? (
-          isLoading ? (
-            <div className='hg-loading'>
-              {new Array(numberOfGames).fill(0).map((_, index) => (
-                <div key={index}>
-                  <Skeleton className='hg-list-skeleton' />
-                </div>
-              ))}
-            </div>
-          ) : numberOfGames < 1 ? (
+        {isLoading ? (
+          <div className={`hg-loading ${!isMobile ? `desktop` : ``}`}>
+            {new Array(numberOfGames || 1).fill(0).map((_, index) => (
+              <div key={index}>
+                <Skeleton className='hg-list-skeleton' />
+              </div>
+            ))}
+          </div>
+        ) : isMobile ? (
+          numberOfGames < 1 ? (
             <div className='hg-no-games'>
               <div className='no-games-card'>
                 <div className='no-games-text'>
@@ -146,14 +146,6 @@ export const HomeGames = () => {
               </ul>
             </div>
           )
-        ) : isLoading ? (
-          <div className='hg-loading-desktop'>
-            {new Array(numberOfGames).fill(0).map((_, index) => (
-              <div key={index}>
-                <Skeleton className='hg-list-skeleton'/>
-              </div>
-            ))}
-          </div>
         ) : numberOfGames < 1 ? (
           <div className='hg-no-games'>
             <div className='no-games-card'>

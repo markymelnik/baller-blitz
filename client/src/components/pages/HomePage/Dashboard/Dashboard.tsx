@@ -7,7 +7,7 @@ export const Dashboard = () => {
   return (
     <div className='dashboard'>
       <div className='home-welcome'>
-        <div className='hw-hi'>Hi {userDetails?.username}</div>
+        <div className='hw-hi'>Hello {userDetails?.username}</div>
         <div className='hw-back'>Welcome back!</div>
       </div>
       <HomeGames />

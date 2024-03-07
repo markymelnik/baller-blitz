@@ -27,7 +27,7 @@ export const UserPredictions = ({ currentPredictedGames }: UserPredictionsProps)
       >
         <h3 className='current-text'>{Content.profile.currentPredictions.title}</h3>
         <button className="current-pred-open">
-        <Icons.ArrowDown
+        <Icons.ArrowRight
           size={20}
           className={isCurrentOpen ? `icon` : `rotate-icon`}
         />

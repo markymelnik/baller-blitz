@@ -1,4 +1,4 @@
-import { Icons } from '../../../lib/Icons.ts';
+/* import { Icons } from '../../../lib/Icons.ts'; */
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
 
@@ -7,8 +7,9 @@ export const NavToFriendsBtn = () => {
     <NavigateToButtonCreator
       toRoute={'/friends'}
       className={'nav-to-friends-btn'}
+      buttonText={'Friends'}
     >
-      <Icons.Users size={32} className='icon'/>
+  {/*     <Icons.Users size={32} className='icon'/> */}
     </NavigateToButtonCreator>
   );
 };

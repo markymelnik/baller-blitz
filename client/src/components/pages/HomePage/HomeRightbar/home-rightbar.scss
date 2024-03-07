@@ -17,6 +17,7 @@
 		@include theme-color(border-color, border);
 		@include theme-color(background-color, bg);
 		box-shadow: $normal-shadow;
+		padding: $padding-mobile;
 	}
 
 	>:nth-child(1) {

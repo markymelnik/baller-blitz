@@ -5,11 +5,9 @@ import { Icons } from '../../../lib/Icons.ts';
 import { useFetchAllPredictions } from '../../../hooks/predictions/useFetchAllPredictions.ts';
 import { useFetchCurrentPredictions } from '../../../hooks/predictions/useFetchCurrentPredictions.ts';
 import { useAuth, useUserDetails } from '../../../hooks/stateSelectors.ts';
-import { NavToSettingsBtn } from '../../buttons/nav/NavToSettingsBtn.tsx';
 
 import { UserHistory } from './UserHistory/UserHistory.tsx';
 import { UserPredictions } from './UserPredictions/UserPredictions.tsx';
-import { UserStats } from './UserStats/UserStats.tsx';
 import './profile-page.scss';
 
 
@@ -45,8 +43,13 @@ const ProfilePage = () => {
       <main className='profile-page main-page'>
         <div className='profile-page-top'>
           <div className='profile-container'>
-            <div className='profile-photo'></div>
+            <div className='photo-banner'>
+          
+            </div>
             <div className='profile-details'>
+            <div className="photo"></div>
+            
+              <div className="details-container">
               <h1 className='profile-username'>{username}</h1>
               <div className='profile-verified'>
                 <span>
@@ -54,6 +57,8 @@ const ProfilePage = () => {
                 </span>
                 {is_verified && 'Verified'}
               </div>
+              </div>
+          
             </div>
           </div>
         </div>
@@ -62,11 +67,6 @@ const ProfilePage = () => {
         </div>
         <div className='profile-page-bot'>
           <ul className='profile-page-blobs'>
-          <div className="pp-to-settings-wrapper">
-              <NavToSettingsBtn />
-            </div>
-            <UserStats />
-            
             <UserPredictions currentPredictedGames={currentPredictedGames} />
             <UserHistory allPredictedGames={allPredictedGames} />
           </ul>

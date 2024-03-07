@@ -25,7 +25,7 @@ export const UserHistory = ({ allPredictedGames }: UserHistoryProps) => {
       <div className='history-header'>
         <h3 className='history-text'>{Content.profile.historyPredictions.title}</h3>
         <button className="history-open">
-        <Icons.ArrowDown
+        <Icons.ArrowRight
           size={20}
           className={isHistoryOpen ? `icon` : `rotate-icon`}
         />

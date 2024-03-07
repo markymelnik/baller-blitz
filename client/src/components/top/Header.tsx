@@ -5,43 +5,36 @@ import { useAuthorizedRender } from '../../hooks/auth/useAuthorizedRender.ts';
 import { useIsMobile } from '../../hooks/page/useIsMobile.ts';
 import { NavToProfileBtn } from '../buttons/nav/NavToProfileBtn.tsx';
 import { NavToSearchBtn } from '../buttons/nav/NavToSearchBtn.tsx';
-import { NavToGamesBtn } from '../buttons/nav/NavToGamesBtn.tsx';
 import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
 import { NavToFriendsBtn } from '../buttons/nav/NavToFriendsBtn.tsx';
 import { NavBackBtn } from '../buttons/nav/NavBackBtn.tsx';
 import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
+import { MobileOverlayBtn } from '../buttons/MobileOverlayBtn/MobileOverlayBtn.tsx';
 
-import './header.scss';
 import { Logo } from './Logo/Logo.tsx';
+import './header.scss';
 
 const Header = () => {
   const location = useLocation();
-  useHeaderHideOnScroll();
   const isMobile = useIsMobile();
+  useHeaderHideOnScroll();
 
 	const AuthenticatedToProfileButton = useAuthorizedRender(NavToProfileBtn, ['user','admin']);
   const AuthenticatedToSearchButton = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
   const AuthenticatedToFriendsButton = useAuthorizedRender(NavToFriendsBtn, ['user','admin']);
-  const AuthenticatedBackBtn = useAuthorizedRender(NavBackBtn, ['user','admin']);
-  const AuthenticatedToGamesBtn = useAuthorizedRender(NavToGamesBtn, ['user','admin'])
-  const UnauthenticatedBackBtn = useUnauthorizedRender(NavBackBtn, ['user','admin']);
   const AuthenticatedToNotifBtn = useAuthorizedRender(NavToNotifBtn, ['user','admin']);
 
-  const UnauthenticatedHeader = useUnauthorizedRender(
-    () => (
-      <>
-        {location.pathname !== '/' && (
-          <nav className='back-nav-container'>
-            <UnauthenticatedBackBtn />
-          </nav>
-        )}
+  const AuthenticatedBackBtn = useAuthorizedRender(NavBackBtn, ['user','admin']);
+  const UnauthenticatedBackBtn = useUnauthorizedRender(NavBackBtn, ['user','admin']);
 
-      {/*   <div className='theme-btn-container'>
-          <UnauthenticatedThemeBtn />
-        </div> */}
-      </>
-    ),
+  const UnauthenticatedHeader = useUnauthorizedRender(
+    () =>
+      location.pathname !== '/' && (
+        <nav className='back-nav-container'>
+          <UnauthenticatedBackBtn />
+        </nav>
+      ),
     ['user', 'admin']
   );
 
@@ -50,8 +43,8 @@ const Header = () => {
       <header className='header-container'>
         <nav className='header-left-nav'>
           <>
-            {location.pathname === '/' && !isMobile && <Logo /> }
-            {location.pathname === '/' && isMobile && <AuthenticatedToGamesBtn />}
+            {location.pathname === '/' && !isMobile && <Logo />}
+            {location.pathname === '/' && isMobile && <MobileOverlayBtn />}
             {location.pathname === '/games' && <AuthenticatedBackBtn />}
             {location.pathname.startsWith('/profile') && (
               <AuthenticatedBackBtn />
@@ -94,38 +87,34 @@ const Header = () => {
               {' '}
               {location.pathname === '/' && <AuthenticatedToSearchButton />}
               {location.pathname === '/' && <AuthenticatedToProfileButton />}
-
-            
               {location.pathname === '/games' && (
                 <AuthenticatedToSearchButton />
               )}
-                {location.pathname === '/games' && (
+              {location.pathname === '/games' && (
                 <AuthenticatedToProfileButton />
-              )}
-
-              {location.pathname === '/profile' && (
-                <AuthenticatedToFriendsButton />
               )}
               {location.pathname === '/profile' && <AuthenticatedToNotifBtn />}
               {location.pathname.startsWith('/profile') &&
                 location.pathname !== '/profile' && (
                   <AuthenticatedToProfileButton />
-              )}
+                )}
               {location.pathname.startsWith('/profile') &&
                 location.pathname !== '/profile' && (
                   <AuthenticatedToSearchButton />
-              )}
-
+                )}
               {location.pathname === '/search' && (
                 <AuthenticatedToProfileButton />
               )}
-              
               {location.pathname === '/friends' && (
                 <AuthenticatedToSearchButton />
               )}
             </>
           ) : (
-            <>{location.pathname === '/' && <AuthenticatedToSearchButton />}{location.pathname === '/' && <AuthenticatedToProfileButton />}</>
+            <>
+              {location.pathname === '/' && <AuthenticatedToSearchButton />}
+              {location.pathname === '/' && <AuthenticatedToNotifBtn />}
+              {location.pathname === '/' && <AuthenticatedToProfileButton />}
+            </>
           )}
         </nav>
       </header>
@@ -142,20 +131,3 @@ const Header = () => {
 };
 
 export default Header;
-
-
-  {/* <header className='header-container unauth'>
-          <nav className='header-left-nav'>
-            {location.pathname === '/signup' && <UnauthenticatedBackBtn />}
-            {location.pathname === '/login' && <UnauthenticatedBackBtn />}
-          </nav>
-
-          <div className='header-middle'>
-            {location.pathname === '/signup' && (
-              <h1 className='header-h1'>Baller Blitz</h1>
-            )}
-            {location.pathname === '/login' && (
-              <h1 className='header-h1'>Baller Blitz</h1>
-            )}
-          </div>
-        </header> */}

@@ -1,0 +1,16 @@
+@import '@styles/colors';
+
+.mobile-overlay-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 2.5rem;
+	width: 2.5em;
+	border: 1px solid;
+	@include theme-color(border-color, border);
+
+	.icon {
+		height: 2rem;
+		width: 2rem;
+	}
+}
