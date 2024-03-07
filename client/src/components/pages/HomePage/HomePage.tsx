@@ -74,11 +74,14 @@ const HomePage = () => {
       <main className='home-page main-page auth'>
         
         {!isMobile && <HomeSidebar activeTab={activeTab} setActiveTab={setActiveTab} />}
-        {!isMobile && activeTab === 'dashboard' && <Dashboard />}
-        {!isMobile && activeTab === 'games' && <GamesTab />}
-        {!isMobile && activeTab === 'friends' && <FriendsTab />}
-        {!isMobile && <HomeRightbar />}
+      
+          {!isMobile && activeTab === 'dashboard' && <Dashboard />}
+          {!isMobile && activeTab === 'games' && <GamesTab />}
+          {!isMobile && activeTab === 'friends' && <FriendsTab />}
+      
 
+        {!isMobile && <HomeRightbar />}
+    
         {isMobile && <Dashboard />}
       </main>
     ),

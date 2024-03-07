@@ -3,53 +3,35 @@
 .home-sidebar {
 	display: flex;
 	flex-direction: column;
-	border: 1px solid;
-	border-left: none;
+	border-right: 1px solid;
 	@include theme-color(border-color, border);
-	border-top-right-radius: $round-edge;
-	border-bottom-right-radius: $round-edge;
-	padding: 1.25rem;
+	@include theme-color(background-color, bg);
+	box-shadow: $normal-shadow;
 	overflow: hidden;
+	padding: $padding-mobile;
 
 	.sidebar-nav {
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
 
 		.sidebar-item {
-			padding: 1rem;
-			border-left: 2px solid;
-			@include theme-color(border-color, bg);
-			border-top-right-radius: $round-edge;
-			border-bottom-right-radius: $round-edge;
+			padding: 1rem 0;
+			@include theme-color(color, border);
 
 			&.on {
-				background-color: $lightest-grey;
-			
-				border-left: 2px solid;
-				@include theme-color(border-color, text);
 				pointer-events: none;
+				@include theme-color(color, text);
 			}
 
 			&:hover {
 				cursor: pointer;
-				background-color: $lightest-grey;
+				@include theme-color(color, text);
 			}
 		}
 	}
 
 	.sidebar-to-profile-nav {
 		display: flex;
-		padding: 0 0 1.25rem;
-
-		button {
-			height: 5rem;
-			width: 5rem;
-		
-			.profile-btn-img {
-				font-size: 1.5rem;
-			}
-		}
 	}
 
 	.sidebar-space {
@@ -58,8 +40,7 @@
 	}
 
 	.sidebar-divider {
-		padding: 0 0 1.25rem;
-
+		padding: $padding-mobile 0;
 		.divider {
 			border-bottom: 1px solid;
 			@include theme-color(border-color, border);

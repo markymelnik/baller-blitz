@@ -69,6 +69,7 @@ export const ListOfGamesToday = () => {
 
   return (
     <SkeletonTheme baseColor='#cccccc' highlightColor='#e6e6e6'>
+      <div className="games-today-container">
       {numberOfGames > 0 &&
         (isLoading ? (
           <div className='skeleton-message-container'>
@@ -136,6 +137,7 @@ export const ListOfGamesToday = () => {
       
         </>
       )}
+      </div>
     </SkeletonTheme>
   );
 };

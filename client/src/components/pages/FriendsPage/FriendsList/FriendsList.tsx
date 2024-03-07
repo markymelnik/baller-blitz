@@ -23,7 +23,7 @@ export const FriendsList = () => {
   }
 
   return (
-    <>
+    <div className="friends-container">
       {friends.length > 0 && <div className='friends-list-title'>{Content.friends.title} <span>({friends.length})</span></div>}
       {friends.length < 1 ? (
         <div className='no-friends-fallback'>
@@ -37,6 +37,6 @@ export const FriendsList = () => {
           ))}
         </ul>
       )}
-    </>
+  </div>
   );
 }

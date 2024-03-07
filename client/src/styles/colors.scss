@@ -5,10 +5,14 @@ $light-theme-text: $black;
 $light-theme-border: $light-grey;
 $light-theme-card-border: $white;
 
+$light-theme-backdrop: $whiter;
+
 $dark-theme-bg: $black;
 $dark-theme-text: $white;
 $dark-theme-border: $dark-grey;
 $dark-theme-card-border: $dark-grey;
+
+$dark-theme-backdrop: $blacker;
 
 $themes: (
   light: (
@@ -16,12 +20,14 @@ $themes: (
     text: $light-theme-text,
     border: $light-theme-border,
     card-border: $light-theme-card-border,
+    backdrop: $light-theme-backdrop,
   ),
   dark: (
     bg: $dark-theme-bg,
     text: $dark-theme-text,
     border: $dark-theme-border,
     card-border: $dark-theme-card-border,
+    backdrop: $dark-theme-backdrop,
   ),
 );
 

@@ -5,10 +5,11 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 1.25rem 1.25rem;
+	padding: 0.5rem 1rem;
 	z-index: 2;
 	transition: top 0.6s;
 	@include theme-color(background-color, bg);
+	box-shadow: $normal-shadow;
 
 	@media (min-width: 768px) {
 		border-bottom: 1px solid;
@@ -31,8 +32,8 @@
 		height: 2.5rem;
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		min-width: 2.5rem;
+		gap: 1rem;
+		min-width: 2rem;
 	}
 
 	&.hidden {

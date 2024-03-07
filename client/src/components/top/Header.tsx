@@ -95,11 +95,12 @@ const Header = () => {
               {location.pathname === '/' && <AuthenticatedToSearchButton />}
               {location.pathname === '/' && <AuthenticatedToProfileButton />}
 
-              {location.pathname === '/games' && (
-                <AuthenticatedToProfileButton />
-              )}
+            
               {location.pathname === '/games' && (
                 <AuthenticatedToSearchButton />
+              )}
+                {location.pathname === '/games' && (
+                <AuthenticatedToProfileButton />
               )}
 
               {location.pathname === '/profile' && (

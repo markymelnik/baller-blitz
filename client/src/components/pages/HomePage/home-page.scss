@@ -3,21 +3,22 @@
 .home-page {
 	display: flex;
   flex-direction: column;
-	min-height: 90vh;
 	width: 100%;
+	flex: 1;
+	padding: $padding-mobile;
 
 	&.auth {
-		height: 80vh;
-
-		@media (min-width: 768px) {
-			padding: 1.25rem 0 0;
-		}
+		@include theme-color(background-color, backdrop);
+		padding: 0;
 	}
 
 	@media (min-width: 768px) {
 		display: grid;
-		grid-template-columns: 14rem 6fr 2fr;
+		grid-template-columns: 12rem 4fr 2fr;
+	}
 
+	@media (min-width: 1200px) {
+		grid-template-columns: 12rem 5fr 2fr;
 	}
 
 	.home-unauth {
@@ -27,7 +28,6 @@
 		@media (min-width: 768px) {
 			flex-direction: row;	
 			width: 100vw;
-
 		}
 
 		.hu-left {
@@ -37,7 +37,6 @@
 
 			@media (min-width: 768px) {
 				width: 50%;
-				padding: 2.5rem;
 			}
 
 			.hu-player {

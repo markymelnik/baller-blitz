@@ -4,26 +4,28 @@
 .home-rightbar {
 	display: flex;
 	flex-direction: column;
-	gap: 1.25rem;
 	/* border: 1px solid;
 	border-right: none;
 	@include theme-color(border-color, border);
 	border-top-left-radius: $round-edge;
 	border-bottom-left-radius: $round-edge; */
 	overflow: hidden;
-	padding: 0 1.25rem 0 0;
+	@include theme-color(background-color, backdrop);
 
 	> * {
-		border: 1px solid;
+		border-left: 1px solid;
 		@include theme-color(border-color, border);
-		border-radius: $round-edge;
+		@include theme-color(background-color, bg);
+		box-shadow: $normal-shadow;
 	}
 
-	.home-rb-top {
-		height: 60%;
-	}
-
-	.home-rb-bot {
+	>:nth-child(1) {
 		height: 40%;
+		border-bottom: 1px solid;
+		@include theme-color(border-color, border);
+	}
+
+	>:nth-child(2) {
+		height: 60%;
 	}
 }

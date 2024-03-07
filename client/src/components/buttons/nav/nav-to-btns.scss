@@ -22,11 +22,20 @@
 	}
 }
 
-.nav-to-search-btn,
 .nav-to-friends-btn,
 .nav-to-notif-btn {
 	height: 2.5rem;
 	width: 2.5rem;
+}
+
+.nav-to-search-btn {
+	height: 2rem;
+	width: 2rem;
+	@include theme-color(color, border);
+
+	&:hover {
+		@include theme-color(color, text);
+	}
 }
 
 .nav-to-games-btn-arr {
@@ -65,11 +74,27 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 2.5rem;
-	width: 2.5rem;
-	border: 1px solid;
+	height: 2rem;
+	width: 2rem;
+	border: 1.5px solid;
 	@include theme-color(border-color, border);
 	border-radius: 50%;
+
+	svg {
+		height: 1rem;
+		width: 1rem;
+	}
+
+	@media (min-width: 768px) {
+		width: 2.5rem;
+		height: 2.5rem;
+
+
+	svg {
+		height: 1.25rem;
+		width: 1.25rem;
+	}
+	}
 
 	&:hover {
 		@include theme-color(border-color, text);
@@ -88,14 +113,19 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 2.5rem;
-	width: 2.5rem;
-	border: 1px solid;
+	height: 2rem;
+	width: 2rem;
+	border: 1.5px solid;
 	@include theme-color(border-color, border);
 	border-radius: 50%;
 
 	&:hover {
 		@include theme-color(border-color, text);
+	}
+
+	@media (min-width: 768px) {
+		height: 2.5rem;
+		width: 2.5rem;
 	}
 
 	.profile-btn-img {

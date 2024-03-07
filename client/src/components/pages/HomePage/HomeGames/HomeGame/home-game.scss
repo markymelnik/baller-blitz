@@ -5,14 +5,14 @@
 .home-game {
 	display: inline-block;
 	margin-right: 1.25rem;
+	border: 1px solid;
+	@include theme-color(border-color, border);
 	border-radius: $round-edge;
 	height: 20rem;
 	width: 15rem;
 	box-shadow: $shadow-thin;
-	@include hover-shadow-effect;
-	border: 1px solid;
-	@include theme-color(border-color, card-border);
-	transition: transform 0.15s ease;
+	/* @include hover-shadow-effect; */
+	/* transition: transform 0.15s ease; */
 
 	@media (min-width: 768px) {
 		margin: auto;
@@ -27,18 +27,14 @@
 
 	&.finished {
 		pointer-events: none;
-		opacity: 0.5;
 	}
 
 	.hg-top {
 		height: 8rem;
-		background: $lighter-grey;
+		border-bottom: 1px solid;
+		@include theme-color(border-color, border);
 		border-top-left-radius: 4.5px;
 		border-top-right-radius: 4.5px;
-
-		.hg-photo {
-			
-		}
 	}
 
 	.hg-bot {

@@ -1,5 +1,6 @@
+import { ColorBtn } from '../../../buttons/ColorBtn/ColorBtn';
 import { LogoutButton } from '../../../buttons/LogoutButton/LogoutButton';
-import { NavToProfileBtn } from '../../../buttons/nav/NavToProfileBtn';
+/* import { NavToProfileBtn } from '../../../buttons/nav/NavToProfileBtn'; */
 import './home-sidebar.scss';
 
 type HomeSidebarProps = {
@@ -18,7 +19,8 @@ export const HomeSidebar = ({ activeTab, setActiveTab }: HomeSidebarProps) => {
 			</nav>
 			<div className="sidebar-space"></div>
 			<nav className="sidebar-to-profile-nav">
-			<NavToProfileBtn />
+		{/* 	<NavToProfileBtn /> */}
+			<ColorBtn />
 			</nav>
 		
 			<div className="sidebar-divider"><div className="divider"></div></div>

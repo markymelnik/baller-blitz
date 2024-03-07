@@ -9,7 +9,7 @@ import { SearchProvider } from './contexts/SearchProvider.tsx';
 import { PaginationProvider } from './contexts/PaginationProvider.tsx';
 import AppRoutes from './AppRoutes.tsx';
 import { LoadingScreen } from './components/loading-screen/LoadingScreen.tsx';
-import { TopBanner } from './TopBanner/TopBanner.tsx';
+/* import { TopBanner } from './TopBanner/TopBanner.tsx'; */
 
 const Header = lazy(() => import('./components/top/Header.tsx'));
 const VerifyEmailOverlay = lazy(() => import('./components/overlays/VerifyOverlay/VerifyOverlay.tsx'));
@@ -26,7 +26,7 @@ const App = () => {
     <PaginationProvider>
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
-      <TopBanner />
+      {/* <TopBanner /> */}
       <div className='app-container'>
         <AuthenticationCheck>
           <ScrollToTop />

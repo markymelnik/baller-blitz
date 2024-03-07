@@ -1,23 +1,27 @@
-@import '../../../../styles/colors.scss';
-@import '../../../../styles/variables.scss';
+@import '@styles/colors.scss';
 
 .home-games {
 	display: flex;
 	flex-direction: column;
 	padding: 0 0 0.5rem;
+	padding: $padding-mobile;
 
-/* 	@media (min-width: 768px) {
-		border: 1px solid;
+	@media (min-width: 768px) {
+		/* border: 1px solid;
 		@include theme-color(border-color, border);
-		border-radius: $round-edge;
-	} */
+		border-radius: $round-edge; */
+	}
 
 	.home-games-top {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0 0 1rem;
+		padding: 0.5rem 0;
 
+		@media (min-width: 768px) {
+			padding: 0.5rem 0 1rem;
+		}
+	
 		.hg-header {
 			font-size: 1.25rem;
 
@@ -125,6 +129,17 @@
 
 	.hg-loading::-webkit-scrollbar {
 		display: none;
+	}
+
+	.hg-loading-desktop {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+		gap: 1.25rem;
+
+		.hg-list-skeleton {
+			height: 20rem;
+			width: 15rem;
+		}
 	}
 
 }

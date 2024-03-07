@@ -109,7 +109,6 @@ export const HomeGames = () => {
             </div>
           )}
         </div>
-
         {isMobile ? (
           isLoading ? (
             <div className='hg-loading'>
@@ -147,30 +146,40 @@ export const HomeGames = () => {
               </ul>
             </div>
           )
+        ) : isLoading ? (
+          <div className='hg-loading-desktop'>
+            {new Array(numberOfGames).fill(0).map((_, index) => (
+              <div key={index}>
+                <Skeleton className='hg-list-skeleton'/>
+              </div>
+            ))}
+          </div>
         ) : numberOfGames < 1 ? (
           <div className='hg-no-games'>
-          <div className='no-games-card'>
-            <div className='no-games-text'>
-              No predictions! <br />
-              Place predictions in Games
+            <div className='no-games-card'>
+              <div className='no-games-text'>
+                No predictions! <br />
+                Place predictions in Games
+              </div>
             </div>
           </div>
-        </div>
-        ) : (    <ul className='hg-list-desktop'>
-        {homeGames.map((game) => {
-          const predictedGame = predictedGames.find(
-            (prediction) => prediction.game_id === +game.gameId
-          );
-          return (
-            <HomeGame
-              key={game.gameId}
-              game={game}
-              predictedWinner={predictedGame?.predicted_winner}
-              onSuccessfulSubmission={handleGamesListUpdate}
-            />
-          );
-        })}
-      </ul>)}
+        ) : (
+          <ul className='hg-list-desktop'>
+            {homeGames.map((game) => {
+              const predictedGame = predictedGames.find(
+                (prediction) => prediction.game_id === +game.gameId
+              );
+              return (
+                <HomeGame
+                  key={game.gameId}
+                  game={game}
+                  predictedWinner={predictedGame?.predicted_winner}
+                  onSuccessfulSubmission={handleGamesListUpdate}
+                />
+              );
+            })}
+          </ul>
+        )}
       </div>
     </SkeletonTheme>
   );

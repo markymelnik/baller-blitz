@@ -1,8 +1,10 @@
+@import '@styles/colors';
+
 .search-page {
 	width: 100%;
 	display: flex;
   flex-direction: column;
-	padding: 0.5rem 0 0;
+	padding: $padding-mobile;
 
 	@media (min-width: 768px) {
 		padding: 1.25rem;

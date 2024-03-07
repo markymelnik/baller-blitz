@@ -1,37 +1,38 @@
 @import '@styles/colors.scss';
 
-.friends-list {
-	display: flex;
-	flex-direction: column;
-	gap: 1.25rem;
-	padding: 0 0 1.25rem;
-	@include theme-color(border-color, border);
+.friends-container {
 
-	@media (min-width: 768px) {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		padding: 0 1.25rem;
+	.friends-list-title {
+		font-size: 1rem;
+		@include theme-color(border-color, border);
+		padding: $padding-mobile $padding-mobile 0;
+
+		@media (min-width: 768px) {
+			font-size: 1.5rem;
+		}
 	}
-}
 
-.no-friends-fallback {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1;
-
-	.fallback-text {
-		padding: 4rem 0 1rem;
+	.friends-list {
+		display: flex;
+		flex-direction: column;
+		gap: $padding-mobile;
+		@include theme-color(border-color, border);
+		padding: $padding-mobile;
+	
+		@media (min-width: 768px) {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		}
 	}
-}
 
-.friends-list-title {
-	font-size: 1rem;
-	padding: 0 0 1.25rem;
-	@include theme-color(border-color, border);
+	.no-friends-fallback {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex: 1;
 
-	@media (min-width: 768px) {
-		font-size: 1.25rem;
-		padding: 0 0 1.25rem 1.25rem;
+		.fallback-text {
+			padding: 4rem 0 1rem;
+		}
 	}
 }
