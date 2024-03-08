@@ -3,6 +3,13 @@
 .req-friends-container {
 	display: flex;
 	flex-direction: column;
+	padding: 2rem $normal-padding 0;
+	width: 100%;
+
+	@media (min-width: 768px) {
+		padding: 2rem $normal-padding;
+		max-width: 992px;
+	}
 
 	.req-friends-title {
 		padding: 0 0 1rem;

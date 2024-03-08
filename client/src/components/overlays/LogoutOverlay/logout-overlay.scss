@@ -1,5 +1,4 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 
 .logout-portal-wrapper {
 	display: flex;
@@ -60,15 +59,17 @@
 
 			.logout-btn {
 				border: 1.5px solid $red;
+				transition: all 0.1s ease;
 
 				&:hover {
-					background: $red;
+					background-color: $red;
 					color: $white;
 				}
 			}
 	
 			.close-logout-overlay-btn {
 				border: none;
+				transition: color 0.1s ease;
 
 				&:hover {
 					@include theme-color(color, text);

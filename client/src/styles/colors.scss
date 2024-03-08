@@ -1,18 +1,22 @@
 @import './variables.scss';
 
 $light-theme-bg: $white;
-$light-theme-text: $black;
-$light-theme-border: $light-grey;
-$light-theme-card-border: $white;
-
-$light-theme-backdrop: $whiter;
-
 $dark-theme-bg: $black;
+
+$light-theme-text: $black;
 $dark-theme-text: $white;
+
+$light-theme-border: $light-grey;
 $dark-theme-border: $dark-grey;
+
+$light-theme-card-border: $white;
 $dark-theme-card-border: $dark-grey;
 
-$dark-theme-backdrop: $blacker;
+$light-theme-backdrop: $white-backdrop;
+$dark-theme-backdrop: $black-backdrop;
+
+$light-theme-bg-hover: $white-backdrop;
+$dark-theme-bg-hover: $black-hover;
 
 $themes: (
   light: (
@@ -21,6 +25,7 @@ $themes: (
     border: $light-theme-border,
     card-border: $light-theme-card-border,
     backdrop: $light-theme-backdrop,
+    bg-hover: $light-theme-bg-hover,
   ),
   dark: (
     bg: $dark-theme-bg,
@@ -28,6 +33,7 @@ $themes: (
     border: $dark-theme-border,
     card-border: $dark-theme-card-border,
     backdrop: $dark-theme-backdrop,
+    bg-hover: $dark-theme-bg-hover,
   ),
 );
 

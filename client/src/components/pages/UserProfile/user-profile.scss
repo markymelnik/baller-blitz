@@ -1,16 +1,35 @@
+@import '@styles/colors';
+
 .user-profile-container {
 	height: 100%;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	flex: 1;
+	padding: 7rem $normal-padding $normal-padding;
 
 	@media (min-width: 768px) {
-		padding: 1.25rem 12rem;
+		padding: 8rem $normal-padding $normal-padding;
 	}
 
-	.user-profile-mid {
+	.user-profile {
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		max-width: 992px;
+		width: 100%;
+		flex: 1;
+
+		.user-profile-mid {
+			display: flex;
+			justify-content: center;
+		}
+
+		.user-profile-bot {
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+			align-items: baseline;
+		}
 	}
 }

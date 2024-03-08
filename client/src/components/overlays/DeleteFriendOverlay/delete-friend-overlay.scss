@@ -1,5 +1,4 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 
 .df-portal-wrapper {
 	display: flex;
@@ -41,8 +40,23 @@
 				color: $red;
 			}
 
+			.df-close-btn {
+				transition: color 0.1s ease;
+
+				&:hover {
+					@include theme-color(color, text);
+				
+				}
+			}
+
 			.df-confirm-btn {
 				border: 1px solid $red;
+				transition: all 0.1s ease;
+
+				&:hover {
+					background-color: $red;
+					color: $white;
+				}
 			}
 		}
 	}

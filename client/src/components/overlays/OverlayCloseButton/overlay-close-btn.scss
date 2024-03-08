@@ -1,15 +1,26 @@
-@import '@styles/variables.scss';
+@import '@styles/colors.scss';
 
 .overlay-close-btn {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 3.5rem;
-  width: 3.5rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  height: 3rem;
+  width: 3rem;
+  padding: 0.75rem;
   border: none;
-  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: $round-edge;
+  border-radius: 50%;
+  @include theme-color(background-color, bg);
+  transition: background-color 0.1s ease;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
+
+  &:hover {
+    @include theme-color(background-color, bg-hover);
+  }
 }

@@ -1,11 +1,10 @@
-@import '@styles/variables.scss';
 @import '@styles/transitions.scss';
 @import '@styles/colors.scss';
 
 .user-history {
 	display: flex;
 	flex-direction: column;
-	padding: $padding-mobile;
+	padding: $normal-padding;
 	border-radius: $round-edge;
 	border: 1px solid;
 	@include theme-color(border-color, border);

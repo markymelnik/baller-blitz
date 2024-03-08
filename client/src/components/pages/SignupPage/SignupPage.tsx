@@ -7,7 +7,7 @@ import './signup-page.scss';
 const SignupPage = () => {
 
   return (
-    <main className='signup-page main-page unauth'>
+    <main className='signup-page unauth'>
       
       <div className="sp-left">
 

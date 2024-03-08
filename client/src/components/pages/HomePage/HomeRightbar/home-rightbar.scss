@@ -1,5 +1,4 @@
 @import '@styles/colors';
-@import '@styles/variables';
 
 .home-rightbar {
 	display: flex;
@@ -17,7 +16,7 @@
 		@include theme-color(border-color, border);
 		@include theme-color(background-color, bg);
 		box-shadow: $normal-shadow;
-		padding: $padding-mobile $padding-mobile 2.5rem;
+		padding: $normal-padding $normal-padding 2.5rem;
 	}
 
 	>:nth-child(1) {

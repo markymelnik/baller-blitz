@@ -7,7 +7,7 @@ import './login-page.scss';
 const LoginPage = () => {
 
   return (
-    <main className='login-page main-page unauth'>
+    <main className='login-page unauth'>
       <div className="lp-left">
 
       </div>

@@ -1,5 +1,4 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 
 .profile-stats {
 	display: flex;
@@ -8,7 +7,6 @@
 	border: 1px solid;
 	@include theme-color(border-color, border);
 	border-radius: $round-edge;
-	height: 10rem;
 
 	.stats-header {
 		font-size: 1.25rem;

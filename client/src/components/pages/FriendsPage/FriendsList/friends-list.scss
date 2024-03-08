@@ -5,23 +5,25 @@
 	.friends-list-title {
 		font-size: 1rem;
 		@include theme-color(border-color, border);
-		padding: $padding-mobile $padding-mobile 0;
+		padding: 2rem $normal-padding 0;
+
 
 		@media (min-width: 768px) {
 			font-size: 1.5rem;
+			padding: $normal-padding;
 		}
 	}
 
 	.friends-list {
 		display: flex;
 		flex-direction: column;
-		gap: $padding-mobile;
+		gap: $normal-padding;
 		@include theme-color(border-color, border);
-		padding: $padding-mobile;
+		padding: $normal-padding;
 	
 		@media (min-width: 768px) {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));	
 		}
 	}
 

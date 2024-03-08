@@ -37,9 +37,12 @@ export const MobileOverlay = ({ isOpen, onClose }: MobileOverlayProps) => {
 				<NavToProfileBtn />
 				<div className="mo-username">{username || 'username_error'}</div>
 			</div>
+			<div className="mo-bo">
 			<ColorBtn />
 			<div className="mo-divider"><div className="divider"></div></div>
 			<LogoutButton />
+			</div>
+
 		</div>,
 		document.getElementById('portal-root')!
 	)

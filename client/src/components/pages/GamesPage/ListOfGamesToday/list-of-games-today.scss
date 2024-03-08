@@ -5,13 +5,29 @@
 	.list-message-container {
 		display: flex;
 		flex: 1;
+		padding: $normal-padding;
 	
 		.list-message {
-			font-size: 1.15rem;
-			padding: $padding-mobile;
-	
-			@media (min-width: 768px) {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			
+			.lm-top {
 				font-size: 1.5rem;
+
+				@media (min-width: 768px) {
+					font-size: 1.5rem;
+				}
+			}
+
+			.lm-bot {
+				font-size: 1rem;
+				@include theme-color(color, border);
+
+				@media (min-width: 768px) {
+					font-size: 1.25rem;
+				}
+
 			}
 		}
 	}
@@ -22,7 +38,7 @@
 		.skeleton-message {
 			font-size: 1.25rem;
 			width: 12rem;
-			margin: $padding-mobile;
+			margin: $normal-padding;
 	
 			@media (min-width: 768px) {
 				height: 1.5rem;
@@ -35,8 +51,8 @@
 		flex-direction: column;
 		@include theme-color(border-color, border);
 		z-index: 2;
-		padding: $padding-mobile;
-		gap: $padding-mobile;
+		padding: 0 $normal-padding $normal-padding;
+		gap: $normal-padding;
 	
 		@media (min-width: 768px) {
 			display: grid;

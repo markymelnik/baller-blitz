@@ -1,5 +1,4 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 @import '@styles/transitions.scss';
 
 .home-game {
@@ -11,8 +10,8 @@
 	height: 20rem;
 	width: 15rem;
 	box-shadow: $shadow-thin;
-	/* @include hover-shadow-effect; */
-	/* transition: transform 0.15s ease; */
+	@include hover-shadow-effect;
+	transition: transform 0.1s ease;
 
 	@media (min-width: 768px) {
 		margin: auto;
@@ -21,8 +20,8 @@
 
 	&:hover {
 		cursor: pointer;
-		@include theme-color(border-color, text);
-		transform: scale(1.05);
+		
+		transform: scale(1.025);
 	}
 
 	&.finished {
@@ -77,10 +76,6 @@
 				background-color: $red;
 				animation: PulsateLive 3s infinite;
 			}
-		}
-
-		.hg-pred {
-
 		}
 
 		.hg-pred-outcome {

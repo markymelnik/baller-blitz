@@ -7,21 +7,20 @@
 	flex: 1;
 
 	&.auth {
-		@include theme-color(background-color, backdrop);
 		flex-direction: row;
 
 		@media (min-width: 768px) {
 			display: grid;
-			grid-template-columns: 12rem 4fr 2fr;
+			grid-template-columns: 12.5rem 4fr 2fr;
 		}
 
 		@media (min-width: 1200px) {
-			grid-template-columns: 12rem 5fr 2fr;
+			grid-template-columns: 14rem 5fr 2fr;
 		}
 	}
 
 	&.unauth {
-		padding: $padding-mobile;
+		padding: $normal-padding;
 		overflow: hidden;
 	}
 

@@ -7,7 +7,8 @@ import './logout-btn.scss';
 const LogoutOverlay = lazy(() => import('../../overlays/LogoutOverlay/LogoutOverlay.tsx'));
 
 export const LogoutButton = () => {
-  const [isLogoutOverlayOpen, setIsLogoutOverlayOpen] = useState<boolean>(false);
+  const [isLogoutOverlayOpen, setIsLogoutOverlayOpen] =
+    useState<boolean>(false);
 
   const handleLogoutOverlayClose = () => {
     setIsLogoutOverlayOpen(false);
@@ -18,7 +19,7 @@ export const LogoutButton = () => {
   };
 
   return (
-    <div className='logout-container'>
+    <>
       <button
         className='open-overlay-btn'
         onClick={handleLogoutOverlayButtonClick}
@@ -30,6 +31,6 @@ export const LogoutButton = () => {
         isOpen={isLogoutOverlayOpen}
         onClose={handleLogoutOverlayClose}
       />
-    </div>
+    </>
   );
 };

@@ -5,6 +5,7 @@
 	flex-direction: column;
 	width: 100%;
 	flex: 1;
+	@include theme-color(background-color, backdrop);
 
 	@media (min-width: 768px) {
 		overflow-y: scroll;

@@ -4,7 +4,7 @@
 	border: 1px solid;
 	@include theme-color(border-color, border);
 	@include theme-color(background-color, bg);
-	height: 100vh;
+	height: 100dvh;
 	width: 16rem;
 	position: fixed;
 	top: 0;
@@ -14,7 +14,7 @@
 	z-index: 2;
 	display: flex;
 	flex-direction: column;
-	padding: 4.5rem $padding-mobile $padding-mobile;
+	padding: 4.5rem 0 $normal-padding;
 
 	&.slide-in {
 		transform: translateX(0);
@@ -22,8 +22,8 @@
 
 	.mo-close-btn {
 		position: absolute;
-		top: $padding-mobile;
-		left: $padding-mobile;
+		top: $normal-padding;
+		left: $normal-padding;
 
 		svg {
 			height: 1.75rem;
@@ -36,13 +36,19 @@
 		flex-direction: column;
 
 		> * {
-			padding: 1rem 0;
+			padding: 1rem $normal-padding;
+			/* border-bottom: 1px solid;
+			@include theme-color(border-color, border); */
 
 			.nav-btn-text {
 				text-align: left;
 			}
-
 		}
+
+		/* >:first-child {
+			border-top: 1px solid;
+			@include theme-color(border-color, border);
+		} */
 	}
 
 	.mo-space {
@@ -51,6 +57,7 @@
 		justify-content: flex-end;
 		align-items: center;
 		gap: 0.75rem;
+		padding: 0 0 $normal-padding;
 		flex: 1;
 
 		button {
@@ -67,12 +74,18 @@
 		}
 	}
 
-	.mo-divider {
-		padding: $padding-mobile 0;
-		
-		.divider {
-			border-bottom: 1px solid;
-			@include theme-color(border-color, border);
+	.mo-bo {
+		padding: 0 $normal-padding;
+
+		.mo-divider {
+			padding: $normal-padding 0;
+			
+			.divider {
+				border-bottom: 1px solid;
+				@include theme-color(border-color, border);
+			}
 		}
+
 	}
+
 }

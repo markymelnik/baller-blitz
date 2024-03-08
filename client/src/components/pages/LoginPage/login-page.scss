@@ -4,8 +4,8 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	min-height: 80vh;
-	padding: $padding-mobile;
+	min-height: 100dvh;
+	padding: $normal-padding;
 
 	@media (min-width: 992px) {
 		flex-direction: row;

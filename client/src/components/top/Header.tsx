@@ -7,7 +7,7 @@ import { NavToProfileBtn } from '../buttons/nav/NavToProfileBtn.tsx';
 import { NavToSearchBtn } from '../buttons/nav/NavToSearchBtn.tsx';
 import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
 import { NavBackBtn } from '../buttons/nav/NavBackBtn.tsx';
-import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
+/* import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts'; */
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
 import { MobileOverlayBtn } from '../buttons/MobileOverlayBtn/MobileOverlayBtn.tsx';
 
@@ -17,8 +17,8 @@ import './header.scss';
 const Header = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
-  useHeaderHideOnScroll();
-
+/*   useHeaderHideOnScroll();
+ */
 	const AuthenticatedToProfileButton = useAuthorizedRender(NavToProfileBtn, ['user','admin']);
   const AuthenticatedToSearchButton = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
   const AuthenticatedToNotifBtn = useAuthorizedRender(NavToNotifBtn, ['user','admin']);

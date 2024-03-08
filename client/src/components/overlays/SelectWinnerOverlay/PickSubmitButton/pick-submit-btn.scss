@@ -1,5 +1,4 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 
 .pick-submit-btn {
 	background: none;
@@ -9,6 +8,7 @@
   @include theme-color(border-color, border);
 	font-size: 1.05rem;
 	border-radius: $round-edge;
+	transition: border-color 0.1s ease;
 
 	&:hover {
 		@include theme-color(border-color, text);

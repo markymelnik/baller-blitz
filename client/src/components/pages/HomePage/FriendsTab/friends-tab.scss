@@ -1,5 +1,8 @@
+@import '@styles/colors';
+
 .friends-tab {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	@include theme-color(background-color, backdrop);
 }

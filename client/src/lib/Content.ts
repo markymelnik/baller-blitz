@@ -55,10 +55,11 @@ export const Content = {
   games: {
     title: 'Games',
     status: {
-      1: `Game information`,
-      2: `Games are live!`,
+      1: `Game details`,
+      2: `Live Games`,
       3: `All games have finished`,
-      4: `New game information at 12 PM EST!`,
+      4: `Game details at 12 PM EST`,
+      5: `Today`
     },
     no: {
       1: 'No games scheduled for today.',

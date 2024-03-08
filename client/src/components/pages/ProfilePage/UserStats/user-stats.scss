@@ -1,5 +1,4 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 @import '@styles/transitions.scss';
 
 .user-stats {
@@ -24,7 +23,7 @@
 			justify-content: center;
 			align-items: baseline;
 			gap: 0.25rem;
-			padding: $padding-mobile;
+			padding: $normal-padding;
 
 			.stat-title {
 				font-size: 1.25rem;
@@ -37,12 +36,12 @@
 		justify-content: center;
 		gap: 0.5rem;
 		flex-wrap: wrap;
-		padding: $padding-mobile;
+		padding: $normal-padding;
 		font-size: 1rem;
 
 		@media (min-width: 768px) {
 			justify-content: space-between;
-			padding: $padding-mobile 0 0;
+			padding: $normal-padding 0 0;
 		}
 
 		@media (min-width: 992px) {

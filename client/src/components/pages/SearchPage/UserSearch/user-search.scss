@@ -1,10 +1,17 @@
 @import '@styles/colors.scss';
-@import '@styles/variables.scss';
 
 .user-search-container {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	flex: 1;
+	padding: $normal-padding;
+	width: 100%;
+
+	@media (min-width: 768px) {
+		padding: $normal-padding;
+		max-width: 992px;
+	}
 
 	.user-search-top {
 		width: 100%;
@@ -42,7 +49,7 @@
 	}
 
 	.list-title {
-		padding: $padding-mobile 0 0.5rem;
+		padding: $normal-padding 0 0.5rem;
 
 		@media (min-width: 768px) {
 			padding: 2rem 0 1rem;
