@@ -54,7 +54,7 @@ export const ProfileStats = ({ userStats }: UserStatsProps) => {
           <div className='correct-rate'>
             <div className='correct-pred'>
               <span>{`${userStats.correct_predictions}`}</span>{' '}
-              {Content.userProfile.stats.predicted}
+              {Content.userProfile.stats.correct}
             </div>
             <div className='correct-total'>
               <span>{`${userStats.total_predictions}`}</span>{' '}

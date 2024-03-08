@@ -1,7 +1,10 @@
+@import '@styles/colors';
+
 .pagination-bar {
 	display: flex;
 	justify-content: center;
 	margin-top: auto;
+	padding: $padding-mobile;
 
 	.pagination-controls {
 		display: flex;

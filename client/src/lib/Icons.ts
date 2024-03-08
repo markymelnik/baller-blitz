@@ -1,8 +1,10 @@
-import { PiArrowBendRightUp, PiBell, PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiEye, PiEyeSlash, PiHouseLight, PiList, PiMagnifyingGlassLight, PiMoon, PiSealCheck, PiShieldWarning, PiSignOut, PiStack, PiSun, PiUser, PiUserCirclePlus, PiUsers, PiWarningCircle, PiX } from "react-icons/pi";
+import { PiAppWindow, PiArrowBendRightUp, PiBell, PiCaretDown, PiCaretLeft, PiCaretRight, PiCaretUp, PiEye, PiEyeSlash, PiHouseLight, PiMagnifyingGlassLight, PiMoon, PiSealCheck, PiShieldWarning, PiSignOut, PiStack, PiSun, PiUser, PiUserCirclePlus, PiUsers, PiWarningCircle, PiX } from "react-icons/pi";
 import { TbBallBasketball } from "react-icons/tb";
 import { MdCheck } from "react-icons/md";
-import { BsGear } from "react-icons/bs";
+import { CiSettings } from "react-icons/ci";
+import { RiMenu2Line } from "react-icons/ri";
 import './icons.scss';
+
 
 export const Icons = {
 	ArrowUp: PiCaretUp,
@@ -13,7 +15,7 @@ export const Icons = {
 	Close: PiX,
 	Home: PiHouseLight,
 	Profile: PiUser,
-	Gear: BsGear,
+	Gear: CiSettings,
 	Basketball: TbBallBasketball,
 	Logout: PiSignOut,
 	SheildWarning: PiShieldWarning,
@@ -30,5 +32,6 @@ export const Icons = {
 	Moon: PiMoon,
 	ArrowUpRight: PiArrowBendRightUp,
 	Stack: PiStack,
-	Menu: PiList,
+	Menu: RiMenu2Line,
+	Dashboard: PiAppWindow,
 }

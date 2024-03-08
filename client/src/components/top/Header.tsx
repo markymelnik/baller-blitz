@@ -6,7 +6,6 @@ import { useIsMobile } from '../../hooks/page/useIsMobile.ts';
 import { NavToProfileBtn } from '../buttons/nav/NavToProfileBtn.tsx';
 import { NavToSearchBtn } from '../buttons/nav/NavToSearchBtn.tsx';
 import { NavToNotifBtn } from '../buttons/nav/NavToNotifBtn.tsx';
-import { NavToFriendsBtn } from '../buttons/nav/NavToFriendsBtn.tsx';
 import { NavBackBtn } from '../buttons/nav/NavBackBtn.tsx';
 import useHeaderHideOnScroll from '../../hooks/page/useHeaderHideOnScroll.ts';
 import { useUnauthorizedRender } from '../../hooks/auth/useUnauthorizedRender.ts';
@@ -22,7 +21,6 @@ const Header = () => {
 
 	const AuthenticatedToProfileButton = useAuthorizedRender(NavToProfileBtn, ['user','admin']);
   const AuthenticatedToSearchButton = useAuthorizedRender(NavToSearchBtn, ['user','admin']);
-  const AuthenticatedToFriendsButton = useAuthorizedRender(NavToFriendsBtn, ['user','admin']);
   const AuthenticatedToNotifBtn = useAuthorizedRender(NavToNotifBtn, ['user','admin']);
 
   const AuthenticatedBackBtn = useAuthorizedRender(NavBackBtn, ['user','admin']);

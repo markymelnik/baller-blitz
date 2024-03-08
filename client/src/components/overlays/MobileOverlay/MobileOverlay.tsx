@@ -7,8 +7,10 @@ import { LogoutButton } from "../../buttons/LogoutButton/LogoutButton";
 import { NavToHomeBtn } from "../../buttons/nav/NavToHomeBtn";
 import { NavToGamesBtn } from "../../buttons/nav/NavToGamesBtn";
 import { NavToFriendsBtn } from "../../buttons/nav/NavToFriendsBtn";
-import './mobile-overlay.scss';
 import { ColorBtn } from "../../buttons/ColorBtn/ColorBtn";
+import { NavToProfileBtn } from "../../buttons/nav/NavToProfileBtn";
+import { useUserDetails } from "../../../hooks/stateSelectors";
+import './mobile-overlay.scss';
 
 type MobileOverlayProps = {
 	isOpen: boolean;
@@ -20,6 +22,9 @@ export const MobileOverlay = ({ isOpen, onClose }: MobileOverlayProps) => {
 	const overlayRef = useRef(null);
 	useOutsideClick(overlayRef, onClose);
 
+	const userDetails = useUserDetails()!;
+	const { username } = userDetails;
+
 	return createPortal(
 		<div className={`mobile-overlay ${isOpen ? `slide-in` : ``}`} ref={overlayRef}>
 			<button className="mo-close-btn" onClick={onClose}><Icons.Close /></button>
@@ -28,8 +33,12 @@ export const MobileOverlay = ({ isOpen, onClose }: MobileOverlayProps) => {
 				<NavToGamesBtn />
 				<NavToFriendsBtn />
 			</nav>
-			<div className="mo-space"></div>
+			<div className="mo-space">
+				<NavToProfileBtn />
+				<div className="mo-username">{username || 'username_error'}</div>
+			</div>
 			<ColorBtn />
+			<div className="mo-divider"><div className="divider"></div></div>
 			<LogoutButton />
 		</div>,
 		document.getElementById('portal-root')!

@@ -76,15 +76,16 @@ export const Content = {
       none: 'No History',
     },
     userStats: {
-      title: 'Your stats',
+      title: 'Overview',
       winPrediction: 'Win Prediction',
     },
   },
   userProfile: {
     error: 'Error loading user profile',
     stats: {
-      predicted: 'correct out of',
-      total: 'predictions made',
+      correct: 'Correct',
+      incorrect: 'Incorrect',
+      total: 'Total',
     }
   },
   verifySuccess: {

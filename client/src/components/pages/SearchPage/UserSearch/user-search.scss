@@ -41,12 +41,20 @@
 		}
 	}
 
+	.list-title {
+		padding: $padding-mobile 0 0.5rem;
+
+		@media (min-width: 768px) {
+			padding: 2rem 0 1rem;
+		}
+	}
+
 	.list-of-users {
 		display: flex;
 		flex-direction: column;
 		gap: 1.25rem;
-		padding: 1.25rem 0;
 	}
+
 
 	.user-search-error,
 	.user-search-spinner,

@@ -1,4 +1,4 @@
-/* import { Icons } from '../../../lib/Icons.ts'; */
+import { Icons } from '../../../lib/Icons.ts';
 
 import { NavigateToButtonCreator } from "./NavigateToButtonCreator.tsx";
 
@@ -9,7 +9,7 @@ export const NavToGamesBtn = () => {
       className={'nav-to-games-btn'}
       buttonText={'Games'}
     >
-  {/*     <Icons.Stack size={32} /> */}
+      <Icons.Stack />
     </NavigateToButtonCreator>
   );
 };

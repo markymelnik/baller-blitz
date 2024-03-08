@@ -24,6 +24,12 @@ export const UserSearch = () => {
   const [areResultsLoading, setAreResultingLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    if (!searchQuery) {
+      setPage(1);
+    }
+  }, [searchQuery, setPage]);
+
+  useEffect(() => {
     setAreResultingLoading(true);
     const timer = setTimeout(() => {
         setDebouncedQuery(searchQuery);
@@ -50,20 +56,20 @@ export const UserSearch = () => {
 
   return (
     <div className='user-search-container'>
-      <div className="user-search-top">
-        <div className="searchbar-icon">
+      <div className='user-search-top'>
+        <div className='searchbar-icon'>
           <Icons.Search size={18} />
         </div>
-      <input
-        type='text'
-        placeholder='Search users...'
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        className='user-search-searchbar'
-        name='user-search'
-      />
+        <input
+          type='text'
+          placeholder='Search users...'
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className='user-search-searchbar'
+          name='user-search'
+        />
       </div>
-      
+
       {showSpinner && (
         <div className='user-search-spinner'>
           <l-ring
@@ -82,16 +88,25 @@ export const UserSearch = () => {
       )}
       {users && !showSpinner && (
         <>
-          {users.length < 1 && <div className='search-fallback'>{Content.search.noResults}</div>}
+          {users.length < 1 ? (
+            <div className='search-fallback'>{Content.search.noResults}</div>
+          ) : (
+            <div className='list-title'>{`Results (${totalCount})`}</div>
+          )}
           <ul className='list-of-users'>
             {users.map((user: UserProfileInfo) => (
               <UserResult key={user.id} user={user} />
             ))}
           </ul>
-          {totalCount > 0 && <PaginationBar setPage={setPage} page={page} totalPages={totalPages}/> }
+          {totalCount > 0 && (
+            <PaginationBar
+              setPage={setPage}
+              page={page}
+              totalPages={totalPages}
+            />
+          )}
         </>
       )}
-      
     </div>
   );
 };

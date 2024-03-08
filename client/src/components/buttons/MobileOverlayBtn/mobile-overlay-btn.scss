@@ -4,13 +4,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 2.5rem;
-	width: 2.5em;
-	border: 1px solid;
-	@include theme-color(border-color, border);
+	height: 1.75rem;
+	width: 1.75em;
+/* 	border: 1px solid;
+	@include theme-color(border-color, border); */
 
 	.icon {
-		height: 2rem;
-		width: 2rem;
+		height: 100%;
+		width: 100%;
 	}
+	
 }

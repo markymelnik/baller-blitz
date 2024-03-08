@@ -1,9 +1,14 @@
+import { useIsMobile } from '../../../../hooks/page/useIsMobile';
 import { useUserDetails } from '../../../../hooks/stateSelectors';
+import { UserStats } from '../../ProfilePage/UserStats/UserStats';
 import { HomeGames } from '../HomeGames/HomeGames';
 import './dashboard.scss';
 
 export const Dashboard = () => {
 	const userDetails = useUserDetails()!;
+
+  const isMobile = useIsMobile();
+
   return (
     <div className='dashboard'>
       <div className='home-welcome'>
@@ -11,7 +16,10 @@ export const Dashboard = () => {
         <div className='hw-back'>Welcome back!</div>
       </div>
       <HomeGames />
-      {/* <div className="home-thing">Container 1</div>
+      {isMobile && <div className="db-stats-container">
+        <UserStats />
+      </div>}
+  {/*     <div className="home-thing">Container 1</div>
       <div className="home-thing">Container 2</div> */}
     </div>
   );

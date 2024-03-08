@@ -37,6 +37,27 @@
 		}
 	}
 
+	.db-stats-container {
+		height: 30rem;
+		padding: 2.5rem $padding-mobile;
+		@include theme-color(background-color, bg);
+
+		.user-stats {
+
+			.correct-rate {
+				font-size: 1.25rem;
+				gap: 1.25rem;
+
+				> * {
+
+					span {
+						font-size: 1.5rem;
+					}
+				}
+			}
+		}
+	}
+
 	.home-thing {
 		border: 1px solid;
 		@include theme-color(border-color, border);

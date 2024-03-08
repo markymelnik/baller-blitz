@@ -17,16 +17,16 @@
 		@include theme-color(border-color, border);
 		@include theme-color(background-color, bg);
 		box-shadow: $normal-shadow;
-		padding: $padding-mobile;
+		padding: $padding-mobile $padding-mobile 2.5rem;
 	}
 
 	>:nth-child(1) {
-		height: 40%;
+		height: 45%;
 		border-bottom: 1px solid;
 		@include theme-color(border-color, border);
 	}
 
 	>:nth-child(2) {
-		height: 60%;
+		height: 55%;
 	}
 }
