@@ -32,6 +32,8 @@
 				padding: 0.75rem;
 				border: 1px solid;
   			@include theme-color(border-color, border);
+				@include theme-color(background-color, bg);
+				@include theme-color(color, text);
 				outline: none;
 				border-radius: $round-edge;
 
@@ -79,15 +81,15 @@
 	.signup-submit-btn {
 		height: 3.5rem;
 		border: 1px solid;
-		@include theme-color(background-color, text);
-  	@include theme-color(border-color, text);
-		@include theme-color(color, bg);
+/* 		@include theme-color(background-color, text);
+		@include theme-color(color, bg); */
+		@include theme-color(border-color, text);
 		margin: 1.5rem 0 0;
 		border-radius: $round-edge;
 
 		&:hover {
-			@include theme-color(background-color, bg);
-			@include theme-color(color, text);
+	/* 		@include theme-color(background-color, bg);
+			@include theme-color(color, text); */
 		}
 	}
 }

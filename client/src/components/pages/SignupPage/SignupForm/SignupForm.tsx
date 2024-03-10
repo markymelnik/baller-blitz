@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { ring } from 'ldrs';
 
 import { SignupCredentials } from '../../../../types/authTypes.ts';
 import { AuthManager } from '../../../../managers/AuthManager.ts';
@@ -14,12 +15,14 @@ import './signup-form.scss';
 import { Icons } from '../../../../lib/Icons.ts';
 
 export const SignupForm = () => {
+  ring.register();
   const dispatch = useDispatch();
   const delayNavigate = useDelayNavigate();
 
   const [emailChecked, setEmailChecked] = useState<boolean>(false);
   const [emailExists, setEmailExists] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   
   const {
     control,
@@ -36,6 +39,7 @@ export const SignupForm = () => {
 
   const handleEmailSubmit = async (formData: { email: string }) => {
     try {
+      setIsLoading(true);
       const response = await AuthManager.checkIfEmailExists(formData.email);
 
       setEmailChecked(true);
@@ -59,11 +63,14 @@ export const SignupForm = () => {
     } catch (error) {
       const signupError = new AuthenticationError('Failed to submit email');
       handleError(signupError);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   const handleSignupFormSubmit = async (formData: SignupCredentials) => {
     try {
+      setIsLoading(true);
       const response = await AuthManager.signupUser(formData, dispatch);
 
       if (!response) {
@@ -81,6 +88,8 @@ export const SignupForm = () => {
     } catch (error) {
       const signupError = new AuthenticationError('Failed to signup');
       handleError(signupError);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -172,7 +181,17 @@ export const SignupForm = () => {
       </div>
 
       <button className='signup-submit-btn' type='submit'>
-        {'Continue'}
+      {isLoading ? (
+          <l-ring
+            size='30'
+            stroke='3'
+            bg-opacity='0'
+            speed='4'
+            color='var(--spinner-color)'
+          ></l-ring>
+        ) : (
+          'Continue'
+        )}
       </button>
     </form>
   );

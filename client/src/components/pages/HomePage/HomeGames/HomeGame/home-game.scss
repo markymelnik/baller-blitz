@@ -72,7 +72,7 @@
 			box-shadow: $shadow-thin;
 
 			&.live {
-				color: $white;
+				color: $light;
 				background-color: $red;
 				animation: PulsateLive 3s infinite;
 			}

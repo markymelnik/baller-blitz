@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { ring } from 'ldrs';
 
 import { LoginCredentials } from '../../../../types/authTypes.ts';
 import { AuthManager } from '../../../../managers/AuthManager.ts';
@@ -13,12 +14,14 @@ import './login-form.scss';
 import { Icons } from '../../../../lib/Icons.ts';
 
 export const LoginForm = () => {
+  ring.register();
   const dispatch = useDispatch();
   const delayNavigate = useDelayNavigate();
 
   const [emailChecked, setEmailChecked] = useState<boolean>(false);
   const [emailExists, setEmailExists] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     control,
@@ -34,9 +37,8 @@ export const LoginForm = () => {
 
   const handleEmailSubmit = async (formData: { email: string }) => {
     try {
-      /* console.log(formData.email); */
+      setIsLoading(true);
       const response = await AuthManager.checkIfEmailExists(formData.email);
-      /* console.log(response); */
       setEmailChecked(true);
 
       if (response.error) {
@@ -55,11 +57,14 @@ export const LoginForm = () => {
     } catch (error) {
       const emailError = new AuthenticationError('Failed to submit email');
       handleError(emailError);
+    } finally {
+      setIsLoading(false);
     }
   }
 
   const handleLoginFormSubmit = async (formData: LoginCredentials) => {
     try {
+      setIsLoading(true);
       const response = await AuthManager.loginUser(formData, dispatch);
       if (!response) {
         throw new AuthenticationError('No response received from login process');
@@ -76,6 +81,8 @@ export const LoginForm = () => {
     } catch (error) {
       const loginError = new AuthenticationError('Failed to login');
       handleError(loginError);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -100,7 +107,9 @@ export const LoginForm = () => {
     >
       <div className='lf-top'>
         <h2 className='lf-heading'>
-          {emailExists ? (`${Content.auth.login.prompt.yesEmail}`) : (`${Content.auth.login.prompt.noEmail}`)}
+          {emailExists
+            ? `${Content.auth.login.prompt.yesEmail}`
+            : `${Content.auth.login.prompt.noEmail}`}
         </h2>
       </div>
       <div className='lf-inputs-container'>
@@ -119,7 +128,12 @@ export const LoginForm = () => {
                 disabled={emailChecked && emailExists}
                 className={errors.email ? 'input-error' : ''}
               />
-              <label htmlFor='lf-email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
+              <label
+                htmlFor='lf-email'
+                className={errors.email ? 'label-error' : ''}
+              >
+                {Content.auth.email.title}
+              </label>
               {emailChecked && emailExists && (
                 <div className='edit-email-btn' onClick={handleEditButtonClick}>
                   {Content.common.edit}
@@ -148,9 +162,22 @@ export const LoginForm = () => {
                   }}
                   className={errors.password ? 'input-error' : ''}
                 />
-                <label htmlFor='lf-password' className={errors.password ? 'label-error' : ''}>{Content.auth.password.title}</label>
-                <button className='show-login-pw-btn' type='button' onClick={() => setShowPassword(prev => !prev)}>
-                  {showPassword ? <Icons.EyeOpen size={20} /> : <Icons.EyeClose size={20} />}
+                <label
+                  htmlFor='lf-password'
+                  className={errors.password ? 'label-error' : ''}
+                >
+                  {Content.auth.password.title}
+                </label>
+                <button
+                  className='show-login-pw-btn'
+                  type='button'
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? (
+                    <Icons.EyeOpen size={20} />
+                  ) : (
+                    <Icons.EyeClose size={20} />
+                  )}
                 </button>
               </div>
             )}
@@ -160,7 +187,17 @@ export const LoginForm = () => {
       <ValError error={errors.email?.message || ''} />
       <ValError error={errors.password?.message || ''} />
       <button className='login-submit-btn' type='submit'>
-        {'Continue'}
+        {isLoading ? (
+          <l-ring
+            size='30'
+            stroke='3'
+            bg-opacity='0'
+            speed='4'
+            color='var(--spinner-color)'
+          ></l-ring>
+        ) : (
+          'Continue'
+        )}
       </button>
     </form>
   );

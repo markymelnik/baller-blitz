@@ -1,4 +1,4 @@
-import { NavToLoginFromSignupButton } from '../../buttons/nav/signuplogin/NavToLoginFromSignupButton.tsx';
+import { NavToLoginFromSignupButton } from '../../buttons/signuplogin/NavToLoginFromSignupButton.tsx';
 import { Content } from '../../../lib/Content.ts';
 
 import { SignupForm } from './SignupForm/SignupForm.tsx';

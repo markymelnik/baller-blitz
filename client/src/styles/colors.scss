@@ -1,22 +1,25 @@
 @import './variables.scss';
 
-$light-theme-bg: $white;
-$dark-theme-bg: $black;
+$light-theme-bg: $light;
+$dark-theme-bg: $dark;
 
-$light-theme-text: $black;
-$dark-theme-text: $white;
+$light-theme-text: $dark;
+$dark-theme-text: $light;
 
 $light-theme-border: $light-grey;
 $dark-theme-border: $dark-grey;
 
-$light-theme-card-border: $white;
+$light-theme-card-border: $light;
 $dark-theme-card-border: $dark-grey;
 
-$light-theme-backdrop: $white-backdrop;
-$dark-theme-backdrop: $black-backdrop;
+$light-theme-backdrop: $light-backdrop;
+$dark-theme-backdrop: $dark-backdrop;
 
-$light-theme-bg-hover: $white-backdrop;
-$dark-theme-bg-hover: $black-hover;
+$light-theme-bg-hover: $light-hover;
+$dark-theme-bg-hover: $dark-hover;
+
+$light-theme-auth-hover: $light-theme-orange;
+$dark-theme-auth-hover: $dark-theme-orange;
 
 $themes: (
   light: (
@@ -26,6 +29,7 @@ $themes: (
     card-border: $light-theme-card-border,
     backdrop: $light-theme-backdrop,
     bg-hover: $light-theme-bg-hover,
+    auth-hover: $light-theme-auth-hover,
   ),
   dark: (
     bg: $dark-theme-bg,
@@ -34,6 +38,7 @@ $themes: (
     card-border: $dark-theme-card-border,
     backdrop: $dark-theme-backdrop,
     bg-hover: $dark-theme-bg-hover,
+    auth-hover: $dark-theme-auth-hover,
   ),
 );
 

@@ -1,6 +1,5 @@
-import { Content } from "../../../../lib/Content.ts"
-import { NavigateToButtonCreator } from "../NavigateToButtonCreator.tsx"
-import '../nav-to-btns.scss';
+import { Content } from "../../../lib/Content.ts"
+import { NavigateToButtonCreator } from "../nav/NavigateToButtonCreator.tsx"
 
 export const NavToSignupFromLoginButton = () => {
 	return (

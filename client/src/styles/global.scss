@@ -21,15 +21,15 @@ body {
 	font-family: 'Outfit';
 
 	&.light {
-		background-color: $white;
-		color: $black;
+		background-color: $light;
+		color: $dark;
 		--spinner-color: #1A1A1A;
 		--input-autofill-bg: #FAF9F6;
 	}
 
 	&.dark {
-		background-color: $black;
-		color: $white;
+		background-color: $dark;
+		color: $light;
 		--spinner-color: #FAF9F6;
 		--input-autofill-bg: #1A1A1A;
 	}
@@ -80,14 +80,14 @@ input, textarea {
 body.light input, 
 body.light textarea {
 	background-color: #FAF9F6;
-  border: 1px solid $black;
+  border: 1px solid $dark;
 	color: #1A1A1A;
 }
 
 body.dark input, 
 body.dark textarea {
 	background-color: #1A1A1A;
-  border: 1px solid $white;
+  border: 1px solid $light;
 	color: #FAF9F6;
 }
 
