@@ -13,15 +13,18 @@
 	z-index: 2;
 
 	.select-winner-overlay {
-		width: clamp(300px, 90%, 360px);
+		width: clamp(300px, 90%, 400px);
 		position: relative;
 		top: 25vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		margin: 1.25rem;
-		padding: 2.5rem 1.5rem 1.5rem;
+		padding: 2.5rem;
 		@include theme-color(background-color, bg);
+		border: 1px solid;
+		@include theme-color(border-color, text);
+
 		border-radius: $round-edge;
 		box-shadow: $shadow-thick;
 
@@ -56,6 +59,10 @@
 		width: 100%;
 		display: flex;
 		gap: 1rem;
+
+		> * {
+			width: 50%;
+		}
 	}
 
 	.game-message {

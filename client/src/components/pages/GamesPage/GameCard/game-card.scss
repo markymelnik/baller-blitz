@@ -12,10 +12,11 @@
 	box-shadow: $shadow-thin;
 	@include hover-shadow-effect;
 	border: 1px solid;
-	@include theme-color(border-color, card-border);
+	@include theme-color(border-color, bg);
+	transition: all 0.1s ease;
 
 	&:hover {
-		@include theme-color(border-color, text);
+		@include theme-color(border-color, card-border);
 	};
 
 	&.finished {

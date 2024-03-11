@@ -19,12 +19,14 @@
 			gap: 0.75rem;
 			padding: 1rem $normal-padding;
 			font-size: 1.1rem;
-			border-radius: $round-edge;
 			transition: background-color 0.1s ease;
+			border-left: 2px solid;
+			@include theme-color(border-color, bg);
 
 			&.on {
 				pointer-events: none;
 				@include theme-color(background-color, bg-hover);
+				border-color: $orange;
 			}
 
 			&:hover {

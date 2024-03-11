@@ -30,3 +30,7 @@
     box-shadow: rgba(0, 0, 0, 0.35) 1px 3px 8px;
   }
 }
+
+@mixin transition-delay($property: all, $duration: 0.3s, $timing-function: ease) {
+	transition: $property $duration $timing-function;
+}

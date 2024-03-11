@@ -43,6 +43,7 @@ const HomePage = () => {
                 <div className='slogan-mid'>
                   <h3>Stay up to date with games</h3>
                   <h3>Predict winners and track stats</h3>
+                  <h3>Share with friends</h3>
                 </div>
               </div>
               <div className='hu-initial-prompt'>

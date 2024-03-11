@@ -11,15 +11,18 @@
 	z-index: 2;
 
 	.verify-overlay {
+		width: clamp(300px, 90%, 400px);
 		height: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		padding: 2rem;
+		padding: 2.5rem;
 		box-shadow: $shadow-thick;
 		@include theme-color(background-color, bg);
+		border: 1px solid;
+		@include theme-color(border-color, text);
 		z-index: 1;
 
 		.verify-overlay-top {	

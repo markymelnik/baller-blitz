@@ -2,10 +2,10 @@ import { useState } from 'react';
 
 import { GameDataFormatter } from '../../../../../utils/GameDataFormatter';
 import AlreadyPredictedOverlay from '../../../../overlays/AlreadyPredictedOverlay/AlreadyPredictedOverlay';
-import './home-game.scss';
 import { Game } from '../../../../../types/gameTypes';
 import StartedOverlay from '../../../../overlays/StartedOverlay/StartedOverlay';
 import { Icons } from '../../../../../lib/Icons';
+import './home-game.scss';
 
 type HomeGameProps = {
 	game: Game;
@@ -74,26 +74,27 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
           </div>}
 
           </div>
-          
+        
+          <div className='hg-pred'>Prediction: {predictedWinner}</div>
 
-          {gameStatus === 1 && (
+    
+        </div>
+
+        {gameStatus === 3 && (
+            <div className='hg-pred-outcome'>
+              {predictionStatus(game) ? (
+                <Icons.Check size={25} />
+              ) : (
+                <Icons.Close size={25} />
+              )}
+            </div>
+          )}
+
+        {gameStatus === 1 && (
             <div className='hg-status'>{game.gameStatusText}</div>
           )}
           {gameStatus === 2 && <div className='hg-status live'>• LIVE</div>}
           {gameStatus === 3 && <div className='hg-status'>Finished</div>}
-
-          <div className='hg-pred'>Prediction: {predictedWinner}</div>
-
-          {gameStatus === 3 && (
-            <div className='hg-pred-outcome'>
-              {predictionStatus(game) ? (
-                <Icons.Check size={30} />
-              ) : (
-                <Icons.Close size={30} />
-              )}
-            </div>
-          )}
-        </div>
       </li>
       <StartedOverlay
         isOpen={isStartedOverlayOpen}

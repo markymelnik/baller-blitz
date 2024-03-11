@@ -128,8 +128,7 @@ export const SignupForm = () => {
                 placeholder=' '
                 autoComplete='current-email'
                 {...field}
-                disabled={emailChecked && !emailExists}
-                className={errors.email ? 'input-error' : ''}
+                className={`${errors.email ? 'input-error' : ''} ${emailChecked && emailExists ? `disabled` : ``}`}
               />
               <label htmlFor='sf-email' className={errors.email ? 'label-error' : ''}>{Content.auth.email.title}</label>
               {emailChecked && !emailExists && (
@@ -183,10 +182,10 @@ export const SignupForm = () => {
       <button className='signup-submit-btn' type='submit'>
       {isLoading ? (
           <l-ring
-            size='30'
-            stroke='3'
+            size='25'
+            stroke='2.5'
             bg-opacity='0'
-            speed='4'
+            speed='2'
             color='var(--spinner-color)'
           ></l-ring>
         ) : (

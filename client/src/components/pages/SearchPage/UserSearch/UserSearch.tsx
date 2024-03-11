@@ -91,7 +91,16 @@ export const UserSearch = () => {
           {users.length < 1 ? (
             <div className='search-fallback'>{Content.search.noResults}</div>
           ) : (
-            <div className='list-title'>{`Results (${totalCount})`}</div>
+            <div className='list-mid'>
+              <div className='list-title'>{`Results (${totalCount})`}</div>{' '}
+              {totalCount > 0 && (
+                <PaginationBar
+                  setPage={setPage}
+                  page={page}
+                  totalPages={totalPages}
+                />
+              )}
+            </div>
           )}
           <ul className='list-of-users'>
             {users.map((user: UserProfileInfo) => (

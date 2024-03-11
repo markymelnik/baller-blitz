@@ -40,7 +40,7 @@
 			justify-content: center;
 
 			@media (min-width: 768px) {
-				width: 50%;
+				width: 45%;
 			}
 
 			.hu-player {
@@ -50,7 +50,7 @@
 					position: absolute;
 					width: 8rem;
 					left: 24vw;
-					opacity: 0.4;
+					opacity: 0.3;
 					@include theme-color(stroke, border);
 					@include theme-color(fill, border);
 					stroke-width: 2;
@@ -84,20 +84,24 @@
 			justify-content: center;
 
 			@media (min-width: 768px) {
-				width: 50%;
+				width: 55%;
 			}
 
 			.hu-right-top {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 3rem 0;
+				padding: 4rem 0 3rem;
 				
 				@media (min-width: 768px) {
 					border-left: 1px solid;
-					height: 60%;
+					height: 65%;
 					@include theme-color(border-color, border);
 					padding: 2.5rem;
+				}
+
+				@media (min-width: 1380px) {
+					height: 60%;
 				}
 
 				.home-slogan {
@@ -105,11 +109,14 @@
 					flex-direction: column;
 
 					.slogan-top {
-						font-size: 1.75rem;
-						padding: 0 0 0.5rem;
+						font-size: 2.25rem;
+						padding: 0 0 1rem;
+						font-family: Urbanist;
+						font-weight: 500;
+						line-height: 1.1;
 						
 						@media (min-width: 768px) {
-							font-size: 3.25rem;
+							font-size: 4rem;
 							padding: 0 0 2rem;
 						}
 					}
@@ -117,12 +124,16 @@
 					.slogan-mid {
 						display: inherit;
 						flex-direction: inherit;
-						gap: 0.25rem;
 						font-size: 1rem;
-						padding: 0 0 3rem;
+						padding: 0 0 2.5rem;
+						line-height: 1.5;
 
 						@media (min-width: 768px) {
 							font-size: 1.25rem;
+						}
+
+						> * {
+							font-weight: light;
 						}
 					}
 				}
@@ -141,6 +152,10 @@
 						line-height: 1.5;
 						font-size: 1.75rem;
 						padding: 0 0 1.5rem;
+
+						@media (min-width: 768px) {
+							font-size: 2rem;
+						}
 					}
 			
 					.unauth-btns {
@@ -153,7 +168,7 @@
 			.hu-right-bot {
 				position: relative;
 				display: flex;
-				height: 40%;
+				height: 35%;
 
 				@media (min-width: 768px) {
 					padding: 2.5rem;
@@ -161,6 +176,10 @@
 					border-top: 1px solid;
 					@include theme-color(border-color, border);
 					overflow: hidden;
+				}
+
+				@media (min-width: 1380px) {
+					height: 40%;
 				}
 
 				svg {

@@ -26,7 +26,7 @@ const StartedOverlay = ({ isOpen, onClose }: StartedOverlayProps) => {
 	if (!isOpen) return null;
 
 	return createPortal(
-		<div className="so-portal-wrapper">
+		<div className={`so-portal-wrapper ${isOpen ? `open` : ``}`}>
 			<div className="started-overlay" ref={overlayRef} role="dialog">
 			<OverlayCloseButton onClose={handleOverlayClose} />
 				<div className="started-overlay-message">{Content.overlay.startedOverlay.message}</div>

@@ -2,16 +2,18 @@
 @import '@styles/transitions.scss';
 
 .home-game {
+	position: relative;
 	display: inline-block;
 	margin-right: 1.25rem;
 	border: 1px solid;
-	@include theme-color(border-color, border);
 	border-radius: $round-edge;
 	height: 20rem;
 	width: 15rem;
 	box-shadow: $shadow-thin;
 	@include hover-shadow-effect;
 	transition: transform 0.1s ease;
+	@include theme-color(border-color, bg);
+	transition: all 0.1s ease;
 
 	@media (min-width: 768px) {
 		margin: auto;
@@ -20,16 +22,17 @@
 
 	&:hover {
 		cursor: pointer;
-		
-		transform: scale(1.025);
+		@include theme-color(border-color, card-border);
+		transform: scale(1.02);
 	}
 
 	&.finished {
 		pointer-events: none;
+		opacity: 0.6;
 	}
 
 	.hg-top {
-		height: 8rem;
+		height: 40%;
 		border-bottom: 1px solid;
 		@include theme-color(border-color, border);
 		border-top-left-radius: 4.5px;
@@ -37,8 +40,12 @@
 	}
 
 	.hg-bot {
+		height: 60%;
 		position: relative;
 		padding: 1.25rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 
 		.hg-date {
 			padding: 0 0 1rem;
@@ -46,14 +53,19 @@
 
 		.hg-data {
 			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			flex-direction: column;
 			padding: 0 0 1rem;
 
 			.hg-matchup {
 				display: flex;
-				gap: 1rem;
+				gap: 1.25rem;
 				font-size: 1.5rem;
+
+				> * {
+					display: flex;
+					flex-direction: column;
+					gap: 0.25rem;
+				}
 			}
 
 			.hg-info {
@@ -61,27 +73,30 @@
 			}
 		}
 
-		.hg-status {
-			position: absolute;
-			top: -1rem;
-			right: 1rem;
-			padding: 0.35rem 0.7rem;
-			font-size: 0.9rem;
-			@include theme-color(background-color, bg);
-			border-radius: $round-edge;
-			box-shadow: $shadow-thin;
+	
 
-			&.live {
-				color: $light;
-				background-color: $red;
-				animation: PulsateLive 3s infinite;
-			}
-		}
 
-		.hg-pred-outcome {
-			position: absolute;
-			top: 3.5rem;
-			right: 1.25rem;
+	}
+
+	.hg-status {
+		position: absolute;
+		top: 0.5rem;
+		left: 0.5rem;
+		padding: 0.35rem 0.7rem;
+		font-size: 0.9rem;
+		@include theme-color(background-color, bg);
+		border-top-left-radius: $round-edge;
+
+		&.live {
+			color: $light;
+			background-color: $red;
+			animation: PulsateLive 3s infinite;
 		}
+	}
+
+	.hg-pred-outcome {
+		position: absolute;
+		top: 0.5rem;
+		right: 0.5rem;
 	}
 }

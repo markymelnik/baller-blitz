@@ -16,17 +16,19 @@
 	justify-content: center;
 
 	.delete-friend-overlay {
-		width: clamp(300px, 90%, 360px);
+		width: clamp(300px, 90%, 400px);
 		min-height: 20vh;
 		position: absolute;
 		top: 35vh;
-		padding: 2rem;
+		padding: 2.5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 		align-items: center;
 		gap: 2rem;
 		@include theme-color(background-color, bg);
+		border: 1px solid;
+		@include theme-color(border-color, text);
 		border-radius: $round-edge;
 		box-shadow: $shadow-thick;
 

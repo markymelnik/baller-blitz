@@ -19,6 +19,16 @@
 			padding: 0.5rem;
 		}
 
+		:nth-child(1),
+		:nth-child(3) {
+			transition: all 0.1s ease;
+			border-radius: 50%;
+
+			&:hover {
+				@include theme-color(background-color, bg-hover);
+			}
+		}
+
 		.page-left-arrow,
 		.page-right-arrow {
 

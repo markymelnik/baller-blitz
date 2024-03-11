@@ -22,12 +22,11 @@
 
 			.lm-bot {
 				font-size: 1rem;
-				@include theme-color(color, border);
+				color: $grey;
 
 				@media (min-width: 768px) {
 					font-size: 1.25rem;
 				}
-
 			}
 		}
 	}

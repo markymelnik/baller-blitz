@@ -125,8 +125,7 @@ export const LoginForm = () => {
                 placeholder=' '
                 autoComplete='current-email'
                 {...field}
-                disabled={emailChecked && emailExists}
-                className={errors.email ? 'input-error' : ''}
+                className={`${errors.email ? 'input-error' : ''} ${emailChecked && emailExists ? `disabled` : ``}`}
               />
               <label
                 htmlFor='lf-email'
@@ -189,10 +188,10 @@ export const LoginForm = () => {
       <button className='login-submit-btn' type='submit'>
         {isLoading ? (
           <l-ring
-            size='30'
-            stroke='3'
+            size='25'
+            stroke='2.5'
             bg-opacity='0'
-            speed='4'
+            speed='2'
             color='var(--spinner-color)'
           ></l-ring>
         ) : (

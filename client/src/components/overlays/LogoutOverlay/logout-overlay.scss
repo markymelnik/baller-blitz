@@ -15,7 +15,7 @@
 	justify-content: center;
 
 	.logout-overlay {
-		width: clamp(300px, 90%, 360px);
+		width: clamp(300px, 90%, 400px);
 		min-height: 20vh;
 		position: absolute;
 		top: 35vh;
@@ -25,7 +25,7 @@
 		align-items: center;
 		gap: 2rem;
 		@include theme-color(background-color, bg);
-		padding: 1.5rem;
+		padding: 2.5rem;
 		border: 1px solid;
 		@include theme-color(border-color, text);
 		border-radius: $round-edge;
