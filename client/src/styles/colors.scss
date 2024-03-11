@@ -10,7 +10,10 @@ $light-theme-border: $light-grey;
 $dark-theme-border: $dark-grey;
 
 $light-theme-card-border: $light;
-$dark-theme-card-border: $light;
+$dark-theme-card-border: $grey;
+
+$light-theme-card-border-hover: $light;
+$dark-theme-card-border-hover: $light;
 
 $light-theme-backdrop: $light-backdrop;
 $dark-theme-backdrop: $dark-backdrop;
@@ -27,6 +30,7 @@ $themes: (
     text: $light-theme-text,
     border: $light-theme-border,
     card-border: $light-theme-card-border,
+    card-border-hover: $light-theme-card-border-hover,
     backdrop: $light-theme-backdrop,
     bg-hover: $light-theme-bg-hover,
     auth-hover: $light-theme-auth-hover,
@@ -36,6 +40,7 @@ $themes: (
     text: $dark-theme-text,
     border: $dark-theme-border,
     card-border: $dark-theme-card-border,
+    card-border-hover: $dark-theme-card-border-hover,
     backdrop: $dark-theme-backdrop,
     bg-hover: $dark-theme-bg-hover,
     auth-hover: $dark-theme-auth-hover,

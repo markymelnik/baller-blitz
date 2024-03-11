@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { NavToSignupBtn } from '../../buttons/signuplogin/NavToSignupBtn.tsx';
 import { NavToLoginBtn } from '../../buttons/signuplogin/NavToLoginBtn.tsx';
@@ -18,6 +19,7 @@ import { FriendsTab } from './FriendsTab/FriendsTab.tsx';
 
 const HomePage = () => {
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   const UnauthenticatedHome = useUnauthorizedRender(
     () => (
@@ -74,6 +76,13 @@ const HomePage = () => {
 
   const [activeTab, setActiveTab] = useState<string>('dashboard');
 
+  const handleNavToGames = () => {
+    if (isMobile) {
+      navigate('/games');
+    } else {
+      setActiveTab('games');
+    }
+  }
 
   const AuthenticatedHome = useAuthorizedRender(
     () => (
@@ -81,14 +90,14 @@ const HomePage = () => {
         
         {!isMobile && <HomeSidebar activeTab={activeTab} setActiveTab={setActiveTab} />}
       
-          {!isMobile && activeTab === 'dashboard' && <Dashboard />}
+          {!isMobile && activeTab === 'dashboard' && <Dashboard handleNavToGames={handleNavToGames} />}
           {!isMobile && activeTab === 'games' && <GamesTab />}
           {!isMobile && activeTab === 'friends' && <FriendsTab />}
       
 
         {!isMobile && <HomeRightbar />}
     
-        {isMobile && <Dashboard />}
+        {isMobile && <Dashboard handleNavToGames={handleNavToGames} />}
       </main>
     ),
     ['user', 'admin']

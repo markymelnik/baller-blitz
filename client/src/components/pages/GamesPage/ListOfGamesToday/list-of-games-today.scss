@@ -50,12 +50,13 @@
 		flex-direction: column;
 		@include theme-color(border-color, border);
 		z-index: 2;
-		padding: 0 $normal-padding $normal-padding;
+		padding: 0 $normal-padding 2.5rem;
 		gap: $normal-padding;
 	
 		@media (min-width: 768px) {
 			display: grid;
 			grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+			padding: 0 $normal-padding $normal-padding;
 		}
 
 		@media (min-width: 1200px) {

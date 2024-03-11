@@ -18,7 +18,7 @@
 		border-bottom: 1px solid;
 		@include theme-color(border-color, border);
 		box-shadow: $normal-shadow;
-		padding: $normal-padding;
+		padding: 2rem $normal-padding $normal-padding;
 
 		.hw-hi {
 			font-size: 2rem;

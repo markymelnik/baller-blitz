@@ -4,7 +4,7 @@ import { UserStats } from '../../ProfilePage/UserStats/UserStats';
 import { HomeGames } from '../HomeGames/HomeGames';
 import './dashboard.scss';
 
-export const Dashboard = () => {
+export const Dashboard = ({ handleNavToGames }: { handleNavToGames?: () => void }) => {
 	const userDetails = useUserDetails()!;
 
   const isMobile = useIsMobile();
@@ -15,7 +15,7 @@ export const Dashboard = () => {
         <div className='hw-hi'>Hello {userDetails?.username}</div>
         <div className='hw-back'>Welcome back!</div>
       </div>
-      <HomeGames />
+      <HomeGames handleNavToGamesTab={handleNavToGames} />
       {isMobile && <div className="db-stats-container">
         <UserStats />
       </div>}

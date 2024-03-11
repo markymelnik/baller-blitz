@@ -53,6 +53,7 @@
 
 			.hg-list-skeleton {
 				height: 20rem;
+				width: 100%;
 			}
 			
 			>:first-child {
@@ -66,7 +67,7 @@
 
 	.hg-list-desktop {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 		gap: $normal-padding;
 	}
 
@@ -89,9 +90,22 @@
 			align-items: center;
 			@include theme-color(background-color, bg);
 
+			@media (min-width: 768px) {
+				width: 20rem;
+			}
+
 			.no-games-text {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 2rem;
 				text-align: center;
 				padding: 0 0 2rem;
+
+				.nav-to-games-tab {
+					display: flex;
+					gap: 0.35rem;
+				}
 			}
 		}
 	}
@@ -111,13 +125,15 @@
 			margin-right: $normal-padding;
 
 			@media (min-width: 768px) {
+				min-width: 16rem;
 				width: 100%;
+				margin: 0;
 			}
 		}
 
 		&.desktop {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 			gap: $normal-padding;
 			padding: 0;
 			height: auto;

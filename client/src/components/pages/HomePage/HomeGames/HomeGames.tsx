@@ -12,7 +12,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import './home-games.scss';
 
 
-export const HomeGames = () => {
+export const HomeGames = ({ handleNavToGamesTab }: { handleNavToGamesTab?: () => void }) => {
   const [fetchTrigger, setFetchTrigger] = useState(false);
 
   useFetchGamesToday(fetchTrigger);
@@ -121,10 +121,10 @@ export const HomeGames = () => {
           numberOfGames < 1 ? (
             <div className='hg-no-games'>
               <div className='no-games-card'>
-                <div className='no-games-text'>
-                  No predictions! <br />
-                  Place predictions in Games
-                </div>
+              <div className='no-games-text'>
+                <div className="no-pred-text">No predictions made!</div>
+                <button className="nav-to-games-tab" onClick={handleNavToGamesTab}>GAMES <Icons.ArrowRight /></button>
+              </div>
               </div>
             </div>
           ) : (
@@ -150,8 +150,9 @@ export const HomeGames = () => {
           <div className='hg-no-games'>
             <div className='no-games-card'>
               <div className='no-games-text'>
-                No predictions! <br />
-                Place predictions in Games
+                <div className="no-pred-text">No predictions made!</div>
+                <button className="nav-to-games-tab" onClick={handleNavToGamesTab}>GAMES <Icons.ArrowRight /></button>
+  
               </div>
             </div>
           </div>

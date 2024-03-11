@@ -19,6 +19,7 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
 	const [isStartedOverlayOpen, setIsStartedOverlayOpen] = useState<boolean>(false);
 
 	const gameStatus: number = game.gameStatus;
+  console.log(predictedWinner);
 
 	const handleGameClick = () => {
 		if (gameStatus === 1) {
@@ -40,61 +41,72 @@ export const HomeGame = ({ game, predictedWinner, onSuccessfulSubmission }: Home
 	return (
     <>
       <li
-        className={`home-game ${gameStatus === 2 && `live`} ${gameStatus === 3 && `finished`}`}
+        className={`home-game ${gameStatus === 2 && `live`} ${
+          gameStatus === 3 && `finished`
+        }`}
         onClick={handleGameClick}
       >
+        <div className='hg-date'>
+          {GameDataFormatter.formatDate(game.gameTimeUTC)}
+        </div>
         <div className={`hg-top ${gameStatus === 2 && `live`}`}>
-          <div className="hg-photo"></div>
+          <div className='hg-photo'></div>
         </div>
 
         <div className='hg-bot'>
-          <div className='hg-date'>
-            {GameDataFormatter.formatDate(game.gameTimeUTC)}
-          </div>
+          <div className='hg-data'>
+            <div className='hg-matchup'>
+              <div className='hg-team-away'>
+                <div className={`team-pick`}>
+                  {predictedWinner === game.awayTeam.teamTricode && (
+                    <Icons.ArrowDown />
+                  )}
+                </div>
+                <div className='team-tricode'>{game.awayTeam.teamTricode}</div>
+                <div className='team-name'>
+                  {game.awayTeam.teamCity} <br /> {game.awayTeam.teamName}
+                </div>
 
-          <div className="hg-data">
+                <div className='team-score'>{game.awayTeam.score}</div>
+              </div>
 
-          <div className='hg-matchup'>
-            <div className='hg-teams'>
-              <div className='team-tricode'>{game.awayTeam.teamTricode}</div>
-              <div className='team-tricode'>{game.homeTeam.teamTricode}</div>
+              <div className='hg-team-home'>
+                <div className={`team-pick`}>
+                  {predictedWinner === game.homeTeam.teamTricode && (
+                    <Icons.ArrowDown />
+                  )}
+                </div>
+                <div className='team-tricode'>{game.homeTeam.teamTricode}</div>
+                <div className='team-name'>
+                  {game.homeTeam.teamCity} <br /> {game.homeTeam.teamName}
+                </div>
+                <div className='team-score'>{game.homeTeam.score}</div>
+              </div>
             </div>
-            <div className='hg-scores'>
-              {gameStatus !== 1 && (
-                <>
-                  <div className='team-score'>{game.awayTeam.score}</div>
-                  <div className='team-score'>{game.homeTeam.score}</div>
-                </>
-              )}
-            </div>
-          </div>
 
-          {gameStatus === 2 && <div className="hg-info">
-            {game.gameStatusText}
-          </div>}
+            {gameStatus === 1 && (
+              <div className='hg-info'>{game.gameStatusText}</div>
+            )}
 
+            {gameStatus === 2 && (
+              <div className='hg-info'>{game.gameStatusText}</div>
+            )}
+            {gameStatus === 3 && <div className='hg-info'>Final</div>}
           </div>
-        
           <div className='hg-pred'>Prediction: {predictedWinner}</div>
-
-    
         </div>
 
         {gameStatus === 3 && (
-            <div className='hg-pred-outcome'>
-              {predictionStatus(game) ? (
-                <Icons.Check size={25} />
-              ) : (
-                <Icons.Close size={25} />
-              )}
-            </div>
-          )}
+          <div className='hg-pred-outcome'>
+            {predictionStatus(game) ? (
+              <Icons.Check size={25} />
+            ) : (
+              <Icons.Close size={25} />
+            )}
+          </div>
+        )}
 
-        {gameStatus === 1 && (
-            <div className='hg-status'>{game.gameStatusText}</div>
-          )}
-          {gameStatus === 2 && <div className='hg-status live'>• LIVE</div>}
-          {gameStatus === 3 && <div className='hg-status'>Finished</div>}
+        {gameStatus === 2 && <div className='hg-status live'>• LIVE</div>}
       </li>
       <StartedOverlay
         isOpen={isStartedOverlayOpen}

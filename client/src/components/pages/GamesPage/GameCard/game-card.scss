@@ -4,19 +4,21 @@
 .game-card {
 	position: relative;
 	display: flex;
-	gap: 0.5rem;
-	padding: 2rem;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: $normal-padding;
+	padding: 1.5rem 2rem 2.5rem;
 	cursor: pointer;
 	border-radius: $round-edge;
 	height: 10rem;
 	box-shadow: $shadow-thin;
 	@include hover-shadow-effect;
 	border: 1px solid;
-	@include theme-color(border-color, bg);
+	@include theme-color(border-color, card-border);
 	transition: all 0.1s ease;
 
 	&:hover {
-		@include theme-color(border-color, card-border);
+		@include theme-color(border-color, card-border-hover);
 	};
 
 	&.finished {
@@ -24,6 +26,7 @@
 	}
 
 	.game-card-live {
+		position: absolute;
 		top: 0;
 		right: 0;
 		padding: 0.25rem 0.5rem;
@@ -34,17 +37,19 @@
 	}
 
 	.game-card-predicted {
-		padding: 0.25rem 0.5rem;
 		display: flex;
 		align-items: center;
 		gap: 0.25rem;
 	}
 
-	.top-right {
-		position: absolute;
-		top: 0;
-		right: 0;
+	.game-card-top {
 		display: flex;
+		justify-content: space-between;
+					
+		.game-date {
+
+			font-size: 1.15rem;
+		}
 
 		.game-card-live {
 			background: $red;
@@ -57,55 +62,63 @@
 		right: 2.35rem;
 	}
 
-	.game-card-left {
-		flex: 1;
-		
-		.game-date {
-			font-size: 1.15rem;
-			padding: 0 0 1rem;
-		}
+	.game-card-bot {
+		display: flex;
 
-		.game-matchup {
+		.game-card-left {
 			display: flex;
-			font-size: 1.35rem;
-			gap: 1.25rem;
-
-			.game-teams,
-			.game-scores {
+			align-items: center;
+			flex: 1;
+	
+			.game-matchup {
 				display: flex;
-				flex-direction: column;
-				gap: 0.25rem;
-			}
+				font-size: 1.35rem;
+				gap: 1.25rem;
+	
+				.game-teams,
+				.game-scores {
+					display: flex;
+					flex-direction: column;
+		
+				}
 
-			.game-scores {
-				position: relative;
-
-				svg {
-					position: absolute;
-					left: 2.5rem;
-					top: 0.1rem;
+				.game-teams {
+					gap: 0.5rem;
+				}
+	
+				.game-scores {
+					position: relative;
+	
+					svg {
+						position: absolute;
+						left: 2.5rem;
+						top: 0.1rem;
+					}
 				}
 			}
 		}
-	}
-
-	.game-card-right {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 0.25rem;
-		font-size: 1.1rem;
-
-		.game-start,
-		.game-status,
-		.game-period,
-		.current-winner,
-		.game-winner {
-			text-align: center;
+	
+		.game-card-right {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 0.25rem;
+			font-size: 1.1rem;
+	
+			.game-start,
+			.game-status,
+			.game-period,
+			.current-winner,
+			.game-winner {
+				text-align: center;
+			}
+	
+			.game-period {
+				font-size: 1.05rem;
+			}
 		}
 
-		.game-period {
-			font-size: 1.05rem;
-		}
 	}
+
+	
 }

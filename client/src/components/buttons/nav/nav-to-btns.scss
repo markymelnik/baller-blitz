@@ -46,13 +46,11 @@
 	border: 1.5px solid;
 
 	border-radius: 50%;
-	height: 2rem;
-	width: 2rem;
+	height: 2.25rem;
+	width: 2.25rem;
 	transition: all 0.1s ease;
 
 	@media (min-width: 768px) {
-		width: 2.25rem;
-		height: 2.25rem;
 		@include theme-color(border-color, border);
 	}
 
@@ -94,11 +92,6 @@
 	width: 2.25rem;
 	border: 1.5px solid;
 	border-radius: 50%;
-
-	@media (min-width: 768px) {
-		height: 2.5rem;
-		width: 2.5rem;
-	}
 
 	.profile-btn-img {
 		font-size: 1rem;

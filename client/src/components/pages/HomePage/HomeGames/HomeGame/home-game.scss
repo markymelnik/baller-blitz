@@ -7,12 +7,13 @@
 	margin-right: 1.25rem;
 	border: 1px solid;
 	border-radius: $round-edge;
+	padding: $normal-padding;
 	height: 20rem;
 	width: 15rem;
 	box-shadow: $shadow-thin;
 	@include hover-shadow-effect;
 	transition: transform 0.1s ease;
-	@include theme-color(border-color, bg);
+	@include theme-color(border-color, card-border);
 	transition: all 0.1s ease;
 
 	@media (min-width: 768px) {
@@ -22,7 +23,7 @@
 
 	&:hover {
 		cursor: pointer;
-		@include theme-color(border-color, card-border);
+		@include theme-color(border-color, card-border-hover);
 		transform: scale(1.02);
 	}
 
@@ -31,58 +32,83 @@
 		opacity: 0.6;
 	}
 
+	.hg-date {
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+
+		@media (min-width: 768px) {
+			font-size: 1.25rem;
+		}
+	}
+
 	.hg-top {
-		height: 40%;
-		border-bottom: 1px solid;
-		@include theme-color(border-color, border);
+		height: 15%;
+/* 		border-bottom: 1px solid;
+		@include theme-color(border-color, border); */
 		border-top-left-radius: 4.5px;
 		border-top-right-radius: 4.5px;
 	}
 
 	.hg-bot {
-		height: 60%;
+		height: 85%;
 		position: relative;
-		padding: 1.25rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
 
-		.hg-date {
-			padding: 0 0 1rem;
-		}
-
 		.hg-data {
 			display: flex;
 			flex-direction: column;
+			align-items: center;
 			padding: 0 0 1rem;
 
 			.hg-matchup {
 				display: flex;
 				gap: 1.25rem;
-				font-size: 1.5rem;
+				font-size: 1.25rem;
+				padding: 0 0 1.5rem;
+
+				@media (min-width: 768px) {
+					gap: 2rem;
+				}
 
 				> * {
 					display: flex;
 					flex-direction: column;
-					gap: 0.25rem;
+					align-items: center;
+					gap: 0.75rem;
+
+					.team-pick {
+						height: 1rem;
+
+					}
+		
+					.team-tricode {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						border: 1px solid;
+						@include theme-color(border-color, border);
+						border-radius: $round-edge;
+						padding: 1rem 1.5rem;
+						min-width: 5rem;
+					}
+
+					.team-name {
+						text-align: center;
+						font-size: 0.85rem;
+						@include theme-color(color, border);
+					}
 				}
 			}
-
-			.hg-info {
-				font-size: 1.25rem;
-			}
 		}
-
-	
-
-
 	}
 
 	.hg-status {
 		position: absolute;
-		top: 0.5rem;
-		left: 0.5rem;
-		padding: 0.35rem 0.7rem;
+		top: 0;
+		right: 0;
 		font-size: 0.9rem;
 		@include theme-color(background-color, bg);
 		border-top-left-radius: $round-edge;

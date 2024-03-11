@@ -69,8 +69,12 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
         }`}
         onClick={handleGameCardClick}
       >
+        
         {gameStatus === GameState.NOT_STARTED && isPredicted && (
-          <div className='top-right'>
+          <div className='game-card-top'>
+                <div className='game-date'>
+            {GameDataFormatter.formatDate(game.gameEt)}
+          </div>
             <div className='game-card-predicted'>
               <Icons.Check size={20} />
               <div className='predicted-text'>Predicted {predictedWinner}</div>
@@ -79,7 +83,10 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
         )}
 
         {gameStatus === GameState.IN_PROGRESS && (
-          <div className='top-right'>
+          <div className='game-card-top'>
+                <div className='game-date'>
+            {GameDataFormatter.formatDate(game.gameEt)}
+          </div>
             {isPredicted ? (
               <div className='game-card-predicted'>
                 <Icons.Check size={18} />
@@ -96,7 +103,10 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
           </div>
         )}
         {gameStatus === GameState.FINISHED && (
-          <div className='top-right'>
+          <div className='game-card-top'>
+                <div className='game-date'>
+            {GameDataFormatter.formatDate(game.gameEt)}
+          </div>
             <div className='game-card-predicted'>
               {isPredicted && (
                 <>
@@ -113,45 +123,48 @@ export const GameCard = ({ game, isPredicted, predictedWinner, onSuccessfulSubmi
             </div>
           </div>
         )}
+
+        <div className="game-card-bot">
         <div className='game-card-left'>
-          <div className='game-date'>
-            {GameDataFormatter.formatDate(game.gameEt)}
+      
+      <div className='game-matchup'>
+        <div className='game-teams'>
+          <div className='away-team-name'>
+            {game.awayTeam.teamName || `TBD`}
           </div>
-          <div className='game-matchup'>
-            <div className='game-teams'>
-              <div className='away-team-name'>
-                {game.awayTeam.teamName || `TBD`}
-              </div>
-              <div className='home-team-name'>
-                {game.homeTeam.teamName || `TBD`}
-              </div>
-            </div>
-            {gameStatus !== GameState.NOT_STARTED && (
-              <div className='game-scores'>
-                <div className='team-score'>{game.awayTeam.score || `TBD`}</div>
-                <div className='team-score'>{game.homeTeam.score || `TBD`}</div>
-              </div>
-            )}
+          <div className='home-team-name'>
+            {game.homeTeam.teamName || `TBD`}
           </div>
         </div>
-        <div className='game-card-right'>
-          {gameStatus === GameState.NOT_STARTED && (
-            <div className='game-start'>
-              {GameDataFormatter.formatTimeToEST(game.gameTimeUTC)}
-            </div>
-          )}
-          {gameStatus === GameState.IN_PROGRESS && (
-            <div className='game-period'>{game.gameStatusText}</div>
-          )}
-          {gameStatus === GameState.FINISHED && (
-            <div className='game-winner'>Final</div>
-          )}
-          {gameStatus === GameState.IN_PROGRESS && (
-            <div className='current-winner'>
-              {GameDataFormatter.determineWinner(game)}
-            </div>
-          )}
+        {gameStatus !== GameState.NOT_STARTED && (
+          <div className='game-scores'>
+            <div className='team-score'>{game.awayTeam.score || `TBD`}</div>
+            <div className='team-score'>{game.homeTeam.score || `TBD`}</div>
+          </div>
+        )}
+      </div>
+    </div>
+    <div className='game-card-right'>
+      {gameStatus === GameState.NOT_STARTED && (
+        <div className='game-start'>
+          {GameDataFormatter.formatTimeToEST(game.gameTimeUTC)}
         </div>
+      )}
+      {gameStatus === GameState.IN_PROGRESS && (
+        <div className='game-period'>{game.gameStatusText}</div>
+      )}
+      {gameStatus === GameState.FINISHED && (
+        <div className='game-winner'>Final</div>
+      )}
+      {gameStatus === GameState.IN_PROGRESS && (
+        <div className='current-winner'>
+          {GameDataFormatter.determineWinner(game)}
+        </div>
+      )}
+    </div>
+
+        </div>
+    
       </li>
       <SelectWinnerOverlay
         isOpen={isSelectionOverlayOpen}
