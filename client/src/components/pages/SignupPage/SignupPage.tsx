@@ -21,6 +21,7 @@ const SignupPage = () => {
           <NavToLoginFromSignupButton />
         </div>
       </div>
+      <div className="sp-right-bot"></div>
       </div>
     
     </main>

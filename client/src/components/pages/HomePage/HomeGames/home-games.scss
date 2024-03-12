@@ -77,12 +77,13 @@
 
 	.hg-no-games {
 		display: flex;
-		height: 20rem;
+		padding: 0.5rem 1rem 1rem;
 
 		.no-games-card {
 			border: 1px solid;
 			@include theme-color(border-color, border);
 			border-radius: $round-edge;
+			padding: 0.5rem 0;
 			height: 20rem;
 			width: 15rem;
 			display: flex;

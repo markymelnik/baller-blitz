@@ -3,16 +3,18 @@
 .settings-page {
 	height: 100%;
 	width: 100%;
+	max-width: 992px;
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	flex: 1;
-	padding: $normal-padding;
 
-	@media (min-width: 768px) {
-		padding: 1.25rem;
+	>:last-child {
+		padding: $normal-padding;
 	}
 
 	.sp-settings-list {
+		padding: 4rem $normal-padding $normal-padding;
 
 		.sp-settings-divider {
 			border-bottom: 1px solid;

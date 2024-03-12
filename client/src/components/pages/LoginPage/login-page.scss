@@ -26,7 +26,7 @@
 	.lp-right {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 
 		@media (min-width: 992px) {
@@ -34,29 +34,21 @@
 		}
 
 		.lp-heading {
-			padding: 0 0 2rem;
+			padding: 2rem 0 0;
 		}
-	}
-	
-	.login-form-wrapper {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: clamp(200px, 100%, 24rem);
-		/* border: 1px solid;
-		@include theme-color(border-color, border); */
-		padding: 1.25rem 0;
+				
+		.login-form-wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: clamp(200px, 100%, 24rem);
+			padding: 1.25rem 0;
+		}
 
-		.lf-top {
-			text-align: center;
-			padding: 1rem 0 2rem;
-	
-			.lf-heading {
-				font-size: 2rem;
-				line-height: 1.25;
-			}
+		.lp-right-bot {
+
 		}
-	}
+
 
 	.login-page-bot {
 		display: flex;
@@ -64,4 +56,6 @@
 		padding: 1.5rem 0;
 		gap: 0.5rem;
 	}
+	}
+
 }

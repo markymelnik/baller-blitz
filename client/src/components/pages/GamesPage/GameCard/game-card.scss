@@ -6,11 +6,10 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: $normal-padding;
 	padding: 1.5rem 2rem 2.5rem;
 	cursor: pointer;
 	border-radius: $round-edge;
-	height: 10rem;
+	height: 10.5rem;
 	box-shadow: $shadow-thin;
 	@include hover-shadow-effect;
 	border: 1px solid;
@@ -79,21 +78,14 @@
 				.game-scores {
 					display: flex;
 					flex-direction: column;
-		
-				}
-
-				.game-teams {
 					gap: 0.5rem;
 				}
+
 	
 				.game-scores {
 					position: relative;
-	
-					svg {
-						position: absolute;
-						left: 2.5rem;
-						top: 0.1rem;
-					}
+					font-size: 1.25rem;
+					
 				}
 			}
 		}

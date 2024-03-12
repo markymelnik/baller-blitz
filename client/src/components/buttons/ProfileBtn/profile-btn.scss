@@ -1,0 +1,97 @@
+@import '@styles/colors';
+
+.profile-dropdown-container {
+	position: relative;
+
+	.profile-btn {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 2.25rem;
+		width: 2.25rem;
+		border: 1.5px solid;
+		border-radius: 50%;
+		z-index: 3;
+		margin-left: 0.5rem;
+	}
+
+	.dropdown {
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		top: 3.75rem;
+		right: -0.5rem;
+		width: 10rem;
+		padding: 1rem;
+		border: 1px solid;
+		z-index: 2;
+		@include theme-color(background-color, bg);
+		border: 1px solid;
+		@include theme-color(border-color, border);
+		border-radius: $round-edge;
+		pointer-events: none;
+
+		@media (min-width: 768px) {
+			width: 12rem;
+		}
+
+		opacity: 0;
+		transform: translateY(-10px);
+		transition: all 0.1s ease;
+
+		&.open {
+			opacity: 1;
+			transform: translateY(0);
+			pointer-events: initial;
+		}
+
+		> * {
+			width: 100%;
+			transition: all 0.1s ease;
+			justify-content: left;
+			padding: 0 0.25rem;
+			border-radius: $round-edge;
+
+			&:hover {
+				@include theme-color(background-color, bg-hover);
+			}
+
+			>:first-child {
+				order: 2;
+			}
+
+			>:last-child {
+				order: 1;
+			}
+		}
+
+		>:first-child {
+			border-radius: $round-edge;
+			border: none;
+		}
+
+		&::before,
+		&::after{
+			content: "";
+			position: absolute;
+			right: 0.6rem;
+			width: 0;
+			height: 0;
+			border-left: 1rem solid transparent;
+  	  border-right: 1rem solid transparent;
+		}
+
+		&::before {
+			top: -1rem;
+			border-bottom: 1rem solid; 
+			@include theme-color(border-bottom-color, border)
+		}
+
+		&::after{
+
+			top: -0.9rem;
+    	border-bottom: 1rem solid;
+			@include theme-color(border-bottom-color, bg)
+		}
+	}
+}

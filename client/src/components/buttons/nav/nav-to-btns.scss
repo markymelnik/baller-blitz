@@ -1,8 +1,26 @@
 @import '@styles/colors.scss';
 
+.nav-to-search-btn,
+.nav-to-notif-btn,
+.nav-to-settings-btn,
+.nav-to-profile-btn {
+	height: 2.5rem;
+	width: 2.5rem;
+
+	.icon {
+		height: 100%;
+		width: 100%;
+	}
+}
+
 .nav-to-search-btn {
-	height: 2rem;
-	width: 2rem;
+	padding: 0.25rem;
+	border-radius: $round-edge;
+	transition: all 0.1s ease;
+
+	&:hover {
+		@include theme-color(background-color, bg-hover);
+	}
 }
 
 .nav-to-games-btn-arr {
@@ -11,6 +29,7 @@
 	align-items: center;
 	gap: 0.25rem;
 	padding: 2rem 0;
+	
 
 	.nav-btn-text {
 		font-size: 1.25rem;
@@ -18,9 +37,14 @@
 }
 
 .nav-to-notif-btn {
-	height: 2rem;
-	width: 2rem;
-	position: relative;
+	padding: 0.25rem;
+	border-radius: $round-edge;
+	transition: all 0.1s ease;
+
+
+	&:hover {
+		@include theme-color(background-color, bg-hover);
+	}
 
 	.number-of-notifs {
 		font-size: 0.75rem;
@@ -76,25 +100,16 @@
 	}
 }
 
-.nav-to-settings-btn {
-	font-size: 1.25rem;
-	height: 2.5rem;
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-}
-
+.nav-to-settings-btn,
 .nav-to-profile-btn {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 2.25rem;
-	width: 2.25rem;
-	border: 1.5px solid;
-	border-radius: 50%;
+	gap: 0.75rem;
 
-	.profile-btn-img {
-		font-size: 1rem;
+	.icon {
+		height: 1.5rem;
+		width: 1.5rem;
 	}
 }
 

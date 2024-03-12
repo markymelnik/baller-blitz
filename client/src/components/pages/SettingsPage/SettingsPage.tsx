@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Icons } from '../../../lib/Icons';
 import { Content } from '../../../lib/Content';
 import { LogoutButton } from '../../buttons/LogoutButton/LogoutButton';
-import { ColorBtn } from '../../buttons/ColorBtn/ColorBtn';
+/* import { ColorBtn } from '../../buttons/ColorBtn/ColorBtn'; */
 
 import { SeeEmail } from './SeeEmail/SeeEmail';
 import { UpdateUsername } from './UpdateUsername/UpdateUsername';
@@ -58,7 +58,7 @@ const SettingsPage = () => {
         </li>
         <div className="sp-settings-divider"></div>
         <li className="sp-settings-item">
-          <ColorBtn />
+          {/* <ColorBtn /> */}
         </li>
       </ul>
       <LogoutButton />

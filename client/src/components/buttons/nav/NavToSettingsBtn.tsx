@@ -10,7 +10,7 @@ export const NavToSettingsBtn = () => {
 			className={'nav-to-settings-btn'}
 			buttonText={'Settings'}
 		>
-			<Icons.Gear size={28} className='icon' />
+			<Icons.Gear className='icon' />
 		</NavigateToButtonCreator>
 	)
 }

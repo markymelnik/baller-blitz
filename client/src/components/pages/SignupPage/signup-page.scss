@@ -26,7 +26,7 @@
 	.sp-right {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 		
 		@media (min-width: 992px) {
@@ -34,7 +34,7 @@
 		}
 
 		.sp-heading {
-			padding: 0 0 2rem;
+			padding: 2rem 0 0;
 		}
 	}
 
@@ -43,8 +43,6 @@
 		flex-direction: column;
 		align-items: center;
 		width: clamp(200px, 100%, 24rem);
-		/* border: 1px solid;
-		@include theme-color(border-color, border); */
 		padding: 1.25rem 0;
 		
 		.signup-page-bot {

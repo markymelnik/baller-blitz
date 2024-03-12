@@ -5,6 +5,16 @@
 	flex-direction: column;
 	width: 100%;
 
+	.lf-top {
+		text-align: center;
+		padding: 1rem 0 2rem;
+		
+		.lf-heading {
+			font-size: 2rem;
+			line-height: 1.25;
+		}
+	}
+
 	.lf-inputs-container {
 		display: flex;
 		flex-direction: column;
@@ -84,7 +94,9 @@
 	.login-submit-btn {
 		height: 3.5rem;
 		border: 1px solid;
-		@include theme-color(border-color, text);
+		@include theme-color(border-color, bg);
+		@include theme-color(background-color, text);
+		@include theme-color(color, bg);
 		margin: 1.5rem 0 0;
 		border-radius: $round-edge;
 	}

@@ -112,6 +112,7 @@ export const LoginForm = () => {
             : `${Content.auth.login.prompt.noEmail}`}
         </h2>
       </div>
+      
       <div className='lf-inputs-container'>
         <Controller
           name='email'

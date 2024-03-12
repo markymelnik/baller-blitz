@@ -93,7 +93,9 @@
 	.signup-submit-btn {
 		height: 3.5rem;
 		border: 1px solid;
-		@include theme-color(border-color, text);
+		@include theme-color(border-color, bg);
+		@include theme-color(background-color, text);
+		@include theme-color(color, bg);
 		margin: 1.5rem 0 0;
 		border-radius: $round-edge;
 	}

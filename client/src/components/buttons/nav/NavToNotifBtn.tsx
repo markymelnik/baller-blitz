@@ -22,7 +22,7 @@ export const NavToNotifBtn = () => {
       className={'nav-to-notif-btn'}
     >
       {numberOfNotifs > 0 && <span className='number-of-notifs'>{numberOfNotifs}</span>}
-      <Icons.Bell size={30} className='icon'/>
+      <Icons.Bell className='icon'/>
     </NavigateToButtonCreator>
   );
 };

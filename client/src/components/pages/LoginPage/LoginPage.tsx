@@ -8,21 +8,18 @@ const LoginPage = () => {
 
   return (
     <main className='login-page unauth'>
-      <div className="lp-left">
-
-      </div>
-      <div className="lp-right">
-      <h1 className="lp-heading">Baller Blitz</h1>
-      <div className='login-form-wrapper'>
-      
-        <LoginForm />
-        <div className='login-page-bot'>
-        <div className="lp-message">{Content.auth.login.needAccount}</div> 
-          <NavToSignupFromLoginButton />
+      <div className='lp-left'></div>
+      <div className='lp-right'>
+        <h1 className='lp-heading'>Baller Blitz</h1>
+        <div className='login-form-wrapper'>
+          <LoginForm />
+          <div className='login-page-bot'>
+            <div className='lp-message'>{Content.auth.login.needAccount}</div>
+            <NavToSignupFromLoginButton />
+          </div>
         </div>
+        <div className="lp-right-bot"></div>
       </div>
-      </div>
-    
     </main>
   );
 };

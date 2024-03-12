@@ -7,7 +7,7 @@ import { LogoutButton } from "../../buttons/LogoutButton/LogoutButton";
 import { NavToHomeBtn } from "../../buttons/nav/NavToHomeBtn";
 import { NavToGamesBtn } from "../../buttons/nav/NavToGamesBtn";
 import { NavToFriendsBtn } from "../../buttons/nav/NavToFriendsBtn";
-import { ColorBtn } from "../../buttons/ColorBtn/ColorBtn";
+/* import { ColorBtn } from "../../buttons/ColorBtn/ColorBtn"; */
 import { useUserDetails } from "../../../hooks/stateSelectors";
 import './mobile-overlay.scss';
 import { Logo } from "../../top/Logo/Logo";
@@ -38,7 +38,7 @@ export const MobileOverlay = ({ isOpen, onClose }: MobileOverlayProps) => {
 				<NavToFriendsBtn />
 			</nav>
 			<div className="mo-space">
-				<ColorBtn />
+				{/* <ColorBtn /> */}
 			</div>
 			<div className="mo-bo">
 			<div className="mo-username">{username || 'username_error'}</div>
