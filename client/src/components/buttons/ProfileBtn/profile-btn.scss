@@ -10,9 +10,17 @@
 		height: 2.25rem;
 		width: 2.25rem;
 		border: 1.5px solid;
+		@include theme-color(border-color, text);
 		border-radius: 50%;
+		@include theme-color(background-color, bg);
+		@include theme-color(color, text);
 		z-index: 3;
 		margin-left: 0.5rem;
+		transition: all 0.1s ease;
+
+		&:hover {
+			@include theme-color(background-color, bg-hover);
+		}
 	}
 
 	.dropdown {

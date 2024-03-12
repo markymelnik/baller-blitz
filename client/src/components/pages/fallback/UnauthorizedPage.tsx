@@ -1,5 +1,5 @@
 import { Content } from "../../../lib/Content.ts";
-import { NavToHomeBtn } from "../../buttons/nav/NavToHomeBtn.tsx";
+import { NavBackHomeBtn } from "../../buttons/nav/NavBackHomeBtn.tsx";
 import './fallback.scss';
 
 const UnauthorizedPage = () => {
@@ -7,7 +7,7 @@ const UnauthorizedPage = () => {
     <main className='unauthorized-page'>
       <h2 className='fallback-header'>{Content.fallback.unauthorized}</h2>
       <nav className='nav-home-wrapper'>
-        <NavToHomeBtn />
+        <NavBackHomeBtn />
       </nav>
     </main>
   );

@@ -29,9 +29,11 @@
 		flex-direction: column;
 		width: 100%;
 		height: 100%;
+		padding: 0.25rem;
 		
 		@media (min-width: 768px) {
 			flex-direction: row;	
+			padding: 0.5rem;
 		}
 
 		.hu-left {
@@ -48,9 +50,9 @@
 		
 				svg {
 					position: absolute;
-					width: 8rem;
-					left: 24vw;
-					opacity: 0.3;
+					width: 10rem;
+					left: 36vw;
+					opacity: 0.25;
 					@include theme-color(stroke, border);
 					@include theme-color(fill, border);
 					stroke-width: 2;
@@ -58,7 +60,7 @@
 
 					@media (min-width: 768px) {
 						top: -6rem;
-						left: 6vw;
+						left: 8vw;
 						width: 24rem;
 					}
 
@@ -69,7 +71,7 @@
 			}
 
 			.hu-intro {
-				font-size: 3.5rem;
+				font-size: 4.25rem;
 
 				@media (min-width: 768px) {
 					font-size: 6.25rem;
@@ -91,7 +93,7 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				padding: 4rem 0 3rem;
+				padding: 3rem 0;
 				
 				@media (min-width: 768px) {
 					border-left: 1px solid;

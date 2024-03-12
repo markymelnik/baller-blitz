@@ -1,14 +1,13 @@
 import { Content } from '../../../lib/Content.ts';
-import { NavToHomeBtn } from '../../buttons/nav/NavToHomeBtn.tsx';
+import { NavBackHomeBtn } from '../../buttons/nav/NavBackHomeBtn.tsx';
 import './fallback.scss';
 
 const UnauthenticatedPage = () => {
-
   return (
     <main className='unauthenticated-page'>
       <h2 className='fallback-header'>{Content.fallback.unauthenticated}</h2>
-      <nav className="nav-home-wrapper">
-      <NavToHomeBtn />
+      <nav className='nav-home-wrapper'>
+        <NavBackHomeBtn />
       </nav>
     </main>
   );

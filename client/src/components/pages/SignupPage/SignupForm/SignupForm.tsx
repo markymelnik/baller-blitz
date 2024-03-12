@@ -186,7 +186,7 @@ export const SignupForm = () => {
             stroke='2.5'
             bg-opacity='0'
             speed='2'
-            color='var(--spinner-color)'
+            color='var(--reverse-spinner-color)'
           ></l-ring>
         ) : (
           'Continue'

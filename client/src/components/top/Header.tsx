@@ -70,7 +70,14 @@ const Header = () => {
           {location.pathname.startsWith('/profile') &&
             location.pathname !== '/profile' && (
               <h1 className='header-h1'>User</h1>
-            )}
+            )
+          }
+          {location.pathname === '/unauthenticated' && (
+            <Logo />
+          )}
+          {location.pathname === '/unauthorized' && (
+            <Logo />
+          )}
         </div>
 
         <nav className='header-right-nav'>
@@ -106,9 +113,7 @@ const Header = () => {
               {location.pathname === '/' && <NavToSearchBtn />}
               {location.pathname === '/' && <NavToNotifBtn />}
               {location.pathname === '/' && 
-              
-                  <ProfileBtn />
-              
+                <ProfileBtn />
               }
             </>
           )}

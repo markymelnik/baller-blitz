@@ -14,7 +14,7 @@ const SignupPage = () => {
       </div>
       <div className="sp-right">
       <h1 className="sp-heading">Baller Blitz</h1>
-      <div className='signup-page-wrapper'>
+      <div className='signup-form-wrapper'>
         <SignupForm />
         <div className='signup-page-bot'>
           <div className="sp-message">{Content.auth.signup.alreadyUser}</div>          

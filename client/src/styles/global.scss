@@ -29,13 +29,14 @@ body {
 		background-color: $light;
 		color: $dark;
 		--spinner-color: #1A1A1A;
+		--reverse-spinner-color: #FAF9F6;
 		--input-autofill-bg: #FAF9F6;
 	}
 
 	&.dark {
 		background-color: $dark;
 		color: $light;
-		--spinner-color: #FAF9F6;
+		--reverse-spinner-color: #1A1A1A;
 		--input-autofill-bg: #1A1A1A;
 	}
 }
