@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 
-import 'react-circular-progressbar/dist/styles.css';
 import { useFetchUserStats } from '../../../../hooks/user/useFetchUserStats';
 import { Content } from '../../../../lib/Content';
 import { UserStatistics } from '../../../../types/userTypes';
 import { formatPercent } from '../../../../utils/formatPercent';
+import 'react-circular-progressbar/dist/styles.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './user-stats.scss';
 

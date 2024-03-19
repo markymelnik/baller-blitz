@@ -16,7 +16,7 @@
 		@include theme-color(border-color, border);
 		@include theme-color(background-color, bg);
 		box-shadow: $normal-shadow;
-		padding: $normal-padding $normal-padding 2.5rem;
+		padding: $normal-padding;
 	}
 
 	>:nth-child(1) {

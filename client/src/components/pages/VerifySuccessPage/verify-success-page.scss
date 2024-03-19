@@ -1,11 +1,13 @@
+@import '@styles/colors.scss';
+
 .verify-success-page {
-	min-height: 87vh;
+	height: 100vh;
   width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 3rem;
-	padding: 15vh 0 0;
+	padding: 20vh 0 0;
 
 	.verify-success-title {
 		font-size: 1.5rem;

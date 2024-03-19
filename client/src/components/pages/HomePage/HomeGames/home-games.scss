@@ -78,17 +78,26 @@
 	.hg-no-games {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		padding: 0.5rem;
+
+		@media (min-width: 768px) {
+			padding: 0;
+		}
 
 		.no-games-card {
 			border: 1px solid;
 			@include theme-color(border-color, border);
 			border-radius: $round-edge;
-			padding: 0.5rem 0;
 			height: 20rem;
+			width: 15rem;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			@include theme-color(background-color, bg);
+
+			@media (min-width: 768px) {
+				width: 100%;
+			}
 
 			.no-games-text {
 				display: flex;
@@ -108,15 +117,14 @@
 
 	.hg-loading {
 		display: flex;
-		height: 20rem;
 		overflow: auto;
 		scrollbar-width: none;
   	-ms-overflow-style: none;
 		padding: 0.5rem;
 
 		.hg-list-skeleton {
-			height: 20rem;
 			width: 15rem;
+			height: 20rem;
 			border-radius: $round-edge;
 			margin-right: $normal-padding;
 
@@ -133,6 +141,10 @@
 			gap: $normal-padding;
 			padding: 0;
 			height: auto;
+
+			@media (min-width: 768px) {
+				gap: 0;
+			}
 		}
 	}
 

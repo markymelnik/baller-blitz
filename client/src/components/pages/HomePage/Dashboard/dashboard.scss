@@ -38,8 +38,8 @@
 	}
 
 	.db-stats-container {
-		height: 30rem;
-		padding: 2.5rem $normal-padding;
+		min-height: 30rem;
+		padding: $normal-padding;
 		@include theme-color(background-color, bg);
 
 		.user-stats {

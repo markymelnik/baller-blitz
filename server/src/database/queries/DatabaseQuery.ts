@@ -42,6 +42,7 @@ export const DatabaseQuery = {
         email,
         password,
         username,
+        'user'
       ]);
 
       const userId = result.rows[0].id;
