@@ -59,7 +59,7 @@ export const UserStats = () => {
           />
 
 {total_predictions < 1 ? (
-              <p>Place predictions to start tracking stats!</p>
+              <p className='no-predictions-msg'>Place predictions to start tracking stats!</p>
             ) : (
               <div className='correct-rate'>
                 <div className='correct-pred'>

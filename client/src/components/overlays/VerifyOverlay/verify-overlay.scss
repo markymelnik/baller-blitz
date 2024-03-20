@@ -7,11 +7,10 @@
 	height: 100vh;
 	width: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
-	padding: 1rem;
+	padding: $normal-padding;
 	z-index: 2;
 
 	.verify-overlay {
-		width: clamp(300px, 90%, 400px);
 		height: 100%;
 		display: flex;
 		flex-direction: column;
@@ -25,73 +24,80 @@
 		@include theme-color(border-color, text);
 		z-index: 1;
 
-		.verify-overlay-top {	
-			width: 100%;
+		.verify-content {
+			width: clamp(300px, 90%, 450px);
 
-			.overlay-graphic {
-				/* border: 1px solid;
-  			@include theme-color(border-color, border); */
-				height: 8rem;
+			.verify-overlay-top {	
 				width: 100%;
-			}
-		}
-
-		.verify-overlay-mid {
-			display: flex;
-			flex-direction: column;
-
-			.verify-step {
-				font-size: 1rem;
-				padding: 0 0 1rem;
-			}
-
-			.verify-title {
-				font-size: 2.25rem;
-				padding: 0 0 0.5rem;
-			}
-
-			.verify-desc {
-				font-size: 1rem;
-				padding: 0 0 3rem;
-			}
-		}
 	
-		.verify-again {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
-
-			.verify-ask {
-				text-align: center;
-				font-size: 1.1rem;
-			}
-
-			.send-new-email-btn {
-				border: 1px solid;
-  			@include theme-color(border-color, border);
-				border-radius: $round-edge;
-				font-size: 1rem;
-				padding: 1rem;
-				margin: 1rem 0;
-
-				&.disabled {
-					pointer-events: none;
-				}
-
-				&:hover {
-					@include theme-color(border-color, text);
+				.overlay-graphic {
+					/* border: 1px solid;
+					@include theme-color(border-color, border); */
+					height: 4rem;
+					width: 100%;
 				}
 			}
-
-			.verify-status {
-				height: 1rem;
-				text-align: center;
-
-				&.error {
-					color: $red;
+	
+			.verify-overlay-mid {
+				display: flex;
+				flex-direction: column;
+	
+				.verify-step {
+					font-size: 1rem;
+					padding: 0 0 1rem;
+				}
+	
+				.verify-title {
+					font-size: 2.25rem;
+					padding: 0 0 0.5rem;
+				}
+	
+				.verify-desc {
+					font-size: 1rem;
+					padding: 0 0 3rem;
 				}
 			}
+		
+			.verify-again {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+	
+				.verify-ask {
+					text-align: center;
+					font-size: 1.1rem;
+				}
+	
+				.send-new-email-btn {
+					border: 1px solid;
+					@include theme-color(border-color, border);
+					border-radius: $round-edge;
+					font-size: 1rem;
+					padding: 1rem;
+					margin: 1rem 0;
+	
+					&.disabled {
+						pointer-events: none;
+					}
+	
+					&:hover {
+						@include theme-color(border-color, text);
+					}
+				}
+	
+				.verify-status {
+					height: 1rem;
+					text-align: center;
+	
+					&.error {
+						color: $red;
+					}
+				}
+			}
+
 		}
+
+
 	}
 }
 

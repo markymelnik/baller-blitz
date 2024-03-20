@@ -22,9 +22,8 @@ const VerifyEmailOverlay = () => {
   const handleButtonClick = async () => {
 		try {
       const response = await ApiClient.resendEmailVerification(accessToken);
-      // THIS NEEDS TO BE REWORKED
-      // THIS WORKS IN DEPLOYED ENVIRONMENT
-      // HANDLE 200 RESPONSE FOR LOCAL ENVIRONMENT
+      // POTENTIAL ISSUE HERE
+      // WORKS AS OF MARCH 19, 2024
       if (response) {
         if (response.status === 429) {
           setResendStatus('limited');
@@ -43,6 +42,7 @@ const VerifyEmailOverlay = () => {
     return createPortal(
       <div className='verify-wrapper'>
         <div className='verify-overlay' role="dialog">
+          <div className="verify-content">
           <div className='verify-overlay-top'>
             <div className="overlay-graphic"></div>
           </div>
@@ -98,6 +98,9 @@ const VerifyEmailOverlay = () => {
 
           </div>
           <LogoutButton />
+
+          </div>
+        
         </div>
       </div>,
       document.getElementById('portal-root')!
